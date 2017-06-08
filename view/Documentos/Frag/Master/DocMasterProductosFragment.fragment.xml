@@ -1,0 +1,57 @@
+
+<core:FragmentDefinition 
+    height="100%" 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+    	
+
+<s:MasterPage title="Productos" id="MasterDocNuevoProductos" showNavButton="true" navButtonPress="onDocNuevoPressMasterBack">
+    <s:customHeaderContent>
+                    <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
+                </s:customHeaderContent>
+                <Page >
+
+                    <customHeader>
+                        <Toolbar>
+                            <SegmentedButton selectedKey="productos" width="100%">
+                                <items>
+                                    <SegmentedButtonItem text="Datos" press="onDocNuevoMasterDatos"/>
+                                    <SegmentedButtonItem key="productos" text="Productos" press="onDocNuevoMasterProductos"/>
+                                </items>
+                            </SegmentedButton>
+                        </Toolbar>
+                    </customHeader>
+                    <content>
+                        <List mode="SingleSelectMaster" growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
+                            enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onDocNuevoListMasterProductos">
+                            <items>
+                                <StandardListItem selected="true" title="10214001" description="REPISA CROMADO ARIETE SAMANTHA" info="161.20 " type="Active"
+                                    custom:to="pagDocNuevo_productos_lista1"/>
+                            </items>
+                        </List>
+                    </content>
+                </Page>
+                <s:customFooterContent>
+                    <OverflowToolbarButton icon="sap-icon://add" press="onDocNuevodlg_addProducto"/>
+                    <OverflowToolbarButton icon="sap-icon://search" press="onDocNuevodlg_buscar"/>
+                    <Button text="Stock Disponible" press="goStockDisponible"></Button>
+                    <Button text="Stock por Llegar" press="goStockporLlegar"></Button>
+                    <Button text="Stock por Pedir" press="goStockporPedir"></Button>
+
+                </s:customFooterContent>
+            </s:MasterPage>
+
+
+    	
+    </core:FragmentDefinition>
+
+
+
+

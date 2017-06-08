@@ -1,0 +1,35 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    
+    <s:DetailPage title="Detalle Stock por Llegar" id="DocStockporLlegarDetalle">
+        <s:content>
+            
+             <Table>
+                            <columns>
+                                <Column>
+                                    <Text text="Fecha"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Material"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Descripción"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="UM"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Disponibilidad"></Text>
+                                </Column>
+                            </columns>
+                        </Table>
+        </s:content>
+    </s:DetailPage>
+</core:FragmentDefinition>

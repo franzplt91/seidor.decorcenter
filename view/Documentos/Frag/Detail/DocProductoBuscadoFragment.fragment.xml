@@ -1,0 +1,41 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    
+    <s:DetailPage title="Detalle Producto" id="pagDocNuevo_productos_buscar1">
+        <s:content>
+            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="Cliente Eventual La Molina"
+                number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
+                <attributes>
+                    <ObjectAttribute title="Código" text="{/itemProductoModel/codigo}"/>
+                    <ObjectAttribute title="Cantidad" text="{/itemProductoModel/cantidad}"/>
+                    <ObjectAttribute title="Peso" text="{/itemProductoModel/peso}"/>
+                    <ObjectAttribute title="Precio Unitario" text="{/itemProductoModel/precioUnitario}"/>
+                    <ObjectAttribute title="Stock Disponible" text="{/itemProductoModel/precioUnitario}"/>
+                </attributes>
+            </ObjectHeader>
+            <List class="sapUiResponsiveMargin" width="auto" items="{ path : 'invoice>/Invoices', sorter : { path : 'ShipperName', group : true } }"
+                headerText="Products">
+                <ObjectListItem title="{invoice>Quantity} x {invoice>ProductName}"
+                    number="{ parts: [{path: 'invoice>ExTendedPrice'}, {path: 'view>/currency'}], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+                    numberUnit="{view>/currency}" numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }">
+                    <firstStatus>
+                        <ObjectStatus text="{ path: 'invoice>Status', formatter: '.formatter.statusText' }"/>
+                    </firstStatus>
+                </ObjectListItem>
+            </List>
+        </s:content>
+        <s:pagingAction>
+            <Button icon="sap-icon://save" tooltip="Guardar"/>
+        </s:pagingAction>
+        <s:printAction>
+            <s:PrintAction press="onDocNuevoSemanticButtonPress"/>
+        </s:printAction>
+    </s:DetailPage>
+</core:FragmentDefinition>

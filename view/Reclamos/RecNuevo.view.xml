@@ -1,0 +1,111 @@
+<mvc:View 
+    height="100%" 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" 
+    controllerName="pe.com.seidor.sap.decor.ventas.controller.Reclamos.RecNuevo" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:tnt="sap.tnt" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" displayBlock="true">
+
+    
+    <!--Dialog Inicio Rec Nuevo-->
+    <Dialog title="Ingresar Pedido" id="dlg_filtros" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
+        <content>
+            <Page>
+                <customHeader>
+                    <Toolbar>
+                        <Label text="Número de Pedido:"></Label>
+                        <Input width="60%" placeholder="Ingrese Número de Pedido"></Input>
+                    </Toolbar>
+                </customHeader>
+                <content></content>
+            </Page>
+        </content>
+        <beginButton>
+            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCloseDlgRecNuevo" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+        </endButton>
+    </Dialog>
+    <!--Dialog Segundo Rec Nuevo-->
+    <Dialog title="Stock Disponible" id="dlg_rec_nuevo_2" stretchOnPhone="true" contentWidth="20%" contentHeight="75%">
+        <content>
+            <Panel>
+                <content></content>
+            </Panel>
+        </content>
+        <beginButton>
+            <Button text="Guardar" type="Accion" icon="sap-icon://save" press="onMasterProductosBuscar" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgRecNuevo2" />
+        </endButton>
+    </Dialog>
+    <!--Dialog Interlocutores Buscar Rec Nuevo-->
+    <Dialog title="Buscar Cliente" id="dlg_buscar_rec_nuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="45%">
+        <content>
+            <Panel>
+                <content>
+
+
+                    <f:Form 
+            minWidth="1024"
+            maxContainerCols="4"
+            editable="true">
+            <f:title>
+                <!--<core:Title text="Address" />-->
+            </f:title>
+            <f:layout>
+                <f:ResponsiveGridLayout
+                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="5"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="RUC / DNI">
+                            <f:fields>
+                                <Input placeholder="Ingrese RUC o Nro. de DNI"></Input>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Razón Social">
+                            <f:fields>
+                                <Input placeholder="Ingrese Razón Social"></Input>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+
+                </content>
+            </Panel>
+        </content>
+        <beginButton>
+            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onBuscarRecNuvoInterlocutores"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgBuscarRecNuevo" />
+        </endButton>
+    </Dialog>
+    
+    <!--Split Container-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Reclamos.Frag.RecContenedorFragment" type="XML"></core:Fragment>
+
+</mvc:View>

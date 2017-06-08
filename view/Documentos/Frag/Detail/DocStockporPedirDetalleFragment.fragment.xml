@@ -1,0 +1,31 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    
+    <s:DetailPage title="Detalle Stock por Pedir" id="DocStockporPedirDetalle">
+        <s:content>
+            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="Material: 11000798 Blanco y Negro Líneas"
+                number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
+                <attributes>
+                    <ObjectAttribute title="Jerarquía 1" text="{/itemProductoModel/codigo}"/>
+                    <ObjectAttribute title="Fecha" text="{/itemProductoModel/cantidad}"/>
+                    <ObjectAttribute title="Jerarquía 2" text="{/itemProductoModel/cantidadRendimiento}"/>
+                    <ObjectAttribute title="Mes" text="{/itemProductoModel/centro} / {/itemProductoModel/almacen} / {/itemProductoModel/lote}"/>
+                    <ObjectAttribute title="Jerarquía 3" text="{/itemProductoModel/peso}"/>
+                    <ObjectAttribute title="Marca" text="{/itemProductoModel/pesoTotal}"/>
+                    <ObjectAttribute title="Cantidad y UM" text="{/itemProductoModel/precioUnitario}"/>
+                    <ObjectAttribute title="Jerarquía 4" text="{/itemProductoModel/subTotal}"/>
+                    <ObjectAttribute title="Stock" text="{/itemProductoModel/descuentos}"/>
+                    <ObjectAttribute title="Tipo Stock" text="{/itemProductoModel/descuentos}"/>
+                </attributes>
+            </ObjectHeader>
+            
+        </s:content>
+    </s:DetailPage>
+</core:FragmentDefinition>

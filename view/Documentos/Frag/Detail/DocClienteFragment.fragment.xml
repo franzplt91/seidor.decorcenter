@@ -1,0 +1,475 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    
+    <s:DetailPage title="Documento" id="pagDocNuevo_datos_detail1">
+        <s:content>
+            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/clienteSeleccionado/nombrecliente}"
+                number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
+                <attributes>
+                    <ObjectAttribute title="Código" text="{/clienteSeleccionado/codigo}"/>
+                </attributes>
+            </ObjectHeader>
+            <IconTabBar stretchContentHeight="false" expandable="false" headerMode="Inline" upperCase="false" expanded="{device/isNoPhone}"
+                class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter showAll="false" text="Área de Ventas" > 
+                        <FlexBox
+                    alignItems="Center"
+                    justifyContent="Center">
+                    <items>
+                        <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Organización de Ventas">
+                                            <f:fields>
+                                                <Input value="" />
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Canal">
+                                            <f:fields>
+                                                 <Select items="{ path : '/dataIni/lstCanales' }" maxwidth="100%" required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Oficina">
+                                            <f:fields>
+                                                <Select items="{ path : '/dataIni/lstOfVtas' }" maxwidth="100%" required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                    </items>
+                </FlexBox>
+                        
+                    </IconTabFilter>
+                    <IconTabFilter showAll="false" text="Pago ">
+
+
+
+                        <FlexBox
+                    alignItems="Center"
+                    justifyContent="Center">
+                        <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                     labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Condición de Pago">
+                                            <f:fields>
+                                                <Select items="{ path : '/dataIni/lstCPag' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Moneda">
+                                            <f:fields>
+                                                 <Select items="{ path : '/dataIni/lstMoneda' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tipo de Cambio">
+                                            <f:fields>
+                                                <Input width="100%" placeholder="Ingrese Tipo de Cambio"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Peso Total">
+                                            <f:fields>
+                                                <Input width="100%" placeholder="Ingrese Peso Total"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                    </FlexBox>
+                    </IconTabFilter>
+                    <IconTabFilter showAll="false" text="Datos Facturación">
+                        <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                     labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="2"
+                                    columnsL="2"
+                                    columnsM="2"
+                                    singleContainerFullSize="false" 
+
+                                    />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Datos Facturación">
+                                            <f:fields>
+                                                <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short"
+                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                </DatePicker>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+
+                            </f:formContainers>
+                        </f:Form>
+
+
+                        <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="2"
+                                    columnsL="2"
+                                    columnsM="2"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        
+                                        <f:FormElement label="Nombre Banco">
+                                            <f:fields>
+                                                 <Select items="{ path : '/dataIni/lstGrpCond' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+
+                                        <f:FormElement label="Motivo de NC o ND">
+                                            <f:fields>
+                                                <Select items="{ path : '/dataIni/lstMotPed' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                    </f:formElements>
+                                
+                                        
+                                    
+                                </f:FormContainer>
+                                        
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Bloqueo Factura">
+                                            <f:fields>
+                                                <Select items="{ path : '/dataIni/lstBloFac' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Bloqueo Entrega">
+                                            <f:fields>
+                                                <Select items="{ path : '/dataIni/lstBloEnt' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        </f:formElements>
+
+                                </f:FormContainer>
+
+                            </f:formContainers>
+                        </f:Form>
+
+
+                        
+                    </IconTabFilter>
+                    <IconTabFilter showAll="false" text="Datos Documento">
+
+
+                        <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="2"
+                                    columnsL="2"
+                                    columnsM="2"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Nro. Orden de Compra">
+                                            <f:fields>
+                                                <Input width="100%"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Fecha Pedido">
+                                            <f:fields>
+                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
+                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                </DatePicker>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+
+
+                            <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Fecha de Validez">
+                                            <f:fields>
+                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
+                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                   
+                                </DatePicker>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Fecha Ent. Referencial">
+                                            <f:fields>
+                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
+                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                    
+                                </DatePicker>
+                                            </f:fields>
+                                        </f:FormElement>
+                                            <f:FormElement label="Tipo de Despacho">
+                                            <f:fields>
+                                                <Select items="{ path : '/dataIni/lstCondExp' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Fecha de Despacho">
+                                            <f:fields>
+                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
+                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                    
+                                </DatePicker>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                        
+                    </IconTabFilter>
+                    <IconTabFilter showAll="false" text="Proyecto y Visita">
+
+
+                    <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="2"
+                                    columnsL="2"
+                                    columnsM="2"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Nombre Proyecto">
+                                            <f:fields>
+                                                <Input  placeholder="Ingrese Proyecto">
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Tipo de Visita">
+                                            <f:fields>
+                                                 <Select items="{ path : '/dataIni/lstTipoVisita' }"  required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                        <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="2"
+                                    columnsL="2"
+                                    columnsM="2"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Código Proyecto">
+                                            <f:fields>
+                                                <Input placeholder="Código Proyecto">
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Código Version">
+                                            <f:fields>
+                                                 <Input  placeholder="Código Versión">
+                                                     <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                 </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+
+                                <f:FormContainer>
+                                    <f:formElements>
+                                            
+                                        <f:FormElement label="Visita No Reembolsable">
+                                            <f:fields>
+                                                <CheckBox selected="true">
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </CheckBox>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </s:content>
+
+                
+        <s:pagingAction>
+            <Button icon="sap-icon://save" tooltip="Guardar"/>
+        </s:pagingAction>
+        <s:printAction>
+            <s:PrintAction press="onDocNuevoSemanticButtonPress"/>
+        </s:printAction>
+    </s:DetailPage>
+</core:FragmentDefinition>

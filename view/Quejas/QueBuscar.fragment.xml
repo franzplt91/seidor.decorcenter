@@ -1,0 +1,138 @@
+<core:FragmentDefinition 
+    height="100%"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="pe.com.seidor.sap.decor.ventas.controller.Quejas.QueBuscar"
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic"
+
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+        displayBlock="true">
+
+
+
+        <Dialog title="Buscar Queja" id="dlg_QueBuscar" stretchOnPhone="true" contentWidth="25%"
+                    contentHeight="43%">
+        <content>
+                            
+                            
+        <f:Form 
+            minWidth="1024"
+            maxContainerCols="2"
+            editable="true">
+            <f:title>
+                
+            </f:title>
+            <f:layout>
+                <f:ResponsiveGridLayout
+                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="5"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="Número de Queja">
+                            <f:fields>
+                                    <Input  width=""></Input>
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="Cliente">
+                            <f:fields>
+                                    <Input ></Input>
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="Fecha Inicio">
+                            <f:fields>
+                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="Fecha Fin">
+                            <f:fields>
+                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
+                            </f:fields>
+                        </f:FormElement>
+
+                        
+
+
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+                    
+
+                        
+
+
+        </content>
+
+       
+
+        <buttons>
+            <Button text="Ver Queja" type="Accion" icon="sap-icon://search" press="onOpenDlg_QueBuscarLista"></Button>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueBuscar"></Button>
+        </buttons>
+    </Dialog>
+
+
+
+<Dialog title="Lista de Quejas" id="dlg_QueBuscarLista" stretchOnPhone="true" contentWidth="20%" contentHeight="70%">
+        <content>
+
+
+                    <List mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                        enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onListMasterProductos"  items="{
+                                        path : '/dataIni/lstTipoDoc',
+                                        sorter : {
+                                            path : 'Codigo',
+                                            group: false
+                                        }
+                                    }">
+                        <items>
+                            <StandardListItem selected="true" title="{Descripcion}" type="Active" custom:to=""/>
+                        </items>
+                    </List>
+        </content>
+        <beginButton>
+            <Button text="Ver" type="Accion" icon="sap-icon://accept" press="goQueVisualizar"/>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueBuscarLista"/>
+        </endButton>
+    </Dialog>
+
+
+
+
+
+
+
+ 
+</core:FragmentDefinition>

@@ -1,0 +1,201 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    
+    <s:DetailPage title="Detalles Producto Agregado" id="pagDocNuevo_producto_agregado1">
+        <s:content>
+            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="Detalle Material BAVARO MEZCL LAV 4''CROMADA"
+                number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
+                <attributes>
+                </attributes>
+            </ObjectHeader>
+
+            <f:Form editable="true">
+                           <!--<f:title>
+                                <core:Title text="Profesional 2" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="5"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Posición">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Código">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Descripción">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Cantidad">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Unidad de Medida">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Unidad de Rendimiento">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Centro/Almacen/Lote">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Flete">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Peso">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Peso Total">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Precio Unitario">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Descuentos">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Sub Total">
+                                            <f:fields>
+                                                <Input width="100%" placeholder=""></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Repartos">
+                                            <f:fields>
+                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
+                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                        <layoutData>
+                            <l:GridData span="L4 M4 S6"/>
+                        </layoutData>
+                    </DatePicker>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ambiente">
+                                            <f:fields>
+                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" maxwidth="100%" required="true">
+                            <core:Item key="{Codigo}" text="{Descripcion}"/>
+                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Opción Ambiente">
+                                            <f:fields>
+                                                <Select maxwidth="100%" required="true">
+                        <core:Item key="01" text="01"/>
+                        <core:Item key="02" text="02"/>
+                        <core:Item key="03" text="03"/>
+                        <core:Item key="04" text="04"/>
+                        <core:Item key="05" text="05"/>
+                        <core:Item key="06" text="06"/>
+                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Motivo de Rechazo">
+                                            <f:fields>
+                                                <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxwidth="100%" required="true">
+                        <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
+                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Prioridad">
+                                            <f:fields>
+                                                <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxwidth="100%" required="true">
+                        <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
+                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+
+
+            
+            <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter showAll="false" text="Descuento">
+                        <List class="sapUiResponsiveMargin" width="auto" items="{ path : 'invoice>/Invoices', sorter : { path : 'ShipperName', group : true } }"
+                            headerText="Products">
+                            <ObjectListItem title="{invoice>Quantity} x {invoice>ProductName}"
+                                number="{ parts: [{path: 'invoice>ExTendedPrice'}, {path: 'view>/currency'}], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+                                numberUnit="{view>/currency}" numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }">
+                                <firstStatus>
+                                    <ObjectStatus text="{ path: 'invoice>Status', formatter: '.formatter.statusText' }"/>
+                                </firstStatus>
+                            </ObjectListItem>
+                        </List>
+                    </IconTabFilter>
+                    <IconTabFilter showAll="false" text="Centro/Amacén/Lote">
+                        <List class="sapUiResponsiveMargin" width="auto" items="{ path : 'invoice>/Invoices', sorter : { path : 'ShipperName', group : true } }"
+                            headerText="Products">
+                            <ObjectListItem title="{invoice>Quantity} x {invoice>ProductName}"
+                                number="{ parts: [{path: 'invoice>ExTendedPrice'}, {path: 'view>/currency'}], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+                                numberUnit="{view>/currency}" numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }">
+                                <firstStatus>
+                                    <ObjectStatus text="{ path: 'invoice>Status', formatter: '.formatter.statusText' }"/>
+                                </firstStatus>
+                            </ObjectListItem>
+                        </List>
+                    </IconTabFilter>
+                    <IconTabFilter showAll="false" text="Reparto">
+                        <List class="sapUiResponsiveMargin" width="auto" items="{ path : 'invoice>/Invoices', sorter : { path : 'ShipperName', group : true } }"
+                            headerText="Products">
+                            <StandardListItem title="{invoice>Quantity} x {invoice>ProductName}" description="" info="Stock: {cantidad}" type="Navigation"
+                                press="onDocNuevodlg_editListaReparto"/>
+                        </List>
+                    </IconTabFilter>
+                    <IconTabFilter showAll="false" text="Catálogo"></IconTabFilter>
+                </items>
+            </IconTabBar>
+        </s:content>
+        <s:pagingAction>
+            <Button icon="sap-icon://save" tooltip="Guardar"/>
+        </s:pagingAction>
+        <s:printAction>
+            <s:PrintAction press="onDocNuevoSemanticButtonPress"/>
+        </s:printAction>
+    </s:DetailPage>
+</core:FragmentDefinition>

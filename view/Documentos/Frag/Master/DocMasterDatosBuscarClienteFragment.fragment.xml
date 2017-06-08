@@ -1,0 +1,52 @@
+<core:FragmentDefinition 
+    height="100%" 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+    	
+
+    <s:MasterPage title="Buscar Cliente" id="MasterDocNuevoProductosBuscarCliente" showNavButton="true" navButtonPress="onDocNuevoPressMasterBack">
+        <s:customHeaderContent>
+                    <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
+                </s:customHeaderContent>
+                <Page >
+                    <customHeader>
+                        <Toolbar>
+                            <SegmentedButton selectedKey="datos" width="100%">
+                                <items>
+                                    <SegmentedButtonItem  key="datos" text="Datos" press="onDocNuevoMasterDatos"/>
+                                    <SegmentedButtonItem  key="productos" text="Productos" press="onDocNuevoMasterProductos"/>
+                                </items>
+                            </SegmentedButton>
+                        </Toolbar>
+                    </customHeader>
+                    <subHeader><!--
+                        <Toolbar>
+                            <ToolbarSpacer/>
+                            <SearchField width="100%" search="onFilterInvoices" selectOnFocus="false"/>
+                        </Toolbar>-->
+                    </subHeader>
+                    <content>
+                        <List mode="SingleSelectMaster" growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
+                            enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onDocNuevoListMasterProductos">
+                            <items>
+                                <StandardListItem selected="true" title="{/clienteSeleccionado/codigo}" description="{/clienteSeleccionado/nombrecliente}" info="161.20 " type="Active"
+                                    custom:to="pagDocNuevo_cliente_buscado"/>
+                            </items>
+                        </List>
+                    </content>
+                </Page>
+                <s:customFooterContent>
+                    <OverflowToolbarButton icon="sap-icon://search" press="onDocNuevoBuscarCliente"/>
+                </s:customFooterContent>
+            </s:MasterPage>
+
+
+    	
+    </core:FragmentDefinition>

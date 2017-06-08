@@ -1,0 +1,260 @@
+<core:FragmentDefinition 
+	height="100%" 
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m"
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+        
+
+        <s:DetailPage title="Nuevo Reclamo" id="pag_rec_nuevo_reclamo">
+                <s:content>
+                    <f:Form editable="true">
+                           <f:title>
+                                <core:Title text=" " />
+                            </f:title>
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="6"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Material 1">
+                                            <f:fields>
+                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Material 2">
+                                            <f:fields>
+                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Cantidad Material 1">
+                                            <f:fields>
+                                                <Input width="100%"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Cantidad Material 2">
+                                            <f:fields>
+                                                <Input width="100%"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="reclamo Referencia">
+                                            <f:fields>
+                                                <Input width="100%"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+
+
+                        <f:Form editable="true">
+                            <f:title>
+                                <core:Title text=" " />
+                            </f:title>
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="6"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Nro. de Pedido">
+                                            <f:fields>
+                                                <Input width="100%"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Cliente">
+                                            <f:fields>
+                                               <Input width="100%"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="CLIENTE EVENTUAL">
+                                            <f:fields>
+                                                <Input width="100%"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Asesor">
+                                            <f:fields>
+                                                <Input width="100%"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+
+
+                        <f:Form editable="true">
+                           <f:title>
+                                <core:Title text=" " />
+                            </f:title>
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="6"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Motivo de Reclamo">
+                                            <f:fields>
+                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Status">
+                                            <f:fields>
+                                               <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Resultado">
+                                            <f:fields>
+                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Justificación de Resultado">
+                                            <f:fields>
+                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+
+                    
+                        <f:Form editable="true">
+                           <f:title>
+                                <core:Title text=" " />
+                            </f:title>
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="6"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Organización de Ventas">
+                                            <f:fields>
+                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Canal">
+                                            <f:fields>
+                                               <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Sector">
+                                            <f:fields>
+                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Oficina Ventas">
+                                            <f:fields>
+                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Factura / Boleta">
+                                            <f:fields>
+                                                <Input width="100%"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+
+                    
+                    
+                </s:content>
+                <s:pagingAction>
+                    <Button icon="sap-icon://save" tooltip="Guardar" />
+                </s:pagingAction>
+                <s:printAction>
+                    <s:PrintAction press="onSemanticButtonPress" />
+                </s:printAction>
+            </s:DetailPage>
+
+        
+    </core:FragmentDefinition>

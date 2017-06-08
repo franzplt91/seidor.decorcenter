@@ -1,0 +1,43 @@
+<mvc:View
+	controllerName="pe.com.seidor.sap.decor.ventas.controller.App"
+	 xmlns:l="sap.ui.layout"
+ xmlns:u="sap.ui.unified"
+ 
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="false">
+		<u:Shell
+      icon="{/logo}"
+      tooltip="Marinasol"
+   id="myShell">
+     <u:user>
+        <u:ShellHeadUserItem
+          image="sap-icon://person-placeholder"
+          showPopupIndicator="false"
+          username="JPINGO" />
+
+      </u:user>
+      <u:headEndItems>
+
+        <u:ShellHeadItem
+            class="btnHome"
+          icon="sap-icon://home"
+          tooltip="Menu"
+          selected="false"
+          press="goHome" />
+
+        <u:ShellHeadItem
+          icon="sap-icon://log"
+          tooltip="Cerrar session"
+          selected="false"
+          press="CerrarSession" />
+
+      </u:headEndItems>
+
+
+      <u:content>
+        <App id="app" autoFocus="false"/>
+      </u:content>
+  </u:Shell>
+        
+</mvc:View>

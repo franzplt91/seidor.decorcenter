@@ -1,0 +1,249 @@
+
+<mvc:View
+	height="100%"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	controllerName="pe.com.seidor.sap.decor.ventas.controller.Documentos.DocFlujo"
+	xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic"
+    xmlns:u="sap.ui.unified"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+		displayBlock="true">
+
+
+
+        <Dialog title="Clase Documento" id="dlg_DocFlujo" stretchOnPhone="true" contentWidth="25%"
+                    contentHeight="18%">
+        <content>
+
+
+                <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="6"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Número de Documento">
+                                            <f:fields>
+                                                <Input ></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+
+
+            
+
+        </content>
+
+       
+
+
+        <beginButton>
+            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCloseDialog" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+        </endButton>
+    </Dialog>
+
+
+ 
+	<SplitContainer id="SplitAppId" initialMaster="MasterDatos" initialDetail="pag_datos_detail1" orientationChange="onOrientationChange">
+
+		<masterPages>
+
+			<s:MasterPage title="Flujo de Venta" id="MasterDatos">
+
+
+
+                	<List mode="SingleSelectMaster" itemPress="onListMasterDatos"  >
+                        <items>
+                            <StandardListItem selected="true" title="Flujo" type="Active" custom:to="pag_datos_detail1"/>
+                            <StandardListItem title="Status" type="Active" custom:to="pag_datos_detail2"/>
+                        </items>
+                    </List>
+
+
+			</s:MasterPage>
+
+
+			
+
+
+
+		</masterPages>
+
+
+		<detailPages>
+
+			<s:DetailPage
+					title="Documento" id="pag_datos_detail1">
+
+
+
+						<s:content>
+							
+							<t:Table id="table1"
+                                    rows="{/ProductCollection}"
+                                    selectionMode="Single"
+                                    selectionBehavior="RowOnly"
+                                    visibleRowCount="7"
+                                    ariaLabelledBy="title">
+                                    
+                     
+                                    <t:columns>
+                                        <t:Column width="11rem">
+                                            <Label text="Tipo de Documento" />
+                                            <t:template>
+                                                <Text text="{Name}"/>
+                                            </t:template>
+                                        </t:Column>
+                                        <t:Column width="11rem">
+                                            <Label text="Número de Documento" />
+                                            <t:template>
+                                                <Input value="{ProductId}"/>
+                                            </t:template>
+                                        </t:Column>
+                                        <t:Column width="6rem" hAlign="End">
+                                            <Label text="Fecha de Documento" />
+                                            <t:template>
+                                                <Label text="{Quantity}" />
+                                            </t:template>
+                                        </t:Column>
+                                        <t:Column width="9rem">
+                                            <Label text="Estado de Documento" />
+                                            <t:template>
+                                                <ObjectStatus text="{Status}" state="{
+                                                    path: 'Available',
+                                                    formatter: '.formatAvailableToObjectState'
+                                                }"/>
+                                            </t:template>
+                                        </t:Column>
+                                        <t:Column width="9rem">
+                                            <Label text="Referencia" />
+                                            <t:template>
+                                                <u:Currency value="{Price}" currency="{CurrencyCode}"/>
+                                            </t:template>
+                                        </t:Column>
+                                        
+                                    </t:columns>
+                                </t:Table>
+							
+
+
+						</s:content>
+ 
+			</s:DetailPage>
+
+			
+
+
+
+            <s:DetailPage
+                    title="Documento" id="pag_datos_detail2">
+
+
+
+                        <s:content>
+                            
+                           
+        <f:Form 
+            id="FormChange354"
+            minWidth="1024"
+            maxContainerCols="2"
+            editable="true">
+            <f:title>
+                <core:Title text="Status de Tratamiento" />
+            </f:title>
+            <f:layout>
+                <f:ResponsiveGridLayout
+                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="5"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="Status Global">
+                            <f:fields>
+                                <Input value="{SupplierName}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="Status Rechazo">
+                            <f:fields>
+                                <Input value="{SupplierName}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="Status Entrega">
+                            <f:fields>
+                                <Input value="{SupplierName}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="Status Crédito">
+                            <f:fields>
+                                <Input value="{SupplierName}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="Status Bloque Total">
+                            <f:fields>
+                                <Input value="{SupplierName}" />
+                            </f:fields>
+                        </f:FormElement>
+                        
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+                            
+
+
+                        </s:content>
+
+ 
+            </s:DetailPage>
+
+
+
+ 
+		</detailPages>
+ 
+	</SplitContainer>
+ 
+</mvc:View>

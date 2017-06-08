@@ -1,0 +1,42 @@
+<core:FragmentDefinition 
+    height="100%" 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+        
+
+    <s:MasterPage title="Stock por Pedir" id="MasterDocStockDisponible" >
+        <s:customHeaderContent>
+                    <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
+                </s:customHeaderContent>
+                <Page >
+                    <customHeader>
+                        <Toolbar>
+                            <SegmentedButton selectedKey="productos" width="100%">
+                                <items>
+                                    <SegmentedButtonItem text="Datos" press="onDocNuevoMasterDatos"/>
+                                    <SegmentedButtonItem key="productos" text="Productos" press="onDocNuevoMasterProductos"/>
+                                </items>
+                            </SegmentedButton>
+                        </Toolbar>
+                    </customHeader>
+                    <content>
+                        <List mode="SingleSelectMaster" growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
+                            enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onDocNuevoListMasterProductos">
+                            <items>
+                                <StandardListItem selected="true" title="Material: 11000798" description="Blanco y Negro Líneas" info="161.20 " type="Active"
+                                    custom:to="pagDocNuevo_producto_agregado1"/>
+                            </items>
+                        </List>
+                    </content>
+                </Page>
+            </s:MasterPage>
+
+
+    </core:FragmentDefinition>
