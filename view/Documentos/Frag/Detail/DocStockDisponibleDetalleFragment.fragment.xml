@@ -10,22 +10,18 @@
     
     <s:DetailPage title="Detalle Stock Disponible" id="DocStockDisponibleDetalle">
         <s:content>
-            <ObjectHeader backgroundDesign="Solid" intro="" title="{/materialSelec/DescMaterial}"
+            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="Cliente Eventual La Molina"
                 number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
                 <attributes>
-                    <ObjectAttribute title="Posición" text="{/itemProductoModel/Posicion}"/>
-                    <ObjectAttribute title="Código" text="{/materialSelec/CodMaterial}"/>
-                    <ObjectAttribute title="Descripción" text="{/materialSelec/Descripcion}"/>
-                    <ObjectAttribute title="Cantidad" text="{/materialSelec/Descripcion}"/>
-                    <ObjectAttribute title="Unidad de Medida" text="{/materialSelec/Descripcion}"/>
-                    <ObjectAttribute title="Unidad de Rendimiento" text="{/materialSelec/Descripcion}"/>
-                    <ObjectAttribute title="Centro/Almacen/Lote" text="{/materialSelec/Descripcion}"/>
-                    <ObjectAttribute title="flete" text="{/materialSelec/EsFlete}"/>
-                    <ObjectAttribute title="Peso" text="{/materialSelec/Peso}"/>
-                    <ObjectAttribute title="Peso Total" text="{/materialSelec/Descripcion}"/>
-                    <ObjectAttribute title="Precio Unitario" text="{/materialSelec/PrecioUnit}"/>
-                    <ObjectAttribute title="Descuentos" text="{/materialSelec/Descripcion}"/>
-                    <ObjectAttribute title="Sub Total" text="{/materialSelec/Descripcion}"/>
+                    <ObjectAttribute title="Código" text="{/itemProductoModel/codigo}"/>
+                    <ObjectAttribute title="Cantidad" text="{/itemProductoModel/cantidad}"/>
+                    <ObjectAttribute title="Cantidad Rendimiento" text="{/itemProductoModel/cantidadRendimiento}"/>
+                    <ObjectAttribute title="Centro/Almacen/Lote" text="{/itemProductoModel/centro} / {/itemProductoModel/almacen} / {/itemProductoModel/lote}"/>
+                    <ObjectAttribute title="Peso" text="{/itemProductoModel/peso}"/>
+                    <ObjectAttribute title="Peso Total" text="{/itemProductoModel/pesoTotal}"/>
+                    <ObjectAttribute title="Precio Unitario" text="{/itemProductoModel/precioUnitario}"/>
+                    <ObjectAttribute title="Subtotal" text="{/itemProductoModel/subTotal}"/>
+                    <ObjectAttribute title="Descuentos" text="{/itemProductoModel/descuentos}"/>
                 </attributes>
             </ObjectHeader>
             <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
