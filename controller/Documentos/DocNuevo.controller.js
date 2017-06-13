@@ -4,9 +4,8 @@ sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
     "pe/com/seidor/sap/decor/ventas/services/clienteServices",
-    "pe/com/seidor/sap/decor/ventas/services/materialServices",
-    'jquery.sap.global',
-], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
+    "pe/com/seidor/sap/decor/ventas/services/materialServices"
+], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices) {
     "use strict";
 
     //var _timeout;
