@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
 	"sap/ui/core/UIComponent",
-	"sap/ui/model/json/JSONModel"
-], function (Controller, MessageToast, UIComponent, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"pe/com/seidor/sap/decor/ventas/services/reclamoServices"
+], function (Controller, MessageToast, UIComponent, JSONModel, reclamoServices) {
 	"use strict";
 
 	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Reclamos.RecBuscar", {
