@@ -7,17 +7,17 @@ sap.ui.define([
     return {
 
         // Listar centros
-        buscarmaterial: function(codigo,codAntiguo,desMaterial,categoria,linea,marca) {
+        buscarmaterial: function(codigo,codAntiguo,desMaterial,categoria,linea,marca,orgVentas,canalDist,ofVentas) {
 
             var contexto = {};
             contexto.servicio = "materialServices.buscarmaterial()";
             contexto.url = "material.aspx";
-            contexto.parametros = { codigo: codigo, codigoAntiguo:codAntiguo, descripcionMaterial:desMaterial, categoria:categoria, linea:linea, marca:marca };
+            contexto.parametros = { codigo: codigo, codigoAntiguo:codAntiguo, descripcionMaterial:desMaterial, categoria:categoria, linea:linea, marca:marca, OrgVentas:orgVentas, CanalDist:canalDist, OfVentas:ofVentas};
 
             return utilService.exec(contexto);
 
             //codigo codigoAntiguo descripcionMaterial  categoria  linea  marca
-
+            
         },
 
     };
