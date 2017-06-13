@@ -2,9 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
 	"sap/ui/core/UIComponent",
+
 	"sap/ui/model/json/JSONModel",
-	"pe/com/seidor/sap/decor/ventas/services/reclamoServices"
-], function (Controller, MessageToast, UIComponent, JSONModel, reclamoServices) {
+], function (Controller, MessageToast, UIComponent,JSONModel) {
 	"use strict";
 
 	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Reclamos.RecBuscar", {
@@ -28,28 +28,10 @@ sap.ui.define([
                 };
 		},
 
-		goHome:function(){
-		            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-		                oRouter.navTo("appHome");
-		},
-
-		hideBusyIndicator : function() {
-			sap.ui.core.BusyIndicator.hide();
-		},
-		showBusyIndicator : function (iDuration, iDelay) {
-			sap.ui.core.BusyIndicator.show(iDelay);
- 
-			if (iDuration && iDuration > 0) {
-				if (this._sTimeoutId) {
-					jQuery.sap.clearDelayedCall(this._sTimeoutId);
-					this._sTimeoutId = null;
-				}
- 
-				this._sTimeoutId = jQuery.sap.delayedCall(iDuration, this, function() {
-					this.hideBusyIndicator();
-				});
-			}
-		},
+goHome:function(){
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("appHome");
+        },
 
 
 		onAfterRendering: function() {
@@ -72,10 +54,6 @@ sap.ui.define([
 			}
 		},
 
-		onOpendlg_Buscar_reclamos:function(){
-			this.getView().byId("dlg_rec_nuevo_inicio").open();
-			this.getView().byId("dlg_list_reclamos").close();	
-		},
 
 
 		onOpendlg_list_reclamos:function(){
@@ -233,107 +211,7 @@ sap.ui.define([
 			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
  
 			this.getSplitContObj().toDetail(this.createId(sToPageId));
-		},
-
-		onBuscardlg_list_reclamos:function(){
-			//this.getView().byId("dlg_rec_nuevo_inicio").close();
-			//this.getView().byId("dlg_list_reclamos").open();BusquedaReclamos
-			var num_rec = this.getView().byId("v_pNumeroReclamo").getValue();
-			var fecha_ini = this.getView().byId("v_pFechaCreacionI").getValue();
-			var fecha_fin = this.getView().byId("v_pFechaCreacionF").getValue();
-			if (num_rec || fecha_ini || fecha_fin) {
-				var result = reclamoServices.buscarReclamos(num_rec,"","","","",fecha_ini,fecha_fin,"","");
-				if(result.c === "s"){
-
-					if(result.data.success){
-
-						this.getView().getModel().setProperty("/ListaReclamos",result.data.listaReclamos);
-						this.getView().getModel().refresh();
-						this.getView().byId("dlg_rec_nuevo_inicio").close();
-						this.getView().byId("dlg_list_reclamos").open();
-
-					}else{
-
-						sap.m.MessageToast.show(result.data.errors.reason, {
-                duration: 3000
-            });
-
-					}
-
-
-				}else{
-					sap.m.MessageToast.show(result.m, {
-                duration: 3000
-            });
-				}
-
-			 console.log(result);
-			}else{
-				sap.m.MessageToast.show('Ingrese los campos correspondientes', {
-                duration: 1000
-            });
-				return;
-
-			}
-		},
-
-		
-
-		//Al Seleccionar un Cliente desde la Lista del Dialog
-		SeleccionaReclamo: function(evt){
-			var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
-
-
-			this.showBusyIndicator(4000, 0);
-
-			this.getView().getModel().setProperty("/clienteSeleccionado",obj);
-						this.getView().getModel().refresh();
-
-						this.getView().byId("dlg_rec_nuevo_inicio").close();
-
-						this.getSplitContObj().toMaster(this.createId("MasterDocNuevoProductosBuscarCliente"));
-				this.getSplitContObj().to(this.createId("pagDocNuevo_cliente_buscado"));
-
-
-			if (obj.VBELN) {
-				var result = reclamoServices.verReclamos(obj.VBELN);
-
-					if(result.c === "s"){
-
-					if(result.data.success){
-
-						this.getView().getModel().setProperty("/seleccionado",result.data);
-
-						this.getView().getModel().refresh();
-						this.getView().byId("dlg_list_reclamos").close();
-					}else{
-
-						sap.m.MessageToast.show(result.data.errors.reason, {
-					                duration: 3000
-					            });
-
-					}
-
-
-				}else{
-					sap.m.MessageToast.show(result.m, {
-                duration: 3000
-           				 });
-				}
-
-			 //console.log(result);
-			}else{
-				sap.m.MessageToast.show('Ingrese los campos correspondientes', {
-                duration: 1000
-            });
-				return;
-			}
-	
-
-			console.log(result);
-			
 		}
-
 
 
 
