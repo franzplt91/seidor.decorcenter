@@ -44,59 +44,69 @@
                     <f:formElements>
                         <f:FormElement label="Número de Reclamo">
                             <f:fields>
-                                <Input placeholder="Ingrese Nro. de Reclamo" id="v_pNumeroReclamo"></Input>
+                                <Input placeholder="Ingrese Nro. de Reclamo"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Pedido de Venta">
                             <f:fields>
-                                <Input placeholder="Ingrese Pedido de Venta" id="v_pNumeroPedido"></Input>
+                                <Input placeholder="Ingrese Pedido de Venta"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Cliente">
                             <f:fields>
-                               <Input placeholder="Ingrese Cliente" id="v_pCodigoCliente"></Input>
+                               <Input placeholder="Ingrese Cliente"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Nombre de Cliente">
                             <f:fields>
-                                <Input placeholder="Ingrese Nombre Cliente" id="v_pNombreCliente"></Input>
+                                <Input placeholder="Ingrese Nombre Cliente"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Material">
                             <f:fields>
-                                <Input placeholder="Ingrese Nro. de Material" id="v_pMaterial"></Input>
+                                <Input placeholder="Ingrese Nro. de Material"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Fecha Inicio">
                             <f:fields>
-                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" id="v_pFechaCreacionI">
-                                </DatePicker>
+                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
+                                value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                <layoutData>
+                                    <l:GridData span="L4 M4 S6"/>
+                                </layoutData>
+                            </DatePicker>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Fecha Fin">
                             <f:fields>
-                               <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" id="v_pFechaCreacionF">
+                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
+                                value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                <layoutData>
+                                    <l:GridData span="L4 M4 S6"/>
+                                </layoutData>
                             </DatePicker>
                             </f:fields>
                         </f:FormElement>
 
                          <f:FormElement label="Estado">
                             <f:fields>
-                                <Select items="{ path : '/dataIni/lstStatusRecl' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                </Select>
-                            </f:fields>              
+                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
+                            </Select>
+                            </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Usuario">
                             <f:fields>
-                                <Input placeholder="" id="v_pUsuario"></Input>
+                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                    <Input placeholder=""></Input>
+                            </Select>
                             </f:fields>
                         </f:FormElement>
 
@@ -122,28 +132,10 @@
             <Panel>
                 <content>
                     
-                    <List mode="SingleSelectMaster" selectionChange="SeleccionaReclamo" items="{/ListaReclamos}" 
-                        growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
+                    <List mode="SingleSelectMaster" growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
                         enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="">
                         <items>
-                            <!--StandardListItem selected="true" title="N°de Reclamo:{VBELN} - {KTABG}"  custom:to=""/-->
-                            <ObjectListItem
-                                intro = "N° Documento: {VBELN} - {KTABG}"
-                                title="{NAME1}"
-                                type="Active"
-                                press="SeleccionaReclamo">
-                                <firstStatus>
-                                    <ObjectStatus
-                                        text="{STAT}"/>
-                                </firstStatus>
-                                <secondStatus>
-                                        <ObjectStatus
-                                        title="Material" text="{MATNR}"/>
-                                </secondStatus>
-                                <attributes>
-                                    <ObjectAttribute title="Material" text="{MATNR}" />
-                                </attributes>
-                            </ObjectListItem>
+                            <StandardListItem selected="true" title="ZO01 Cotización Decor" type="Active" custom:to=""/>
                         </items>
                     </List>
                 </content>
@@ -202,6 +194,9 @@
                 </f:FormContainer>
             </f:formContainers>
         </f:Form>
+
+
+
                 </content>
             </Panel>
         </content>
@@ -215,6 +210,12 @@
     
     <!--Split Container-->
     <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Reclamos.Frag.RecContenedorFragment" type="XML"></core:Fragment>
+
+
+
+
+
+
 
 
 </mvc:View>
