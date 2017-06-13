@@ -81,7 +81,7 @@
                 </s:customHeaderContent-->
 
 
-                	<List mode="SingleSelectMaster" itemPress="onListMasterFlujo"  >
+                	<List mode="SingleSelectMaster" itemPress="onListMaster"  >
                         <items>
                             <StandardListItem selected="true" title="Flujo" type="Active" custom:to="pag_datos_detail1"/>
                             <StandardListItem title="Status" type="Active" custom:to="pag_datos_detail2"/>
