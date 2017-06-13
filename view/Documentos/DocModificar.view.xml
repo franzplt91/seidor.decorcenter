@@ -87,81 +87,90 @@
 
 
 
-
-
-                                
-                            <f:SimpleForm 
-                    minWidth="1024"
-                    maxContainerCols="2"
-                    editable="false"
-                    layout="ResponsiveGridLayout"
-                    labelSpanL="4"
-                    labelSpanM="4"
-                    emptySpanL="0"
-                    emptySpanM="0"
-                    columnsL="2"
-                    columnsM="2">
-                                <f:content>
-                                    <Label text="Código"></Label>
-                                    <Input  ></Input>
-                                    <Label text="Código Antiguo"></Label>
-                                    <Input  ></Input>
-                                    <Label text="Descripción"></Label>
-                                    <Input  ></Input>
-                                    <Label text="Categoría"></Label>
-                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <Label text="Línea"></Label>
-                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                    <Label text="Marca"></Label>
-                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-
-                                    <!--enabled="true"
-                                                    editable="false"-->
-                                        <!--
-                                            <Toolbar>
-                                               <Label text="Código"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Código Antiguo"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Descripción"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-                                                                    
-                                            <Toolbar>
-                                                <Label text="Categoría"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Línea"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Marca"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>  -->
-
-                                </f:content>
-                            </f:SimpleForm>
+                                 <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="4"
+                                    labelSpanL="4"
+                                    labelSpanM="4"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="4"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Código">
+                                            <f:fields>
+                                                <Input placeholder="Ingresar Código" id="txt_codigo_material_busqueda">
+                                                    <layoutData>
+                                                        <l:GridData span="L8 M8 S8"/>
+                                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Código Antiguo">
+                                            <f:fields>
+                                                <Input placeholder="Ingresar Código Antiguo" id="txt_codigoAntiguo_material_busqueda">
+                                                    <layoutData>
+                                                        <l:GridData span="L8 M8 S8"/>
+                                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Descripción">
+                                            <f:fields>
+                                                <Input placeholder="Ingresar Descripción" id="txt_descripcionMaterial_material_busqueda">
+                                                    <layoutData>
+                                                        <l:GridData span="L8 M8 S8"/>
+                                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Categoría">
+                                            <f:fields>
+                                                <Select id="comboCategoria" items="{ path : '/dataIni/lstCategoria' }" change="onSeleccionarCategoria"  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    <layoutData>
+                                                        <l:GridData span="L8 M8 S8"/>
+                                                    </layoutData>
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Línea">
+                                            <f:fields>
+                                                <Select id="comboLinea" items="{ path : '/listaLinea' }" change="onSeleccionarLinea"  required="true">
+                                                <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                <layoutData>
+                                                        <l:GridData span="L8 M8 S8"/>
+                                                    </layoutData>
+                                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Marca">
+                                            <f:fields>
+                                                <Select id="comboMarca" items="{ path : '/listaMarca' }" change="" required="true">
+                                                <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                <layoutData>
+                                                        <l:GridData span="L8 M8 S8"/>
+                                                    </layoutData>
+                                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
                             
                             </content>
                         </Panel>  
@@ -247,75 +256,62 @@
             
                         <Panel>
                             <content>
-                            <f:SimpleForm 
-                    minWidth="1024"
-                    maxContainerCols="2"
-                    editable="false"
-                    layout="ResponsiveGridLayout"
-                    labelSpanL="4"
-                    labelSpanM="4"
-                    emptySpanL="0"
-                    emptySpanM="0"
-                    columnsL="2"
-                    columnsM="2">
-                                <f:content>
-                                    <Label text="Código"></Label>
-                                    <Input  placeholder="Ingrese Código de Material"></Input>
-
-                                    <Label text="Cantidad"></Label>
-                                    <Input  value="1"></Input>
-
-                                    <Label text="Ambiente"></Label>
-                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-
-                                    <Label text="Opción"></Label>
-                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-
-                                    <!--enabled="true"
-                                                    editable="false"-->
-                                        <!--
-                                            <Toolbar>
-                                               <Label text="Código"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Código Antiguo"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Descripción"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-                                                                    
-                                            <Toolbar>
-                                                <Label text="Categoría"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Línea"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Marca"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>  -->
-
-                                </f:content>
-                            </f:SimpleForm>
+                            <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="5"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Código">
+                                            <f:fields>
+                                                <Input placeholder="Ingrese Código de Material"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Cantidad">
+                                            <f:fields>
+                                                <Input value="1"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ambiente">
+                                            <f:fields>
+                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Opción">
+                                            <f:fields>
+                                                <Select  required="true">
+                                                <core:Item key="01" text="01"/>
+                                                <core:Item key="02" text="02"/>
+                                                <core:Item key="03" text="03"/>
+                                                <core:Item key="04" text="04"/>
+                                                <core:Item key="05" text="05"/>
+                                                <core:Item key="06" text="06"/>
+                                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
                             
                             </content>
                         </Panel>  
@@ -344,78 +340,58 @@
             
                         <Panel>
                             <content>
-                            <f:SimpleForm 
-                    minWidth="1024"
-                    maxContainerCols="2"
-                    editable="false"
-                    layout="ResponsiveGridLayout"
-                    labelSpanL="4"
-                    labelSpanM="4"
-                    emptySpanL="0"
-                    emptySpanM="0"
-                    columnsL="2"
-                    columnsM="2">
-                                <f:content>
-                                    <Label text="Fecha Entrega"></Label>
-                                    <DatePicker id="FechaDocModificarListReparto" valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                            <layoutData>
-                                                <l:GridData span="L4 M4 S6"/>
-                                            </layoutData>
-                                    </DatePicker>
-
-                                    <Label text="Cantidad"></Label>
-                                    <Input  value="1"></Input>
-
-                                    <Label text="Cantidad Confirmada"></Label>
-                                    <Input  value="1"></Input>
-
-                                    <Label text="Tipo"></Label>
-                                    <Input  value="1"></Input>
-
-                                    
-
-                                    <!--enabled="true"
-                                                    editable="false"-->
-                                        <!--
-                                            <Toolbar>
-                                               <Label text="Código"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Código Antiguo"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Descripción"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-                                                                    
-                                            <Toolbar>
-                                                <Label text="Categoría"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Línea"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Marca"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>  -->
-
-                                </f:content>
-                            </f:SimpleForm>
+                            <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="5"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Fecha Entrega">
+                                            <f:fields>
+                                                <DatePicker id="FechaListReparto" valueFormat="YYYY-MM-dd" displayFormat="short"
+                                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                                    <layoutData>
+                                                        <l:GridData span="L4 M4 S6"/>
+                                                    </layoutData>
+                                                </DatePicker>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Cantidad">
+                                            <f:fields>
+                                                <Input value="1"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Cantidad Confirmada">
+                                            <f:fields>
+                                                <Input value="1"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tipo">
+                                            <f:fields>
+                                                <Input value="1"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
                             
                             </content>
                         </Panel>  

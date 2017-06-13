@@ -4,15 +4,14 @@ sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
     "pe/com/seidor/sap/decor/ventas/services/clienteServices",
-    "pe/com/seidor/sap/decor/ventas/services/materialServices"
-], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices) {
+    "pe/com/seidor/sap/decor/ventas/services/materialServices",
+    'jquery.sap.global',
+], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
     "use strict";
 
     //var _timeout;
-    //var itemLleno = [];
-    
-    
-    var prueba;
+    var itemLleno = [];
+
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocNuevo", {
 
         onInit: function () {
@@ -199,7 +198,7 @@ sap.ui.define([
         //Boton Master Producto
         onDocNuevoMasterProductos: function (oEvent) {
             this.getSplitContObj().toMaster(this.createId("MasterDocNuevoProductos"));
-            this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"))
+            this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
 
         },
 
@@ -338,7 +337,7 @@ sap.ui.define([
 
 
         onDocNuevoCloseSeleccionarMaterial: function () {
-            this.getView().byId("dlg_BuscarMateriales").close();
+            this.getView().byId("dlg_DocNuevobuscarMaterial_resultado").close();
         },
 
         onDocNuevoBuscarMateriales: function (oEvent) {
@@ -401,21 +400,9 @@ sap.ui.define([
         },
 
         onDocNuevoAnadirMaterial: function () {
-            
-            if(prueba=" "){
-                this.getView().byId("dlg_DocNuevoaddProductoonDialog").open();
-            }
-            else{
-                MessageToast.show("No ha seleccionado material");
-            }
-            
+            this.getView().byId("dlg_DocNuevoaddProductoonDialog").open();
         },
 
-        onListaMateriales: function(evt){
-            MessageToast.show("Pressed : " + evt.getSource().getTitle());
-            prueba = evt.getSource().getTitle();
-            console.log(evt.getSource().getTitle());
-        },
         //Seleccionar Categoria
         onSeleccionarCategoria: function () {
             var categoria = this.getView().byId("comboCategoria").getSelectedKey();
@@ -625,7 +612,7 @@ sap.ui.define([
 
         show4000_0: function () {
             this.showBusyIndicator(4000, 0);
-        }
+        },
 
     });
 

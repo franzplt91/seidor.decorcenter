@@ -195,7 +195,7 @@ sap.ui.define([
 
 
 		//Lista de Master Datos
-		onDocNuevoListMasterDatos: function(oEvent) {
+		onListMasterFlujo: function(oEvent) {
 			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
 
 			this.getSplitContObj().toDetail(this.createId(sToPageId));
@@ -342,6 +342,17 @@ sap.ui.define([
 			
 		},
 
+
+
+
+		onListMasterFlujo:function(){
+			this.byId("SplitAppId").to(this.createId("pag_datos_detail1"));
+		},
+
+
+		onListMasterStatus:function(){
+			this.byId("SplitAppId").to(this.createId("pag_datos_detail2"));
+		},
 
 		goStockDisponible: function(oEvent){
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
