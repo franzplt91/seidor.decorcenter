@@ -1,21 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel",
-    'sap/m/MessageBox',
     "sap/ui/core/UIComponent",
-    "sap/m/MessageToast",
-    "pe/com/seidor/sap/decor/ventas/app",
-    "pe/com/seidor/sap/decor/ventas/services/centrosServices",
-    "pe/com/seidor/sap/decor/ventas/services/surtidosServices",
-    "pe/com/seidor/sap/decor/ventas/services/documentosServices",
-    "pe/com/seidor/sap/decor/ventas/services/comprasServices",
-    "pe/com/seidor/sap/decor/ventas/services/materialesServices",
-    "sap/ui/model/Filter",
-    "pe/com/seidor/sap/decor/ventas/util/utilString",
-    "pe/com/seidor/sap/decor/ventas/services/accesoServices"
-], function (Controller, JSONModel, MessageBox, UIComponent, MessageToast,
-    app, centrosServices, surtidosServices, documentosServices,
-    comprasServices, materialesServices, Filter, utilString,accesoServices) {
+    "pe/com/seidor/sap/decor/ventas/util/utilString"
+], function (Controller,  UIComponent, utilString) {
 
         "use strict";
 
