@@ -395,7 +395,7 @@
 
 
 
-    <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange" mode="HideMode">
+    <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange">
         <masterPages>
             <!--Master Datos-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterDatosFragment" type="XML"></core:Fragment>
