@@ -672,7 +672,6 @@
                 <content>
                     
                     <FlexBox
-                        width="720px"
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
