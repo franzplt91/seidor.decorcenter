@@ -11,9 +11,9 @@
     displayBlock="true">
     	
     	<s:MasterPage title="Datos" id="MasterDocNuevoDatos" showNavButton="true" navButtonPress="onDocNuevoPressMasterBack">
-            <s:customHeaderContent>
+            <!--s:customHeaderContent>
                     <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent>
+                </s:customHeaderContent-->
                 <Page >
                     <customHeader>
                         <Toolbar>
