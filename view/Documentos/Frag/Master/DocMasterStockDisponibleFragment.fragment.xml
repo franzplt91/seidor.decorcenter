@@ -12,9 +12,9 @@
         
 
     <s:MasterPage title="Stock Disponible" id="MasterDocStockDisponible" >
-        <!--s:customHeaderContent>
+        <s:customHeaderContent>
                     <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent-->
+                </s:customHeaderContent>
                 <Page >
                     <customHeader>
                         <Toolbar>
@@ -27,17 +27,19 @@
                         </Toolbar>
                     </customHeader>
                     <content>
-                        <List mode="SingleSelectMaster" growing="false" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
+                        <List mode="SingleSelectMaster" growing="false" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200" items=""
                             enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onDocNuevoListMasterProductos">
                             <items>
-                                <StandardListItem selected="true" title="{/materialSelec/CodMaterial}" description="{/materialSelec/DescMaterial}" info="" type="Active"
-                                    custom:to="DocStockDisponibleDetalle"/>
+                                <StandardListItem selected="true" title="" description="" info="{CodMaterial}" type="Active"
+                                    custom:to="pagDocNuevo_producto_agregado1"/>
                             </items>
                         </List>
                     </content>
                 </Page>
                 <s:customFooterContent>
                     <OverflowToolbarButton icon="sap-icon://add" press="onDocNuevoMasterProductosAdd"/>
+                    <Button text="Catálogo"></Button>
+                    <Button text="Buscar Stock"></Button>
                 </s:customFooterContent>
             </s:MasterPage>
 

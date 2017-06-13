@@ -12,9 +12,9 @@
         
 
     <s:MasterPage title="Stock por Llegar" id="MasterDocStockDisponible" >
-        <!--s:customHeaderContent>
+        <s:customHeaderContent>
                     <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent-->
+                </s:customHeaderContent>
                 <Page >
                     <customHeader>
                         <Toolbar>
