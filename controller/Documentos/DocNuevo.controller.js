@@ -10,8 +10,10 @@ sap.ui.define([
     "use strict";
 
     //var _timeout;
-    var itemLleno = [];
-
+    //var itemLleno = [];
+    
+    
+    var prueba;
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocNuevo", {
 
         onInit: function () {
@@ -337,7 +339,7 @@ sap.ui.define([
 
 
         onDocNuevoCloseSeleccionarMaterial: function () {
-            this.getView().byId("dlg_DocNuevobuscarMaterial_resultado").close();
+            this.getView().byId("dlg_BuscarMateriales").close();
         },
 
         onDocNuevoBuscarMateriales: function (oEvent) {
@@ -400,9 +402,21 @@ sap.ui.define([
         },
 
         onDocNuevoAnadirMaterial: function () {
-            this.getView().byId("dlg_DocNuevoaddProductoonDialog").open();
+            
+            if(prueba=" "){
+                this.getView().byId("dlg_DocNuevoaddProductoonDialog").open();
+            }
+            else{
+                MessageToast.show("No ha seleccionado material");
+            }
+            
         },
 
+        onListaMateriales: function(evt){
+            MessageToast.show("Pressed : " + evt.getSource().getTitle());
+            prueba = evt.getSource().getTitle();
+            console.log(evt.getSource().getTitle());
+        },
         //Seleccionar Categoria
         onSeleccionarCategoria: function () {
             var categoria = this.getView().byId("comboCategoria").getSelectedKey();
@@ -612,7 +626,7 @@ sap.ui.define([
 
         show4000_0: function () {
             this.showBusyIndicator(4000, 0);
-        },
+        }
 
     });
 
