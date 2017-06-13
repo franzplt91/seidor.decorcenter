@@ -10,7 +10,7 @@
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     displayBlock="true">
     
-    <SplitContainer id="SplitAppId" initialMaster="MasterRecNuevo" initialDetail="pag_rec_nuevo_reclamo" orientationChange="onOrientationChange" mode="PopoverMode">
+    <SplitContainer id="SplitAppId" initialMaster="MasterRecNuevo" initialDetail="pag_rec_nuevo_reclamo" orientationChange="onOrientationChange" mode="HideMode">
         <masterPages>
             <!--Master Nuevo Reclamo-->
 

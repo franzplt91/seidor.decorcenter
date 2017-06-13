@@ -509,7 +509,7 @@
     </Dialog>
 
     <!--Split Container-->
-	<SplitContainer id="SplitAppId" initialMaster="MasterDocStockDisponible" initialDetail="DocStockDisponibleDetalle" orientationChange="onOrientationChange" mode="PopoverMode">
+	<SplitContainer id="SplitAppId" initialMaster="MasterDocStockDisponible" initialDetail="DocStockDisponibleDetalle" orientationChange="onOrientationChange" mode="HideMode">
         <masterPages>
             
             <!--Stock Disponible-->

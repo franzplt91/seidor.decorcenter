@@ -433,7 +433,7 @@
 
 
  
-	<SplitContainer id="SplitAppId" initialMaster="MasterProductos" initialDetail="pag_productos_lista1" orientationChange="onOrientationChange">
+	<SplitContainer id="SplitAppId" initialMaster="MasterProductos" initialDetail="pag_productos_lista1" orientationChange="onOrientationChange" mode="HideMode">
 
 		<masterPages>
 

@@ -527,7 +527,7 @@
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Caracteristicas.DocCaracteristicaCategoria" type="XML"></core:Fragment>
 
 
-    <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange" mode="PopoverMode">
+    <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange" mode="HideMode">
         <masterPages>
             <!--Master Datos-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterDatosFragment" type="XML"></core:Fragment>
