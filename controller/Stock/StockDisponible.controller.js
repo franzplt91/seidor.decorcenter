@@ -308,27 +308,34 @@ sap.ui.define([
 
 
 		//Al presionar en Buscar Materiales desde el Dialog
+
+		onDocNuevoCloseSeleccionarMaterial:function(){
+			this.getView().byId("dlg_DocNuevobuscarMaterial_resultado").close();
+		},
+
 		onDocNuevoBuscarMateriales:function(){
 			var codigo = this.getView().byId("txt_codigo_material_busqueda").getValue();
 			var codigoAntiguo = this.getView().byId("txt_codigoAntiguo_material_busqueda").getValue();
 			var descripcionMaterial = this.getView().byId("txt_descripcionMaterial_material_busqueda").getValue();
-			var categoria = this.getView().byId("txt_categoria_material_busqueda").getValue();
-			var linea = this.getView().byId("txt_linea_material_busqueda").getValue();
-			var marca = this.getView().byId("txt_marca_material_busqueda").getValue();
+			var categoria = this.getView().byId("comboCategoria").getSelectedKey();
+			var linea = this.getView().byId("comboLinea").getSelectedKey();
+			var marca = this.getView().byId("comboMarca").getSelectedKey();
 
-
+			var orgVentas = window.dataIni.person.OrgVentas;
+			var canalDist = window.dataIni.person.CanalDist;
+			var ofVentas = window.dataIni.person.OfVentas;
 			
 
-						var result = materialServices.buscarmaterial(codigo,codAntiguo,desMaterial,categoria,linea,marca);
+						var result = materialServices.buscarmaterial(codigo,codigoAntiguo,descripcionMaterial,categoria,linea,marca,orgVentas,canalDist,ofVentas);
 
 						if(result.c === "s"){
 
 									if(result.data.success){
-
-										this.getView().byId("dlg_DocNuevobuscarCliente_resultado").open();
-										this.getView().getModel().setProperty("/BusquedaMteriales",result.data.materiales);
+										this.getView().byId("dlg_DocNuevobuscarMaterial_resultado").open();
+										this.getView().getModel().setProperty("/BusquedaMateriales",result.data.materiales);
 										this.getView().getModel().refresh();
 
+										console.log(result);
 									}else{
 
 										sap.m.MessageToast.show(result.data.errors.reason, {
@@ -344,7 +351,10 @@ sap.ui.define([
 		            	});
 						}
 
-			 console.log(result);
+			 
+
+
+			 
 			
 		},
 
@@ -449,13 +459,24 @@ sap.ui.define([
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		onMasterProductosBuscar:function(){
-			this.getSplitContObj().toMaster(this.createId("MasterProductosBuscar"));
-
-			this.getSplitContObj().to(this.createId("pag_productos_buscar1"));
-
-
-			this.getView().byId("dlg_buscar").close();
+			
 
 		},
 
