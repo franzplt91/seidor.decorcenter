@@ -36,33 +36,34 @@
                             <f:formContainers>
                                 <f:FormContainer>
                                     <f:formElements>
-                                        <f:FormElement label="Material 1">
+                                     
+                                     <f:FormElement label="Material 1">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                            </Select>
+                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
+                                                    <core:Item key="{Bbtyp}" text="{material1}" />
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Material 2">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                            </Select>
+                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
+                                                    <core:Item key="{Bbtyp}" text="{material2}" />
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Cantidad Material 1">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/CANTRECLA1}" text="{}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Cantidad Material 2">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/CANTRECLA2}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="reclamo Referencia">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -97,22 +98,22 @@
                                     <f:formElements>
                                         <f:FormElement label="Nro. de Pedido">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/reclamo/Object/numeroPedido}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Cliente">
                                             <f:fields>
-                                               <Input width="100%"></Input>
+                                               <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="CLIENTE EVENTUAL">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Asesor">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -148,28 +149,28 @@
                                     <f:formElements>
                                         <f:FormElement label="Motivo de Reclamo">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Motivo}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Status">
                                             <f:fields>
-                                               <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                               <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Status}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Resultado">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Resultado}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Justificación de Resultado">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
+                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
                                 <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
                             </Select>
                                             </f:fields>
@@ -207,35 +208,35 @@
                                     <f:formElements>
                                         <f:FormElement label="Organización de Ventas">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {OrgVenta}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Canal">
                                             <f:fields>
-                                               <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                               <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Canal}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Sector">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Sector}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Oficina Ventas">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                            </Select>
+                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
+                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {OfiVenta}" />
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Factura / Boleta">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value=""></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
