@@ -71,17 +71,15 @@
 
 
  
-	<SplitContainer id="SplitAppId" initialMaster="MasterFlujo" initialDetail="pag_datos_detail1" orientationChange="onOrientationChange" mode="HideMode">
+	<SplitContainer id="SplitAppId" initialMaster="MasterDatos" initialDetail="pag_datos_detail1" orientationChange="onOrientationChange">
 
 		<masterPages>
 
-			<s:MasterPage title="Flujo de Venta" id="MasterFlujo">
-                <!--s:customHeaderContent>
-                    <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent-->
+			<s:MasterPage title="Flujo de Venta" id="MasterDatos">
 
 
-                	<List mode="SingleSelectMaster" itemPress="onListMaster"  >
+
+                	<List mode="SingleSelectMaster" itemPress="onListMasterDatos"  >
                         <items>
                             <StandardListItem selected="true" title="Flujo" type="Active" custom:to="pag_datos_detail1"/>
                             <StandardListItem title="Status" type="Active" custom:to="pag_datos_detail2"/>

@@ -455,16 +455,13 @@
 
 
  
-	<SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoProductos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange" mode="HideMode">
+	<SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoProductos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange">
 
         <masterPages>
 
             <!--Lista de Documentos-->
 
             <s:MasterPage title="Lista de Documentos" id="MasterDocBuscarListaDocumentos" showNavButton="true" navButtonPress="onDocNuevoPressMasterBack">
-                <!--s:customHeaderContent>
-                    <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent-->
                 <Page >
                     <customHeader>
                         <Toolbar>
@@ -499,6 +496,9 @@
                     <Button text="Stock por Llegar"></Button>
                     <Button text="Stock por Pedir"></Button>
                 </s:customFooterContent>
+                <s:multiSelectAction>
+                    <s:MultiSelectAction press="onDocNuevoMultiSelectPress"/>
+                </s:multiSelectAction>
             </s:MasterPage>
 
 

@@ -336,59 +336,79 @@
             
                         <Panel>
                             <content>
-
-                        <f:Form editable="true">
-                            <f:title>
-                                <core:Title text="Códigos de Pedido de Venta" />
-                            </f:title>
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="6"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Fecha Entrega">
-                                            <f:fields>
-                                                <DatePicker id="FechaListReparto" valueFormat="YYYY-MM-dd" displayFormat="short" 
+                            <f:SimpleForm 
+                    minWidth="1024"
+                    maxContainerCols="2"
+                    editable="false"
+                    layout="ResponsiveGridLayout"
+                    labelSpanL="4"
+                    labelSpanM="4"
+                    emptySpanL="0"
+                    emptySpanM="0"
+                    columnsL="2"
+                    columnsM="2">
+                                <f:content>
+                                    <Label text="Fecha Entrega"></Label>
+                                    <DatePicker id="FechaListReparto" valueFormat="YYYY-MM-dd" displayFormat="short" 
                                         value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
                                             <layoutData>
                                                 <l:GridData span="L4 M4 S6"/>
                                             </layoutData>
                                     </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Cantidad">
-                                            <f:fields>
-                                               <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Cantidad Confirmada">
-                                            <f:fields>
-                                                <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Tipo">
-                                            <f:fields>
-                                                <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>           
+
+                                    <Label text="Cantidad"></Label>
+                                    <Input  value="1"></Input>
+
+                                    <Label text="Cantidad Confirmada"></Label>
+                                    <Input  value="1"></Input>
+
+                                    <Label text="Tipo"></Label>
+                                    <Input  value="1"></Input>
+
+                                    
+
+                                    <!--enabled="true"
+                                                    editable="false"-->
+                                        <!--
+                                            <Toolbar>
+                                               <Label text="Código"></Label><ToolbarSpacer />
+                                                <Input width="50%" ></Input>
+                                            </Toolbar>
+
+                                            <Toolbar>
+                                                <Label text="Código Antiguo"></Label><ToolbarSpacer />
+                                                <Input width="50%" ></Input>
+                                            </Toolbar>
+
+                                            <Toolbar>
+                                                <Label text="Descripción"></Label><ToolbarSpacer />
+                                                <Input width="50%" ></Input>
+                                            </Toolbar>
+                                                                    
+                                            <Toolbar>
+                                                <Label text="Categoría"></Label><ToolbarSpacer />
+                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                                </Select>
+                                            </Toolbar>
+
+                                            <Toolbar>
+                                                <Label text="Línea"></Label><ToolbarSpacer />
+                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                                </Select>
+                                            </Toolbar>
+
+                                            <Toolbar>
+                                                <Label text="Marca"></Label><ToolbarSpacer />
+                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                                </Select>
+                                            </Toolbar>  -->
+
+                                </f:content>
+                            </f:SimpleForm>
+                            
                             </content>
                         </Panel>  
 
@@ -413,14 +433,11 @@
 
 
  
-	<SplitContainer id="SplitAppId" initialMaster="MasterProductos" initialDetail="pag_productos_lista1" orientationChange="onOrientationChange" mode="HideMode">
+	<SplitContainer id="SplitAppId" initialMaster="MasterProductos" initialDetail="pag_productos_lista1" orientationChange="onOrientationChange">
 
 		<masterPages>
 
 			<s:MasterPage title="Datos" id="MasterDatos">
-                    <!--s:customHeaderContent>
-                    <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent-->
 
 				<Page >
 					
@@ -488,14 +505,13 @@
 
 
 
-				
+				<s:multiSelectAction>
+					<s:MultiSelectAction press="onMultiSelectPress"/>
+				</s:multiSelectAction>
 			</s:MasterPage>
 
 
 			<s:MasterPage title="Lista Documentos" id="MasterProductos">
-                <!--s:customHeaderContent>
-                    <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent-->
 
                 <Page >
                    
@@ -594,6 +610,18 @@
                     <Button text="Stock por Pedir"></Button>
                 </s:customFooterContent>
 
+                
+
+
+
+
+
+
+
+
+                <s:multiSelectAction>
+                    <s:MultiSelectAction press="onMultiSelectPress"/>
+                </s:multiSelectAction>
 
 
 
@@ -602,9 +630,6 @@
 
             <s:MasterPage title="Buscar Stock Disponible" id="MasterProductosBuscar" showNavButton="true"
                   navButtonPress="onPressMasterBack">
-                  <!--s:customHeaderContent>
-                    <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent-->
 
                 <Page >
                    
@@ -708,14 +733,24 @@
 
                 
 
+
+
+
+
+
+
+
+                <s:multiSelectAction>
+                    <s:MultiSelectAction press="onMultiSelectPress"/>
+                </s:multiSelectAction>
+
+
+
             </s:MasterPage>
 
 
             <s:MasterPage title="Modificar Producto" id="MasterProductosAgregar" showNavButton="true"
                   navButtonPress="onPressMasterBack">
-                  <!--s:customHeaderContent>
-                    <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent-->
 
                 <Page >
                    
@@ -812,6 +847,19 @@
                     <Button text="Stock por Pedir"></Button>
                 </s:customFooterContent>
 
+                
+
+
+
+
+
+
+
+
+                <s:multiSelectAction>
+                    <s:MultiSelectAction press="onMultiSelectPress"/>
+                </s:multiSelectAction>
+
 
 
             </s:MasterPage>
@@ -841,56 +889,25 @@
 		                        	
 		                        		<IconTabFilter  showAll="true"  text="Área de Ventas">
 
-
-
-
-                              <f:Form editable="true">
-                            <f:title>
-                                <core:Title text="Códigos de Pedido de Venta" />
-                            </f:title>
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="6"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Organización de Ventas">
-                                            <f:fields>
-                                               <Input width="50%" ></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Canal">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                            <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                    <Label text="Organización de Ventas"></Label>
+                                    <Input width="50%" ></Input>
+                                                        <!--enabled="true"
+                                        editable="false"-->
+                                    <Label text="Canal"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
                                     <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
                                     </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Oficina">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+
+                                    <Label text="Oficina"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
                                     <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
                                     </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>               
+
+                                </f:content>
+                            </f:SimpleForm>
                                 
                                  
 
@@ -898,278 +915,152 @@
                             </IconTabFilter>
 
                             
-                            <IconTabFilter showAll="true" text="Pago">
-
-
-
-
+                            <IconTabFilter showAll="true" text="Pago                 ">
                                 
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Condición de Pago">
-                                            <f:fields>
-                                                <Select items="{ path : '/dataIni/lstCPag' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Moneda">
-                                            <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstMoneda' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Tipo de Cambio">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Tipo de Cambio"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Peso Total">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Peso Total"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                                <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                    <Label text="Condición de Pago"></Label>
+                                    <Select placeholder="Seleccione Pago" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
 
+                                    <Label text="Moneda"></Label>
+                                    <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
 
+                                    <Label text="Tipo de Cambio"></Label>
+                                    <Input width="50%" placeholder="Ingrese Tipo de Cambio"></Input>
 
+                                    <Label text="Peso Total"></Label>
+                                    <Input width="50%" placeholder="Ingrese Peso Total"></Input>
+                                                        
+                                    
+                                    
+                                    
+
+                                </f:content>
+                            </f:SimpleForm>
 
                             </IconTabFilter>
                             <IconTabFilter  showAll="true" text="Datos Facturación">
                                 
-                               <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Datos Facturación">
-                                            <f:fields>
-                                                <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                    <layoutData>
-                                        <l:GridData span="L4 M4 S6"/>
-                                    </layoutData>
-                                </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Nombre Banco">
-                                            <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstGrpCond' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Motivo de NC o ND">
-                                            <f:fields>
-                                                <Select items="{ path : '/dataIni/lstMotPed' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Bloqueo Factura">
-                                            <f:fields>
-                                                <Select items="{ path : '/dataIni/lstBloFac' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Bloqueo Entrega">
-                                            <f:fields>
-                                                <Select items="{ path : '/dataIni/lstBloEnt' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                                <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                    <Label text="Datos Facturación"></Label>
+                                    <DatePicker id="Fecha" valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
+                                                        
+                                    <Label text="Nombre Banco"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    <Label text="Motivo de NC o ND"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    <Label text="Bloqueo Factura"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    <Label text="Bloqueo Entrega"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                   
+
+                                </f:content>
+                            </f:SimpleForm>
 
                             </IconTabFilter>
                             <IconTabFilter showAll="true" text="Datos Documento">
                                 
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Nro. Orden de Compra">
-                                            <f:fields>
-                                                <Input width="100%"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Fecha Pedido">
-                                            <f:fields>
-                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                    <layoutData>
-                                        <l:GridData span="L4 M4 S6"/>
-                                    </layoutData>
-                                </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Fecha de Validez">
-                                            <f:fields>
-                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                    <layoutData>
-                                        <l:GridData span="L4 M4 S6"/>
-                                    </layoutData>
-                                </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Fecha Ent. Referencial">
-                                            <f:fields>
-                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                    <layoutData>
-                                        <l:GridData span="L4 M4 S6"/>
-                                    </layoutData>
-                                </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Tipo de Despacho">
-                                            <f:fields>
-                                                <Select items="{ path : '/dataIni/lstCondExp' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Fecha de Despacho">
-                                            <f:fields>
-                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                    <layoutData>
-                                        <l:GridData span="L4 M4 S6"/>
-                                    </layoutData>
-                                </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                                <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                    <Label text="Nro. Orden de Compra"></Label>
+                                    <Input width="50%" ></Input>
+                                                        
+                                    <Label text="Fecha Pedido"></Label>
+                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
+
+                                    <Label text="Fecha de Validez"></Label>
+                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
+
+                                    <Label text="Fecha Ent. Referencial"></Label>
+                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
+
+                                    <Label text="Tipo de Despacho"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    <Label text="Fecha de Despacho"></Label>
+                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
+
+                                    
+
+                                </f:content>
+                            </f:SimpleForm>
 
                             </IconTabFilter>
                             <IconTabFilter showAll="true" text="Proyecto y Visita">
                                 
 
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Nombre Proyecto">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Proyecto"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Código Proyecto">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Código Proyecto"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Código Version">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Código Versión"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Tipo de Visita">
-                                            <f:fields>
-                                                <Select items="{ path : '/dataIni/lstTipoVisita' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Visita No Reembolsable">
-                                            <f:fields>
-                                                <CheckBox selected="true"/>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                                <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                    <Label text="Nombre Proyecto"></Label>
+                                    <Input width="50%" placeholder="Ingrese Proyecto"></Input>
+
+                                    <Label text="Código Proyecto"></Label>
+                                    <Input width="50%" placeholder="Código Proyecto"></Input>
+
+                                    <Label text="Código Version"></Label>
+                                    <Input width="50%" placeholder="Código Versión"></Input>
+                                                        
+                                    
+
+                                    <Label text="Tipo de Visita"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    <Label text="Visita No Reembolsable"></Label>
+                                    <CheckBox  selected="true" />
+
+                                </f:content>
+                            </f:SimpleForm>
 
                             </IconTabFilter>
 
@@ -1259,1057 +1150,267 @@
                             <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
                         <items>
                             <IconTabFilter showAll="true" text="Solicitante">
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="0"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    emptySpanS="0"
-                                    columnsXL="3"
-                                    columnsL="3"
-                                    columnsM="3"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="DNI/RUC">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese DNI/RUC"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        
-                                        <f:FormElement label="Nombre">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
+                                <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                    <Label text="Código"></Label>
+                                    <Input width="50%" placeholder="Ingrese Código"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="DNI/RUC"></Label>
+                                    <Input width="50%" placeholder="Ingrese DNI/RUC"></Input>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="2"
-                                    emptySpanL="2"
-                                    emptySpanM="2"
-                                    emptySpanS="2"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Dirección">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección">
-                                                    <layoutData>
-                                        <l:GridData span="L8 M8 S6"/>
-                                    </layoutData>
-                                </Input>
-                                                <ComboBox placeholder="Distrito" items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
-                                    <layoutData>
-                                        <l:GridData span="L4 M4 S6"/>
-                                    </layoutData>
-                                </ComboBox>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
-                                
+                                    <Label text="Nombre"></Label>
+                                    <Input width="50%" placeholder="Ingrese Nombre"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="Dirección"></Label>
+                                    <Input width="50%" placeholder="Ingrese Dirección"></Input>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="0"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    emptySpanS="0"
-                                    columnsXL="3"
-                                    columnsL="3"
-                                    columnsM="3"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Teléfono">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Correo">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Correo"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
+                                    <Label text="Distrito"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="Teléfono"></Label>
+                                    <Input width="50%" placeholder="Ingrese Teléfono"></Input>
+
+                                    <Label text="Correo"></Label>
+                                    <Input width="50%" placeholder="Ingrese Correo"></Input>
+                                                        
+                                    
+
+                                    
+
+                                </f:content>
+                            </f:SimpleForm>
                             </IconTabFilter>
                             <IconTabFilter showAll="true" text="Destino Mercancía">
 
-                                 <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="0"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    emptySpanS="0"
-                                    columnsXL="2"
-                                    columnsL="2"
-                                    columnsM="2"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        
-                                        <f:FormElement label="Nombre">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
+                                 <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
                                 
+                                <Label text="Código"></Label>
+                                    <Input width="50%" placeholder="Ingrese Código"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="Nombre"></Label>
+                                    <Input width="50%" placeholder="Ingrese Nombre"></Input>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="2"
-                                    emptySpanL="2"
-                                    emptySpanM="2"
-                                    emptySpanS="2"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Dirección">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
-                                        <l:GridData span="L8 M8 S6"/>
-                                    </layoutData></Input>
-                                                <ComboBox placeholder="Distrito" items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
-                                    <layoutData>
-                                        <l:GridData span="L4 M4 S6"/>
-                                    </layoutData>
-                                </ComboBox>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
-                                
+                                    <Label text="Dirección"></Label>
+                                    <Input width="50%" placeholder="Ingrese Dirección"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="Distrito"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="0"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    emptySpanS="0"
-                                    columnsXL="3"
-                                    columnsL="3"
-                                    columnsM="3"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Teléfono">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Teléfono Móvil">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono Móvil"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
+                                    <Label text="Teléfono"></Label>
+                                    <Input width="50%" placeholder="Ingrese Teléfono"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    
+
+                                    <Label text="Teléfono Móvil"></Label>
+                                    <Input width="50%" placeholder="Ingrese Teléfono Móvil"></Input>
+
+                                </f:content>
+
+                            </f:SimpleForm>
+
                             </IconTabFilter>
                             <IconTabFilter showAll="true" text="Destino Factura">
                                 
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="0"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    emptySpanS="0"
-                                    columnsXL="2"
-                                    columnsL="2"
-                                    columnsM="2"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        
-                                        <f:FormElement label="Nombre">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
+                                <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
                                 
+                                <Label text="Código"></Label>
+                                    <Input width="50%" placeholder="Ingrese Código"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="Nombre"></Label>
+                                    <Input width="50%" placeholder="Ingrese Nombre"></Input>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="2"
-                                    emptySpanL="2"
-                                    emptySpanM="2"
-                                    emptySpanS="2"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Dirección">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
-                                        <l:GridData span="L8 M8 S6"/>
-                                    </layoutData></Input>
-                                                <ComboBox placeholder="Distrito" items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
-                                    <layoutData>
-                                        <l:GridData span="L4 M4 S6"/>
-                                    </layoutData>
-                                </ComboBox>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
-                                
+                                    <Label text="Dirección"></Label>
+                                    <Input width="50%" placeholder="Ingrese Dirección"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="Distrito"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="0"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    emptySpanS="0"
-                                    columnsXL="3"
-                                    columnsL="3"
-                                    columnsM="3"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Teléfono">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
-                                
+                                    <Label text="Teléfono"></Label>
+                                    <Input width="50%" placeholder="Ingrese Teléfono"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    
+
+                                </f:content>
+
+                            </f:SimpleForm>
 
                             </IconTabFilter>
                             <IconTabFilter showAll="true" text="Responsable Pago">
                                 
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="0"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    emptySpanS="0"
-                                    columnsXL="3"
-                                    columnsL="3"
-                                    columnsM="3"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="DNI/RUC">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese DNI/RUC"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        
-                                        <f:FormElement label="Nombre">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
+                                <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
                                 
+                                <Label text="Código"></Label>
+                                    <Input width="50%" ></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="DNI/RUC"></Label>
+                                    <Input width="50%" placeholder="Ingrese DNI/RUC"></Input>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="2"
-                                    emptySpanL="2"
-                                    emptySpanM="2"
-                                    emptySpanS="2"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Dirección">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
-                                        <l:GridData span="L8 M8 S6"/>
-                                    </layoutData></Input>
-                                                <ComboBox placeholder="Distrito" items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
-                                    <layoutData>
-                                        <l:GridData span="L4 M4 S6"/>
-                                    </layoutData>
-                                </ComboBox>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
-                                
+                                    <Label text="Nombre"></Label>
+                                    <Input width="50%" placeholder="Ingrese Nombre"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="Dirección"></Label>
+                                    <Input width="50%" placeholder="Ingrese Dirección"></Input>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="0"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    emptySpanS="0"
-                                    columnsXL="3"
-                                    columnsL="3"
-                                    columnsM="3"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Teléfono">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
+                                    <Label text="Distrito"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="Teléfono"></Label>
+                                    <Input width="50%" placeholder="Ingrese Teléfono"></Input>
+
+                                    
+
+                                </f:content>
+
+                            </f:SimpleForm>
 
                             </IconTabFilter>
                             <IconTabFilter showAll="true" text="Agencia Transporte">
                                 
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="0"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    emptySpanS="0"
-                                    columnsXL="3"
-                                    columnsL="3"
-                                    columnsM="3"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="DNI/RUC">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese DNI/RUC"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        
-                                        <f:FormElement label="Nombre">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
+                                <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
                                 
+                                <Label text="Código"></Label>
+                                    <Input width="50%" placeholder="Ingrese Código"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="DNI/RUC"></Label>
+                                    <Input width="50%" placeholder="Ingrese DNI/RUC"></Input>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="2"
-                                    emptySpanL="2"
-                                    emptySpanM="2"
-                                    emptySpanS="2"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Dirección">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
-                                        <l:GridData span="L8 M8 S6"/>
-                                    </layoutData></Input>
-                                                <ComboBox placeholder="Distrito" items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
-                                    <layoutData>
-                                        <l:GridData span="L4 M4 S6"/>
-                                    </layoutData>
-                                </ComboBox>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
-                                
+                                    <Label text="Nombre"></Label>
+                                    <Input width="50%" placeholder="Ingrese Nombre"></Input>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="Dirección"></Label>
+                                    <Input width="50%" placeholder="Ingrese Dirección"></Input>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="0"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    emptySpanS="0"
-                                    columnsXL="3"
-                                    columnsL="3"
-                                    columnsM="3"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Teléfono">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                
+                                    <Label text="Distrito"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
 
-                            </f:formContainers>
-                        </f:Form>
+                                    <Label text="Teléfono"></Label>
+                                    <Input width="50%" placeholder="Ingrese Teléfono"></Input>
+
+                                    
+
+                                </f:content>
+
+                            </f:SimpleForm>
 
                             </IconTabFilter >
 
                             <IconTabFilter showAll="true" text="Encargado Comercial">
                                 
-                                                            <FlexBox
-                    alignItems="Center"
-                    justifyContent="Center">
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Vendedor 1">
-                                            <f:fields>
-                                                <Input width="100%"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Vendedor 2">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Vendedor 3">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                                    <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                
+                                    <Label text="Vendedor 1"></Label>
+                                    <Input width="50%" ></Input>
 
-                        </FlexBox>
+                                    <Label text="Vendedor 2"></Label>
+                                    <Input width="50%" placeholder="Ingrese Nombre"></Input>
+
+                                    <Label text="Vendedor 3"></Label>
+                                    <Input width="50%" placeholder="Ingrese Nombre"></Input>
+
+                                    
+
+                                    
+
+                                </f:content>
+
+                            </f:SimpleForm>
 
                             </IconTabFilter>
 
 
                             <IconTabFilter showAll="true" text="Profesional">
                                 
-                                    <f:Form editable="true">
-                           
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="2"
-                                    emptySpanL="2"
-                                    emptySpanM="1"
-                                    emptySpanS="0"
-                                    columnsXL="2"
-                                    columnsL="2"
-                                    columnsM="2"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:title>
-                                <core:Title text="Profesional 1" />
-                            </f:title> 
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Nombre">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                       
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                                <f:FormContainer>
-                                    <f:title>
-                                <core:Title text="Profesional 2" />
-                            </f:title> 
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Nombre">
-                                            <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                                                              
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                                    <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                
+                                    <Label text="Profesional 1"></Label>
+                                    <Input width="50%" placeholder="Ingrese Nombre"></Input>
+
+                                    <Label text="Código"></Label>
+                                    <Input width="50%" placeholder="Ingrese Código"></Input>
+
+                                    <Label text="Profesional 2"></Label>
+                                    <Input width="50%" placeholder="Ingrese Nombre"></Input>
+
+                                    <Label text="Código"></Label>
+                                    <Input width="50%" placeholder="Ingrese Código"></Input>
+
+                                    
+
+                                    
+
+                                </f:content>
+
+                            </f:SimpleForm>
 
                             </IconTabFilter>
 
                             <IconTabFilter showAll="true" text="Datos Adicionales">
                                 
-                                    <f:Form editable="true">
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="12"
-                                    labelSpanL="12"
-                                    labelSpanM="12"
-                                    labelSpanS="12"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="2"
-                                    columnsL="2"
-                                    columnsM="2"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
+                                    <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                    <Label text="DNI*"></Label>
+                                    <Input width="50%" placeholder="Ingrese DNI"></Input>
+                                                        
+                                    <Label text="Apellido Paterno*"></Label>
+                                    <Input width="50%" placeholder="Ingrese Apellido Paterno"></Input>
 
-                                        <f:FormElement label="DNI*">
-                                            <f:fields>
-                                                <Input  placeholder="Ingrese DNI">
-                                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                                </Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Apellido Paterno*">
-                                            <f:fields>
-                                                <Input  placeholder="Ingrese Apellido Paterno">
-                                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                                </Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Apellido Materno*">
-                                            <f:fields>
-                                                <Input  placeholder="Ingrese Apelido Materno">
-                                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                                </Input>
-                                            </f:fields>
-                                        </f:FormElement> 
-                                        <f:FormElement label="Nombre*">
-                                            <f:fields>
-                                                <Input  placeholder="Ingrese Nombre">
-                                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                                </Input>
-                                            </f:fields>
-                                        </f:FormElement> 
-                                        <f:FormElement label="Fecha de Nacimiento*">
-                                            <f:fields>
-                                                <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
+                                    <Label text="Apellido Materno*"></Label>
+                                    <Input width="50%" placeholder="Ingrese Apelido Materno"></Input>
+
+                                     <Label text="Nombre*"></Label>
+                                    <Input width="50%" placeholder="Ingrese Nombre"></Input>
+
+                                    <Label text="Fecha de Nacimiento*"></Label>
+                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
+
+                                    <Label text="Grado de Instrucción*"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    <Label text="Sexo"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    <Label text="Distrito*"></Label>
+                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
                                     
-                                </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Grado de Instrucción*">
-                                            <f:fields>
-                                                <Select items="{ path : '/dataIni/lstGradoInst' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Sexo">
-                                            <f:fields>
-                                                 <Select maxwidth="100%" required="true">
-                                    <core:Item key="0" text="Seleccione"/>
-                                    <core:Item key="1" text="Masculino"/>
-                                    <core:Item key="2" text="Femenino"/>
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Distrito*">
-                                            <f:fields>
-                                                <ComboBox items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                </ComboBox>
-                                            </f:fields>
-                                        </f:FormElement>                                     
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
 
-                                 <f:FormContainer>
-                                    <f:formElements>
-
-                                                    <f:FormElement label="Edad">
-                                            <f:fields>
-                                                <Input  placeholder="IngreseEdad">
-                                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                                </Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Rango Edad">
-                                            <f:fields>
-                                                <Select items="" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Tipo de Cliente">
-                                            <f:fields>
-                                                <Select items="" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement> 
-                                        <f:FormElement label="Tipo de Construcción">
-                                            <f:fields>
-                                                <Select items="" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement> 
-
-                                        <f:FormElement label="Tipo de Proyecto-Residencial">
-                                            <f:fields>
-                                                <Select items="" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Tipo de Proyecto-Institucional">
-                                            <f:fields>
-                                                <Select items="" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Presupuesto para el Proyecto">
-                                            <f:fields>
-                                                  <Select items="" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Estilo 1">
-                                            <f:fields>
-                                                 <Select items="" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
-                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>                          
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-
-                                
-                            </f:formContainers>
-                        </f:Form>
+                                </f:content>
+                            </f:SimpleForm>
 
                             </IconTabFilter>
 
@@ -2396,147 +1497,66 @@
                         <items>
                             <IconTabFilter showAll="true" text="Atención">
                                 
-                                <f:Form editable="true">
-                           <!--<f:title>
-                                <core:Title text="Profesional 2" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Contacto de Entrega">
-                                            <f:fields>
-                                                <TextArea value="" rows="8"/>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                                <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                
+                                    <Label text="Contacto de Entrega"></Label>
+                                    <TextArea value="" rows="8" />                                  
 
+                                    
+
+                                </f:content>
+
+                            </f:SimpleForm>
 
                             </IconTabFilter>
                             <IconTabFilter showAll="true" text="Referencia Dirección">
                                 
-                                    <f:Form editable="true">
-                           <!--<f:title>
-                                <core:Title text="Profesional 2" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Contacto de Lugar">
-                                            <f:fields>
-                                                <TextArea value="" rows="8"/>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                                    <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                
+                                    <Label text="Contacto de Lugar"></Label>
+                                    <TextArea value="" rows="8" />                                  
+
+                                    
+
+                                </f:content>
+
+                            </f:SimpleForm>
 
                             </IconTabFilter>
                             <IconTabFilter showAll="true" text="Observación Administrativa">
                                 
-                                    <f:Form editable="true">
-                           <!--<f:title>
-                                <core:Title text="Profesional 2" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Nota">
-                                            <f:fields>
-                                                <TextArea value="" rows="8"/>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                                    <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                
+                                    <Label text="Nota"></Label>
+                                    <TextArea value="" rows="8" />                                  
+
+                                    
+
+                                </f:content>
+
+                            </f:SimpleForm>
 
                             </IconTabFilter>
                             <IconTabFilter showAll="true" text="Referencia Factura">
                                 
-                                    <f:Form editable="true">
-                           <!--<f:title>
-                                <core:Title text="Profesional 2" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Nota">
-                                            <f:fields>
-                                                <TextArea value="" rows="8"/>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                                    <f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" class="FormEncuesta" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+                                <f:content>
+                                
+                                    <Label text="Nota"></Label>
+                                    <TextArea value="" rows="8" />                                  
+
+                                    
+
+                                </f:content>
+
+                            </f:SimpleForm>
 
                             </IconTabFilter>
                             
@@ -2857,141 +1877,74 @@
                                 </attributes>
                             </ObjectHeader>
 
-                            <f:Form editable="true">
-                           <!--<f:title>
-                                <core:Title text="Profesional 2" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Posición">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Descripción">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Cantidad">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Unidad de Medida">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Unidad de Rendimiento">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Centro/Almacen/Lote">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Flete">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Peso">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Peso Total">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Precio Unitario">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Descuentos">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Sub Total">
-                                            <f:fields>
-                                                <Input width="100%" placeholder=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Repartos">
-                                            <f:fields>
-                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
-                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                        <layoutData>
-                            <l:GridData span="L4 M4 S6"/>
-                        </layoutData>
-                    </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Ambiente">
-                                            <f:fields>
-                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" maxwidth="100%" required="true">
-                            <core:Item key="{Codigo}" text="{Descripcion}"/>
-                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Opción Ambiente">
-                                            <f:fields>
-                                                <Select maxwidth="100%" required="true">
-                        <core:Item key="01" text="01"/>
-                        <core:Item key="02" text="02"/>
-                        <core:Item key="03" text="03"/>
-                        <core:Item key="04" text="04"/>
-                        <core:Item key="05" text="05"/>
-                        <core:Item key="06" text="06"/>
-                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Motivo de Rechazo">
-                                            <f:fields>
-                                                <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxwidth="100%" required="true">
-                        <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
-                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Prioridad">
-                                            <f:fields>
-                                                <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxwidth="100%" required="true">
-                        <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
-                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+                            <f:SimpleForm   maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" 
+                            labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" height="10%">
+                                <f:content>
+                                    <Label class="formDetaProdAgre" text="Posición"></Label>
+                                    <Input class="formDetaProdAgre" width="50%" placeholder=""></Input>
+                                    <Label text="Código"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+                                    <Label text="Descripción"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+                                    <Label text="Cantidad"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+                                    <Label text="Unidad de Medida"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+                                    <Label text="Unidad de Rendimiento"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+                                    <Label text="Centro/Almacen/Lote"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+
+                                    <Label text="Flete"></Label>
+                                    <CheckBox  selected="true" />
+
+                                    <Label text="Peso"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+
+                                    <Label text="Peso Total"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+
+                                    <Label text="Precio Unitario"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+
+                                    <Label text="Descuentos"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+
+                                    <Label text="Sub Total"></Label>
+                                    <Input width="50%" placeholder=""></Input>
+
+                                    <Label text="Repartos"></Label>
+                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
+
+                                    <Label text="Ambiente"></Label>
+                                    <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    <Label text="Opción Ambiente"></Label>
+                                    <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    <Label text="Motivo de Rechazo"></Label>
+                                    <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    <Label text="Prioridad"></Label>
+                                    <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                    </Select>
+
+                                    
+
+                                </f:content>
+                            </f:SimpleForm>
 
 
 
