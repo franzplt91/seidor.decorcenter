@@ -15,6 +15,22 @@ sap.ui.define([
             var servicio = contexto.servicio;
             var url = window.RootServices + contexto.url;
             var parametros = contexto.parametros ? contexto.parametros : null ;
+            
+            
+            if(!parametros){
+                parametros = {};
+            }
+            
+            
+            parametros.UserId = window.dataIni.user.User;
+            parametros.PwdId = window.dataIni.user.Password;
+            parametros.Id = window.dataIni.user.Id;
+            parametros.GrpVend = window.dataIni.person.GrpVend;
+            parametros.Descripcion = window.dataIni.person.Descripcion;
+            parametros.CodigoVendedor = window.dataIni.person.PerNr;
+            parametros.OrgVentas = window.dataIni.person.OrgVentas;
+            parametros.CanalDist = window.dataIni.person.CanalDist;
+            parametros.OfVentas = window.dataIni.person.OfVentas;
 
             console.warn("<--------------     " + servicio + "    -------------->");
             console.log("\n");
@@ -32,7 +48,11 @@ sap.ui.define([
             var dataOut = null;
             var codigo = "s";
             var descripcion = "";
-
+            
+            
+            
+           
+           
             $.ajax({
                 url: url, 
                 method: "POST",
