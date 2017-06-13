@@ -372,7 +372,7 @@
 
 
  
-	<SplitContainer id="SplitAppId" initialMaster="DocMasterStockporPedir" initialDetail="DocStockporPedirDetalle" orientationChange="onOrientationChange" mode="HideMode">
+	<SplitContainer id="SplitAppId" initialMaster="DocMasterStockporPedir" initialDetail="DocStockporPedirDetalle" orientationChange="onOrientationChange" mode="PopoverMode">
 
 		<masterPages>
             <!--Master Stock por Pedir-->

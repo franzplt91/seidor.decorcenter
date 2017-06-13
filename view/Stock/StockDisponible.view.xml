@@ -46,17 +46,17 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input placeholder="Ingresar Código"></Input>
+                                                <Input placeholder="Ingresar Código" id="txt_codigo_material_busqueda"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código Antiguo">
                                             <f:fields>
-                                                <Input placeholder="Ingresar Código Antiguo"></Input>
+                                                <Input placeholder="Ingresar Código Antiguo" id="txt_codigoAntiguo_material_busqueda"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Descripción">
                                             <f:fields>
-                                                <Input placeholder="Ingresar Descripción"></Input>
+                                                <Input placeholder="Ingresar Descripción" id="txt_descripcionMaterial_material_busqueda"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Categoría">
@@ -75,7 +75,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Marca">
                                             <f:fields>
-                                                <Select items="{ path : '/listaMarca' }" change="" required="true">
+                                                <Select id="comboMarca" items="{ path : '/listaMarca' }" change="" required="true">
                                                 <core:Item key="{Codigo}" text="{Descripcion}"/>
                                             </Select>
                                             </f:fields>
@@ -91,9 +91,25 @@
 
         <buttons>
             <Button text="Selec. Carac." type="Accion"  press="onClosedlg_buscar" />
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onMasterProductosBuscar" />
+            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onDocNuevoBuscarMateriales" />
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </buttons>
+    </Dialog>
+
+
+<Dialog title="Seleccionar Material" id="dlg_DocNuevobuscarMaterial_resultado" contentWidth="auto" contentHeight="auto">
+                <content>
+                    <List selectionChange="SeleccionaCliente" mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                        enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" itemPress="onDocNuevoListMasterProductos"  items="{/BusquedaMateriales}">
+                        <items>
+                            <StandardListItem selected="true" title="{CodMaterial} {DescMaterial}" type="Active" custom:to=""/>
+                        </items>
+                    </List>
+                </content>
+        <endButton>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarMaterial"/>
+        </endButton>
+
     </Dialog>
 
 
@@ -509,7 +525,7 @@
     </Dialog>
 
     <!--Split Container-->
-	<SplitContainer id="SplitAppId" initialMaster="MasterDocStockDisponible" initialDetail="DocStockDisponibleDetalle" orientationChange="onOrientationChange" mode="HideMode">
+	<SplitContainer id="SplitAppId" initialMaster="MasterDocStockDisponible" initialDetail="DocStockDisponibleDetalle" orientationChange="onOrientationChange" mode="PopoverMode">
         <masterPages>
             
             <!--Stock Disponible-->
@@ -532,6 +548,10 @@
             
         </masterPages>
         <detailPages>
+
+            <!--Detail Stock Disponible-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocStockDisponibleDetalleFragment" type="XML"></core:Fragment>
+
 
             <!--Detail Cliente-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocClienteFragment" type="XML"></core:Fragment>
