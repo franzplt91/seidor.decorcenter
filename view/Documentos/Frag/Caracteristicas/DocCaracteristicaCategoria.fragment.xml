@@ -1,0 +1,1149 @@
+<core:FragmentDefinition 
+    height="100%" 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+        
+
+
+        <!--Seleccionar Caracteristicas-->
+
+
+<Dialog title="Stock Disponible" id="dlg_categoria_01" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="100%"><!--Banos_Importados-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Uso">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Color">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Transito">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Formato">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Acabado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Rectificado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Var. Tonalización">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Destonalizado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ambiente">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tipo">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Alimentación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Socket">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate01" />
+        </buttons>
+    </Dialog>
+
+
+    <Dialog title="Stock Disponible" id="dlg_categoria_02" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="100%"><!--Banos_Nacionales-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Uso">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Color">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Transito">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Formato">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Acabado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Rectificado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Var. Tonalización">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Destonalizado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ambiente">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tipo">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Alimentación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Socket">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate02" />
+        </buttons>
+    </Dialog>
+
+
+
+<Dialog title="Stock Disponible" id="dlg_categoria_03" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="100%"><!--Cocinas_Importadas-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Uso">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Color">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Acabado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Rectificado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Destonalizado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tipo">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Segmento">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tipo Revestimiento">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate03" />
+        </buttons>
+    </Dialog>
+
+
+<Dialog title="Stock Disponible" id="dlg_categoria_04" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="43%"><!--Cocinas_Nacionales-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Rectificado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Var. Tonalización">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Destonalizado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                       
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate04" />
+        </buttons>
+    </Dialog>
+
+
+
+
+<Dialog title="Stock Disponible" id="dlg_categoria_05" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="43%"><!--Ferreteria-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Rectificado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Var. Tonalización">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Destonalizado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                       
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate05" />
+        </buttons>
+    </Dialog>
+
+
+
+<Dialog title="Stock Disponible" id="dlg_categoria_06" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="70%"><!--Ilumincacion_Importado-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Color">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Rectificado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Var. Tonalización">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Destonalizado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ambiente">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Socket">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Potencia">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate06" />
+        </buttons>
+    </Dialog>
+
+
+<Dialog title="Stock Disponible" id="dlg_categoria_07" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="50%"><!--Ilumincacion_Nacional-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Color">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ambiente">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Socket">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Potencia">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate07" />
+        </buttons>
+    </Dialog>
+
+
+
+    <Dialog title="Stock Disponible" id="dlg_categoria_09" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="50%"><!--Menaje-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Color">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ambiente">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Socket">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Potencia">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate09" />
+        </buttons>
+    </Dialog>
+
+
+    <Dialog title="Stock Disponible" id="dlg_categoria_11" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="100%"><!--Piedras_Naturales-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Uso">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Color">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Formato">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Acabado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Destonalizado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tipo">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Alimentación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Socket">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tipo Aro">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate11" />
+        </buttons>
+    </Dialog>
+
+
+
+    <Dialog title="Stock Disponible" id="dlg_categoria_14" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="70%"><!--Revestimientos_Blandos-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Uso">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Color">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tránsito">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Formato">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Espesor">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ambiente">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tipo">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate14" />
+        </buttons>
+    </Dialog>
+
+
+
+    <Dialog title="Stock Disponible" id="dlg_categoria_15" stretchOnPhone="true" contentWidth="10%"
+                    contentHeight="100%"><!--Revestimientos_Ceramicos-->
+        <content>
+
+                           <f:Form editable="true">
+                           <!-- <f:title>
+                                <core:Title text="Address" />
+                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="3"
+                                    labelSpanL="3"
+                                    labelSpanM="3"
+                                    labelSpanS="4"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="1"
+                                    columnsL="1"
+                                    columnsM="1"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Uso">
+                                            <f:fields>
+                                                <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Color">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ubicación">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Tránsito">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Formato">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Acabado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Rectificado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="var. Tonalización">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Acabado para Materiales">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Color">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Espesor">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Destonalizado">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Ambiente">
+                                            <f:fields>
+                                                 <Select   items="{ path : '' }" change=""  required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                            
+
+        </content>
+
+
+        <buttons>
+            <Button text="Volver" type="Accion" icon="sap-icon://return" press="onVolverCate15" />
+        </buttons>
+    </Dialog>
+
+    
+    </core:FragmentDefinition>
