@@ -4,6 +4,7 @@ sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/model/json/JSONModel",
 	"pe/com/seidor/sap/decor/ventas/services/clienteServices"
+
 ], function(Controller, MessageToast, UIComponent,JSONModel,clienteServices) {
 	"use strict";
 

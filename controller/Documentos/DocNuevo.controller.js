@@ -3,10 +3,14 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/ui/core/UIComponent",
 	"sap/ui/model/json/JSONModel",
-	"pe/com/seidor/sap/decor/ventas/services/clienteServices"
-
-], function(Controller, MessageToast, UIComponent,JSONModel,clienteServices) {
+	"pe/com/seidor/sap/decor/ventas/services/clienteServices",
+	"pe/com/seidor/sap/decor/ventas/services/materialServices",
+	'jquery.sap.global',
+], function(Controller, MessageToast, UIComponent,JSONModel,clienteServices,materialServices,jQuery) {
 	"use strict";
+
+	//var _timeout;
+	var itemLleno = [];
 
 	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocNuevo", {
 
@@ -24,6 +28,7 @@ sap.ui.define([
 		},
 		onRouteMatched: function(oEvent) {
 
+
             if (oEvent.getParameter("name") == "appDocNuevo") {
 					this.getView().byId("dlg_DocNuevo").open();
                 };
@@ -36,6 +41,7 @@ sap.ui.define([
 
 		
 		onAfterRendering:function(){
+			
 			var self = this;
 			console.log(self);
 			/*setTimeout(function(){
@@ -59,6 +65,32 @@ sap.ui.define([
 				}
 			}
 		},
+
+
+
+		/*
+
+		onOpenDialog: function (oEvent) {
+			// instantiate dialog
+			
+		},
+ 
+		onDialogClosed: function (oEvent) {
+			jQuery.sap.clearDelayedCall(_timeout);
+ 
+			if (oEvent.getParameter("cancelPressed")) {
+				MessageToast.show("The operation has been cancelled");
+			} else {
+				MessageToast.show("The operation has been completed");
+			}
+		},
+
+
+
+*/
+
+
+
 
 		getSplitContObj: function() {
 			var result = this.byId("SplitAppId");
@@ -111,6 +143,7 @@ sap.ui.define([
 
 		//Buscar Producto
 		onDocNuevodlg_buscar: function() {
+			
 			this.getView().byId("dlg_DocNuevobuscar").open();
 		},
 		onDocNuevoClosedlg_buscar: function() {
@@ -132,10 +165,6 @@ sap.ui.define([
 		//Boton Añadir Producto desde el Dialog
 		onDocNuevoMasterProductosAdd: function() {
 
-			this.getSplitContObj().toMaster(this.createId("MasterDocNuevoProductosAgregar"));
-
-			this.getSplitContObj().to(this.createId("pagDocNuevo_producto_agregado1"));
-
 			this.getView().byId("dlg_DocNuevoaddProducto").close();
 
 		},
@@ -143,9 +172,8 @@ sap.ui.define([
 
 		//Boton Buscar Producto desde el Dialog
 		onDocNuevoMasterProductosBuscar: function() {
-			this.getSplitContObj().toMaster(this.createId("MasterDocNuevoProductosBuscar"));
 
-			this.getSplitContObj().to(this.createId("pagDocNuevo_productos_buscar1"));
+
 
 			this.getView().byId("dlg_DocNuevobuscar").close();
 
@@ -180,13 +208,9 @@ sap.ui.define([
 		//Boton Master Datos
 		onDocNuevoMasterDatos: function(oEvent) {
 			this.getSplitContObj().toMaster(this.createId("MasterDocNuevoDatos"));
+			this.getSplitContObj().to(this.createId("pagDocNuevo_datos_detail1"))
 
-			var objeto = oEvent.getSource().getBindingContext().getObject();
-			console.log(objeto.codigo);
-
-			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
-
-			this.getSplitContObj().toDetail(this.createId(sToPageId));
+			
 
 		},
 
@@ -194,9 +218,7 @@ sap.ui.define([
 		//Boton Master Producto
 		onDocNuevoMasterProductos: function(oEvent) {
 			this.getSplitContObj().toMaster(this.createId("MasterDocNuevoProductos"));
-
-			var objeto = oEvent.getSource().getBindingContext().getObject();
-			console.log(objeto.codigo);
+			this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"))
 
 		},
 
@@ -305,48 +327,10 @@ sap.ui.define([
 		},
 
 
-		//Al presionar en Buscar Materiales desde el Dialog
-		onDocNuevoBuscarMateriales:function(){
-			var ruc = this.getView().byId("txt_ruc_cliente_busqueda").getValue();
-			var nombre = this.getView().byId("txt_nombre_cliente_busqueda").getValue();
-
-			if(ruc || nombre){
-
-				var result = clienteServices.buscarCliente(ruc,nombre);
-
-				if(result.c === "s"){
-
-					if(result.data.success){
-
-						this.getView().byId("dlg_DocNuevobuscarCliente_resultado").open();
-						this.getView().getModel().setProperty("/BusquedaMateriales",result.data.lstClientes);
-						this.getView().getModel().refresh();
-
-					}else{
-
-						sap.m.MessageToast.show(result.data.errors.reason, {
-                duration: 3000
-            });
-
-					}
 
 
-				}else{
-					sap.m.MessageToast.show(result.m, {
-                duration: 3000
-            });
-				}
 
-			 console.log(result);
-			}else{
-				sap.m.MessageToast.show('Ingrese RUC ó Razón social', {
-                duration: 1000
-            });
-				return;
-			}
 
-			
-		},
 
 		goStockDisponible: function(oEvent){
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -385,6 +369,311 @@ sap.ui.define([
 			
 		},*/
 
+
+
+		//Stock Buscar
+
+
+		onDocNuevoCloseSeleccionarMaterial:function(){
+			this.getView().byId("dlg_DocNuevobuscarMaterial_resultado").close();
+		},
+
+
+
+		onDocNuevoBuscarMateriales:function(oEvent){
+
+			
+			//Busy Dialog
+			/*if (!this._dialog) {
+				this._dialog = sap.ui.xmlfragment("pe.com.seidor.sap.decor.ventas.view.BusyDialog", this);
+				this.getView().addDependent(this._dialog);
+			}
+ 
+			// open dialog
+			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._dialog);
+			this._dialog.open();
+ 
+			// simulate end of operation
+			_timeout = jQuery.sap.delayedCall(20000, this, function () {
+				this._dialog.close();
+			});*/
+
+			//
+
+			var codigo = this.getView().byId("txt_codigo_material_busqueda").getValue();
+			var codigoAntiguo = this.getView().byId("txt_codigoAntiguo_material_busqueda").getValue();
+			var descripcionMaterial = this.getView().byId("txt_descripcionMaterial_material_busqueda").getValue();
+			var categoria = this.getView().byId("comboCategoria").getSelectedKey();
+			var linea = this.getView().byId("comboLinea").getSelectedKey();
+			var marca = this.getView().byId("comboMarca").getSelectedKey();
+
+			var orgVentas = window.dataIni.person.OrgVentas;
+			var canalDist = window.dataIni.person.CanalDist;
+			var ofVentas = window.dataIni.person.OfVentas;
+			
+
+						var result = materialServices.buscarmaterial(codigo,codigoAntiguo,descripcionMaterial,categoria,linea,marca,orgVentas,canalDist,ofVentas);
+
+						if(result.c === "s"){
+
+									if(result.data.success){
+
+										this.getView().getModel().setProperty("/BusquedaMateriales",result.data.materiales);
+										this.getView().getModel().setProperty("/RetornolstCentros",result.data.lstCentros);
+										this.getView().byId("dlg_BuscarMateriales").open();
+										this.getView().getModel().refresh();
+
+									}else{
+
+										sap.m.MessageToast.show(result.data.errors.reason, {
+							                duration: 3000
+							            });
+
+										}
+
+
+						}else{
+							sap.m.MessageToast.show(result.m, {
+		                duration: 3000
+		            	});
+						}
+
+			 
+
+
+			 
+			
+		},
+
+		
+
+
+		onDocNuevoAnadirMaterial:function(){
+			this.getView().byId("dlg_DocNuevoaddProductoonDialog").open();
+		},
+
+
+
+		//Seleccionar Categoria
+		onSeleccionarCategoria: function(){
+			 var categoria = this.getView().byId("comboCategoria").getSelectedKey();
+			var linea = window.dataIni.lstLinea;
+			var itemLleno=[];
+
+			console.log(categoria);
+
+			for (var i = 0; i < linea.length; i++) {
+				var item = linea[i];
+				var itemcod=item.Codigo;
+
+
+				if(itemcod.substring(0,2) == categoria){
+					
+					itemLleno.push(item);
+					
+					
+				}
+			};
+			this.getView().getModel().setProperty("/listaLinea",itemLleno);			
+			this.getView().getModel().refresh();
+			console.log(itemLleno.Codigo);
+			
+		},
+
+
+
+		onSeleccionarLinea:function(){
+			var linea = this.getView().byId("comboLinea").getSelectedKey();
+			var marca = window.dataIni.lstMarca;
+			var itemLleno=[];
+
+			for (var i = 0; i < marca.length; i++) {
+				var item = marca[i];
+				var itemcod=item.Codigo;
+
+
+				if(itemcod.substring(0,5) == linea){
+					
+					itemLleno.push(item);
+					console.log(item);
+					
+				}
+
+				
+				
+			  		
+
+			  		
+
+			};
+			this.getView().getModel().setProperty("/listaMarca",itemLleno);
+			this.getView().getModel().refresh();
+		},
+
+
+
+
+
+onDocNuevoClosedlg_addProductoonDialog:function(){
+	this.getView().byId("dlg_DocNuevoaddProductoonDialog").close();
+
+},
+
+//Busy Indicador------------
+
+hideBusyIndicator : function() {
+			sap.ui.core.BusyIndicator.hide();
+		},
+
+showBusyIndicator : function (iDuration, iDelay) {
+			sap.ui.core.BusyIndicator.show(iDelay);
+ 
+			if (iDuration && iDuration > 0) {
+				if (this._sTimeoutId) {
+					jQuery.sap.clearDelayedCall(this._sTimeoutId);
+					this._sTimeoutId = null;
+				}
+ 
+				this._sTimeoutId = jQuery.sap.delayedCall(iDuration, this, function() {
+					this.hideBusyIndicator();
+				});
+			}
+		},
+
+// this.showBusyIndicator(4000, 0);
+//--------------------------
+
+onSiMensajeAviso1:function(){
+	
+this.getView().byId("dlg_MensajeAviso1").close();
+this.getView().byId("dlg_DocNuevoaddProductoonDialog").close();
+
+
+},
+
+onNoMensajeAviso1:function(){
+	this.getView().byId("dlg_DocNuevobuscar").close();
+this.getView().byId("dlg_BuscarMateriales").close();
+this.getView().byId("dlg_DocNuevoaddProductoonDialog").close();
+
+this.getView().byId("dlg_MensajeAviso1").close();
+},
+
+onDocNuevoMasterProductosAddonDialog:function(evt){
+
+this.getView().byId("dlg_MensajeAviso1").open();
+},
+
+
+		SeleccionarMaterial: function(evt){
+					var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
+					
+					//var item=[];
+					//var item = { CodMaterial: "{/materialSelec/CodMaterial}" , DescMaterial: "{/materialSelec/DescMaterial}" };
+						
+
+					for (var i = 0; i < 1; i++) {
+						
+							/*if(obj==!" "){
+								itemLleno.push(item);
+							}*/
+
+							itemLleno.push(obj);
+					
+						};
+						console.log(itemLleno);
+						this.getView().getModel().setProperty("/materialSelec",itemLleno);
+						this.getView().getModel().refresh();
+						this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
+			},
+
+
+		onMasterProductoSeleccionarMaterial:function(oEvent){
+			var obj = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
+			this.getView().getModel().setProperty("/materialSeleccionado",obj);
+						this.getView().getModel().refresh();
+		},
+
+
+		onSeleccionarCaracteristicas:function(oEvent){
+			var caracteristicas = this.getView().byId("comboCategoria").getSelectedKey();
+			var dlg="dlg_categoria_";
+			var dlgtotal=dlg.concat(caracteristicas);
+
+
+
+			if(caracteristicas!==" "){
+
+					if (caracteristicas == "08" | caracteristicas =="10" | caracteristicas =="12" | caracteristicas =="13" | caracteristicas =="16" | caracteristicas =="99") {
+					MessageToast.show("No se encontraron Características");
+					}
+					else{
+						this.getView().byId(dlgtotal).open();
+					}
+
+				}
+
+				else{
+					
+					console.log(caracteristicas);
+				MessageToast.show("Seleccione una Categoría",{
+					horizontally:'center',
+					vertically:'center'
+				});
+
+
+				}
+
+				
+				
+					
+			
+
+
+		},
+
+
+
+		onVolverCate01:function(){
+			this.getView().byId("dlg_categoria_01").close();
+		},
+		onVolverCate02:function(){
+			this.getView().byId("dlg_categoria_02").close();
+		},
+		onVolverCate03:function(){
+			this.getView().byId("dlg_categoria_03").close();
+		},
+		onVolverCate04:function(){
+			this.getView().byId("dlg_categoria_04").close();
+		},
+		onVolverCate05:function(){
+			this.getView().byId("dlg_categoria_05").close();
+		},
+		onVolverCate06:function(){
+			this.getView().byId("dlg_categoria_06").close();
+		},
+		onVolverCate07:function(){
+			this.getView().byId("dlg_categoria_07").close();
+		},
+		onVolverCate09:function(){
+			this.getView().byId("dlg_categoria_09").close();
+		},
+		onVolverCate11:function(){
+			this.getView().byId("dlg_categoria_11").close();
+		},
+		onVolverCate14:function(){
+			this.getView().byId("dlg_categoria_14").close();
+		},
+		onVolverCate15:function(){
+			this.getView().byId("dlg_categoria_15").close();
+		},
+
+
+
+		show4000_0 : function() {
+			this.showBusyIndicator(4000, 0);
+		},
+		
 
 
 	});
