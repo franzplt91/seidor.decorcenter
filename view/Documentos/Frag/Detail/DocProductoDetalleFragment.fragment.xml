@@ -8,20 +8,24 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     
-    <s:DetailPage title="DocumentoProd" id="pagDocNuevo_productos_lista1">
+    <s:DetailPage title="Detalle Producto" id="pagDocNuevo_productos_lista1">
         <s:content>
-            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="Cliente Eventual La Molina"
+            <ObjectHeader backgroundDesign="Solid" intro="" title="{/materialSeleccionado/DescMaterial}"
                 number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
                 <attributes>
-                    <ObjectAttribute title="Código" text="{/itemProductoModel/codigo}"/>
-                    <ObjectAttribute title="Cantidad" text="{/itemProductoModel/cantidad}"/>
-                    <ObjectAttribute title="Cantidad Rendimiento" text="{/itemProductoModel/cantidadRendimiento}"/>
-                    <ObjectAttribute title="Centro/Almacen/Lote" text="{/itemProductoModel/centro} / {/itemProductoModel/almacen} / {/itemProductoModel/lote}"/>
-                    <ObjectAttribute title="Peso" text="{/itemProductoModel/peso}"/>
-                    <ObjectAttribute title="Peso Total" text="{/itemProductoModel/pesoTotal}"/>
-                    <ObjectAttribute title="Precio Unitario" text="{/itemProductoModel/precioUnitario}"/>
-                    <ObjectAttribute title="Subtotal" text="{/itemProductoModel/subTotal}"/>
-                    <ObjectAttribute title="Descuentos" text="{/itemProductoModel/descuentos}"/>
+                    <ObjectAttribute title="Posición" text="{/itemProductoModel/Posicion}"/>
+                    <ObjectAttribute title="Código" text="{/materialSeleccionado/CodMaterial}"/>
+                    <ObjectAttribute title="Descripción" text="{/materialSeleccionado/Descripcion}"/>
+                    <ObjectAttribute title="Cantidad" text="{/materialSeleccionado/Descripcion}"/>
+                    <ObjectAttribute title="Unidad de Medida" text="{/materialSeleccionado/Descripcion}"/>
+                    <ObjectAttribute title="Unidad de Rendimiento" text="{/materialSeleccionado/Descripcion}"/>
+                    <ObjectAttribute title="Centro/Almacen/Lote" text="{/materialSeleccionado/Descripcion}"/>
+                    <ObjectAttribute title="flete" text="{/materialSeleccionado/EsFlete}"/>
+                    <ObjectAttribute title="Peso" text="{/materialSeleccionado/Peso}"/>
+                    <ObjectAttribute title="Peso Total" text="{/materialSeleccionado/Descripcion}"/>
+                    <ObjectAttribute title="Precio Unitario" text="{/materialSeleccionado/PrecioUnit}"/>
+                    <ObjectAttribute title="Descuentos" text="{/materialSeleccionado/Descripcion}"/>
+                    <ObjectAttribute title="Sub Total" text="{/materialSeleccionado/Descripcion}"/>
                 </attributes>
             </ObjectHeader>
             <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
@@ -69,4 +73,5 @@
             <s:PrintAction press="onDocNuevoSemanticButtonPress"/>
         </s:printAction>
     </s:DetailPage>
+
 </core:FragmentDefinition>
