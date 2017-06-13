@@ -195,7 +195,7 @@ sap.ui.define([
 
 
 		//Lista de Master Datos
-		onListMaster: function(oEvent) {
+		onDocNuevoListMasterDatos: function(oEvent) {
 			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
 
 			this.getSplitContObj().toDetail(this.createId(sToPageId));
@@ -341,8 +341,6 @@ sap.ui.define([
 
 			
 		},
-
-
 
 
 		goStockDisponible: function(oEvent){
