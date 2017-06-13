@@ -27,19 +27,17 @@
                         </Toolbar>
                     </customHeader>
                     <content>
-                        <List mode="SingleSelectMaster" growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
+                        <List mode="SingleSelectMaster" growing="false" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
                             enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onDocNuevoListMasterProductos">
                             <items>
-                                <StandardListItem selected="true" title="10214001" description="REPISA CROMADO ARIETE SAMANTHA" info="161.20 " type="Active"
-                                    custom:to="pagDocNuevo_producto_agregado1"/>
+                                <StandardListItem selected="true" title="{/materialSelec/CodMaterial}" description="{/materialSelec/DescMaterial}" info="" type="Active"
+                                    custom:to="DocStockDisponibleDetalle"/>
                             </items>
                         </List>
                     </content>
                 </Page>
                 <s:customFooterContent>
                     <OverflowToolbarButton icon="sap-icon://add" press="onDocNuevoMasterProductosAdd"/>
-                    <Button text="Catálogo"></Button>
-                    <Button text="Buscar Stock"></Button>
                 </s:customFooterContent>
             </s:MasterPage>
 

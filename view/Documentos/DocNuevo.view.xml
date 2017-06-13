@@ -2,7 +2,7 @@
     controllerName="pe.com.seidor.sap.decor.ventas.controller.Documentos.DocNuevo" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
     xmlns:t="sap.ui.table" xmlns:s="sap.m.semantic" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     displayBlock="true">
-
+<BusyDialog id="loadingControl" />
 
 <Dialog title="Clase Documento" id="dlg_DocNuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="70%">
         <content>
