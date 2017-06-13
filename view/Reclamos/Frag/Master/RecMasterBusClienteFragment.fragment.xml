@@ -13,14 +13,14 @@
     
     	
     <s:MasterPage title="Buscar Cliente" id="MasterRecNuevoInter" showNavButton="true" navButtonPress="onPressMasterBack">
-        <!--s:customHeaderContent>
-                    <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent-->
                 <List mode="SingleSelectMaster" growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200" enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onListMasterProductos">
                     <items>
                         <StandardListItem selected="true" title="10214001" description="REPISA CROMADO ARIETE SAMANTHA" info="161.20 " type="Active" custom:to="detail_rec_nuevo_interlocutores" />
                     </items>
                 </List>
+                <s:multiSelectAction>
+                    <s:MultiSelectAction press="onMultiSelectPress" />
+                </s:multiSelectAction>
             </s:MasterPage>
 
 

@@ -13,10 +13,9 @@
 
 
     	<s:MasterPage title="Nuevo Reclamo" id="MasterRecNuevo" >
-            
-            <!--s:customHeaderContent>
+            <s:customHeaderContent>
                     <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
-                </s:customHeaderContent-->
+                </s:customHeaderContent>
                 
                 <List mode="SingleSelectMaster" itemPress="onListMasterDatos">
                     <items>
