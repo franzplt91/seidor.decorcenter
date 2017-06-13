@@ -164,7 +164,7 @@
     <Page id="pag_principal" title="Menu" backgroundDesign="Transparent" >
         <content>
 
-            <IconTabBar upperCase="true" expandable="false" backgroundDesign="Transparent" headerMode="Transparent" >
+            <!--IconTabBar upperCase="true" expandable="false" backgroundDesign="Transparent" headerMode="Transparent" >
                 <items >
                     <IconTabFilter showAll="false" text="Documentos" >
 
@@ -174,7 +174,7 @@
                             <TileContent >
                                 <content>
                                     <ImageContent  src="sap-icon://create"/>
-                                    <!--<NumericContent ImageContent src="sap-icon://create" />-->
+                                    <NumericContent ImageContent src="sap-icon://create" />
                                 </content>
                             </TileContent>
                         </tileContent>
@@ -385,9 +385,9 @@
                     </IconTabFilter>
 
                 </items>
-            </IconTabBar>
+            </IconTabBar-->
 
-            <!--
+            
             <Panel expandable="true" expanded="false" headerText="Documentos" width="auto" class="sapUiResponsiveMargin">
                 <content>
 
@@ -395,9 +395,9 @@
 
                     <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goDocNuevo">
                         <tileContent >
-                            <TileContent footer="Crear nueva cotización o pedido">
+                            <TileContent>
                                 <content>
-                                    <NumericContent  icon="sap-icon://create"/>
+                                    <ImageContent  src="sap-icon://create"/>
                                 </content>
                             </TileContent>
                         </tileContent>
@@ -609,7 +609,7 @@
                 </content>
             </Panel>
 
-        -->
+        
         </content>
     </Page>
 </mvc:View>
