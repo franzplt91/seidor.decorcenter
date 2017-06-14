@@ -362,7 +362,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Asesor">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
+                                                <Input width="100%" value="{/ListaReclamos/nombreEmpResp}}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         

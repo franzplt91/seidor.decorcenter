@@ -32,6 +32,24 @@ sap.ui.define([
 
             return utilService.exec(contexto);
 
+        },
+
+        documentoVentas: function(v_pNumPedido){
+            var contexto = {};
+            contexto.servicio = "reclamoServices.documentoVentas()";
+            contexto.url = "documentoVentas.aspx";
+            contexto.parametros = {pNumPedido : v_pNumPedido}
+
+            return utilService.exec(contexto);
+        },
+        
+        crearReclamo: function(v_pNumPedido){
+            var contexto = {};
+            contexto.servicio = "reclamoServices.crearReclamo()";
+            contexto.url = "crearReclamo.aspx";
+            contexto.parametros = {pNumPedido : v_pNumPedido}
+
+            return utilService.exec(contexto);
         }
     };
 });

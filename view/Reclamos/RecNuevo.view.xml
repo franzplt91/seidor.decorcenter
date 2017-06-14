@@ -19,14 +19,14 @@
                 <customHeader>
                     <Toolbar>
                         <Label text="Número de Pedido:"></Label>
-                        <Input width="60%" placeholder="Ingrese Número de Pedido"></Input>
+                        <Input width="60%" placeholder="Ingrese Número de Pedido" id="v_pNumPedido"></Input>
                     </Toolbar>
                 </customHeader>
                 <content></content>
             </Page>
         </content>
         <beginButton>
-            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCloseDlgRecNuevo" />
+            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCrearDlgRecNuevo" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
