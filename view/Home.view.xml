@@ -181,7 +181,7 @@
 
                         
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goDocModificar">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goDocModificar">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -190,7 +190,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goDocVisualizar">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goDocVisualizar">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -199,7 +199,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goDocBuscar">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goDocBuscar">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -208,7 +208,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Instalación" press="goDocInstalacion">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Instalación" press="goDocInstalacion">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -217,7 +217,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goDocImprimir">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goDocImprimir">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -226,7 +226,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Flujo" press="goDocFlujo">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Flujo" press="goDocFlujo">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -240,7 +240,7 @@
 
                     <IconTabFilter showAll="false" text="Stock">
 
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock disponible" press="goStockDisponible">
+                        <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock disponible" press="goStockDisponible">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -249,7 +249,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock por llegar" press="goStockporLlegar">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock por llegar" press="goStockporLlegar">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -258,7 +258,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock por pedir" press="goStockporPedir">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock por pedir" press="goStockporPedir">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -272,7 +272,7 @@
 
                     <IconTabFilter showAll="false" text="Reclamos">
 
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goRecNuevo">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goRecNuevo">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -281,7 +281,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goRecModificar">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goRecModificar">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -290,7 +290,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goRecVisualizar">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goRecVisualizar">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -299,7 +299,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goRecBuscar">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goRecBuscar">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -308,7 +308,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goRecImprimir">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goRecImprimir">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -322,7 +322,7 @@
 
                     <IconTabFilter showAll="false" text="Quejas">
 
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goQueNuevo">
+                        <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goQueNuevo">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -331,7 +331,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goQueModificar">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goQueModificar">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -340,7 +340,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goQueVisualizar">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goQueVisualizar">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -349,7 +349,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goQueBuscar">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goQueBuscar">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -358,7 +358,7 @@
                             </TileContent>
                         </tileContent>
                     </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goQueImprimir">
+                    <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goQueImprimir">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -372,7 +372,7 @@
 
                     <IconTabFilter showAll="false" text="Usuario">
 
-                        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Información" press="goUsuInformacion">
+                        <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Información" press="goUsuInformacion">
                         <tileContent>
                             <TileContent>
                                 <content>
@@ -395,7 +395,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goDocNuevo">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goDocNuevo">
                                 <tileContent >
                                     <TileContent>
                                         <content>
@@ -406,7 +406,7 @@
 
                         
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goDocModificar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goDocModificar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -415,7 +415,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goDocVisualizar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goDocVisualizar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -431,7 +431,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goDocBuscar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goDocBuscar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -440,7 +440,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Instalación" press="goDocInstalacion">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Instalación" press="goDocInstalacion">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -449,7 +449,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goDocImprimir">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goDocImprimir">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -465,7 +465,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Flujo" press="goDocFlujo">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Flujo" press="goDocFlujo">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -492,7 +492,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock disponible" press="goStockDisponible">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock disponible" press="goStockDisponible">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -501,7 +501,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock por llegar" press="goStockporLlegar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock por llegar" press="goStockporLlegar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -510,7 +510,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock por pedir" press="goStockporPedir">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock por pedir" press="goStockporPedir">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -536,7 +536,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goRecNuevo">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goRecNuevo">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -545,7 +545,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goRecModificar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goRecModificar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -554,7 +554,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goRecVisualizar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goRecVisualizar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -570,7 +570,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goRecBuscar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goRecBuscar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -579,7 +579,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goRecImprimir">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goRecImprimir">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -606,7 +606,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goQueNuevo">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goQueNuevo">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -615,7 +615,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goQueModificar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goQueModificar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -624,7 +624,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goQueVisualizar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goQueVisualizar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -640,7 +640,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goQueBuscar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goQueBuscar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -649,7 +649,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goQueImprimir">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goQueImprimir">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -675,7 +675,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Información" press="goUsuInformacion">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Información" press="goUsuInformacion">
                                 <tileContent>
                                     <TileContent>
                                         <content>
