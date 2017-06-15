@@ -15,14 +15,14 @@
 
             var oRouter = UIComponent.getRouterFor(this);
             oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
-
-            this.getView().setModel(new JSONModel({}));
-            this.getView().getModel().setProperty("/dataIni", window.dataIni);
-            this.getView().getModel().refresh(true);
         },
         onRouteMatched: function (oEvent) {
 
                 if (oEvent.getParameter("name") == "appDocVisualizar") {
+                    this.getView().byId("SplitAppId").setMode("HideMode");
+                    this.getView().setModel(new JSONModel({}));
+            this.getView().getModel().setProperty("/dataIni",window.dataIni);
+            this.getView().getModel().refresh(true);
                     this.getView().byId("dlg_DialogDocVisualizar").open();
                 };
 

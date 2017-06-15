@@ -14,43 +14,43 @@ sap.ui.define([
         onInit: function () {
             var oRouter = UIComponent.getRouterFor(this);
             oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
+        },
 
-            this.getView().setModel(new JSONModel({}));
+        onRouteMatched: function (oEvent) {
+
+            if (oEvent.getParameter("name") == "appDocModificar") {
+                this.getView().byId("SplitAppId").setMode("HideMode");
+                    this.getView().setModel(new JSONModel({}));
             this.getView().getModel().setProperty("/dataIni",window.dataIni);
             this.getView().getModel().refresh(true);
-            },
 
-            onRouteMatched: function(oEvent) {
-
-                if (oEvent.getParameter("name") == "appDocModificar") {
-                    this.getView().byId("dlg_DialogDocModificar").open();
-                };
+                this.getView().byId("dlg_DialogDocModificar").open();
+            }
 
 
-                var tipoCabecera = [];
-                tipoCabecera.push({
-                    codigo:1,
-                    descripcion:'Datos de Clientes'
-                });
+            var tipoCabecera = [];
+            tipoCabecera.push({
+                codigo: 1,
+                descripcion: 'Datos de Clientes'
+            });
 
-                tipoCabecera.push({
-                    codigo:2,
-                    descripcion:'Interlocutores'
-                });
+            tipoCabecera.push({
+                codigo: 2,
+                descripcion: 'Interlocutores'
+            });
 
-                tipoCabecera.push({
-                    codigo:3,
-                    descripcion:'Observaciones'
-                });
+            tipoCabecera.push({
+                codigo: 3,
+                descripcion: 'Observaciones'
+            });
 
-                this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);
-                this.getView().getModel().refresh();
+            this.getView().getModel().setProperty("/tipoCabeceraModel", tipoCabecera);
+            this.getView().getModel().refresh();
         },
 
-        onContinuarDlg_DialogDocModificar:function(){
+        onContinuarDlg_DialogDocModificar: function () {
             this.getView().byId("dlg_DialogDocModificar").close();
         },
-
 
         //Boton Home
         goHome: function () {
@@ -144,20 +144,20 @@ sap.ui.define([
         },
 
         //Lista de Master Datos
-        onListaMasterDatos:function(evt){
+        onListaMasterDatos: function (evt) {
             var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
 
-            if(obj.codigo===1){
-                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"))
-                }
+            if (obj.codigo === 1) {
+                this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"))
+            }
 
-                if(obj.codigo===2){
-                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail2"))
-                }
+            if (obj.codigo === 2) {
+                this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail2"))
+            }
 
-                if(obj.codigo===3){
-                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail3"))
-                }
+            if (obj.codigo === 3) {
+                this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail3"))
+            }
 
 
         },
@@ -313,9 +313,9 @@ sap.ui.define([
 
             this.getView().byId("loadingControl").open(); // INDICADOR
             var result = materialServices.buscarmaterial(codigo, codigoAntiguo, descripcionMaterial, categoria, linea, marca, orgVentas, canalDist, ofVentas);
-             
+
             if (result.c === "s") {
-                 this.getView().byId("dlg_DocNuevobuscar").close();
+                this.getView().byId("dlg_DocNuevobuscar").close();
                 if (result.data.success) {
 
                     this.getView().getModel().setProperty("/BusquedaMateriales", result.data.materiales);
@@ -429,20 +429,20 @@ sap.ui.define([
 //--------------------------
 
         onSiMensajeAviso1: function () {
-            
+
             var objSeleccionado = this.getView().getModel().getProperty("/materialSelec");
             var listaDisplay = this.getView().getModel().getProperty("/listaMatAnadido");
-            
-            if(listaDisplay){
+
+            if (listaDisplay) {
                 listaDisplay.push(objSeleccionado);
-            }else{
-                
+            } else {
+
                 listaDisplay = [];
                 listaDisplay.push(objSeleccionado);
-                
+
             }
-            
-            this.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
+
+            this.getView().getModel().setProperty("/listaMatAnadido", listaDisplay);
             this.getView().getModel().refresh();
             this.getView().byId("dlg_MensajeAviso1").close();
             this.getView().byId("dlg_DocNuevoaddProductoonDialog").close();
@@ -454,17 +454,17 @@ sap.ui.define([
 
             var objSeleccionado = this.getView().getModel().getProperty("/materialSelec");
             var listaDisplay = this.getView().getModel().getProperty("/listaMatAnadido");
-            
-            if(listaDisplay){
+
+            if (listaDisplay) {
                 listaDisplay.push(objSeleccionado);
-            }else{
-                
+            } else {
+
                 listaDisplay = [];
                 listaDisplay.push(objSeleccionado);
-                
+
             }
-            
-            this.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
+
+            this.getView().getModel().setProperty("/listaMatAnadido", listaDisplay);
             this.getView().getModel().refresh();
             this.getView().byId("dlg_MensajeAviso1").close();
             this.getView().byId("dlg_DocNuevobuscar").close();
@@ -475,7 +475,7 @@ sap.ui.define([
         },
 
         onDocNuevoMasterProductosAddonDialog: function (evt) {
-            
+
             this.getView().byId("dlg_MensajeAviso1").open();
         },
 
@@ -486,7 +486,7 @@ sap.ui.define([
             //var item = { CodMaterial: "{/materialSelec/CodMaterial}" , DescMaterial: "{/materialSelec/DescMaterial}" };
 
 
-            
+
             this.getView().getModel().setProperty("/materialSelec", obj);
             this.getView().getModel().refresh();
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
@@ -569,11 +569,11 @@ sap.ui.define([
         show4000_0: function () {
             this.showBusyIndicator(4000, 0);
         }
-        
 
 
 
-            
+
+
     });
 
 });

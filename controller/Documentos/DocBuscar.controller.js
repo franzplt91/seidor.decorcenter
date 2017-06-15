@@ -9,21 +9,20 @@ sap.ui.define([
 ], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
     "use strict";
 
-
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocBuscar", {
 
         onInit: function () {
 
             var oRouter = UIComponent.getRouterFor(this);
             oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
-
-            this.getView().setModel(new JSONModel({}));
-            this.getView().getModel().setProperty("/dataIni", window.dataIni);
-            this.getView().getModel().refresh(true);
         },
         onRouteMatched: function (oEvent) {
 
                 if (oEvent.getParameter("name") == "appDocBuscar") {
+                    this.getView().byId("SplitAppId").setMode("HideMode");
+                    this.getView().setModel(new JSONModel({}));
+            this.getView().getModel().setProperty("/dataIni",window.dataIni);
+            this.getView().getModel().refresh(true);
                     this.getView().byId("dlg_DialogDocBuscar").open();
                 };
 
@@ -52,6 +51,7 @@ sap.ui.define([
         onBuscarDlg_DialogDocBuscar: function(oEvent) {
             this.getView().byId("dlg_DialogDocBuscar").close()
         },
+
 
         onShowHello: function () {
 
