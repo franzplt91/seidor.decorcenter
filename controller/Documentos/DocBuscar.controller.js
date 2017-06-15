@@ -53,7 +53,6 @@ sap.ui.define([
             this.getView().byId("dlg_DialogDocBuscar").close()
         },
 
-
         onShowHello: function () {
 
             // read msg from i18n model
