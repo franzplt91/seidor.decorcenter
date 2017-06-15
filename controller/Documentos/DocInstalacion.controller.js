@@ -9,7 +9,6 @@ sap.ui.define([
 ], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
     "use strict";
 
-
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocInstalacion", {
 
         onInit: function () {

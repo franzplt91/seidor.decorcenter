@@ -10,7 +10,6 @@
 ], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery,crearDocumentoServices) {
     "use strict";
 
-
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocNuevo", {
 
         onInit: function () {

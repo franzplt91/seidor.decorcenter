@@ -9,7 +9,6 @@
 ], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
     "use strict";
 
-
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocVisualizar", {
 
         onInit: function () {
