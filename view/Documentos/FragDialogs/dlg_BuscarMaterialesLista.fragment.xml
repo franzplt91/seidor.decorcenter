@@ -1,0 +1,58 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    	
+
+
+
+    <Dialog title="Stock Disponible" id="dlg_BuscarMateriales" contentWidth="20%" contentHeight="70%" stretch="true">
+        <content>
+            <List selectionChange="" mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                        enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" 
+                        itemPress="SeleccionarMaterial"  
+
+                        items="{
+                        path : '/BusquedaMateriales',
+                                sorter : {
+                                    path : 'DescMaterial',
+                                    group : false
+                                }
+                        }">
+                        <items>
+
+
+                            <ObjectListItem
+                title="{DescMaterial}"
+                number="Peso: {Peso}"
+                numberUnit="Precio: {PrecioUnit} Stock: {Stock}{CodUMedida}"
+                numberState=""
+                type="Navigation"
+                press=""
+                custom:to="">
+                <firstStatus>
+                    <ObjectStatus text="Descontinuado: {Descontinuado}"/>
+                </firstStatus>
+            </ObjectListItem>
+
+
+                        </items>
+                    </List>
+        </content>
+         <buttons>
+            <Button text="Catálogo"></Button>
+            <Button text="Buscar Stock"></Button>
+            <Button text="Añadir" type="Accept" icon="sap-icon://sys-cancel" press="onDocNuevoAnadirMaterial"></Button>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarMaterial"/>
+        </buttons>
+
+    </Dialog>
+
+
+    	
+    </core:FragmentDefinition>

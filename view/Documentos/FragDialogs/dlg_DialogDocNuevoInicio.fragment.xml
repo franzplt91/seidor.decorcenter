@@ -1,0 +1,47 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+     xmlns:l="sap.ui.layout" 
+     xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table" 
+    xmlns:s="sap.m.semantic" 
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    	
+
+    	<Dialog title="Clase Documento" id="dlg_DialogDocNuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="70%">
+        <content>
+            <Page>
+                <customHeader>
+                    <Toolbar>
+                        <Label text="Referencia:"></Label>
+                        <Input width="75%" id="txt_refDocNuevo"></Input>
+                    </Toolbar>
+                </customHeader>
+                <content>
+
+
+                    <List  mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200" enableBusyIndicator="false" itemPress="SeleccionarDocumento" growingTriggerText="Previous Products" noDataText="No products available"  items="{
+                                        path : '/dataIni/lstTipoDoc',
+                                        sorter : {
+                                            path : 'Codigo',
+                                            group: false
+                                        }
+                                    }">
+                        <items>
+                            <StandardListItem selected="true" title="{Descripcion}" type="Active" />
+                        </items>
+                    </List>
+                </content>
+            </Page>
+        </content>
+        <beginButton>
+            <Button text="OK" type="Accept" icon="sap-icon://accept" press="onOkDlg_DialogDocNuevo"/>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome"/>
+        </endButton>
+    </Dialog>
+
+    
+    </core:FragmentDefinition>
