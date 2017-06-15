@@ -7,7 +7,7 @@ sap.ui.define([
     "pe/com/seidor/sap/decor/ventas/services/materialServices",
     'jquery.sap.global'
 ], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
-    "use strict";
+    "use strict"; 
 
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocBuscar", {
 
