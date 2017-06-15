@@ -2,9 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
 	"sap/ui/core/UIComponent",
-
 	"sap/ui/model/json/JSONModel",
-], function (Controller, MessageToast, UIComponent,JSONModel) {
+	"pe/com/seidor/sap/decor/ventas/services/reclamoServices"
+], function (Controller, MessageToast, UIComponent,JSONModel, reclamoServices) {
 	"use strict";
 
 	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Reclamos.RecNuevo", {
@@ -53,11 +53,21 @@ sap.ui.define([
 			}
 		},
 
-
-
-
-		onCloseDlgRecNuevo: function(oEvent){
+		onCrearDlgRecNuevo: function(oEvent){
                 this.getView().byId("dlg_filtros").close()
+                var num_pe = this.getView().byId("v_pNumPedido").getValue();
+                if(num_pe)
+                {
+                	//var result1 = reclamoServices.documentoVentas(num_pe);
+                	var result2 = reclamoServices.crearReclamo(num_pe);
+                	this.getView().getModel().setProperty("/ListaReclamos",result2.data.nombreEmpResp['0']);
+						this.getView().getModel().refresh();
+                }
+                else
+                {
+                	MessageToast.show("hjjghk");
+                }
+                console.log(result2);
             },
 
 		onOpenDlgBuscarRecNuevo:function(){

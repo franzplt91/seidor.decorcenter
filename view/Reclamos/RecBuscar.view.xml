@@ -122,16 +122,15 @@
             <Panel>
                 <content>
                     
-                    <List mode="SingleSelectMaster" selectionChange="SeleccionaReclamo" items="{/ListaReclamos}" 
+                    <List mode="SingleSelectMaster" selectionChange="" items="{/ListaReclamos}" 
                         growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
-                        enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="">
+                        enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="SeleccionaReclamo">
                         <items>
                             <!--StandardListItem selected="true" title="N°de Reclamo:{VBELN} - {KTABG}"  custom:to=""/-->
                             <ObjectListItem
                                 intro = "N° Documento: {VBELN} - {KTABG}"
                                 title="{NAME1}"
-                                type="Active"
-                                press="SeleccionaReclamo">
+                                type="Active">
                                 <firstStatus>
                                     <ObjectStatus
                                         text="{STAT}"/>
