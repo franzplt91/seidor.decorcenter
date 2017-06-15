@@ -11,431 +11,40 @@
     xmlns:s="sap.m.semantic"
 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-        displayBlock="true">
+    displayBlock="true">
 
 
-
-        <Dialog title="Elegir Documento" id="dlg_DocModificar" stretchOnPhone="true" contentWidth="25%"
-                    contentHeight="18%">
-        <content>
-                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="6"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Número de Documento">
-                                            <f:fields>
-                                                <Input ></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-            
-
-            
-
-        </content>
-
-       
-
-        <buttons>
-            <Button text="" type="Accion" icon="sap-icon://print" press="" />
-            <Button enabled="false"></Button>
-            <Button enabled="false"></Button>
-
-            <Button text="Continuar" type="Accept" icon="sap-icon://accept" press="onCloseDialog" />
-             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
-        </buttons>
+    <!--Dialgs-->
         
-    </Dialog>
+    <!--dlg_DialogDocModificar-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocModificarInicio" type="XML"></core:Fragment>
 
+    <!--dlg_BuscarMaterialesLista-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_BuscarMaterialesLista" type="XML"></core:Fragment>
 
+    <!--dlg_DocNuevoaddProducto-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevoaddProducto" type="XML"></core:Fragment>
 
+    <!--DocNuevoaddProductoonDialog-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevoaddProductoonDialog" type="XML"></core:Fragment>
 
+    <!--dlg_DocNuevobuscarCliente-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevobuscarCliente" type="XML"></core:Fragment>
 
+    <!--dlg_DocNuevobuscarCliente_resultado-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevobuscarCliente_resultado" type="XML"></core:Fragment>
 
+    <!--dlg_DocNuevobuscarProducto-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevobuscarProducto" type="XML"></core:Fragment>
 
-<Dialog title="Stock Disponible" id="dlg_buscar" stretchOnPhone="true" contentWidth="20%"
-                    contentHeight="75%">
-        <content>
 
+    <!--dlg_MensajeAviso1AddMaterial-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAviso1AddMaterial" type="XML"></core:Fragment>
 
-                
-            
-                        <Panel>
-                            <content>
 
 
 
-
-
-                                
-                            <f:SimpleForm 
-                    minWidth="1024"
-                    maxContainerCols="2"
-                    editable="false"
-                    layout="ResponsiveGridLayout"
-                    labelSpanL="4"
-                    labelSpanM="4"
-                    emptySpanL="0"
-                    emptySpanM="0"
-                    columnsL="2"
-                    columnsM="2">
-                                <f:content>
-                                    <Label text="Código"></Label>
-                                    <Input  ></Input>
-                                    <Label text="Código Antiguo"></Label>
-                                    <Input  ></Input>
-                                    <Label text="Descripción"></Label>
-                                    <Input  ></Input>
-                                    <Label text="Categoría"></Label>
-                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <Label text="Línea"></Label>
-                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                    <Label text="Marca"></Label>
-                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-
-                                    <!--enabled="true"
-                                                    editable="false"-->
-                                        <!--
-                                            <Toolbar>
-                                               <Label text="Código"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Código Antiguo"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Descripción"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-                                                                    
-                                            <Toolbar>
-                                                <Label text="Categoría"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Línea"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Marca"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>  -->
-
-                                </f:content>
-                            </f:SimpleForm>
-                            
-                            </content>
-                        </Panel>  
-
-
-        </content>
-
-
-        
-        <beginButton>
-            <Button text="Buscar" type="Accept" icon="sap-icon://search" press="onMasterProductosBuscar" />
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_buscar" />
-        </endButton>
-    </Dialog>
-
-
-<Dialog title="Buscar Cliente" id="dlg_DocNuevobuscarCliente" contentWidth="20%" contentHeight="25%">
-         
-
-
-                <content>
-
-
-                    <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="RUC / DNI">
-                                            <f:fields>
-                                                <Input value="" id="txt_ruc_cliente_busqueda"/>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Razón Social">
-                                            <f:fields>
-                                                <Input value="" id="txt_nombre_cliente_busqueda" />
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-                   
-                </content>
-            
-        <beginButton>
-            <Button text="Buscar" type="Accion" press="onDocNuevoBuscarClienteAccion" icon="sap-icon://search" />
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseBuscarCliente"/>
-        </endButton>
-    </Dialog>
-
-
-
-    <Dialog title="Material" id="dlg_addProducto" stretchOnPhone="true" contentWidth="20%"
-                    contentHeight="65%">
-        <content>
-
-
-                
-            
-                        <Panel>
-                            <content>
-                            <f:SimpleForm 
-                    minWidth="1024"
-                    maxContainerCols="2"
-                    editable="false"
-                    layout="ResponsiveGridLayout"
-                    labelSpanL="4"
-                    labelSpanM="4"
-                    emptySpanL="0"
-                    emptySpanM="0"
-                    columnsL="2"
-                    columnsM="2">
-                                <f:content>
-                                    <Label text="Código"></Label>
-                                    <Input  placeholder="Ingrese Código de Material"></Input>
-
-                                    <Label text="Cantidad"></Label>
-                                    <Input  value="1"></Input>
-
-                                    <Label text="Ambiente"></Label>
-                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-
-                                    <Label text="Opción"></Label>
-                                    <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-
-                                    <!--enabled="true"
-                                                    editable="false"-->
-                                        <!--
-                                            <Toolbar>
-                                               <Label text="Código"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Código Antiguo"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Descripción"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-                                                                    
-                                            <Toolbar>
-                                                <Label text="Categoría"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Línea"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Marca"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>  -->
-
-                                </f:content>
-                            </f:SimpleForm>
-                            
-                            </content>
-                        </Panel>  
-
-
-        </content>
-
-
-        
-        <beginButton>
-            <Button text="Añadir" type="Accept" icon="sap-icon://add" press="onMasterProductosAdd" ></Button>
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_addProducto" />
-        </endButton>
-    </Dialog>
-
-
-
-    <Dialog title="Editar Lista de Reparto" id="dlg_editListaReparto" stretchOnPhone="true" contentWidth="20%"
-                    contentHeight="60%">
-        <content>
-
-
-                
-            
-                        <Panel>
-                            <content>
-                            <f:SimpleForm 
-                    minWidth="1024"
-                    maxContainerCols="2"
-                    editable="false"
-                    layout="ResponsiveGridLayout"
-                    labelSpanL="4"
-                    labelSpanM="4"
-                    emptySpanL="0"
-                    emptySpanM="0"
-                    columnsL="2"
-                    columnsM="2">
-                                <f:content>
-                                    <Label text="Fecha Entrega"></Label>
-                                    <DatePicker id="FechaDocModificarListReparto" valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                            <layoutData>
-                                                <l:GridData span="L4 M4 S6"/>
-                                            </layoutData>
-                                    </DatePicker>
-
-                                    <Label text="Cantidad"></Label>
-                                    <Input  value="1"></Input>
-
-                                    <Label text="Cantidad Confirmada"></Label>
-                                    <Input  value="1"></Input>
-
-                                    <Label text="Tipo"></Label>
-                                    <Input  value="1"></Input>
-
-                                    
-
-                                    <!--enabled="true"
-                                                    editable="false"-->
-                                        <!--
-                                            <Toolbar>
-                                               <Label text="Código"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Código Antiguo"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Descripción"></Label><ToolbarSpacer />
-                                                <Input width="50%" ></Input>
-                                            </Toolbar>
-                                                                    
-                                            <Toolbar>
-                                                <Label text="Categoría"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Línea"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>
-
-                                            <Toolbar>
-                                                <Label text="Marca"></Label><ToolbarSpacer />
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                </Select>
-                                            </Toolbar>  -->
-
-                                </f:content>
-                            </f:SimpleForm>
-                            
-                            </content>
-                        </Panel>  
-
-
-        </content>
-
-
-        
-        <beginButton>
-            <Button text="Guardar" type="Accept" icon="sap-icon://save" press="" ></Button>
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_editListaReparto" />
-        </endButton>
-    </Dialog>
-
-
-
-<SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange">
+    <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange" >
         <masterPages>
             <!--Master Datos-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterDatosFragment" type="XML"></core:Fragment>
@@ -457,7 +66,7 @@
         </masterPages>
         <detailPages>
 
-             <!--Detail Cliente-->
+            <!--Detail Cliente-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocClienteFragment" type="XML"></core:Fragment>
 
             <!--Detalle Cliente Buscado-->

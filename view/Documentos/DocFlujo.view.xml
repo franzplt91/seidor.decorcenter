@@ -14,77 +14,27 @@
 		displayBlock="true">
 
 
+        <!--Dialogs-->
 
-        <Dialog title="Clase Documento" id="dlg_DocFlujo" stretchOnPhone="true" contentWidth="25%"
-                    contentHeight="18%">
-        <content>
-
-
-                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="6"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Número de Documento">
-                                            <f:fields>
-                                                <Input ></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+        <!--dlg_DialogDocFlujo-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocFlujoInicio" type="XML"></core:Fragment>
 
 
-            
-
-        </content>
-
-       
-
-
-        <beginButton>
-            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCloseDialog" />
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
-        </endButton>
-    </Dialog>
 
 
  
-	<SplitContainer id="SplitAppId" initialMaster="MasterDatos" initialDetail="pag_datos_detail1" orientationChange="onOrientationChange">
+	<SplitContainer id="SplitAppId" initialMaster="MasterFlujo" initialDetail="pag_flujo_detail1" orientationChange="onOrientationChange">
 
 		<masterPages>
 
-			<s:MasterPage title="Flujo de Venta" id="MasterDatos">
+			<s:MasterPage title="Flujo de Venta" id="MasterFlujo">
 
 
-
-                	<List mode="SingleSelectMaster" itemPress="onListMasterDatos"  >
-                        <items>
-                            <StandardListItem selected="true" title="Flujo" type="Active" custom:to="pag_datos_detail1"/>
-                            <StandardListItem title="Status" type="Active" custom:to="pag_datos_detail2"/>
-                        </items>
-                    </List>
+                    <List mode="SingleSelectMaster"  items="{/tipoCabeceraModel}" itemPress="onListaMasterFlujo">
+                            <items>
+                                <ObjectListItem title="{descripcion}" type="Active" ></ObjectListItem>
+                            </items>
+                        </List>
 
 
 			</s:MasterPage>
@@ -100,13 +50,13 @@
 		<detailPages>
 
 			<s:DetailPage
-					title="Documento" id="pag_datos_detail1">
+					title="Documento" id="pag_flujo_detail1">
 
 
 
 						<s:content>
 							
-							<t:Table id="table1"
+							<t:Table 
                                     rows="{/ProductCollection}"
                                     selectionMode="Single"
                                     selectionBehavior="RowOnly"
@@ -163,18 +113,14 @@
 
 
             <s:DetailPage
-                    title="Documento" id="pag_datos_detail2">
+                    title="Documento" id="pag_status_detail1">
 
 
 
                         <s:content>
                             
                            
-        <f:Form 
-            id="FormChange354"
-            minWidth="1024"
-            maxContainerCols="2"
-            editable="true">
+        <f:Form editable="true">
             <f:title>
                 <core:Title text="Status de Tratamiento" />
             </f:title>

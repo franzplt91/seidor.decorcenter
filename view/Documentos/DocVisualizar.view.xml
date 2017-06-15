@@ -13,389 +13,41 @@
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		displayBlock="true">
 
+ <!--Dialogs-->
 
+        <!--dlg_DialogDocVisualizar-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocVisualizarInicio" type="XML"></core:Fragment>
 
-        <Dialog title="Elegir Documento" id="dlg_DocVisualizar" stretchOnPhone="true" contentWidth="25%"
-                    contentHeight="18%">
-        <content>
-                    <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="6"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Número de Documento">
-                                            <f:fields>
-                                                <Input ></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+        <!--dlg_BuscarMaterialesLista-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_BuscarMaterialesLista" type="XML"></core:Fragment>
 
-        </content>
+            <!--dlg_DocNuevoaddProducto-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevoaddProducto" type="XML"></core:Fragment>
 
-       
+            <!--DocNuevoaddProductoonDialog-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevoaddProductoonDialog" type="XML"></core:Fragment>
 
-        <buttons>
-            <Button text="" type="Accion" icon="sap-icon://print" press="" />
-            <Button enabled="false"></Button>
-            <Button enabled="false"></Button>
+            <!--dlg_DocNuevobuscarCliente-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevobuscarCliente" type="XML"></core:Fragment>
 
-            <Button text="Continuar" type="Accept" icon="sap-icon://accept" press="onCloseDialog" />
-             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
-        </buttons>
-        
-    </Dialog>
+            <!--dlg_DocNuevobuscarCliente_resultado-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevobuscarCliente_resultado" type="XML"></core:Fragment>
+
+            <!--dlg_DocNuevobuscarProducto-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevobuscarProducto" type="XML"></core:Fragment>
+
+            <!--dlg_DocNuevoeditListaReparto-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevoeditListaReparto" type="XML"></core:Fragment>
+
+            <!--dlg_DocNuevointerlocutoresBuscarProfesional-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevointerlocutoresBuscarProfesional" type="XML"></core:Fragment>
+
+            <!--dlg_MensajeAviso1AddMaterial-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAviso1AddMaterial" type="XML"></core:Fragment>
 
 
 
-
-
-
-
-<Dialog title="Stock Disponible" id="dlg_buscar" stretchOnPhone="true" contentWidth="20%"
-                    contentHeight="75%">
-        <content>
-
-
-                
-            
-                        <Panel>
-                            <content>
-
-
-                                                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input  ></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Código Antiguo">
-                                            <f:fields>
-                                                 <Input  ></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Descripción">
-                                            <f:fields>
-                                                <Input  ></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Categoría">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Línea">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Marca">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-                            
-                            </content>
-                        </Panel>  
-
-
-        </content>
-
-
-        
-        <beginButton>
-            <Button text="Buscar" type="Accept" icon="sap-icon://search" press="onMasterProductosBuscar" />
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_buscar" />
-        </endButton>
-    </Dialog>
-
-
-
-
-    <Dialog title="Material" id="dlg_addProducto" stretchOnPhone="true" contentWidth="20%"
-                    contentHeight="65%">
-        <content>
-
-
-                
-            
-                        <Panel>
-                            <content>
-
-
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input  placeholder="Ingrese Código de Material"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Cantidad">
-                                            <f:fields>
-                                                 <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Ambiente">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Opción">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-
-                            
-                            
-                            </content>
-                        </Panel>  
-
-
-        </content>
-
-
-        
-        <beginButton>
-            <Button text="Añadir" type="Accept" icon="sap-icon://add" press="onMasterProductosAdd" ></Button>
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_addProducto" />
-        </endButton>
-    </Dialog>
-
-
-    <Dialog title="Buscar Cliente" id="dlg_DocNuevobuscarCliente" contentWidth="20%" contentHeight="25%">
-         
-
-
-                <content>
-
-
-                    <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="RUC / DNI">
-                                            <f:fields>
-                                                <Input value="" id="txt_ruc_cliente_busqueda"/>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Razón Social">
-                                            <f:fields>
-                                                <Input value="" id="txt_nombre_cliente_busqueda" />
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-                   
-                </content>
-            
-        <beginButton>
-            <Button text="Buscar" type="Accion" press="onDocNuevoBuscarClienteAccion" icon="sap-icon://search" />
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseBuscarCliente"/>
-        </endButton>
-    </Dialog>
-
-
-
-    <Dialog title="Editar Lista de Reparto" id="dlg_editListaReparto" stretchOnPhone="true" contentWidth="20%"
-                    contentHeight="60%">
-        <content>
-
-
-                
-            
-                        <Panel>
-                            <content>
-
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="6"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Fecha Entrega">
-                                            <f:fields>
-                                                <DatePicker id="FechaListReparto" valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                            <layoutData>
-                                                <l:GridData span="L4 M4 S6"/>
-                                            </layoutData>
-                                    </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Cantidad">
-                                            <f:fields>
-                                                <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Cantidad Confirmada">
-                                            <f:fields>
-                                                <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Tipo">
-                                            <f:fields>
-                                                <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-
-
-                            
-                            
-                            </content>
-                        </Panel>  
-
-
-        </content>
-
-
-        
-        <beginButton>
-            <Button text="Guardar" type="Accept" icon="sap-icon://save" press="" ></Button>
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_editListaReparto" />
-        </endButton>
-    </Dialog>
-
-
-
-
-
-    <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange">
+    <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange" >
         <masterPages>
             <!--Master Datos-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterDatosFragment" type="XML"></core:Fragment>
