@@ -29,7 +29,7 @@
                 </Toolbar>
             </customHeader>
             <content>
-                <List selectionChange="" mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                <List  mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                               enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos" 
                               itemPress="onMasterProductoSeleccionarMaterial"  
                               items="{

@@ -6,108 +6,114 @@
     "pe/com/seidor/sap/decor/ventas/services/clienteServices",
     "pe/com/seidor/sap/decor/ventas/services/materialServices",
     'jquery.sap.global',
-], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
+    "pe/com/seidor/sap/decor/ventas/services/crearDocumentoServices"
+], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery,crearDocumentoServices) {
     "use strict";
-
-    //var _timeout;
-    var itemLleno = [];
 
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocNuevo", {
 
         onInit: function () {
-
             var oRouter = UIComponent.getRouterFor(this);
             oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
 
             this.getView().setModel(new JSONModel({}));
-            this.getView().getModel().setProperty("/dataIni", window.dataIni);
+            this.getView().getModel().setProperty("/dataIni",window.dataIni);
             this.getView().getModel().refresh(true);
+            },
+
+            onRouteMatched: function(oEvent) {
+
+                if (oEvent.getParameter("name") == "appDocNuevo") {
+                    this.getView().byId("dlg_DialogDocNuevo").open();
+                };
 
 
+                var tipoCabecera = [];
+                tipoCabecera.push({
+                    codigo:1,
+                    descripcion:'Datos de Clientes'
+                });
+
+                tipoCabecera.push({
+                    codigo:2,
+                    descripcion:'Interlocutores'
+                });
+
+                tipoCabecera.push({
+                    codigo:3,
+                    descripcion:'Observaciones'
+                });
+
+                this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);
+                this.getView().getModel().refresh();
+        },
+
+        SeleccionarDocumento:function(evt){
+
+             var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
+            this.getView().getModel().setProperty("/documentoSeleccionado", obj);
+            this.getView().getModel().refresh();
+
+            console.log(obj.Codigo);
 
         },
-        onRouteMatched: function (oEvent) {
+        onOkDlg_DialogDocNuevo:function(oEvent){
 
 
-            if (oEvent.getParameter("name") == "appDocNuevo") {
-                this.getView().byId("dlg_DocNuevo").open();
-            }
-            ;
-        },
+            var tipoDoc = this.getView().getModel().getProperty("/documentoSeleccionado");
+            var tipoDocumento = tipoDoc.Codigo;
 
-        //Cerrar Dialog Doc Nuevo Inicio
-        onCloseDialog: function (oEvent) {
-            this.getView().byId("dlg_DocNuevo").close()
-        },
+            var pNumPedido = this.getView().byId("txt_refDocNuevo").getValue();
 
-        onAfterRendering: function () {
+            console.log(tipoDocumento);
 
-            var self = this;
-            console.log(self);
-            /*setTimeout(function(){
-             self.getView().byId("dlg_DocNuevo").open();
-             },1000); */
+            var result = crearDocumentoServices.crearDoc(tipoDocumento,pNumPedido);
+             
 
-            var oSplitCont = this.getSplitContObj(),
-                    ref = oSplitCont.getDomRef() && oSplitCont.getDomRef().parentNode;
-            // set all parent elements to 100% height, this should be done by app developer, but just in case
-            if (ref && !ref._sapui5_heightFixed) {
-                ref._sapui5_heightFixed = true;
-                while (ref && ref !== document.documentElement) {
-                    var $ref = jQuery(ref);
-                    if ($ref.attr("data-sap-ui-root-content")) { // Shell as parent does this already
-                        break;
+            if (result.c === "s") {
+
+                    if (result.data.success) {
+
+                        this.getView().getModel().setProperty("/RetornoCrearDocumento", result.data);
+                        this.getView().getModel().refresh();
+
+                    } else {
+
+                        sap.m.MessageToast.show(result.data.errors.reason, {
+                            duration: 3000
+                        });
+
                     }
-                    if (!ref.style.height) {
-                        ref.style.height = "100%";
-                    }
-                    ref = ref.parentNode;
+
+
+                } else {
+                    sap.m.MessageToast.show(result.m, {
+                        duration: 3000
+                    });
                 }
-            }
+
+
+
+            this.getView().byId("dlg_DialogDocNuevo").close();
+
+            /*/ARRAY OBJETO
+            var listaDetalle = [];
+
+            var objDet = {};
+            objDet.Posicion = "10";
+            objDet.CodMaterial = "11000039";
+            objDet.UMedidaRendimiendo = "CA";
+
+            listaDetalle.push(objDet);
+
+            var parametros = {};
+            parametros.objDetalle = listaDetalle;
+
+            console.log(JSON.stringify(parametros));
+            /*/
+
         },
 
-        /*
-         
-         onOpenDialog: function (oEvent) {
-         // instantiate dialog
-         
-         },
-         
-         onDialogClosed: function (oEvent) {
-         jQuery.sap.clearDelayedCall(_timeout);
-         
-         if (oEvent.getParameter("cancelPressed")) {
-         MessageToast.show("The operation has been cancelled");
-         } else {
-         MessageToast.show("The operation has been completed");
-         }
-         },
-         
-         
-         
-         */
-
-
-
-
-        getSplitContObj: function () {
-            var result = this.byId("SplitAppId");
-            if (!result) {
-                jQuery.sap.log.error("SplitApp object can't be found");
-            }
-            return result;
-        },
-
-        onShowHello: function () {
-
-            // read msg from i18n model
-            var oBundle = this.getView().getModel("i18n").getResourceBundle();
-            var sRecipient = this.getView().getModel().getProperty("/recipient/name");
-            var sMsg = oBundle.getText("helloMsg", [sRecipient]);
-
-            // show message
-            MessageToast.show(sMsg);
-        },
 
         //Boton Home
         goHome: function () {
@@ -125,7 +131,6 @@
 
         //Navegacion Master
         onDocNuevoPressMasterBack: function () {
-            this.getSplitContObj().backMaster();
         },
 
         //Buscar Producto
@@ -170,7 +175,7 @@
          
          onDocNuevoClosedlg_editListaReparto: function() {
          this.getView().byId("dlg_DocNuevoeditListaReparto").close();
-         },	
+         }, 
          */
 
 
@@ -188,32 +193,40 @@
 
         //Boton Master Datos
         onDocNuevoMasterDatos: function (oEvent) {
-            this.getSplitContObj().toMaster(this.createId("MasterDocNuevoDatos"));
-            this.getSplitContObj().to(this.createId("pagDocNuevo_datos_detail1"))
-
+            this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoDatos"));
+            this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"));
 
 
         },
 
         //Boton Master Producto
         onDocNuevoMasterProductos: function (oEvent) {
-            this.getSplitContObj().toMaster(this.createId("MasterDocNuevoProductos"));
+            this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoProductos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
 
         },
 
         //Lista de Master Datos
-        onDocNuevoListMasterDatos: function (oEvent) {
-            var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
+        onListaMasterDatos:function(evt){
+            var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
 
-            this.getSplitContObj().toDetail(this.createId(sToPageId));
+            if(obj.codigo===1){
+                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"))
+                }
+
+                if(obj.codigo===2){
+                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail2"))
+                }
+
+                if(obj.codigo===3){
+                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail3"))
+                }
+
+
         },
 
         //Lista de Master Productos
         onDocNuevoListMasterProductos: function (oEvent) {
-            var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
-
-            this.getSplitContObj().toDetail(this.createId(sToPageId));
         },
 
         //Abrir Dialog Buscar Cliente
@@ -234,24 +247,16 @@
 
 
 
-
-            var sToPageId = evt.getParameter("listItem").getCustomData()[0].getValue();
-            this.getSplitContObj().toDetail(this.createId(sToPageId));
-
+            this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoProductosBuscarCliente"));
+            this.byId("SplitAppId").to(this.createId("pagDocNuevo_cliente_buscado"));
             this.getView().byId("dlg_DocNuevobuscarCliente_resultado").close();
             this.getView().byId("dlg_DocNuevobuscarCliente").close();
-
-            this.getSplitContObj().toMaster(this.createId("MasterDocNuevoProductosBuscarCliente"));
-            this.getSplitContObj().to(this.createId("pagDocNuevo_cliente_buscado"));
 
             console.log(obj.codigo);
         },
 
         //Al presionar en la Lista de los Clientes Buscados
         onDocNuevoListBuscarCliente: function () {
-            var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
-
-            this.getSplitContObj().toDetail(this.createId(sToPageId));
         },
 
         //Al Presionar Boton Buscar Cliente desde el Dialog
@@ -337,7 +342,7 @@
 
 
         onDocNuevoCloseSeleccionarMaterial: function () {
-            this.getView().byId("dlg_DocNuevobuscarMaterial_resultado").close();
+            this.getView().byId("dlg_BuscarMateriales").close();
         },
 
         onDocNuevoBuscarMateriales: function (oEvent) {
@@ -511,14 +516,66 @@
         },
 
         onNoMensajeAviso1: function () {
+
+            var objSeleccionado = this.getView().getModel().getProperty("/materialSelec");
+            var listaDisplay = this.getView().getModel().getProperty("/listaMatAnadido");
+            
+            if(listaDisplay){
+                listaDisplay.push(objSeleccionado);
+            }else{
+                
+                listaDisplay = [];
+                listaDisplay.push(objSeleccionado);
+                
+            }
+            
+            this.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
+            this.getView().getModel().refresh();
+            this.getView().byId("dlg_MensajeAviso1").close();
             this.getView().byId("dlg_DocNuevobuscar").close();
             this.getView().byId("dlg_BuscarMateriales").close();
             this.getView().byId("dlg_DocNuevoaddProductoonDialog").close();
 
-            this.getView().byId("dlg_MensajeAviso1").close();
+
         },
 
         onDocNuevoMasterProductosAddonDialog: function (evt) {
+            /*
+            var objetoDetalle = 
+            var objetoMaterial = 
+            var objetoPedido = 
+            var categoria = 
+            var anadirMat = 
+
+            this.getView().byId("loadingControl").open(); // INDICADOR
+            var result = materialServices.anadirMaterial(objetoDetalle,objetoMaterial,objetoPedido,anadirMat);
+             
+            if (result.c === "s") {
+                 this.getView().byId("dlg_DocNuevobuscar").close();
+                if (result.data.success) {
+
+                    this.getView().getModel().setProperty("/BusquedaMateriales", result.data.materiales);
+                    this.getView().getModel().setProperty("/RetornolstCentros", result.data.lstCentros);
+                    this.getView().byId("dlg_BuscarMateriales").open();
+                    this.getView().getModel().refresh();
+                    this.getView().byId("loadingControl").close();
+                } else {
+
+                    sap.m.MessageToast.show(result.data.errors.reason, {
+                        duration: 3000
+                    });
+
+                }
+
+
+            } else {
+                sap.m.MessageToast.show(result.m, {
+                    duration: 3000
+                });
+            }
+
+                objetoDetalle,objetoMaterial,objetoPedido,anadirMat
+            */
             
             this.getView().byId("dlg_MensajeAviso1").open();
         },
@@ -612,11 +669,12 @@
 
         show4000_0: function () {
             this.showBusyIndicator(4000, 0);
-        },
+        }
+        
 
+
+
+            
     });
 
 });
-
-
-

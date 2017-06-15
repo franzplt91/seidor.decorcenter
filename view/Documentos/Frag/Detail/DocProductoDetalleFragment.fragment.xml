@@ -10,58 +10,421 @@
     
     <s:DetailPage title="Detalle Producto" id="pagDocNuevo_productos_lista1">
         <s:content>
-            <ObjectHeader backgroundDesign="Solid" intro="" title="{/materialSeleccionado/DescMaterial}"
-                number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
-                <attributes>
-                    <ObjectAttribute title="Posición" text="{/itemProductoModel/Posicion}"/>
-                    <ObjectAttribute title="Código" text="{/materialSeleccionado/CodMaterial}"/>
-                    <ObjectAttribute title="Descripción" text="{/materialSeleccionado/Descripcion}"/>
-                    <ObjectAttribute title="Cantidad" text="{/materialSeleccionado/Descripcion}"/>
-                    <ObjectAttribute title="Unidad de Medida" text="{/materialSeleccionado/Descripcion}"/>
-                    <ObjectAttribute title="Unidad de Rendimiento" text="{/materialSeleccionado/Descripcion}"/>
-                    <ObjectAttribute title="Centro/Almacen/Lote" text="{/materialSeleccionado/Descripcion}"/>
-                    <ObjectAttribute title="flete" text="{/materialSeleccionado/EsFlete}"/>
-                    <ObjectAttribute title="Peso" text="{/materialSeleccionado/Peso}"/>
-                    <ObjectAttribute title="Peso Total" text="{/materialSeleccionado/Descripcion}"/>
-                    <ObjectAttribute title="Precio Unitario" text="{/materialSeleccionado/PrecioUnit}"/>
-                    <ObjectAttribute title="Descuentos" text="{/materialSeleccionado/Descripcion}"/>
-                    <ObjectAttribute title="Sub Total" text="{/materialSeleccionado/Descripcion}"/>
-                </attributes>
-            </ObjectHeader>
+            
+
             <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
                 <items>
-                    <IconTabFilter text="Descuentos">
-                        <Table>
-                            <columns>
-                                <Column>
-                                    <Text text="Denominación"></Text>
-                                </Column>
-                                <Column>
-                                    <Text text="Máximo"></Text>
-                                </Column>
-                                <Column>
-                                    <Text text="%"></Text>
-                                </Column>
-                                <Column>
-                                    <Text text="Total"></Text>
-                                </Column>
-                            </columns>
-                        </Table>
+                    <IconTabFilter text="Detalle Material 1">
+
+                        <f:Form editable="true">
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="4"
+                                    columnsL="4"
+                                    columnsM="4"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Posición">
+                                            <f:fields>
+                                                <Input width="100%">
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+
+                                <f:FormContainer>
+                                    <f:FormElement label="Código">
+                                            <f:fields>
+                                                <Input width="100%" >
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+
+
+                        <f:Form editable="true">
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="3"
+                                    columnsL="3"
+                                    columnsM="3"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                         <f:FormElement label="Descripción">
+                                            <f:fields>
+                                                <Input width="100%" >
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Cantidad">
+                                            <f:fields>
+                                                <Input width="100%" >
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Unidad de Medida">
+                                            <f:fields>
+                                                <Input width="100%" >
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Unidad de Rendimiento">
+                                            <f:fields>
+                                                <Input width="100%" >
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Centro/Almacen/Lote">
+                                            <f:fields>
+                                                <Input width="100%" >
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Flete">
+                                            <f:fields>
+                                                <CheckBox selected="true">
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </CheckBox>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+
+
                     </IconTabFilter>
+
+                    <IconTabFilter text="Detalle Material 2">
+
+                        <f:Form editable="true">
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="4"
+                                    columnsL="4"
+                                    columnsM="4"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Peso">
+                                            <f:fields>
+                                                <Input width="100%" >
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                                
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Peso Total">
+                                            <f:fields>
+                                                <Input width="100%" >
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                    </f:formElements>
+                                    
+                                </f:FormContainer>
+
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Precio Unitario">
+                                            <f:fields>
+                                                <Input width="100%" >
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                    </f:formElements>
+                                    
+                                </f:FormContainer>
+
+
+                                <f:FormContainer>
+                                    <f:formElements>
+                                            <f:FormElement label="Descuentos">
+                                            <f:fields>
+                                                <Input width="100%" >
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                    
+                                </f:FormContainer>
+
+                            </f:formContainers>
+                        </f:Form>
+
+
+
+                        <f:Form editable="true">
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="4"
+                                    emptySpanL="4"
+                                    emptySpanM="4"
+                                    emptySpanS="0"
+                                    columnsXL="3"
+                                    columnsL="3"
+                                    columnsM="3"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+
+                        
+                                        <f:FormElement label="Sub Total">
+                                            <f:fields>
+                                                <Input width="100%" placeholder="">
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Repartos">
+                                            <f:fields>
+                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
+                                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </DatePicker>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+
+                                    </f:formElements>
+                                </f:FormContainer>
+
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Ambiente">
+                                            <f:fields>
+                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" maxwidth="100%" required="true">
+                                                        <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                        <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Opción Ambiente">
+                                            <f:fields>
+                                                <Select maxwidth="100%" required="true">
+                                                    <core:Item key="01" text="01"/>
+                                                    <core:Item key="02" text="02"/>
+                                                    <core:Item key="03" text="03"/>
+                                                    <core:Item key="04" text="04"/>
+                                                    <core:Item key="05" text="05"/>
+                                                    <core:Item key="06" text="06"/>
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                    </f:formElements>
+
+                                </f:FormContainer>
+
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Motivo de Rechazo">
+                                            <f:fields>
+                                                <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxwidth="100%" required="true">
+                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="Prioridad">
+                                            <f:fields>
+                                                <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxwidth="100%" required="true">
+                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
+                                                <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                            </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                    </f:formElements>
+
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                    </IconTabFilter>
+
+                    <IconTabFilter text="Descuento">
+                       
+                    </IconTabFilter>
+
+                    <IconTabFilter text="Centro/Almacen/Lote">
+                        <List  mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos" 
+                              itemPress=""  
+                              items="{
+                        path : '/listaMatAnadido',
+                                sorter : {
+                                    path : 'DescMaterial',
+                                    group : false
+                                }
+                        }"
+                >
+                    <items>
+
+
+                        <ObjectListItem
+                            title="{CodMaterial}"
+                            number="Peso: {Peso}"
+                            numberUnit="Precio: {PrecioUnit} Stock: {Stock}{CodUMedida}"
+                            numberState=""
+                            type="Navigation"
+                            press=""
+                            custom:to="">
+                            <firstStatus>
+                                <ObjectStatus text="Descontinuado: {Descontinuado}"/>
+                            </firstStatus>
+                        </ObjectListItem>
+
+
+                    </items>
+                </List>
+                    </IconTabFilter>
+
+
                     <IconTabFilter text="Reparto">
-                        <Table>
-                            <columns>
-                                <Column>
-                                    <Text text="Fecha Entrega"></Text>
-                                </Column>
-                                <Column>
-                                    <Text text="Cantidad"></Text>
-                                </Column>
-                                <Column>
-                                    <Text text="Confirmado"></Text>
-                                </Column>
-                            </columns>
-                        </Table>
+                        <List  mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos" 
+                              itemPress=""  
+                              items="{
+                        path : '/listaMatAnadido',
+                                sorter : {
+                                    path : 'DescMaterial',
+                                    group : false
+                                }
+                        }"
+                >
+                    <items>
+
+
+                        <ObjectListItem
+                            title="{CodMaterial}"
+                            number="Peso: {Peso}"
+                            numberUnit="Precio: {PrecioUnit} Stock: {Stock}{CodUMedida}"
+                            numberState=""
+                            type="Navigation"
+                            press=""
+                            custom:to="">
+                            <firstStatus>
+                                <ObjectStatus text="Descontinuado: {Descontinuado}"/>
+                            </firstStatus>
+                        </ObjectListItem>
+
+
+                    </items>
+                </List>
+                    </IconTabFilter>
+
+
+                    <IconTabFilter text="Catálogo">
+
                     </IconTabFilter>
                 </items>
             </IconTabBar>

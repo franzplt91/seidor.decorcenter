@@ -20,5 +20,21 @@ sap.ui.define([
             
         },
 
+
+
+
+        anadirMaterial:function(objetoDetalle,objetoMaterial,objetoPedido,anadirMat){
+
+            var contexto = {};
+            contexto.servicio = "materialServices.buscarmaterial()";
+            contexto.url = "material.aspx";
+            contexto.parametros = { objDetalle: objetoDetalle, objMaterial:objetoMaterial, objPedido:objetoPedido, añadirMat:anadirMat};
+
+            return utilService.exec(contexto);
+
+            //codigo codigoAntiguo descripcionMaterial  categoria  linea  marca
+
+        }
+
     };
 });

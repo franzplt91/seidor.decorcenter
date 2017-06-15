@@ -1009,7 +1009,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Rango Edad">
                                             <f:fields>
-                                                <Select items="" maxwidth="100%" required="true">
+                                                <Select  maxwidth="100%" required="true">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1019,7 +1019,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Tipo de Cliente">
                                             <f:fields>
-                                                <Select items="" maxwidth="100%" required="true">
+                                                <Select maxwidth="100%" required="true">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1029,7 +1029,7 @@
                                         </f:FormElement> 
                                         <f:FormElement label="Tipo de Construcción">
                                             <f:fields>
-                                                <Select items="" maxwidth="100%" required="true">
+                                                <Select  maxwidth="100%" required="true">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1040,7 +1040,7 @@
 
                                         <f:FormElement label="Tipo de Proyecto-Residencial">
                                             <f:fields>
-                                                <Select items="" maxwidth="100%" required="true">
+                                                <Select  maxwidth="100%" required="true">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1050,7 +1050,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Tipo de Proyecto-Institucional">
                                             <f:fields>
-                                                <Select items="" maxwidth="100%" required="true">
+                                                <Select  maxwidth="100%" required="true">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1060,7 +1060,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Presupuesto para el Proyecto">
                                             <f:fields>
-                                                  <Select items="" maxwidth="100%" required="true">
+                                                  <Select  maxwidth="100%" required="true">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1070,7 +1070,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Estilo 1">
                                             <f:fields>
-                                                 <Select items="" maxwidth="100%" required="true">
+                                                 <Select  maxwidth="100%" required="true">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>

@@ -10,10 +10,10 @@
     
     <s:DetailPage title="Documento" id="pagDocNuevo_datos_detail1">
         <s:content>
-            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/clienteSeleccionado/nombrecliente}"
+            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/dataIni/person/E_NAME1}"
                 number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
                 <attributes>
-                    <ObjectAttribute title="Código" text="{/clienteSeleccionado/codigo}"/>
+                    <ObjectAttribute title="Código" text="{/dataIni/person/ClienteEvent}"/>
                 </attributes>
             </ObjectHeader>
             <IconTabBar stretchContentHeight="false" expandable="false" headerMode="Inline" upperCase="false" expanded="{device/isNoPhone}"
@@ -25,9 +25,6 @@
                     justifyContent="Center">
                     <items>
                         <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
                             <f:layout>
                                 <f:ResponsiveGridLayout
                                     labelSpanXL="12"
@@ -49,7 +46,9 @@
                                     <f:formElements>
                                         <f:FormElement label="Organización de Ventas">
                                             <f:fields>
-                                                <Input value="" />
+                                                <Select  maxwidth="100%" required="true">
+                                                    <core:Item key="" text="{/dataIni/person/OrgVentas} :: DECOR CENTER"/>
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Canal">
@@ -82,9 +81,6 @@
                     alignItems="Center"
                     justifyContent="Center">
                         <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
                             <f:layout>
                                 <f:ResponsiveGridLayout
                                      labelSpanXL="12"
@@ -120,7 +116,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Tipo de Cambio">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Tipo de Cambio"></Input>
+                                                <Input width="100%" placeholder="Ingrese Tipo de Cambio" value="{/RetornoCrearDocumento/tipoCambio}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Peso Total">
@@ -136,9 +132,6 @@
                     </IconTabFilter>
                     <IconTabFilter showAll="false" text="Datos Facturación">
                         <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
                             <f:layout>
                                 <f:ResponsiveGridLayout
                                      labelSpanXL="12"
@@ -162,8 +155,8 @@
                                     <f:formElements>
                                         <f:FormElement label="Datos Facturación">
                                             <f:fields>
-                                                <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                                <DatePicker  valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
+                                    value="{/RetornoCrearDocumento/FechaFact}">
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -178,9 +171,6 @@
 
 
                         <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
                             <f:layout>
                                 <f:ResponsiveGridLayout
                                     labelSpanXL="12"
@@ -254,9 +244,6 @@
 
 
                         <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
                             <f:layout>
                                 <f:ResponsiveGridLayout
                                     labelSpanXL="12"
@@ -283,8 +270,8 @@
                                         </f:FormElement>
                                         <f:FormElement label="Fecha Pedido">
                                             <f:fields>
-                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                                 <DatePicker  valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
+                                    value="{/RetornoCrearDocumento/FechaFact}">
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -302,17 +289,19 @@
                                     <f:formElements>
                                         <f:FormElement label="Fecha de Validez">
                                             <f:fields>
-                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                                 <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
+                                    value="{/RetornoCrearDocumento/FechaValidez}">
                                    
                                 </DatePicker>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Fecha Ent. Referencial">
                                             <f:fields>
-                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                    
+                                                 <DatePicker  valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
+                                    value="{/RetornoCrearDocumento/FechaFact}">
+                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
                                 </DatePicker>
                                             </f:fields>
                                         </f:FormElement>
@@ -341,9 +330,6 @@
 
 
                     <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
                             <f:layout>
                                 <f:ResponsiveGridLayout
                                     labelSpanXL="12"
@@ -394,9 +380,6 @@
                             </f:formContainers>
                         </f:Form>
                         <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
                             <f:layout>
                                 <f:ResponsiveGridLayout
                                     labelSpanXL="12"
@@ -450,6 +433,49 @@
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
                                                 </CheckBox>
+                                            </f:fields>
+                                        </f:FormElement>
+
+                                        <f:FormElement label="Grupo Forecast">
+                                            <f:fields>
+                                                 <Select items="{ path : '/dataIni/lstTipoVisita' }"  required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+
+                                        <f:FormElement label="Tipo Forecast">
+                                            <f:fields>
+                                                 <Select items="{ path : '/dataIni/lstTipoVisita' }"  required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                </Select>
+                                            </f:fields>
+                                        </f:FormElement>
+
+                                        <f:FormElement label="Nro. Certificado">
+                                            <f:fields>
+                                                 <Input  placeholder="Ingrese Nro. Certificado">
+                                                     <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                 </Input>
+                                            </f:fields>
+                                        </f:FormElement>
+
+                                        <f:FormElement label="Fecha de Visita">
+                                            <f:fields>
+                                                  <DatePicker  valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
+                                    value="">
+                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                </DatePicker>
                                             </f:fields>
                                         </f:FormElement>
                                         
