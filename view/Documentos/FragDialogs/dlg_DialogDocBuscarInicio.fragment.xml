@@ -2,103 +2,89 @@
     xmlns:core="sap.ui.core" 
     xmlns:mvc="sap.ui.core.mvc" 
     xmlns="sap.m"
-     xmlns:l="sap.ui.layout" 
-     xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form"
     xmlns:t="sap.ui.table" 
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     	
-
-
-    	<Dialog title="Buscar Documento" id="dlg_DialogDocBuscar" stretchOnPhone="true" contentWidth="40%"
-                    contentHeight="65%">
+    <Dialog title="Buscar Documento" id="dlg_DialogDocBuscar" stretchOnPhone="true" contentWidth="40%"
+            contentHeight="65%">
         <content>
 
-                        <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Tipo de búsqueda">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Dato de búsqueda">
-                                            <f:fields>
-                                                <Input  placeholder="Ingrese el Dato de búsqueda"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Código ó Descripción Material">
-                                            <f:fields>
-                                                <Input  placeholder="Ingrese Código ó Descripción Material"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Clase de documento">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Fecha Inicio">
-                                            <f:fields>
-                                               <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                                            <layoutData>
-                                                                <l:GridData span="L4 M4 S6"/>
-                                                            </layoutData>
-                                                    </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Fecha Fin">
-                                            <f:fields>
-                                                <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                                            <layoutData>
-                                                                <l:GridData span="L4 M4 S6"/>
-                                                            </layoutData>
-                                                    </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                         <f:FormElement label="Código Asesor">
-                                            <f:fields>
-                                                <Input  ></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
+            <f:Form editable="true">
+                <!-- <f:title>
+                    <core:Title text="Address" />
+                </f:title> -->
+                <f:layout>
+                    <f:ResponsiveGridLayout
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        labelSpanS="5"
+                        adjustLabelSpan="false"
+                        emptySpanXL="4"
+                        emptySpanL="4"
+                        emptySpanM="4"
+                        emptySpanS="0"
+                        columnsXL="1"
+                        columnsL="1"
+                        columnsM="1"
+                        singleContainerFullSize="false" />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="Tipo de búsqueda">
+                                <f:fields>                                
+                                    <Select id="cbo_tipo_buqueda" items="{ path : '/modelTipoBusq' }" required="true">
+                                        <core:Item key="{Codigo}" text="{Descripcion}" />
+                                    </Select>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Dato de búsqueda">
+                                <f:fields>
+                                    <Input id="DatoBusqTXT" placeholder="Ingrese el Dato de búsqueda"></Input>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Código ó Descripción Material">
+                                <f:fields>
+                                    <Input id="DesMaterialTXT" placeholder="Ingrese Código ó Descripción Material"></Input>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Clase de documento">
+                                <f:fields>
+                                    <ComboBox id="claseDocTXT" selectedKey=" " items="{ path : '/dataIni/lstTipoDoc' }" required="true">
+                                        <core:Item key="{Codigo}" text="{= ${Codigo} === ' '? 'Seleccione Clase de Doc.' : ${Descripcion} }" />
+                                    </ComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Fecha Inicio">
+                                <f:fields>
+                                    <DatePicker id="fechaIniTXT" valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"></DatePicker>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Fecha Fin">
+                                <f:fields>
+                                    <DatePicker id="fechaFinTXT" valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" ></DatePicker>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Código Asesor">
+                                <f:fields>
+                                    <Input id="asesorTXT"></Input>
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
         </content>
         <buttons>
 
             <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onBuscarDlg_DialogDocBuscar" />
-             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </buttons>
         
     </Dialog>
 
-
-
-    </core:FragmentDefinition>
+</core:FragmentDefinition>
