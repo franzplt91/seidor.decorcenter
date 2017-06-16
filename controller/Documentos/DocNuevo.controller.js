@@ -50,24 +50,52 @@
                 this.getView().getModel().refresh();
         },
 
-        SeleccionarDocumento:function(evt){
+        onOkDlg_DialogDocNuevo:function(oEvent){
 
-             var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
+            //Lista Respuestas de Lista Preguntas
+            //Tipo de cliente
+             this.getView().getModel().setProperty("/listaRespuestas",dataIni.lstPreguntas[0].listaResp);
+
+             //Tipo de construcción
+             this.getView().getModel().setProperty("/listaRespuestas1",dataIni.lstPreguntas[1].listaResp);
+
+             //Tipo de proyecto - Residencial
+             this.getView().getModel().setProperty("/listaRespuestas2",dataIni.lstPreguntas[2].listaResp);
+
+             //Tipo de proyecto - Institucional
+             this.getView().getModel().setProperty("/listaRespuestas3",dataIni.lstPreguntas[3].listaResp);
+
+             //Presupuesto para el proyecto
+             this.getView().getModel().setProperty("/listaRespuestas4",dataIni.lstPreguntas[4].listaResp);
+
+             //Ambiente 1
+             this.getView().getModel().setProperty("/listaRespuestas5",dataIni.lstPreguntas[5].listaResp);
+
+             //Estilo 1
+             this.getView().getModel().setProperty("/listaRespuestas6",dataIni.lstPreguntas[6].listaResp);
+
+             //Ambiente 2
+             this.getView().getModel().setProperty("/listaRespuestas7",dataIni.lstPreguntas[7].listaResp);
+
+             //Estilo 2
+             this.getView().getModel().setProperty("/listaRespuestas8",dataIni.lstPreguntas[8].listaResp);
+
+             //Ambiente 3
+             this.getView().getModel().setProperty("/listaRespuestas9",dataIni.lstPreguntas[9].listaResp);
+
+             //Estilo 3
+             this.getView().getModel().setProperty("/listaRespuestas10",dataIni.lstPreguntas[10].listaResp);
+
+             //
+
+            var obj = this.getView().byId("ListaDocNuevo").getSelectedItem().getBindingContext().getObject();
             this.getView().getModel().setProperty("/documentoSeleccionado", obj);
             this.getView().getModel().refresh();
 
-            console.log(obj.Codigo);
-
-        },
-        onOkDlg_DialogDocNuevo:function(oEvent){
-
-
-            var tipoDoc = this.getView().getModel().getProperty("/documentoSeleccionado");
+                var tipoDoc = this.getView().getModel().getProperty("/documentoSeleccionado");
             var tipoDocumento = tipoDoc.Codigo;
 
             var pNumPedido = this.getView().byId("txt_refDocNuevo").getValue();
-
-            console.log(tipoDocumento);
 
             var result = crearDocumentoServices.crearDoc(tipoDocumento,pNumPedido);
              
@@ -78,6 +106,8 @@
 
                         this.getView().getModel().setProperty("/RetornoCrearDocumento", result.data);
                         this.getView().getModel().refresh();
+                        this.getView().byId("dlg_DialogDocNuevo").close();
+                    MessageToast.show(obj.Descripcion);
 
                     } else {
 
@@ -96,7 +126,7 @@
 
 
 
-            this.getView().byId("dlg_DialogDocNuevo").close();
+
 
             /*/ARRAY OBJETO
             var listaDetalle = [];
@@ -113,6 +143,12 @@
 
             console.log(JSON.stringify(parametros));
             /*/
+
+
+            
+            
+
+            
 
         },
 

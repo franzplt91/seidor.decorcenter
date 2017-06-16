@@ -10,10 +10,10 @@
     
     <s:DetailPage title="Documento" id="pagDocNuevo_datos_detail2">
         <s:content>
-            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="Cliente Eventual La Molina"
+            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/dataIni/person/E_NAME1}"
                 number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
                 <attributes>
-                    <ObjectAttribute title="Código" text="{/MaterialModel/material/WeeklyForecast} {/MaterialModel/material/Meins}"/>
+                    <ObjectAttribute title="Código" text="{/dataIni/person/ClienteEvent}"/>
                 </attributes>
             </ObjectHeader>
             <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device/isNoPhone}" class="sapUiResponsiveContentPadding">
@@ -45,7 +45,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -111,8 +111,8 @@
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData>
                                 </Input>
-                                                <ComboBox placeholder="Distrito" items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
                                     </layoutData>
@@ -207,7 +207,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -259,8 +259,8 @@
                                                 <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData></Input>
-                                                <ComboBox placeholder="Distrito" items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
                                     </layoutData>
@@ -359,7 +359,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -411,8 +411,8 @@
                                                 <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData></Input>
-                                                <ComboBox placeholder="Distrito" items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
                                     </layoutData>
@@ -498,7 +498,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -562,8 +562,8 @@
                                                 <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData></Input>
-                                                <ComboBox placeholder="Distrito" items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
                                     </layoutData>
@@ -711,8 +711,8 @@
                                                 <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData></Input>
-                                                <ComboBox placeholder="Distrito" items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
                                     </layoutData>
@@ -797,19 +797,34 @@
                             <f:formContainers>
                                 <f:FormContainer>
                                     <f:formElements>
-                                        <f:FormElement label="Vendedor 1">
+                                        <f:FormElement label="Vendedor 1"> 
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <ComboBox items="{ path : '/dataIni/lstAsesores' }" maxwidth="100%" required="false" selectedKey="{/dataIni/person/PerNr}">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                    <layoutData>
+                                                         <l:GridData span="L12 M12 S12"/>
+                                                    </layoutData>
+                                                </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Vendedor 2">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
+                                                 <ComboBox items="{ path : '/dataIni/lstAsesores' }" maxwidth="100%" required="false" >
+                                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                    <layoutData>
+                                                         <l:GridData span="L12 M12 S12"/>
+                                                    </layoutData>
+                                                </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Vendedor 3">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
+                                                 <ComboBox items="{ path : '/dataIni/lstAsesores' }" maxwidth="100%" required="false" >
+                                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                    <layoutData>
+                                                         <l:GridData span="L12 M12 S12"/>
+                                                    </layoutData>
+                                                </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -983,11 +998,11 @@
                                         </f:FormElement>
                                         <f:FormElement label="Distrito*">
                                             <f:fields>
-                                                <ComboBox items="{ path : '/dataIni/lstUbigeo' }" maxwidth="100%" required="true">
-                                    <core:Item key="{UBIGEO}" text="{UBI_DIST} / {UBI_PROV} / {UBI_DEP}"/>
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="false">
+                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
                                 </ComboBox>
                                             </f:fields>
                                         </f:FormElement>                                     
@@ -1000,7 +1015,7 @@
 
                                                     <f:FormElement label="Edad">
                                             <f:fields>
-                                                <Input  placeholder="IngreseEdad">
+                                                <Input  placeholder="Ingrese Edad">
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -1009,8 +1024,8 @@
                                         </f:FormElement>
                                         <f:FormElement label="Rango Edad">
                                             <f:fields>
-                                                <Select  maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                <Select  maxwidth="100%" required="true" selectedKey="0">
+                                    <core:Item key="0" text="Joven"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -1019,63 +1034,64 @@
                                         </f:FormElement>
                                         <f:FormElement label="Tipo de Cliente">
                                             <f:fields>
-                                                <Select maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
+                                                <Select items="{ path : '/listaRespuestas' }" maxwidth="100%" required="true">
+                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Cliente' : ${Descripcion} }"/>
+                                                    <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
-                                </Select>
+                                                </Select>
+
                                             </f:fields>
                                         </f:FormElement> 
                                         <f:FormElement label="Tipo de Construcción">
                                             <f:fields>
-                                                <Select  maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
+                                                 <Select items="{ path : '/listaRespuestas1' }" maxwidth="100%" required="true">
+                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Construcción' : ${Descripcion} }"/>
+                                                    <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
-                                </Select>
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement> 
 
                                         <f:FormElement label="Tipo de Proyecto-Residencial">
                                             <f:fields>
-                                                <Select  maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
+                                                <Select items="{ path : '/listaRespuestas2' }" maxwidth="100%" required="true">
+                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Proyecto-Residencial' : ${Descripcion} }"/>
+                                                    <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
-                                </Select>
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Tipo de Proyecto-Institucional">
                                             <f:fields>
-                                                <Select  maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
+                                                <Select items="{ path : '/listaRespuestas3' }" maxwidth="100%" required="true">
+                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Proyecto-Institucional' : ${Descripcion} }"/>
+                                                    <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
-                                </Select>
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Presupuesto para el Proyecto">
                                             <f:fields>
-                                                  <Select  maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
+                                                  <Select items="{ path : '/listaRespuestas4' }" maxwidth="100%" required="true">
+                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Presupuesto para el Proyecto' : ${Descripcion} }"/>
+                                                    <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
-                                </Select>
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Estilo 1">
                                             <f:fields>
-                                                 <Select  maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                                    <layoutData>
+                                                 <Select items="{ path : '/listaRespuestas6' }" maxwidth="100%" required="true">
+                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Estilo 1' : ${Descripcion} }"/>
+                                                    <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
-                                </Select>
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>                          
                                         

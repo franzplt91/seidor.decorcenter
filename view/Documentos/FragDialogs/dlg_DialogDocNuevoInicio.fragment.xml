@@ -21,7 +21,7 @@
                 <content>
 
 
-                    <List  mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200" enableBusyIndicator="false" itemPress="SeleccionarDocumento" growingTriggerText="Previous Products" noDataText="No products available"  items="{
+                    <List id="ListaDocNuevo" mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200" enableBusyIndicator="false"  growingTriggerText="Previous Products" noDataText="No products available"  items="{
                                         path : '/dataIni/lstTipoDoc',
                                         sorter : {
                                             path : 'Codigo',

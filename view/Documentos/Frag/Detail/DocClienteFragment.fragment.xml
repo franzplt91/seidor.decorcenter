@@ -60,7 +60,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Oficina">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstOfVtas' }" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/dataIni/lstOfVtas' }" selectedKey="1010" maxwidth="100%" required="true">
                                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                                 </Select>
                                             </f:fields>
@@ -102,14 +102,14 @@
                                     <f:formElements>
                                         <f:FormElement label="Condición de Pago">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstCPag' }" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/dataIni/lstCPag' }" maxwidth="100%" required="true" selectedKey="E000">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Moneda">
                                             <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstMoneda' }" maxwidth="100%" required="true">
+                                                 <Select items="{ path : '/dataIni/lstMoneda' }" maxwidth="100%" required="true" selectedKey="PEN">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                 </Select>
                                             </f:fields>
@@ -193,8 +193,8 @@
                                         
                                         <f:FormElement label="Nombre Banco">
                                             <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstGrpCond' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                 <Select items="{ path : '/dataIni/lstGrpCond' }" maxwidth="100%" required="true" >
+                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Banco' : ${Descripcion} }"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
@@ -202,7 +202,7 @@
                                         <f:FormElement label="Motivo de NC o ND">
                                             <f:fields>
                                                 <Select items="{ path : '/dataIni/lstMotPed' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Motivo' : ${Descripcion} }"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
@@ -219,14 +219,14 @@
                                         <f:FormElement label="Bloqueo Factura">
                                             <f:fields>
                                                 <Select items="{ path : '/dataIni/lstBloFac' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione' : ${Descripcion} }"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Bloqueo Entrega">
                                             <f:fields>
                                                 <Select items="{ path : '/dataIni/lstBloEnt' }" maxwidth="100%" required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione' : ${Descripcion} }"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
@@ -265,7 +265,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nro. Orden de Compra">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nro. de Orden de Compra"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Fecha Pedido">
@@ -307,14 +307,14 @@
                                         </f:FormElement>
                                             <f:FormElement label="Tipo de Despacho">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstCondExp' }" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/dataIni/lstCondExp' }" maxwidth="100%" required="true"  selectedKey="03">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Fecha de Despacho">
                                             <f:fields>
-                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
+                                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
                                     value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
                                     
                                 </DatePicker>
@@ -368,7 +368,7 @@
                                         <f:FormElement label="Tipo de Visita">
                                             <f:fields>
                                                  <Select items="{ path : '/dataIni/lstTipoVisita' }"  required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Visita' : ${Descripcion} }"/>
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -418,6 +418,17 @@
                                             </f:fields>
                                         </f:FormElement>
                                         
+                                         <f:FormElement label="Visita No Reembolsable">
+                                            <f:fields>
+                                                <CheckBox selected="false">
+                                                    <layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
+                                                </CheckBox>
+                                            </f:fields>
+                                        </f:FormElement>
+
+                                        
                                         
                                         
                                     </f:formElements>
@@ -426,19 +437,9 @@
                                 <f:FormContainer>
                                     <f:formElements>
                                             
-                                        <f:FormElement label="Visita No Reembolsable">
+                                       <f:FormElement label="Grupo Forecast">
                                             <f:fields>
-                                                <CheckBox selected="true">
-                                                    <layoutData>
-                                        <l:GridData span="L12 M12 S12"/>
-                                    </layoutData>
-                                                </CheckBox>
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement label="Grupo Forecast">
-                                            <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstTipoVisita' }"  required="true">
+                                                 <Select items="{ path : '/RetornoCrearDocumento/lstGrupoFor' }"  required="true" selectedKey="01">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
@@ -449,8 +450,8 @@
 
                                         <f:FormElement label="Tipo Forecast">
                                             <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstTipoVisita' }"  required="true">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                 <Select items="{ path : '/RetornoCrearDocumento/lstTipoFor' }"  required="true">
+                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ' '? 'Seleccione Tipo Forecast' : ${Descripcion} }"/>
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>

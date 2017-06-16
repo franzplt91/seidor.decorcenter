@@ -10,7 +10,7 @@
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     displayBlock="true">
 
-    	<s:MasterPage title="Agregar Producto" id="MasterDocNuevoProductosAgregar" showNavButton="true" navButtonPress="onDocNuevoPressMasterBack">
+    	<s:MasterPage title="Agregar Producto" id="MasterDocNuevoProductosAgregar" >
             <s:customHeaderContent>
                     <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
                 </s:customHeaderContent>
