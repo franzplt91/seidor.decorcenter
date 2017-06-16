@@ -11,10 +11,10 @@
     
     <s:DetailPage title="Documento" id="pagDocNuevo_datos_detail3">
         <s:content>
-            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="Cliente Eventual La Molina"
+            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/dataIni/person/E_NAME1}"
                 number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
                 <attributes>
-                    <ObjectAttribute title="Código" text="{/MaterialModel/material/WeeklyForecast} {/MaterialModel/material/Meins}"/>
+                    <ObjectAttribute title="Código" text="{/dataIni/person/ClienteEvent}"/>
                 </attributes>
             </ObjectHeader>
             <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device/isNoPhone}" class="sapUiResponsiveContentPadding">
