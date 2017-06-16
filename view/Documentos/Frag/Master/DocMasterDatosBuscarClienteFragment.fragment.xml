@@ -11,7 +11,7 @@
     displayBlock="true">
     	
 
-    <s:MasterPage title="Buscar Cliente" id="MasterDocNuevoProductosBuscarCliente" showNavButton="true" navButtonPress="onDocNuevoPressMasterBack">
+    <s:MasterPage title="Buscar Cliente" id="MasterDocNuevoProductosBuscarCliente">
         <s:customHeaderContent>
                     <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
                 </s:customHeaderContent>

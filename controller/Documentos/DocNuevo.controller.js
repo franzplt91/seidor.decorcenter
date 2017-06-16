@@ -50,24 +50,15 @@
                 this.getView().getModel().refresh();
         },
 
-        SeleccionarDocumento:function(evt){
-
-             var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
+        onOkDlg_DialogDocNuevo:function(oEvent){
+            var obj = this.getView().byId("ListaDocNuevo").getSelectedItem().getBindingContext().getObject();
             this.getView().getModel().setProperty("/documentoSeleccionado", obj);
             this.getView().getModel().refresh();
 
-            console.log(obj.Codigo);
-
-        },
-        onOkDlg_DialogDocNuevo:function(oEvent){
-
-
-            var tipoDoc = this.getView().getModel().getProperty("/documentoSeleccionado");
+                var tipoDoc = this.getView().getModel().getProperty("/documentoSeleccionado");
             var tipoDocumento = tipoDoc.Codigo;
 
             var pNumPedido = this.getView().byId("txt_refDocNuevo").getValue();
-
-            console.log(tipoDocumento);
 
             var result = crearDocumentoServices.crearDoc(tipoDocumento,pNumPedido);
              
@@ -78,6 +69,8 @@
 
                         this.getView().getModel().setProperty("/RetornoCrearDocumento", result.data);
                         this.getView().getModel().refresh();
+                        this.getView().byId("dlg_DialogDocNuevo").close();
+                    MessageToast.show(obj.Descripcion);
 
                     } else {
 
@@ -96,7 +89,7 @@
 
 
 
-            this.getView().byId("dlg_DialogDocNuevo").close();
+
 
             /*/ARRAY OBJETO
             var listaDetalle = [];
@@ -113,6 +106,10 @@
 
             console.log(JSON.stringify(parametros));
             /*/
+
+                
+
+            
 
         },
 

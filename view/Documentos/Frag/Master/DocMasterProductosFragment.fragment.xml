@@ -12,7 +12,7 @@
     displayBlock="true">
     	
 
-    <s:MasterPage title="Productos" id="MasterDocNuevoProductos" showNavButton="true" navButtonPress="onDocNuevoPressMasterBack">
+    <s:MasterPage title="Productos" id="MasterDocNuevoProductos" >
         <!--s:customHeaderContent>
                     <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
                 </s:customHeaderContent-->
