@@ -5,8 +5,9 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "pe/com/seidor/sap/decor/ventas/services/clienteServices",
     "pe/com/seidor/sap/decor/ventas/services/materialServices",
-    'jquery.sap.global'
-], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
+    'jquery.sap.global',
+    "pe/com/seidor/sap/decor/ventas/services/documentosServices"
+], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery,documentosServices) {
     "use strict";
 
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocBuscar", {
@@ -18,40 +19,122 @@ sap.ui.define([
         },
         onRouteMatched: function (oEvent) {
 
-                if (oEvent.getParameter("name") == "appDocBuscar") {
-                    this.getView().byId("SplitAppId").setMode("HideMode");
-                    this.getView().setModel(new JSONModel({}));
-            this.getView().getModel().setProperty("/dataIni",window.dataIni);
-            this.getView().getModel().refresh(true);
-                    this.getView().byId("dlg_DialogDocBuscar").open();
-                };
+            if (oEvent.getParameter("name") == "appDocBuscar") {
+                this.getView().byId("SplitAppId").setMode("HideMode");
+                this.getView().setModel(new JSONModel({}));
+                this.getView().getModel().setProperty("/dataIni", window.dataIni);
+                this.getView().getModel().refresh(true);
+                this.getView().byId("dlg_DialogDocBuscar").open();
+            }
+            ;
 
-                var tipoCabecera = [];
-                tipoCabecera.push({
-                    codigo:1,
-                    descripcion:'Datos de Clientes'
-                });
+            var tipoCabecera = [];
+            tipoCabecera.push({
+                codigo: 1,
+                descripcion: 'Datos de Clientes'
+            });
 
-                tipoCabecera.push({
-                    codigo:2,
-                    descripcion:'Interlocutores'
-                });
+            tipoCabecera.push({
+                codigo: 2,
+                descripcion: 'Interlocutores'
+            });
 
-                tipoCabecera.push({
-                    codigo:3,
-                    descripcion:'Observaciones'
-                });
+            tipoCabecera.push({
+                codigo: 3,
+                descripcion: 'Observaciones'
+            });
 
-                this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);
-                this.getView().getModel().refresh();
-                
+            //INICIO EDELACRUZ: 
+            //Valores Dialog "Buscar Documento"(dlg_DialogDocBuscarInicio.xml)
+            //Combo campo: "tipo de busqueda"
+            var listaTipoDoc = [];
+
+            var objTipoDoc0 = {
+                Codigo: "0",
+                Descripcion: "Seleccione Tipo de Busqueda"
+            };
+            var objTipoDoc1 = {
+                Codigo: "1",
+                Descripcion: "Número de Pedido"
+            };
+            var objTipoDoc2 = {
+                Codigo: "2",
+                Descripcion: "Número de Factura"
+            };
+            var objTipoDoc3 = {
+                Codigo: "3",
+                Descripcion: "Nombre de Cliente"
+            };
+            var objTipoDoc4 = {
+                Codigo: "4",
+                Descripcion: "RUC / DNI"
+            };
+            var objTipoDoc5 = {
+                Codigo: "5",
+                Descripcion: "Código de Cliente"
+            };
+            var objTipoDoc6 = {
+                Codigo: "6",
+                Descripcion: "Nombre de material"
+            };
+            var objTipoDoc7 = {
+                Codigo: "8",
+                Descripcion: "Material"
+            };
+
+            listaTipoDoc.push(objTipoDoc0);
+            listaTipoDoc.push(objTipoDoc1);
+            listaTipoDoc.push(objTipoDoc2);
+            listaTipoDoc.push(objTipoDoc3);
+            listaTipoDoc.push(objTipoDoc4);
+            listaTipoDoc.push(objTipoDoc5);
+            listaTipoDoc.push(objTipoDoc6);
+            listaTipoDoc.push(objTipoDoc7);
+            //FIN EDELACRUZ 
+
+            this.getView().getModel().setProperty("/tipoCabeceraModel", tipoCabecera);
+            this.getView().getModel().setProperty("/dataIni", window.dataIni);//EDELACRUZ
+            this.getView().getModel().setProperty("/modelTipoBusq", listaTipoDoc);//EDELACRUZ
+            this.getView().getModel().refresh();
+            this.getView().byId("cbo_tipo_buqueda").setSelectedKey("0");//EDELACRUZ
         },
 
-       //Buscar en Dialgo Buscar
-        onBuscarDlg_DialogDocBuscar: function(oEvent) {
+        //Buscar en Dialgo Buscar
+        onBuscarDlg_DialogDocBuscar: function (oEvent) {
+            
+             //INICIO EDELACRUZ: 
+            //Valores Dialog "Buscar Documento"(dlg_DialogDocBuscarInicio.xml)
+            //Combo campo: "tipo de busqueda"
+            var tipoBusqueda = this.getView().byId("cbo_tipo_buqueda").getSelectedKey();
+            var datoBusqueda = this.getView().byId("DatoBusqTXT").getValue();
+            var descMaterial = this.getView().byId("DesMaterialTXT").getValue();
+            var claseDoc = this.getView().byId("claseDocTXT").getSelectedKey();
+            var fechaIni = this.getView().byId("fechaIniTXT").getValue();
+            var fechaFin = this.getView().byId("fechaFinTXT").getValue();
+            var asesor = this.getView().byId("asesorTXT").getValue();
+
+            var claseDoc_aux = "";
+
+            if (claseDoc !== "-9999")
+            {
+                claseDoc_aux = claseDoc;
+            }
+
+            var result = documentosServices.buscarDocumento(tipoBusqueda, datoBusqueda, descMaterial, claseDoc_aux,
+                    fechaIni, fechaFin, asesor);
+
+            if (result.data.success)
+            {
+                this.getView().getModel().setProperty("/ListaDoc", result.data.lstPedidos);
+                this.getView().getModel().refresh();
+            } else
+            {
+                sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
+            }
+            //FIN EDELACRUZ
+            
             this.getView().byId("dlg_DialogDocBuscar").close()
         },
-
 
         onShowHello: function () {
 
@@ -156,20 +239,20 @@ sap.ui.define([
         },
 
         //Lista de Master Datos
-        onListaMasterDatos:function(evt){
+        onListaMasterDatos: function (evt) {
             var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
 
-            if(obj.codigo===1){
-                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"))
-                }
+            if (obj.codigo === 1) {
+                this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"))
+            }
 
-                if(obj.codigo===2){
-                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail2"))
-                }
+            if (obj.codigo === 2) {
+                this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail2"))
+            }
 
-                if(obj.codigo===3){
-                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail3"))
-                }
+            if (obj.codigo === 3) {
+                this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail3"))
+            }
 
 
         },
@@ -325,9 +408,9 @@ sap.ui.define([
 
             this.getView().byId("loadingControl").open(); // INDICADOR
             var result = materialServices.buscarmaterial(codigo, codigoAntiguo, descripcionMaterial, categoria, linea, marca, orgVentas, canalDist, ofVentas);
-             
+
             if (result.c === "s") {
-                 this.getView().byId("dlg_DocNuevobuscar").close();
+                this.getView().byId("dlg_DocNuevobuscar").close();
                 if (result.data.success) {
 
                     this.getView().getModel().setProperty("/BusquedaMateriales", result.data.materiales);
@@ -441,20 +524,20 @@ sap.ui.define([
 //--------------------------
 
         onSiMensajeAviso1: function () {
-            
+
             var objSeleccionado = this.getView().getModel().getProperty("/materialSelec");
             var listaDisplay = this.getView().getModel().getProperty("/listaMatAnadido");
-            
-            if(listaDisplay){
+
+            if (listaDisplay) {
                 listaDisplay.push(objSeleccionado);
-            }else{
-                
+            } else {
+
                 listaDisplay = [];
                 listaDisplay.push(objSeleccionado);
-                
+
             }
-            
-            this.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
+
+            this.getView().getModel().setProperty("/listaMatAnadido", listaDisplay);
             this.getView().getModel().refresh();
             this.getView().byId("dlg_MensajeAviso1").close();
             this.getView().byId("dlg_DocNuevoaddProductoonDialog").close();
@@ -466,17 +549,17 @@ sap.ui.define([
 
             var objSeleccionado = this.getView().getModel().getProperty("/materialSelec");
             var listaDisplay = this.getView().getModel().getProperty("/listaMatAnadido");
-            
-            if(listaDisplay){
+
+            if (listaDisplay) {
                 listaDisplay.push(objSeleccionado);
-            }else{
-                
+            } else {
+
                 listaDisplay = [];
                 listaDisplay.push(objSeleccionado);
-                
+
             }
-            
-            this.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
+
+            this.getView().getModel().setProperty("/listaMatAnadido", listaDisplay);
             this.getView().getModel().refresh();
             this.getView().byId("dlg_MensajeAviso1").close();
             this.getView().byId("dlg_DocNuevobuscar").close();
@@ -487,7 +570,7 @@ sap.ui.define([
         },
 
         onDocNuevoMasterProductosAddonDialog: function (evt) {
-            
+
             this.getView().byId("dlg_MensajeAviso1").open();
         },
 
@@ -498,7 +581,7 @@ sap.ui.define([
             //var item = { CodMaterial: "{/materialSelec/CodMaterial}" , DescMaterial: "{/materialSelec/DescMaterial}" };
 
 
-            
+
             this.getView().getModel().setProperty("/materialSelec", obj);
             this.getView().getModel().refresh();
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
