@@ -1,43 +1,28 @@
-
 <mvc:View
-	height="100%"
-	xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m"
-	controllerName="pe.com.seidor.sap.decor.ventas.controller.Documentos.DocBuscar"
-	xmlns:l="sap.ui.layout" 
+    height="100%"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="pe.com.seidor.sap.decor.ventas.controller.Documentos.DocBuscar"
+    xmlns:l="sap.ui.layout" 
     xmlns:f="sap.ui.layout.form"
     xmlns:t="sap.ui.table" 
     xmlns:s="sap.m.semantic"
 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-		displayBlock="true">
+    displayBlock="true">
     
 
-<!--Dialogs-->
+    <!--Dialogs-->
 
-        <!--dlg_DialogDocBuscar-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocBuscarInicio" type="XML"></core:Fragment>
+    <!--dlg_DialogDocBuscar-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocBuscarInicio" type="XML"></core:Fragment>
         
-
-
-
-
-
-
-
-
-
-
-
-
  
-	<SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoProductos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange">
+    <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoProductos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange">
 
         <masterPages>
-
             <!--Lista de Documentos-->
-
             <s:MasterPage title="Lista de Documentos" id="MasterDocBuscarListaDocumentos" showNavButton="true" navButtonPress="onDocNuevoPressMasterBack">
                 <Page >
                     <customHeader>
@@ -58,10 +43,10 @@
                     </subHeader>
                     <content>
                         <List mode="SingleSelectMaster" growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
-                            enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onDocNuevoListMasterProductos">
+                              enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onDocNuevoListMasterProductos">
                             <items>
                                 <StandardListItem selected="true" title="10214001" description="REPISA CROMADO ARIETE SAMANTHA" info="161.20 " type="Active"
-                                    custom:to="pagDocNuevo_productos_buscar1"/>
+                                                  custom:to="pagDocNuevo_productos_buscar1"/>
                             </items>
                         </List>
                     </content>
@@ -100,19 +85,19 @@
         <detailPages>
 
             <s:DetailPage title="Detalle Documento" id="pagDocBuscar_Documento">
-        <s:content>
-            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/clienteSeleccionado/nombrecliente}"
-                number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
-                <attributes>
-                    <ObjectAttribute title="Código" text="{/clienteSeleccionado/codigo}"/>
-                </attributes>
-            </ObjectHeader>
+                <s:content>
+                    <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/clienteSeleccionado/nombrecliente}"
+                                  number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
+                        <attributes>
+                            <ObjectAttribute title="Código" text="{/clienteSeleccionado/codigo}"/>
+                        </attributes>
+                    </ObjectHeader>
 
-        </s:content>
-    </s:DetailPage>
+                </s:content>
+            </s:DetailPage>
 
 
-             <!--Detail Cliente-->
+            <!--Detail Cliente-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocClienteFragment" type="XML"></core:Fragment>
 
             <!--Detalle Cliente Buscado-->
@@ -138,6 +123,6 @@
         </detailPages>
 		
  
-	</SplitContainer>
+    </SplitContainer>
  
 </mvc:View>
