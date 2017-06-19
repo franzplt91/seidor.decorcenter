@@ -17,14 +17,12 @@
                     <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
                 </s:customHeaderContent>
                 
-                <List mode="SingleSelectMaster" itemPress="onListMasterDatos">
-                    <items>
-                        <StandardListItem selected="true" title="Nuevo Reclamo" type="Active" custom:to="pag_rec_nuevo_reclamo" />
-                        <StandardListItem title="Interlocutores" type="Active" custom:to="detail_rec_nuevo_interlocutores" />
-                        <StandardListItem title="Datos de Reclamo" type="Active" custom:to="detail_rec_nuevo_datos_reclamo" />
-                        <StandardListItem title="Cambiar Status" type="Active" custom:to="detail_rec_nuevo_cambiar_status" />
-                    </items>
-                </List>
+                <List mode="SingleSelectMaster"  items="{/tipoCabeceraModel}" itemPress="onListMasterDatos">
+                            <items>
+                                <ObjectListItem title="{descripcion}" type="Active" >
+                                </ObjectListItem>
+                            </items>
+                        </List>
             </s:MasterPage>
 
             

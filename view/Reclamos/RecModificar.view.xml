@@ -19,7 +19,7 @@
                 <customHeader>
                     <Toolbar>
                         <Label text="Número de Reclamo:"></Label>
-                        <Input width="55%" placeholder="Ingrese Nro. de Reclamo"></Input>
+                        <Input width="55%" placeholder="Ingrese Nro. de Reclamo" id="v_pNumeroReclamo"></Input>
                     </Toolbar>
                 </customHeader>
                 <content></content>

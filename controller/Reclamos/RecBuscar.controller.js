@@ -47,6 +47,7 @@
                 });
 
                 this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);
+                this.getView().getModel().setProperty("/nombre","Buscar Reclamo");
                 this.getView().getModel().refresh();
 		},
 

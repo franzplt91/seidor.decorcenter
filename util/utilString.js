@@ -96,8 +96,11 @@ sap.ui.define([
             /*****  MOTIVOS DE RECHAZO PRODUCTOS ****/
             data.lstMotivosRechazo = this.listAddItemSelec(data.lstMotivosRechazo);
             
+           
 
             window.dataIni = data;
+
+            
 
         }
     };

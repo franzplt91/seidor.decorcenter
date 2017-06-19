@@ -40,7 +40,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8" />
+                                                <TextArea value="{/seleccionado/objReclamo/Texto/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -76,7 +76,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8" />
+                                                <TextArea value="{/seleccionado/objReclamo/Texto/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -111,7 +111,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8" />
+                                                <TextArea value="{/seleccionado/objReclamo/Texto/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -146,7 +146,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8" />
+                                                <TextArea value="{/seleccionado/objReclamo/Texto/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -181,7 +181,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8" />
+                                                <TextArea value="{/seleccionado/objReclamo/Texto/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -216,7 +216,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8" />
+                                                <TextArea value="{/seleccionado/objReclamo/Texto/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -251,7 +251,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8" />
+                                                <TextArea value="{/seleccionado/objReclamo/Texto/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -286,7 +286,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8" />
+                                                <TextArea value="{/seleccionado/objReclamo/Texto/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -321,7 +321,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8" />
+                                                <TextArea value="{/seleccionado/objReclamo/Texto/Descripcion/0}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         

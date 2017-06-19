@@ -47,6 +47,7 @@ sap.ui.define([
                 });
 
                 this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);
+                this.getView().getModel().setProperty("/nombre","Modificar Reclamo");
                 this.getView().getModel().refresh();
 		},
 

@@ -39,44 +39,44 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Contactos/PARVW}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Contactos/KUNNR}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Interlocutor/NOMBRE}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Interlocutor/Direccion}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Ubicación">
                                             <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                            <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                                <Select items="{ path : '/dataIni/lstZipCodes', sorter: { path: ''} }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                            <core:Item key="{Codigo}" text="{Descripcion}" />
                                         </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Interlocutor/Telefono}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="NIF">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" placeholder="Ingrese NIF" value=""></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Correo">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Correo"></Input>
+                                                <Input width="100%" placeholder="Ingrese Correo" value="{/listReclamo/mail}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -112,17 +112,17 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value=""></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/PCONTACTO}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/DIRECCION}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Ubicación">
@@ -134,7 +134,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/TELEFONO}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -169,17 +169,17 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value=""></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/listReclamo/CodResPago}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/listReclamo/NomResPago}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -216,17 +216,17 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/TELEFONO}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" placeholder="Ingrese código" value=""></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" value=""></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         

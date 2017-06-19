@@ -39,19 +39,20 @@
                                     <f:formElements>
                                         <f:FormElement label="Status">
                                             <f:fields>
-                                                <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
+                                                <Select placeholder="Seleccione Moneda" items="{ path : '/listReclamo' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Status}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Persona">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre Persona"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre Persona" 
+                                                    value="{/listReclamo/UsuarioStatus}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Fecha Realización">
                                             <f:fields>
-                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short" value="{parts: [{path: 'date&gt;/'}, {path: 'formatdate&gt;/short'}, {path: 'formatdate&gt;/equal'}], formatter: '.formatter.date'}">
+                                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" value="{/listReclamo/fechaF}">
                                 <layoutData>
                                     <l:GridData span="L4 M4 S6" />
                                 </layoutData>
@@ -60,7 +61,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Descripción">
                                             <f:fields>
-                                                <TextArea></TextArea>
+                                                <TextArea value="{/listReclamo/Descripcion}"></TextArea>
                                             </f:fields>
                                         </f:FormElement>
                                         
