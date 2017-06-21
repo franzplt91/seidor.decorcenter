@@ -16,14 +16,54 @@
                     <ObjectAttribute title="Código" text="{/dataIni/person/ClienteEvent}"/>
                 </attributes>
             </ObjectHeader>
-            <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device/isNoPhone}" class="sapUiResponsiveContentPadding">
+            <IconTabBar id="tabInterlocutores" expandable="false" headerMode="Inline" upperCase="false" expanded="{device/isNoPhone}" class="sapUiResponsiveContentPadding" select="CambioTabFilter">
                 <items>
-                    <IconTabFilter showAll="false" text="Solicitante">
+                    <IconTabFilter showAll="false" text="Solicitante" key="filterSolicitante" >
+                        <!--OverflowToolbar design="Transparent" height="3rem">
+                            <ToolbarSpacer/>
+                            <Button text="Buscar" icon="sap-icon://search"/>
+                            <Button text="Copiar" icon="sap-icon://action"/>
+                        </OverflowToolbar--> 
+
 
                         <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="4"
+                                    columnsL="4"
+                                    columnsM="4"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Función">
+                                            <f:fields>
+                                                <Input width="100%"  value="{}" id="txt_funcion_solicitante" enabled="false"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                                
+                                
+                                
+
+                            </f:formContainers>
+                        </f:Form>
+
+
+                        <f:Form editable="true">
                             <f:layout>
                                 <f:ResponsiveGridLayout
                                     labelSpanXL="12"
@@ -45,7 +85,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}" id="txt_codigo_solicitante"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -56,7 +96,7 @@
                                     <f:formElements>
                                         <f:FormElement label="DNI/RUC">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese DNI/RUC"></Input>
+                                                <Input width="100%" placeholder="Ingrese DNI/RUC" id="txt_dni_ruc_solicitante"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -69,7 +109,7 @@
                                         
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" id="txt_nombre_solicitante" value="{/BusquedaSolicitante/objCliente/NOMBRE} {/BusquedaSolicitante/objCliente/APPAT} {/BusquedaSolicitante/objCliente/APMAT}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -106,12 +146,12 @@
                                     <f:formElements>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección">
+                                                <Input width="100%" placeholder="Ingrese Dirección" id="txt_direccion_solicitante" value="{/BusquedaSolicitante/objCliente/DIREC}">
                                                     <layoutData>
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData>
                                 </Input>
-                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true">
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true" id="com_distrito_solicitante" selectedKey="{/BusquedaSolicitante/objCliente/CodigoPostal}">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
@@ -154,7 +194,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono"></Input>
+                                                <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono_solicitante" value="{/BusquedaSolicitante/objCliente/Telefono}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -165,7 +205,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Correo">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Correo"></Input>
+                                                <Input width="100%" placeholder="Ingrese Correo" id="txt_correo_solicitante" value="{/BusquedaSolicitante/objCliente/Mail}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -180,7 +220,45 @@
 
 
                     </IconTabFilter>
-                    <IconTabFilter showAll="false" text="Destino Mercancía">
+                    <IconTabFilter showAll="false" text="Destino Mercancía" key="filterDestinoMercancia">
+
+
+                        <f:Form editable="true">
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="4"
+                                    columnsL="4"
+                                    columnsM="4"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Función">
+                                            <f:fields>
+                                                <Input width="100%"  value="{}" id="txt_funcion_destinoMercancia" enabled="false"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                                
+                                
+                                
+
+                            </f:formContainers>
+                        </f:Form>
+
 
                         <f:Form editable="true">
                            <!-- <f:title>
@@ -207,7 +285,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}" id="txt_codigo_destinoMercancia"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -219,7 +297,7 @@
                                         
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" id="txt_nombre_destinoMercancia" value="{/BusquedaSolicitante/objCliente/NOMBRE} {/BusquedaSolicitante/objCliente/APPAT} {/BusquedaSolicitante/objCliente/APMAT}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -256,10 +334,10 @@
                                     <f:formElements>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
+                                                <Input width="100%" placeholder="Ingrese Dirección" id="txt_direccion_destinoMercancia" value="{/BusquedaSolicitante/objCliente/DIREC}"><layoutData>
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData></Input>
-                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true">
+                                               <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true" id="com_distrito_destinoMercancia" selectedKey="{/BusquedaSolicitante/objCliente/CodigoPostal}">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
@@ -302,7 +380,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono"></Input>
+                                                <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono_destinoMercancia"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -313,7 +391,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Teléfono Móvil">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono Móvil"></Input>
+                                                <Input width="100%" placeholder="Ingrese Teléfono Móvil" id="txt_celular_destinoMercancia"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -331,7 +409,44 @@
 
                         
                     </IconTabFilter>
-                    <IconTabFilter showAll="false" text="Destino Factura">
+                    <IconTabFilter showAll="false" text="Destino Factura" key="filterDestinoFactura">
+
+                        <f:Form editable="true">
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="4"
+                                    columnsL="4"
+                                    columnsM="4"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Función">
+                                            <f:fields>
+                                                <Input width="100%"  value="{}" id="txt_funcion_destinoFactura" enabled="false"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                                
+                                
+                                
+
+                            </f:formContainers>
+                        </f:Form>
+
 
 
                         <f:Form editable="true">
@@ -359,7 +474,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}" id="txt_codigo_destinoFactura"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -371,7 +486,7 @@
                                         
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" id="txt_nombre_destinoFactura" value="{/BusquedaSolicitante/objCliente/NOMBRE} {/BusquedaSolicitante/objCliente/APPAT} {/BusquedaSolicitante/objCliente/APMAT}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -408,10 +523,10 @@
                                     <f:formElements>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
+                                                <Input width="100%" placeholder="Ingrese Dirección" id="txt_direccion_destinoFactura" value="{/BusquedaSolicitante/objCliente/DIREC}"><layoutData>
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData></Input>
-                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true">
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true" id="com_distrito_destinoFactura" selectedKey="{/BusquedaSolicitante/objCliente/CodigoPostal}">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
@@ -454,7 +569,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono"></Input>
+                                                <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono_destinoFactura" value="{/BusquedaSolicitante/objCliente/Telefono}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -471,7 +586,45 @@
                         
 
                     </IconTabFilter>
-                    <IconTabFilter showAll="false" text="Responsable Pago">
+                    <IconTabFilter showAll="false" text="Responsable Pago" key="filterResponsablePago">
+
+
+                        <f:Form editable="true">
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                    labelSpanXL="12"
+                                    labelSpanL="12"
+                                    labelSpanM="12"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                    emptySpanXL="0"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    emptySpanS="0"
+                                    columnsXL="4"
+                                    columnsL="4"
+                                    columnsM="4"
+                                    singleContainerFullSize="false" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement label="Función">
+                                            <f:fields>
+                                                <Input width="100%"  value="{}" id="txt_funcion_responsablePago" enabled="false"></Input>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        
+                                        
+                                    </f:formElements>
+                                </f:FormContainer>
+                                
+                                
+                                
+
+                            </f:formContainers>
+                        </f:Form>
+
 
                         <f:Form editable="true">
                            <!-- <f:title>
@@ -498,7 +651,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" value="{/dataIni/person/ClienteEvent}" id="txt_codigo_responsablePago"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -509,7 +662,7 @@
                                     <f:formElements>
                                         <f:FormElement label="DNI/RUC">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese DNI/RUC"></Input>
+                                                <Input width="100%" placeholder="Ingrese DNI/RUC" id="txt_dni_ruc_responsablePago" value="{/BusquedaSolicitante/objCliente/CODIG}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -522,7 +675,7 @@
                                         
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" id="txt_nombre_responsablePago" value="{/BusquedaSolicitante/objCliente/NOMBRE} {/BusquedaSolicitante/objCliente/APPAT} {/BusquedaSolicitante/objCliente/APMAT}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -559,10 +712,10 @@
                                     <f:formElements>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
+                                                <Input width="100%" placeholder="Ingrese Dirección" id="txt_direccion_responsablePago" value="{/BusquedaSolicitante/objCliente/DIREC}"><layoutData>
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData></Input>
-                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true">
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true" id="com_distrito_responsablePago" selectedKey="{/BusquedaSolicitante/objCliente/CodigoPostal}">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
@@ -605,7 +758,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono"></Input>
+                                                <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono_responsablePago" value="{/BusquedaSolicitante/objCliente/Telefono}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -620,7 +773,7 @@
 
                         
                     </IconTabFilter>
-                    <IconTabFilter showAll="false" text="Agencia Transporte">
+                    <IconTabFilter showAll="false" text="Agencia Transporte" key="filterAgenciaTransporte">
 
                         <f:Form editable="true">
                            <!-- <f:title>
@@ -647,7 +800,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" id="txt_codigo_agenciaTransporte"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -658,7 +811,7 @@
                                     <f:formElements>
                                         <f:FormElement label="DNI/RUC">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese DNI/RUC"></Input>
+                                                <Input width="100%" placeholder="Ingrese DNI/RUC" id="txt_dni_ruc_agenciaTransporte"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -671,7 +824,7 @@
                                         
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" id="txt_nombre_agenciaTransporte"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -708,10 +861,10 @@
                                     <f:formElements>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección"><layoutData>
+                                                <Input width="100%" placeholder="Ingrese Dirección" id="txt_direccion_agenciaTransporte"><layoutData>
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData></Input>
-                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true">
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true" id="com_distrito_agenciaTransporte">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
@@ -754,7 +907,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono"></Input>
+                                                <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono_agenciaTransporte"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -769,7 +922,7 @@
 
                         
                     </IconTabFilter >
-                    <IconTabFilter showAll="false" text="Encargado Comercial">
+                    <IconTabFilter showAll="false" text="Encargado Comercial" key="filterEncargadoComercial">
 
                         <FlexBox
                     alignItems="Center"
@@ -799,7 +952,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Vendedor 1"> 
                                             <f:fields>
-                                                <ComboBox items="{ path : '/dataIni/lstAsesores' }" maxwidth="100%" required="false" selectedKey="{/dataIni/person/PerNr}">
+                                                <ComboBox items="{ path : '/dataIni/lstAsesores' }" maxwidth="100%" required="false" selectedKey="{/dataIni/person/PerNr}" id="com_vendedor1_encargadoComercial">
                                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                                     <layoutData>
                                                          <l:GridData span="L12 M12 S12"/>
@@ -809,7 +962,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Vendedor 2">
                                             <f:fields>
-                                                 <ComboBox items="{ path : '/dataIni/lstAsesores' }" maxwidth="100%" required="false" >
+                                                 <ComboBox items="{ path : '/dataIni/lstAsesores' }" maxwidth="100%" required="false" id="com_vendedor2_encargadoComercial">
                                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                                     <layoutData>
                                                          <l:GridData span="L12 M12 S12"/>
@@ -819,7 +972,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Vendedor 3">
                                             <f:fields>
-                                                 <ComboBox items="{ path : '/dataIni/lstAsesores' }" maxwidth="100%" required="false" >
+                                                 <ComboBox items="{ path : '/dataIni/lstAsesores' }" maxwidth="100%" required="false" id="com_vendedor3_encargadoComercial">
                                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                                     <layoutData>
                                                          <l:GridData span="L12 M12 S12"/>
@@ -836,7 +989,7 @@
 
                         </FlexBox>
                     </IconTabFilter>
-                    <IconTabFilter showAll="false" text="Profesional">
+                    <IconTabFilter showAll="false" text="Profesional" key="filterProfesional">
 
                         <f:Form editable="true">
                            
@@ -862,14 +1015,14 @@
                                 <core:Title text="Profesional 1" />
                             </f:title> 
                                     <f:formElements>
-                                        <f:FormElement label="Código">
+                                        <f:FormElement label="Código1" id="txt_codigo_Profesional">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese Código"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" id="txt_nombre1_Profesional"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                        
@@ -884,12 +1037,12 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" id="txt_codigo2_Profesional"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" id="txt_nombre2_Profesional"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                                                               
@@ -903,7 +1056,7 @@
                         
                         
                     </IconTabFilter>
-                    <IconTabFilter showAll="false" text="Datos Adicionales">
+                    <IconTabFilter showAll="false" text="Datos Adicionales" key="filterDatosAdicionales">
 
 
                         <f:Form editable="true">
@@ -929,7 +1082,7 @@
 
                                         <f:FormElement label="DNI*">
                                             <f:fields>
-                                                <Input  placeholder="Ingrese DNI">
+                                                <Input  placeholder="Ingrese DNI" id="txt_dni_datosAdicionales" value="{/BusquedaSolicitante/objCliente/CODIG}">
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -938,7 +1091,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Apellido Paterno*">
                                             <f:fields>
-                                                <Input  placeholder="Ingrese Apellido Paterno">
+                                                <Input  placeholder="Ingrese Apellido Paterno" id="txt_apellido_paterno_datosAdicionales" value="{/BusquedaSolicitante/objCliente/APPAT}">
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -947,7 +1100,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Apellido Materno*">
                                             <f:fields>
-                                                <Input  placeholder="Ingrese Apelido Materno">
+                                                <Input  placeholder="Ingrese Apelido Materno" id="txt_apellido_materno_datosAdicionales" value="{/BusquedaSolicitante/objCliente/APMAT}">
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -956,7 +1109,7 @@
                                         </f:FormElement> 
                                         <f:FormElement label="Nombre*">
                                             <f:fields>
-                                                <Input  placeholder="Ingrese Nombre">
+                                                <Input  placeholder="Ingrese Nombre" id="txt_nombre_datosAdicionales" value="{/BusquedaSolicitante/objCliente/NOMBRE}">
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -965,8 +1118,8 @@
                                         </f:FormElement> 
                                         <f:FormElement label="Fecha de Nacimiento*">
                                             <f:fields>
-                                                <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                                <DatePicker  valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
+                                    value="{/BusquedaSolicitante/objCliente/FECNAC}" id="dt_fecha_nacimiento_datosAdicionales" >
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -976,7 +1129,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Grado de Instrucción*">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstGradoInst' }" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/dataIni/lstGradoInst' }" maxwidth="100%" required="true" id="com_grado_instruccion_datosAdicionales">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -986,7 +1139,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Sexo">
                                             <f:fields>
-                                                 <Select maxwidth="100%" required="true">
+                                                 <Select maxwidth="100%" required="true" id="com_sexo_datosAdicionales" selectedKey="{/BusquedaSolicitante/objCliente/SEXO}">
                                     <core:Item key="0" text="Seleccione"/>
                                     <core:Item key="1" text="Masculino"/>
                                     <core:Item key="2" text="Femenino"/>
@@ -998,7 +1151,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Distrito*">
                                             <f:fields>
-                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="false">
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="false" id="com_distrito_datosAdicionales">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
@@ -1015,7 +1168,7 @@
 
                                                     <f:FormElement label="Edad">
                                             <f:fields>
-                                                <Input  placeholder="Ingrese Edad">
+                                                <Input  placeholder="Ingrese Edad" id="txt_edad_datosAdicionales" value="{/BusquedaSolicitante/objCliente/EDAD}">
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -1024,7 +1177,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Rango Edad">
                                             <f:fields>
-                                                <Select  maxwidth="100%" required="true" selectedKey="0">
+                                                <Select  maxwidth="100%" required="true" selectedKey="0" id="com_rango_edad_datosAdicionales">
                                     <core:Item key="0" text="Joven"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1034,7 +1187,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Tipo de Cliente">
                                             <f:fields>
-                                                <Select items="{ path : '/listaRespuestas' }" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/listaRespuestas' }" maxwidth="100%" required="true" id="com_tipo_cliente_datosAdicionales" selectedKey="{/listaR0/CODR}">
                                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Cliente' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1045,7 +1198,7 @@
                                         </f:FormElement> 
                                         <f:FormElement label="Tipo de Construcción">
                                             <f:fields>
-                                                 <Select items="{ path : '/listaRespuestas1' }" maxwidth="100%" required="true">
+                                                 <Select items="{ path : '/listaRespuestas1' }" maxwidth="100%" required="true" id="com_tipo_construccion_datosAdicionales" selectedKey="{/listaR1/CODR}">
                                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Construcción' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1056,7 +1209,7 @@
 
                                         <f:FormElement label="Tipo de Proyecto-Residencial">
                                             <f:fields>
-                                                <Select items="{ path : '/listaRespuestas2' }" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/listaRespuestas2' }" maxwidth="100%" required="true" id="com_proyecto_residencial_datosAdicionales" selectedKey="{/listaR2/CODR}">
                                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Proyecto-Residencial' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1066,7 +1219,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Tipo de Proyecto-Institucional">
                                             <f:fields>
-                                                <Select items="{ path : '/listaRespuestas3' }" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/listaRespuestas3' }" maxwidth="100%" required="true" id="com_proyecto_institucional_datosAdicionales" selectedKey="{/listaR3/CODR}">
                                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Proyecto-Institucional' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1076,7 +1229,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Presupuesto para el Proyecto">
                                             <f:fields>
-                                                  <Select items="{ path : '/listaRespuestas4' }" maxwidth="100%" required="true">
+                                                  <Select items="{ path : '/listaRespuestas4' }" maxwidth="100%" required="true" id="com_presupuesto_proyecto_datosAdicionales" selectedKey="{/listaR4/CODR}">
                                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Presupuesto para el Proyecto' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1086,7 +1239,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Estilo 1">
                                             <f:fields>
-                                                 <Select items="{ path : '/listaRespuestas6' }" maxwidth="100%" required="true">
+                                                 <Select items="{ path : '/listaRespuestas6' }" maxwidth="100%" required="true" id="com_estilo1_datosAdicionales" selectedKey="{/listaR6/CODR}">
                                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Estilo 1' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1106,10 +1259,13 @@
             </IconTabBar>
         </s:content>
         <s:pagingAction>
-            <Button icon="sap-icon://save" tooltip="Guardar"/>
+            <Button icon="sap-icon://save" tooltip="Guardar" press="prueba"/>
         </s:pagingAction>
-        <s:printAction>
-            <s:PrintAction press="onDocNuevoSemanticButtonPress"/>
-        </s:printAction>
+
+
+         <s:customFooterContent>
+                    <Button id="btnCopiarDatosInterlocutores" icon="sap-icon://action" text="" press="onCopiarDatosInterlocutores" ></Button>
+                    <Button id="btnBuscarInterlocutor"  icon="sap-icon://search" text="" press="onBuscarInterlocutores"></Button>
+                </s:customFooterContent>
     </s:DetailPage>
 </core:FragmentDefinition>

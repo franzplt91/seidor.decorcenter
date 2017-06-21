@@ -9,7 +9,14 @@
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     
     <s:DetailPage title="Documento" id="pagDocNuevo_datos_detail1">
+        
+
+              
+
+
+
         <s:content>
+            
             <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/dataIni/person/E_NAME1}"
                 number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
                 <attributes>
@@ -18,9 +25,13 @@
             </ObjectHeader>
             <IconTabBar stretchContentHeight="false" expandable="false" headerMode="Inline" upperCase="false" expanded="{device/isNoPhone}"
                 class="sapUiResponsiveContentPadding">
+                
                 <items>
-                    <IconTabFilter showAll="false" text="Área de Ventas" > 
-                        <FlexBox
+                    <IconTabFilter showAll="false" text="Área de Ventas" >                       
+
+                
+                               
+                <FlexBox
                     alignItems="Center"
                     justifyContent="Center">
                     <items>
@@ -46,21 +57,21 @@
                                     <f:formElements>
                                         <f:FormElement label="Organización de Ventas">
                                             <f:fields>
-                                                <Select  maxwidth="100%" required="true">
+                                                <Select  maxwidth="100%" required="true" id="com_orgVentas_areaVentas">
                                                     <core:Item key="" text="{/dataIni/person/OrgVentas} :: DECOR CENTER"/>
                                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Canal">
                                             <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstCanales' }" maxwidth="100%" required="true">
+                                                 <Select items="{ path : '/dataIni/lstCanales' }" maxwidth="100%" required="true" id="com_Canal_areaVentas">
                                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Oficina">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstOfVtas' }" selectedKey="1010" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/dataIni/lstOfVtas' }" selectedKey="1010" maxwidth="100%" required="true" id="com_oficina_areaVentas">
                                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                                 </Select>
                                             </f:fields>
@@ -71,6 +82,8 @@
                         </f:Form>
                     </items>
                 </FlexBox>
+
+                
                         
                     </IconTabFilter>
                     <IconTabFilter showAll="false" text="Pago ">
@@ -102,26 +115,26 @@
                                     <f:formElements>
                                         <f:FormElement label="Condición de Pago">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstCPag' }" maxwidth="100%" required="true" selectedKey="E000">
+                                                <Select items="{ path : '/dataIni/lstCPag' }" maxwidth="100%" required="true" selectedKey="E000" id="com_condPago_pago">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Moneda">
                                             <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstMoneda' }" maxwidth="100%" required="true" selectedKey="PEN">
+                                                 <Select items="{ path : '/dataIni/lstMoneda' }" maxwidth="100%" required="true" selectedKey="PEN" id="com_moneda_pago">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Tipo de Cambio">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Tipo de Cambio" value="{/RetornoCrearDocumento/tipoCambio}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Tipo de Cambio" value="{/RetornoCrearDocumento/tipoCambio}" id="txt_tipoCambio_pago"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Peso Total">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Peso Total"></Input>
+                                                <Input width="100%" placeholder="Ingrese Peso Total" id="txt_condPago_pago"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                     </f:formElements>
@@ -153,10 +166,10 @@
                             <f:formContainers>
                                 <f:FormContainer>
                                     <f:formElements>
-                                        <f:FormElement label="Datos Facturación">
+                                        <f:FormElement label="Fecha Facturación">
                                             <f:fields>
                                                 <DatePicker  valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
-                                    value="{/RetornoCrearDocumento/FechaFact}">
+                                    value="{/RetornoCrearDocumento/FechaFact}" id="date_fechaFacturacion_datosFacturacion">
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -193,7 +206,7 @@
                                         
                                         <f:FormElement label="Nombre Banco">
                                             <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstGrpCond' }" maxwidth="100%" required="true" >
+                                                 <Select items="{ path : '/dataIni/lstGrpCond' }" maxwidth="100%" required="true" id="com_nombreBanco_datosFacturacion">
                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Banco' : ${Descripcion} }"/>
                                 </Select>
                                             </f:fields>
@@ -201,7 +214,7 @@
 
                                         <f:FormElement label="Motivo de NC o ND">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstMotPed' }" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/dataIni/lstMotPed' }" maxwidth="100%" required="true" id="com_motivoNcNd_datosFacturacion">
                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Motivo' : ${Descripcion} }"/>
                                 </Select>
                                             </f:fields>
@@ -218,14 +231,14 @@
                                     <f:formElements>
                                         <f:FormElement label="Bloqueo Factura">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstBloFac' }" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/dataIni/lstBloFac' }" maxwidth="100%" required="true" id="com_bloqueoFactura_datosFacturacion">
                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione' : ${Descripcion} }"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Bloqueo Entrega">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstBloEnt' }" maxwidth="100%" required="true">
+                                                <Select items="{ path : '/dataIni/lstBloEnt' }" maxwidth="100%" required="true" id="com_bloqueoEntrega_datosFacturacion">
                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione' : ${Descripcion} }"/>
                                 </Select>
                                             </f:fields>
@@ -265,13 +278,13 @@
                                     <f:formElements>
                                         <f:FormElement label="Nro. Orden de Compra">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nro. de Orden de Compra"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nro. de Orden de Compra" id="txt_nroOrdenCompra_datosDocumento"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Fecha Pedido">
                                             <f:fields>
                                                  <DatePicker  valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
-                                    value="{/RetornoCrearDocumento/FechaFact}">
+                                    value="{/RetornoCrearDocumento/FechaFact}" id="date_fechaPedido_datosDocumento">
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -290,7 +303,7 @@
                                         <f:FormElement label="Fecha de Validez">
                                             <f:fields>
                                                  <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
-                                    value="{/RetornoCrearDocumento/FechaValidez}">
+                                    value="{/RetornoCrearDocumento/FechaValidez}" id="date_fechaValidez_datosDocumento">
                                    
                                 </DatePicker>
                                             </f:fields>
@@ -298,7 +311,7 @@
                                         <f:FormElement label="Fecha Ent. Referencial">
                                             <f:fields>
                                                  <DatePicker  valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
-                                    value="{/RetornoCrearDocumento/FechaFact}">
+                                    value="{/RetornoCrearDocumento/FechaFact}" id="date_fechaEntReferencial_datosDocumento">
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -307,15 +320,15 @@
                                         </f:FormElement>
                                             <f:FormElement label="Tipo de Despacho">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstCondExp' }" maxwidth="100%" required="true"  selectedKey="03">
+                                                <Select items="{ path : '/dataIni/lstCondExp' }" maxwidth="100%" required="true"  selectedKey="03" id="com_tipoDespacho_datosDocumento">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
-                                        <f:FormElement label="Fecha de Despacho">
+                                        <f:FormElement label="Fecha de Despacho - Reparto">
                                             <f:fields>
                                                 <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
-                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}" id="date_fechaDespachoReparto_datosDocumento">
                                     
                                 </DatePicker>
                                             </f:fields>
@@ -351,7 +364,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nombre Proyecto">
                                             <f:fields>
-                                                <Input  placeholder="Ingrese Proyecto">
+                                                <Input  placeholder="Ingrese Proyecto" id="txt_nombreProyecto_proyectoVisita">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -367,7 +380,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Tipo de Visita">
                                             <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstTipoVisita' }"  required="true">
+                                                 <Select items="{ path : '/dataIni/lstTipoVisita' }"  required="true" id="com_tipoVisita_proyectoVisita">
                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Visita' : ${Descripcion} }"/>
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
@@ -401,7 +414,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código Proyecto">
                                             <f:fields>
-                                                <Input placeholder="Código Proyecto">
+                                                <Input placeholder="Código Proyecto" id="txt_codigoProyecto_proyectoVisita">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -410,7 +423,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Código Version">
                                             <f:fields>
-                                                 <Input  placeholder="Código Versión">
+                                                 <Input  placeholder="Código Versión" id="txt_codigoVersion_proyectoVisita">
                                                      <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -420,7 +433,7 @@
                                         
                                          <f:FormElement label="Visita No Reembolsable">
                                             <f:fields>
-                                                <CheckBox selected="false">
+                                                <CheckBox selected="false" id="check_visitaNoReembolsable_proyectoVisita">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -439,7 +452,7 @@
                                             
                                        <f:FormElement label="Grupo Forecast">
                                             <f:fields>
-                                                 <Select items="{ path : '/RetornoCrearDocumento/lstGrupoFor' }"  required="true" selectedKey="01">
+                                                 <Select items="{ path : '/RetornoCrearDocumento/lstGrupoFor' }"  required="true" selectedKey="01" id="com_grupoForecast_proyectoVisita">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
@@ -450,7 +463,7 @@
 
                                         <f:FormElement label="Tipo Forecast">
                                             <f:fields>
-                                                 <Select items="{ path : '/RetornoCrearDocumento/lstTipoFor' }"  required="true">
+                                                 <Select items="{ path : '/RetornoCrearDocumento/lstTipoFor' }"  required="true" id="com_tipoForecast_proyectoVisita">
                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ' '? 'Seleccione Tipo Forecast' : ${Descripcion} }"/>
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
@@ -461,7 +474,7 @@
 
                                         <f:FormElement label="Nro. Certificado">
                                             <f:fields>
-                                                 <Input  placeholder="Ingrese Nro. Certificado">
+                                                 <Input  placeholder="Ingrese Nro. Certificado" id="txt_nroCertificado_proyectoVisita">
                                                      <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -472,7 +485,7 @@
                                         <f:FormElement label="Fecha de Visita">
                                             <f:fields>
                                                   <DatePicker  valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
-                                    value="">
+                                    value="" id="date_fechaVisita_proyectoVisita">
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -488,6 +501,7 @@
 
                     </IconTabFilter>
                 </items>
+
             </IconTabBar>
         </s:content>
 
