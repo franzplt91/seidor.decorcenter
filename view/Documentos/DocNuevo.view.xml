@@ -6,6 +6,19 @@
 
 
 
+<!--Avisos-->
+<Dialog title="Aviso" id="dlg_MensajeAvisoCopiarDatos" stretchOnPhone="true" contentWidth="1%" contentHeight="9%">
+        <content>
+            <FlexBox
+                    alignItems="Center"
+                    justifyContent="Center">
+            <Text text="Datos del Solicitante copiados."></Text>
+        </FlexBox>
+        </content>
+        <beginButton>
+            <Button text="OK" type="Accept" press="onDlg_MensajeAvisoCopiarDatos"></Button>
+        </beginButton>
+    </Dialog>
 
 <!--Dialgs-->
         
@@ -34,8 +47,9 @@
             <!--dlg_MensajeAviso1AddMaterial-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAviso1AddMaterial" type="XML"></core:Fragment>
 
-
-
+            <!--Lista de Clientes-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevolistaClientes_resultado" type="XML"></core:Fragment>
+            
 
 
     <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange">

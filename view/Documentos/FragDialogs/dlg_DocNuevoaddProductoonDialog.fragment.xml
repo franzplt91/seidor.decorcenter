@@ -44,19 +44,19 @@
                                     <f:formElements>
                                         <f:FormElement label="Cantidad">
                                             <f:fields>
-                                                <Input value="1"></Input>
+                                                <Input value="1" id="txt_cantidad_material"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Ambiente">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" required="true">
+                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" required="true" id="com_ambiente_material">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Opción">
                                             <f:fields>
-                                                <Select  required="true">
+                                                <Select  required="true" id="com_opcion_material">
                                                 <core:Item key="01" text="01"/>
                                                 <core:Item key="02" text="02"/>
                                                 <core:Item key="03" text="03"/>

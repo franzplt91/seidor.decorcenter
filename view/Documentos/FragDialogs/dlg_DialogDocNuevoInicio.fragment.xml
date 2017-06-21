@@ -21,11 +21,14 @@
                 <content>
 
 
-                    <List id="ListaDocNuevo" mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200" enableBusyIndicator="false"  growingTriggerText="Previous Products" noDataText="No products available"  items="{
+                    <List id="ListaDocNuevo" mode="SingleSelectMaster" growing="true" growingThreshold="30"   growingDirection="Upwards" busyIndicatorDelay="200" enableBusyIndicator="false"  growingTriggerText="Previous Products" noDataText="No hay Documentos Disponibles"  items="{
                                         path : '/dataIni/lstTipoDoc',
                                         sorter : {
                                             path : 'Codigo',
-                                            group: false
+                                            group: false,
+                                            ascending: 'true',
+                                            fnCompare: 'ZO01'
+
                                         }
                                     }">
                         <items>
