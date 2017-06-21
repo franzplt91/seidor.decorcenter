@@ -26,6 +26,8 @@ sap.ui.define([
             if (oEvent.getParameter("name") == "appRecVisualizar") {
 					this.getView().byId("dlg_rec_nuevo_inicio").open();
                 };
+            this.getView().getModel().setProperty("/nombre","Visualizar Reclamo");
+            this.getView().getModel().refresh();    
 		},
 
 		goHome:function(){

@@ -14,9 +14,7 @@ sap.ui.define([
 			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
 
-			this.getView().setModel(new JSONModel({}));
-			this.getView().getModel().setProperty("/dataIni",window.dataIni);
-            this.getView().getModel().refresh(true);
+			
 
 			
 
@@ -24,8 +22,38 @@ sap.ui.define([
 		onRouteMatched: function(oEvent) {
 
             if (oEvent.getParameter("name") == "appRecNuevo") {
+            	this.getView().byId("SplitAppId").setMode("HideMode");
+            	this.getView().setModel(new JSONModel({}));
+			this.getView().getModel().setProperty("/dataIni",window.dataIni);
+            this.getView().getModel().refresh(true);
 					this.getView().byId("dlg_filtros").open();
                 };
+
+
+                var tipoCabecera = [];
+                tipoCabecera.push({
+                    codigo:1,
+                    descripcion:'Reclamo Nuevo'
+                });
+
+                tipoCabecera.push({
+                    codigo:2,
+                    descripcion:'Interlocutores'
+                });
+
+                tipoCabecera.push({
+                    codigo:3,
+                    descripcion:'Datos Reclamo'
+                });
+
+                tipoCabecera.push({
+                    codigo:4,
+                    descripcion:'Cambiar Status'
+                });
+
+                this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);
+                this.getView().getModel().setProperty("/nombre","Nuevo Reclamo");
+                this.getView().getModel().refresh();
 		},
 
 		goHome:function(){
@@ -33,25 +61,7 @@ sap.ui.define([
                 oRouter.navTo("appHome");
         },
 
-		onAfterRendering: function() {
-
-			var oSplitCont= this.getSplitContObj(),
-				ref = oSplitCont.getDomRef() && oSplitCont.getDomRef().parentNode;
-			// set all parent elements to 100% height, this should be done by app developer, but just in case
-			if (ref && !ref._sapui5_heightFixed) {
-				ref._sapui5_heightFixed = true;
-				while (ref && ref !== document.documentElement) {
-					var $ref = jQuery(ref);
-					if ($ref.attr("data-sap-ui-root-content")) { // Shell as parent does this already
-						break;
-					}
-					if (!ref.style.height) {
-						ref.style.height = "100%";
-					}
-					ref = ref.parentNode;
-				}
-			}
-		},
+		
 
 		onCrearDlgRecNuevo: function(oEvent){
                 this.getView().byId("dlg_filtros").close()
@@ -82,8 +92,8 @@ sap.ui.define([
 
 
 		onBuscarRecNuvoInterlocutores:function(){
-			this.getSplitContObj().toMaster(this.createId("MasterRecNuevoInter"));
-			this.getSplitContObj().to(this.createId("detail_rec_nuevo_interlocutores"));
+			this.byId("SplitAppId").toMaster(this.createId("MasterRecNuevoInter"));
+            this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
 			this.getView().byId("dlg_buscar_rec_nuevo").close();
 		},
 
@@ -107,10 +117,7 @@ sap.ui.define([
 		},
 
 
-		onPressMasterBack : function() {
-			this.getSplitContObj().backMaster();
-		},
-		
+				
 
 		onOpenDialog : function () {
 			this.getOwnerComponent().openHelloDialog();
@@ -131,9 +138,8 @@ sap.ui.define([
 
 		onMasterProductosAdd:function(){
 
-			this.getSplitContObj().toMaster(this.createId("MasterProductosAgregar"));
-
-			this.getSplitContObj().to(this.createId("pag_producto_agregado1"));
+			this.byId("SplitAppId").toMaster(this.createId("MasterProductosAgregar"));
+            this.byId("SplitAppId").to(this.createId("pag_producto_agregado1"));
 
 
 			this.getView().byId("dlg_addProducto").close();
@@ -146,9 +152,10 @@ sap.ui.define([
 		},
 
 		onMasterProductosBuscar:function(){
-			this.getSplitContObj().toMaster(this.createId("MasterProductosBuscar"));
 
-			this.getSplitContObj().to(this.createId("pag_productos_buscar1"));
+			this.byId("SplitAppId").toMaster(this.createId("MasterProductosBuscar"));
+
+			this.byId("SplitAppId").to(this.createId("pag_productos_buscar1"));
 
 
 			this.getView().byId("dlg_buscar").close();
@@ -176,7 +183,7 @@ sap.ui.define([
 
 
 		onMasterDatos: function(oEvent){
-                this.getSplitContObj().toMaster(this.createId("MasterDatos"));
+                this.byId("SplitAppId").toMaster(this.createId("MasterDatos"));
 
                 var objeto = oEvent.getSource().getBindingContext().getObject();
                 console.log(objeto.codigo);
@@ -184,7 +191,7 @@ sap.ui.define([
                 
         },
         onMasterProductos: function(oEvent){
-                this.getSplitContObj().toMaster(this.createId("MasterProductos"));
+                this.byId("SplitAppId").toMaster(this.createId("MasterProductos"));
 
                 var objeto = oEvent.getSource().getBindingContext().getObject();
                 console.log(objeto.codigo);
@@ -193,17 +200,27 @@ sap.ui.define([
             },
 
 		onListMasterDatos : function(oEvent) {
-			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
- 
-			this.getSplitContObj().toDetail(this.createId(sToPageId));
+
+			var obj = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
+
+            if(obj.codigo===1){
+                    this.byId("SplitAppId").to(this.createId("pag_rec_nuevo_reclamo"));
+                }
+
+                if(obj.codigo===2){
+                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
+                }
+
+                if(obj.codigo===3){
+                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_datos_reclamo"));
+                }
+
+                if(obj.codigo===4){
+                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
+                }
+			
+			
 		},
-
-		onListMasterProductos : function(oEvent) {
-			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
- 
-			this.getSplitContObj().toDetail(this.createId(sToPageId));
-		}
-
 
 
             

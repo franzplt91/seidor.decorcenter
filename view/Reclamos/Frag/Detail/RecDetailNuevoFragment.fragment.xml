@@ -11,253 +11,8 @@
     displayBlock="true">
         
 
-        <!--s:DetailPage title="Nuevo Reclamo" id="pag_rec_nuevo_reclamo">
-                <s:content>
-                    <IconTabBar stretchContentHeight="false" expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
-                        <f:Form editable="true">
-                               <f:title>
-                                    <core:Title text=" " />
-                                </f:title>
-                                <f:layout>
-                                    <f:ResponsiveGridLayout
-                                        labelSpanXL="3"
-                                        labelSpanL="3"
-                                        labelSpanM="3"
-                                        labelSpanS="6"
-                                        adjustLabelSpan="false"
-                                        emptySpanXL="4"
-                                        emptySpanL="4"
-                                        emptySpanM="4"
-                                        emptySpanS="0"
-                                        columnsXL="1"
-                                        columnsL="1"
-                                        columnsM="1"
-                                        singleContainerFullSize="false" />
-                                </f:layout>
-                                <f:formContainers>
-                                    <f:FormContainer>
-                                        <f:formElements>
-
-                                         <f:FormElement label="Material 1">
-                                                <f:fields>
-                                                    <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                                        <core:Item key="{Bbtyp}" text="{material1}" />
-                                                    </Select>
-                                                </f:fields>
-                                            </f:FormElement>
-                                            <f:FormElement label="Material 2">
-                                                <f:fields>
-                                                    <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                                        <core:Item key="{Bbtyp}" text="{material2}" />
-                                                    </Select>
-                                                </f:fields>
-                                            </f:FormElement>
-                                            <f:FormElement label="Cantidad Material 1">
-                                                <f:fields>
-                                                    <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/CANTRECLA1}" text="{}"></Input>
-                                                </f:fields>
-                                            </f:FormElement>
-                                            <f:FormElement label="Cantidad Material 2">
-                                                <f:fields>
-                                                    <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/CANTRECLA2}"></Input>
-                                                </f:fields>
-                                            </f:FormElement>
-                                            <f:FormElement label="reclamo Referencia">
-                                                <f:fields>
-                                                    <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
-                                                </f:fields>
-                                            </f:FormElement>
-
-                                        </f:formElements>
-                                    </f:FormContainer>
-                                </f:formContainers>
-                            </f:Form>
-                        </IconTabBar>    
-                </s:content>
-                        <f:Form editable="true">
-                            <f:title>
-                                <core:Title text=" " />
-                            </f:title>
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="6"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Nro. de Pedido">
-                                            <f:fields>
-                                                <Input width="100%" value="{/seleccionado/reclamo/Object/numeroPedido}"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Cliente">
-                                            <f:fields>
-                                               <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="CLIENTE EVENTUAL">
-                                            <f:fields>
-                                                <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Asesor">
-                                            <f:fields>
-                                                <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-
-                        <f:Form editable="true">
-                           <f:title>
-                                <core:Title text=" " />
-                            </f:title>
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="6"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Motivo de Reclamo">
-                                            <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Motivo}" />
-                            </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Status">
-                                            <f:fields>
-                                               <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Status}" />
-                            </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Resultado">
-                                            <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Resultado}" />
-                            </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Justificación de Resultado">
-                                            <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                            </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-                    
-                        <f:Form editable="true">
-                           <f:title>
-                                <core:Title text=" " />
-                            </f:title>
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="6"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Organización de Ventas">
-                                            <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {OrgVenta}" />
-                            </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Canal">
-                                            <f:fields>
-                                               <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Canal}" />
-                            </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Sector">
-                                            <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Sector}" />
-                            </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Oficina Ventas">
-                                            <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {OfiVenta}" />
-                                                </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Factura / Boleta">
-                                            <f:fields>
-                                                <Input width="100%" value=""></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-                    
-                    
-                </s:content>
-                <s:pagingAction>
-                    <Button icon="sap-icon://save" tooltip="Guardar" />
-                </s:pagingAction>
-                <s:printAction>
-                    <s:PrintAction press="onSemanticButtonPress" />
-                </s:printAction>
-            </s:DetailPage!-->
-<s:DetailPage title="Nuevo Reclamo" id="pag_rec_nuevo_reclamo">
+ 
+<s:DetailPage title="{/nombre}" id="pag_rec_nuevo_reclamo">
                 <s:content>
                     <IconTabBar stretchContentHeight="false" expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
                         <items>
@@ -310,7 +65,7 @@
                                             </f:FormElement>
                                             <f:FormElement label="reclamo Referencia">
                                                 <f:fields>
-                                                    <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
+                                                    <Input width="100%" value="{/listReclamo/reclamoRef}"></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                         
@@ -347,12 +102,12 @@
                                         
                                          <f:FormElement label="Nro. de Pedido">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/reclamo/Object/numeroPedido}"></Input>
+                                                <Input width="100%" value="{/listReclamo/numeroPedido}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Cliente">
                                             <f:fields>
-                                               <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
+                                               <Input width="100%" value="{/listReclamo/EmpresaDet}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="CLIENTE EVENTUAL">
@@ -362,7 +117,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Asesor">
                                             <f:fields>
-                                                <Input width="100%" value="{/ListaReclamos/nombreEmpResp}}"></Input>
+                                                <Input width="100%" value="{/listReclamo/NomResPago}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -412,15 +167,15 @@
                                         <f:FormElement label="Resultado">
                                             <f:fields>
                                                 <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Resultado}" />
-                            </Select>
+                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Resultado}" />
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Justificación de Resultado">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                            </Select>
+                                                <Select width="100%" items="{ path : '/listReclamo/lstJusti' }" change="onSeleccionaSurtido" required="true">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         
