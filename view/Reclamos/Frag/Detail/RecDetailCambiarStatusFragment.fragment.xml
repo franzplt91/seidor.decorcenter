@@ -39,20 +39,21 @@
                                     <f:formElements>
                                         <f:FormElement label="Status">
                                             <f:fields>
-                                                <Select placeholder="Seleccione Moneda" items="{ path : '/listReclamo' }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Status}" />
+                                                <Select placeholder="Seleccione Moneda" items="{ path : '/dataIni/lstSectores' }" change="onSeleccionaSurtido" maxWidth="50%" required="true"
+                                                id="v_Status">
+                                <core:Item key="{Codigo}" text="{Descripcion}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Persona">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese Nombre Persona" 
-                                                    value="{/listReclamo/UsuarioStatus}"></Input>
+                                                    value=""></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Fecha Realización">
                                             <f:fields>
-                                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" value="{/listReclamo/fechaF}">
+                                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" value="">
                                 <layoutData>
                                     <l:GridData span="L4 M4 S6" />
                                 </layoutData>

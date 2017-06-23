@@ -39,44 +39,47 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/objReclamo/Contactos/PARVW}"></Input>
+                                                <Input width="100%" value="{/listaPedido/objCliente/Codigo}" id="txt_funcion"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/objReclamo/Contactos/KUNNR}"></Input>
+                                                <Input width="100%" value="{/listaPedido/objCliente/Codigo}" id="txt_codigo"></Input>
                                             </f:fields>
-                                        </f:FormElement>
+                                        </f:FormElement>                   
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/objReclamo/Interlocutor/NOMBRE}"></Input>
+                                                <Input width="100%" value="{/listaPedido/objCliente/Descripcion}" id="txt_nombre"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/objReclamo/Interlocutor/Direccion}"></Input>
+                                                <Input width="100%" value="PRUEBA" id="txt_direccion"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Ubicación">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstZipCodes', sorter: { path: ''} }" change="onSeleccionaSurtido" maxWidth="50%" required="true">
+                                                <Select items="{ path : '/dataIni/lstZipCodes'}" 
+                                                    change="onSeleccionaSurtido" maxWidth="50%" required="true"
+                                                    id="cbo_ubicacion">
                                             <core:Item key="{Codigo}" text="{Descripcion}" />
                                         </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/objReclamo/Interlocutor/Telefono}"></Input>
+                                                <Input width="100%" value="" id="txt_telefono"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="NIF">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese NIF" value=""></Input>
+                                                <Input width="100%" placeholder="Ingrese NIF" value="45454545"
+                                                    id="txt_nif"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Correo">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Correo" value="{/listReclamo/mail}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Correo" value="" id="txt_correo"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -169,17 +172,17 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" value=""></Input>
+                                                <Input width="100%" value="ZM"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" value="{/listReclamo/CodResPago}"></Input>
+                                                <Input width="100%" value="00001802"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" value="{/listReclamo/NomResPago}"></Input>
+                                                <Input width="100%" value="Julio Edgardo Pingo"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -216,17 +219,18 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/TELEFONO}"></Input>
+                                                <Input width="100%" value="VE"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese código" value=""></Input>
+                                                <Input width="100%" placeholder="Ingrese código" value="00001812" 
+                                                    id="v_codigoEmpResp"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre" value=""></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" value="Julio Edgardo Pingo"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         

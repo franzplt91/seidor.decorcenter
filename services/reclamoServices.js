@@ -34,11 +34,11 @@ sap.ui.define([
 
         },
 
-        documentoVentas: function(v_pNumPedido){
+        documentoVentas: function(v_pNumPedido, v_accion, v_modo){
             var contexto = {};
             contexto.servicio = "reclamoServices.documentoVentas()";
             contexto.url = "documentoVentas.aspx";
-            contexto.parametros = {pNumPedido : v_pNumPedido}
+            contexto.parametros = {pNumPedido : v_pNumPedido, accion : v_accion, modo : v_modo}
 
             return utilService.exec(contexto);
         },
@@ -48,6 +48,77 @@ sap.ui.define([
             contexto.servicio = "reclamoServices.crearReclamo()";
             contexto.url = "crearReclamo.aspx";
             contexto.parametros = {pNumPedido : v_pNumPedido}
+
+            return utilService.exec(contexto);
+        },
+
+        guardarReclamo: function(material11,
+                                 material12,
+                                 material21,
+                                 material22,
+                                 cantRecla1,
+                                 cantRecla2, 
+                                 reclamoRef, 
+                                 nummeroPedido,
+                                 EmpresaDet, 
+                                 NomCliente, 
+                                 codigoEmpResp, 
+                                 Motivo, 
+                                 Status, 
+                                 Resultado, 
+                                 JustificResul, 
+                                 OrgVenta,
+                                 Canal, 
+                                 Sector, 
+                                 OfiVenta, 
+                                 comentario, 
+                                 listaReclamo, 
+                                 pIndiceResultado, 
+                                 listaIntJson,
+                                 UserId,
+                                PwdId,
+                                Id,
+                                GrpVend,
+                                Descripcion,
+                                CodigoVendedor,
+                                OrgVentas,
+                                CanalDist,
+                                OfVentas ){
+            var contexto= {};
+            contexto.servicio = "reclamoServices.guardarReclamo()";
+            contexto.url = "guardarReclamo.aspx";
+            contexto.parametros = {material11 : material11, 
+                                    material12 : material12, 
+                                    material21 : material21, 
+                                    material22 : material22,
+                                   cantRecla1 : cantRecla1, 
+                                   cantRecla2 : cantRecla2, 
+                                   reclamoRef : reclamoRef, 
+                                   numeroPedido : nummeroPedido,
+                                   EmpresaDet : EmpresaDet, 
+                                   NomCliente : NomCliente, 
+                                   codigoEmpResp : codigoEmpResp, 
+                                   Motivo : Motivo,
+                                   Status : Status, 
+                                   Resultado : Resultado, 
+                                   JustificResul : JustificResul, 
+                                   OrgVenta : OrgVenta,
+                                   Canal : Canal, 
+                                   Sector : Sector, 
+                                   OfiVenta : OfiVenta, 
+                                   comentario : comentario, 
+                                   listaReclamo : listaReclamo,
+                                   pIndiceResultado : pIndiceResultado, 
+                                   listaIntJson : listaIntJson,
+                                UserId: UserId,
+                                PwdId: PwdId,
+                                Id: Id ,
+                                GrpVend: GrpVend,
+                                Descripcion: Descripcion,
+                                CodigoVendedor: CodigoVendedor,
+                                OrgVentas: OrgVentas,
+                                CanalDist: CanalDist,
+                                OfVentas: OfVentas }
 
             return utilService.exec(contexto);
         }
