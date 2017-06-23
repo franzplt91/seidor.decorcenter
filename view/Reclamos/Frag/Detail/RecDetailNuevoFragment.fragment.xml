@@ -1,4 +1,4 @@
-﻿<core:FragmentDefinition 
+<core:FragmentDefinition 
 	height="100%" 
 	xmlns:core="sap.ui.core" 
 	xmlns:mvc="sap.ui.core.mvc" 
@@ -41,31 +41,34 @@
                                     <f:formElements>
                                          <f:FormElement label="Material 1">
                                                 <f:fields>
-                                                    <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                                        <core:Item key="{Bbtyp}" text="{material1}" />
+                                                    <Select width="100%" items="{ path : '/Reclamos' }" 
+                                                        change="onSeleccionaSurtido" required="true" selectedKey="{CodMaterial}"
+                                                     id="cbo_material21">
+                                                        <core:Item  key="{CodMaterial}" text="{CodMaterialCorto}-{DescMaterial}{material1}" />
                                                     </Select>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="Material 2">
                                                 <f:fields>
-                                                    <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                                        <core:Item key="{Bbtyp}" text="{material2}" />
+                                                    <Select width="100%" items="{ path : '/Reclamos' }" change="onSeleccionaSurtido" required="true" selectedKey="{CodMaterial}"
+                                                     id="cbo_material22">
+                                                        <core:Item key="{CodMaterial}" text="{CodMaterialCorto}-{DescMaterial}{material2}" />
                                                     </Select>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="Cantidad Material 1">
                                                 <f:fields>
-                                                    <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/CANTRECLA1}" text="{}"></Input>
+                                                    <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/CANTRECLA1}" text="{}" id="txt_cantRecla1"></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="Cantidad Material 2">
                                                 <f:fields>
-                                                    <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/CANTRECLA2}"></Input>
+                                                    <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/CANTRECLA2}" id="txt_cantRecla2"></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="reclamo Referencia">
                                                 <f:fields>
-                                                    <Input width="100%" value="{/listReclamo/reclamoRef}"></Input>
+                                                    <Input width="100%" value="{/listReclamo/reclamoRef}" id="txt_reclamoRef"></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                         
@@ -102,22 +105,22 @@
                                         
                                          <f:FormElement label="Nro. de Pedido">
                                             <f:fields>
-                                                <Input width="100%" value="{/listReclamo/numeroPedido}"></Input>
+                                                <Input width="100%" value="{/listaPedido/objPedido/NumPedido}{/listReclamo/numeroPedido}" id="txt_numeroPedido"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Cliente">
                                             <f:fields>
-                                               <Input width="100%" value="{/listReclamo/EmpresaDet}"></Input>
+                                               <Input width="100%" value="{/listaPedido/objPedido/CodCliente}{/listReclamo/EmpresaDet}" id="txt_EmpresaDet"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="CLIENTE EVENTUAL">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/reclamo/Object/reclamoRef}"></Input>
+                                                <Input width="100%" value="{/listaPedido/objCliente/Descripcion}{/seleccionado/reclamo/Object/reclamoRef}" id="txt_cliente_eventual"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Asesor">
                                             <f:fields>
-                                                <Input width="100%" value="{/listReclamo/NomResPago}"></Input>
+                                                <Input width="100%" value="{/listaPedido/NomVendedor1}{/listReclamo/NomResPago}" id="txt_asesor"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -152,28 +155,28 @@
                                     <f:formElements>
                                         <f:FormElement label="Motivo de Reclamo">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Motivo}" />
+                                                <Select width="100%" items="{ path : '/dataIni/lstMotivoRecl' }" change="onSeleccionaSurtido" required="true" id="txt_Motivo">
+                                <core:Item key="{Codigo}" text="{Descripcion}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Status">
                                             <f:fields>
-                                               <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Status}" />
+                                               <Select width="100%" items="{ path : '/dataIni/lstStatusRecl' }" change="onSeleccionaSurtido" required="true" id="txt_status">
+                                <core:Item key="{Codigo}" text="{Descripcion}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Resultado">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Resultado}" />
+                                                <Select width="100%" items="{ path : '/dataIni/lstResultRecl' }" change="onSeleccionaSurtido" required="true" id="txt_Resultado">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Justificación de Resultado">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/listReclamo/lstJusti' }" change="onSeleccionaSurtido" required="true">
+                                                <Select width="100%" items="{ path : '/dataIni/lstJustiResul' }" change="onSeleccionaSurtido" required="true" id="txt_JustificResul">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </Select>
                                             </f:fields>
@@ -212,29 +215,29 @@
                                     <f:formElements>
                                         <f:FormElement label="Organización de Ventas">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {OrgVenta}" />
-                            </Select>
+                                                <Select width="100%" items="{ path : '/listaPedido/lstOrgVtas' }" change="onSeleccionaSurtido" required="true" id="cbo_OrgVenta">
+                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Descripcion}" />
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Canal">
                                             <f:fields>
-                                               <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Canal}" />
+                                               <Select width="100%" items="{ path : '/listaPedido/lstCanalDist' }" change="onSeleccionaSurtido" required="true" id="cbo_Canal">
+                                <core:Item key="{Bbtyp}" text="{Descripcion}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Sector">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Sector}" />
+                                                <Select width="100%" items="{ path : '/dataIni/lstSectores' }" change="onSeleccionaSurtido" required="true" id="cbo_Sector">
+                                <core:Item key="{Codigo}" text="{Descripcion}" />
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Oficina Ventas">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/seleccionado/reclamo' }" change="onSeleccionaSurtido" required="true">
-                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {OfiVenta}" />
+                                                <Select width="100%" items="{ path : '/dataIni/lstOfVtas' }" change="onSeleccionaSurtido" required="true" id="cbo_OfiVenta">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
@@ -261,7 +264,7 @@
                     <s:PrintAction press="onSemanticButtonPress" />
                 </s:printAction>
                 <s:customFooterContent>
-                    <Button text="Copiar Datos"></Button>
+                    <Button id="btn_guardar_reclamo" text="" press="onGuardarReclamo"></Button>
                     <Button text="Buscar" icon="sap-icon://search" press="onOpenDlgBuscarRecNuevo"></Button>
                 </s:customFooterContent>
             </s:DetailPage>

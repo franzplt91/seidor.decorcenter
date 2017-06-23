@@ -1,4 +1,4 @@
-﻿sap.ui.define([
+sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
 	"sap/ui/core/UIComponent",
@@ -273,6 +273,7 @@
 					if(result.data.success){
 
 						this.getView().getModel().setProperty("/seleccionado",result.data);
+						this.getView().getModel().setProperty("/Reclamos",result.data.reclamo);
 
 						var resultData = this.getView().getModel().getProperty("/seleccionado");
 						var rec = [];
