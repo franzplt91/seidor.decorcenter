@@ -429,12 +429,10 @@
                 </items>
             </IconTabBar>
         </s:content>
-        <s:pagingAction>
-            <Button icon="sap-icon://save" tooltip="Guardar"/>
-        </s:pagingAction>
-        <s:printAction>
-            <s:PrintAction press="onDocNuevoSemanticButtonPress"/>
-        </s:printAction>
+        
+        <s:customFooterContent>
+                    <Button icon="sap-icon://refresh" tooltip="" text="" press="onBtnRefresh"></Button>
+                </s:customFooterContent>
     </s:DetailPage>
 
 </core:FragmentDefinition>

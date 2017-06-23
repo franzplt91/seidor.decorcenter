@@ -5,6 +5,9 @@
 <BusyDialog id="loadingControl" />
 
 
+<!--Aviso General-->
+
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAvisoGeneral" type="XML"></core:Fragment>
 
 <!--Avisos-->
 <Dialog title="Aviso" id="dlg_MensajeAvisoCopiarDatos" stretchOnPhone="true" contentWidth="1%" contentHeight="9%">

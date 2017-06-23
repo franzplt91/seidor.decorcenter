@@ -21,9 +21,60 @@ sap.ui.define([
         },
 
 
+        anadirMaterialMaster: function(codigo,
+                                        cantidad,
+                                        CodAmbiente,
+                                        Opcion,
+                                        UserId,
+                                        PwdId,
+                                        Id,
+                                        GrpVend,
+                                        Descripcion,
+                                        CodigoVendedor,
+                                        OrgVentas,
+                                        CanalDist,
+                                        OfVentas,
+                                        añadirForm,
+                                        posNuevo,
+                                        objPedido,
+                                        cantidadtmp,
+                                        ambiente,
+                                        desamb,
+                                        opcamb,
+                                        auart){
+
+            var contexto = {};
+            contexto.servicio = "materialServices.anadirMaterialMaster()";
+            contexto.url = "material.aspx";
+            contexto.parametros = { codigo: codigo,
+                                        cantidad: cantidad,
+                                        CodAmbiente: CodAmbiente,
+                                        Opcion: Opcion,
+                                        UserId: UserId,
+                                        PwdId: PwdId,
+                                        Id: Id,
+                                        GrpVend: GrpVend,
+                                        Descripcion: Descripcion,
+                                        CodigoVendedor: CodigoVendedor,
+                                        OrgVentas: OrgVentas,
+                                        CanalDist: CanalDist,
+                                        OfVentas: OfVentas,
+                                        añadirForm: añadirForm,
+                                        posNuevo: posNuevo,
+                                        objPedido: objPedido,
+                                        cantidadtmp: cantidadtmp,
+                                        ambiente: ambiente,
+                                        desamb: desamb,
+                                        opcamb: opcamb,
+                                        auart: auart};
+
+            return utilService.exec(contexto);
+
+        },
 
 
-        anadirMaterial:function(objetoDetalle,objetoMaterial,objetoPedido,anadirMat){
+
+        anadirMaterialBuscar:function(objetoDetalle,objetoMaterial,objetoPedido,anadirMat){
 
             var contexto = {};
             contexto.servicio = "materialServices.buscarmaterial()";
@@ -33,6 +84,48 @@ sap.ui.define([
             return utilService.exec(contexto);
 
             //codigo codigoAntiguo descripcionMaterial  categoria  linea  marca
+
+        },
+
+
+        recalcular: function(UserId,
+                                PwdId,
+                                Id,
+                                GrpVend,
+                                Descripcion,
+                                CodigoVendedor,
+                                OrgVentas,
+                                CanalDist,
+                                OfVentas,
+                                dsctoLotes,
+                                listaInterJson,
+                                listaDsctoJson,
+                                listaRepartosJson,
+                                listaMatJson,
+                                listaPedJson
+                                ){
+
+            var contexto = {};
+            contexto.servicio = "materialServices.recalcular()";
+            contexto.url = "material.aspx";
+            contexto.parametros = { UserId: UserId,
+                                    PwdId: PwdId,
+                                    Id: Id,
+                                    GrpVend: GrpVend,
+                                    Descripcion: Descripcion,
+                                    CodigoVendedor: CodigoVendedor,
+                                    OrgVentas: OrgVentas,
+                                    CanalDist: CanalDist,
+                                    OfVentas: OfVentas,
+                                    dsctoLotes: dsctoLotes,
+                                    listaInterJson: listaInterJson,
+                                    listaDsctoJson: listaDsctoJson,
+                                    listaRepartosJson: listaRepartosJson,
+                                    listaMatJson: listaMatJson,
+                                    listaPedJson: listaPedJson};
+
+            return utilService.exec(contexto);
+
 
         }
 

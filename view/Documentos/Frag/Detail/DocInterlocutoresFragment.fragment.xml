@@ -48,7 +48,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%"  value="{}" id="txt_funcion_solicitante" enabled="false"></Input>
+                                                <Input width="100%"  value="AG" id="txt_funcion_solicitante" enabled="false"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -245,7 +245,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%"  value="{}" id="txt_funcion_destinoMercancia" enabled="false"></Input>
+                                                <Input width="100%"  value="WE" id="txt_funcion_destinoMercancia" enabled="false"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -433,7 +433,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%"  value="{}" id="txt_funcion_destinoFactura" enabled="false"></Input>
+                                                <Input width="100%"  value="RE" id="txt_funcion_destinoFactura" enabled="false"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -611,7 +611,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%"  value="{}" id="txt_funcion_responsablePago" enabled="false"></Input>
+                                                <Input width="100%"  value="RG" id="txt_funcion_responsablePago" enabled="false"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -1258,9 +1258,6 @@
                 </items>
             </IconTabBar>
         </s:content>
-        <s:pagingAction>
-            <Button icon="sap-icon://save" tooltip="Guardar" press="prueba"/>
-        </s:pagingAction>
 
 
          <s:customFooterContent>

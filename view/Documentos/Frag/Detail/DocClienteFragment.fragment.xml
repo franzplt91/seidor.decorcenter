@@ -509,8 +509,11 @@
         <s:pagingAction>
             <Button icon="sap-icon://save" tooltip="Guardar" press="onBtnGuardarDocumento"/>
         </s:pagingAction>
-        <s:printAction>
+
+
+        <!--s:printAction>
             <s:PrintAction press="onDocNuevoSemanticButtonPress"/>
-        </s:printAction>
+        </s:printAction-->
+        
     </s:DetailPage>
 </core:FragmentDefinition>

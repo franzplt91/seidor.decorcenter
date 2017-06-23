@@ -164,11 +164,7 @@
                 </items>
             </IconTabBar>
         </s:content>
-        <s:pagingAction>
-            <Button icon="sap-icon://save" tooltip="Guardar"/>
-        </s:pagingAction>
-        <s:printAction>
-            <s:PrintAction press="onDocNuevoSemanticButtonPress"/>
-        </s:printAction>
+
+        
     </s:DetailPage>
 </core:FragmentDefinition>

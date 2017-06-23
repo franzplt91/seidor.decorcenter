@@ -29,7 +29,7 @@
                 </Toolbar>
             </customHeader>
             <content>
-                <List  mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                <List id="listaMasterMateriales"  mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                               enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos" 
                               itemPress="onMasterProductoSeleccionarMaterial"  
                               items="{
@@ -50,7 +50,8 @@
                             numberState=""
                             type="Navigation"
                             press=""
-                            custom:to="">
+                            custom:to=""
+                            >
                             <firstStatus>
                                 <ObjectStatus text="Descontinuado: {Descontinuado}"/>
                             </firstStatus>

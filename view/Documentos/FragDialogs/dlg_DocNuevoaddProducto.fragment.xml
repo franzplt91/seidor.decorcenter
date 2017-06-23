@@ -10,7 +10,7 @@
     	
 
 
-    	<Dialog title="Material" id="dlg_DocNuevoaddProducto" stretchOnPhone="true" contentWidth="20%" contentHeight="65%">
+    	<Dialog title="Material 1" id="dlg_DocNuevoaddProducto" stretchOnPhone="true" contentWidth="20%" contentHeight="65%">
         <content>
             <Panel>
                 <content>
