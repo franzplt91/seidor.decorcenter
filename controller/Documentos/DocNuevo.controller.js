@@ -37,6 +37,8 @@
                     this.getView().byId("btnCopiarDatosInterlocutores").setVisible(true);
                     this.getView().byId("btnBuscarInterlocutor").setVisible(true);
 
+                    this.getView().byId("com_tipo_cliente_datosAdicionales").setSelectedKey(" ");
+
                     
                 }
 
@@ -125,7 +127,9 @@
 
         onCopiarDatosInterlocutores:function(){
 
-            var dni_ruc = this.getView().byId("txt_dni_ruc_solicitante").getValue();
+            if(this.getView().byId("tabInterlocutores").getSelectedKey()=="filterSolicitante"){
+
+                    var dni_ruc = this.getView().byId("txt_dni_ruc_solicitante").getValue();
             var nombre = this.getView().byId("txt_nombre_solicitante").getValue();
             var direccion = this.getView().byId("txt_direccion_solicitante").getValue();
             var distrito = this.getView().byId("com_distrito_solicitante").getValue();
@@ -151,6 +155,10 @@
             this.getView().byId("txt_dni_datosAdicionales").setValue(dni_ruc);
             this.getView().byId("txt_nombre_datosAdicionales").setValue(nombre);
             this.getView().byId("dlg_MensajeAvisoCopiarDatos").open();
+
+            }
+
+            
 
         },
 
@@ -187,7 +195,7 @@
                                     //Lista Respuestas de Lista Preguntas
                                     //Tipo de cliente
                                      this.getView().getModel().setProperty("/listaR0",result.data.listCliPregResp[0]);
-                                     var ab = this.getView().getModel().getProperty("/listaR0");
+                                     
                                      
                                      //Tipo de construcción
                                      this.getView().getModel().setProperty("/listaR1",result.data.listCliPregResp[1]);
@@ -248,7 +256,7 @@
 
                 if(this.getView().byId("txt_nombre_solicitante").getValue()!=="" && this.getView().byId("txt_dni_ruc_solicitante").getValue()==""){
 
-                           /* var BusNombres = "BusNombres";
+                            var BusNombres = "BusNombres";
                             var NombresBuscado = this.getView().byId("txt_nombre_solicitante").getValue();
 
                             var result = clienteServices.buscarSolicitanteNombre(BusNombres,NombresBuscado);
@@ -274,12 +282,12 @@
                                                             }
 
 
-                                            } else {
-                                                sap.m.MessageToast.show(result.m, {
-                                                    duration: 3000
-                                                });
-                                            }    
-                                        */
+                                                } else {
+                                                    sap.m.MessageToast.show(result.m, {
+                                                        duration: 3000
+                                                    });
+                                                }    
+                                        
 
                 }
            
@@ -403,106 +411,111 @@
 
             //llenado incorrecto
 
-            var codigoCliente = "";
-            var nombreCliente = "";
-            var CodOficina = "";
-            var CondPago = "";
-            var Moneda = "";
-            var TipoCambio = "";
+            var codigoCliente = "0000101317";
+            var nombreCliente = "Erick De La Cruz De La Cruz";
+
+            var OrgVentas = "1000";
+            var CanalDist = "10";
+
+            var CodOficina = "1010";
+            var CondPago = "E000";
+            var Moneda = "PEN";
+            var TipoCambio = "3.282";
             var dsctoAdicionalZD12 = "";
-            var pesoTotal = ""; 
-            var FechaFacturacion = "";
+            var pesoTotal = "0.300 KG"; 
+            var FechaFacturacion = "2017-06-22T18:23:18.420Z";
             var GrupoCond = "";
             var Motivo = "";
             var BloqueoFactura = "";
             var BloqueoEntrega = "";
             var OrdenCompra = "";
-            var FechaPedido = "";
-            var FechaValidez = "";
-            var FechaEntrega = "";
-            var CondExp = "";
+            var FechaPedido = "2017-06-22T18:23:18.420Z";
+            var FechaValidez = "2017-06-29T18:23:18.439Z";
+            var FechaEntrega = "2017-06-22T18:23:18.420Z";
+            var CondExp = "03";
             var FechaReparto = "";
             var nomProyecto = "";
             var codProyecto = "";
             var codVersion = "";
             var TipoVisita = "";
             var cbxReembolsable = "";
-            var GrupoForecast = "";
+            var GrupoForecast = "01";
             var TipoForecast = "";
             var Certificado = "";
             var FechaVisita = "";
             var listaMatJson = []; //Se crea de acuerdo a cuantos materiales se agregan en detalles Productos
                     var obj1listaMatJson = {};
                             obj1listaMatJson.id = 1;
-                            obj1listaMatJson.CodMaterial = "" ;
-                            obj1listaMatJson.CodUMedida = "" ;
+                            obj1listaMatJson.CodMaterial = "000000000011000004" ;
+                            obj1listaMatJson.CodUMedida = "UN" ;
                             obj1listaMatJson.Descripcion = "" ;
                             obj1listaMatJson.Jerarquia = "" ;
-                            obj1listaMatJson.ValorRendimiento = "" ;
-                            obj1listaMatJson.TipoMaterial = "" ;
-                            obj1listaMatJson.EsFlete = "" ;
-                            obj1listaMatJson.EsEstiba = "" ;
-                            obj1listaMatJson.EspecialServ = "" ;
-                            obj1listaMatJson.Tipo = "" ;
-                            obj1listaMatJson.CodMaterialCorto = "" ;
-                            obj1listaMatJson.TieneServ = "" ;
-                            obj1listaMatJson.Rendimiento = "" ;
-                            obj1listaMatJson.DescMovil = "" ;
+                            obj1listaMatJson.ValorRendimiento = 0 ;
+                            obj1listaMatJson.TipoMaterial = "NA3" ;
+                            obj1listaMatJson.EsFlete = false ;
+                            obj1listaMatJson.EsEstiba = false ;
+                            obj1listaMatJson.EspecialServ = false ;
+                            obj1listaMatJson.Tipo = "Z001" ;
+                            obj1listaMatJson.CodMaterialCorto = "11000004" ;
+                            obj1listaMatJson.TieneServ = false ;
+                            obj1listaMatJson.Rendimiento = "-" ;
+                            obj1listaMatJson.DescMovil = "10 - 11000004 VAINSA NVA ASIA D TEL BIDET TUB/MET 1.2MT C/SOP VAINSA NVA ASIA D TELBIDET TUB/MET 1.2 - 1 - 247.87" ;
                             obj1listaMatJson.Descontinuado = "" ;
                             obj1listaMatJson.UMedidaRendimiendo = "" ;
-                            obj1listaMatJson.DescMaterial = "" ;
-                            obj1listaMatJson.PrecioUnit = "" ;
-                            obj1listaMatJson.Peso = "" ;
-                            obj1listaMatJson.Stock = "" ;
+                            obj1listaMatJson.DescMaterial = "VAINSA NVA ASIA D TEL BIDET TUB/MET 1.2MT C/SOP VAINSA NVA ASIA D TELBIDET TUB/MET 1.2" ;
+                            obj1listaMatJson.PrecioUnit = 0 ;
+                            obj1listaMatJson.Peso = 0.3 ;
+                            obj1listaMatJson.Stock = 0 ;
                             obj1listaMatJson.Mstae = "" ;
-                            obj1listaMatJson.Vdscto = "" ;
+                            obj1listaMatJson.Vdscto = "0" ;
                             obj1listaMatJson.StatusDespacho = "" ;
                             obj1listaMatJson.StockPos = "" ;
-                            obj1listaMatJson.Posicion = "" ;
-                            obj1listaMatJson.Cantidad = "" ;
-                            obj1listaMatJson.CodCentro = "" ;
-                            obj1listaMatJson.CodAlmacen = "" ;
-                            obj1listaMatJson.CodLote = "" ;
-                            obj1listaMatJson.PrecioSinIGV = "" ;
-                            obj1listaMatJson.DsctoMontTotal = "" ;
+                            obj1listaMatJson.Posicion = "000010" ;
+                            obj1listaMatJson.Cantidad = 1 ;
+                            obj1listaMatJson.CodCentro = "1080" ;
+                            obj1listaMatJson.CodAlmacen = "0001" ;
+                            obj1listaMatJson.CodLote = "1000LD" ;
+                            obj1listaMatJson.PrecioSinIGV = 0 ;
+                            obj1listaMatJson.DsctoMontTotal = 0 ;
                             obj1listaMatJson.MotivoRechazo = "" ;
                             obj1listaMatJson.TipoPosAnt = "" ;
-                            obj1listaMatJson.CodGrupoMat = "" ;
-                            obj1listaMatJson.Opcion = "" ;
+                            obj1listaMatJson.CodGrupoMat = "07" ;
+                            obj1listaMatJson.Opcion = "02" ;
                             obj1listaMatJson.Reembolsable = "" ;
-                            obj1listaMatJson.Zservicio = "" ;
-                            obj1listaMatJson.ContentID = "" ;
-                            obj1listaMatJson.DescMaterialTicketera = "" ;
-                            obj1listaMatJson.PrioridadEntrega = "" ;
-                            obj1listaMatJson.FechaCantConf = "" ;
-                            obj1listaMatJson.FechaCantConfStr = "" ;
-                            obj1listaMatJson.PosSup = "" ;
+                            obj1listaMatJson.Zservicio = true ;
+                            obj1listaMatJson.ContentID = "1011000004" ;
+                            obj1listaMatJson.DescMaterialTicketera = "VAINSA NVA ASIA D TEL BIDET TUB/MET" ;
+                            obj1listaMatJson.PrioridadEntrega = "03" ;
+                            obj1listaMatJson.FechaCantConf = "2017-06-22T05:00:00.000Z" ;
+                            obj1listaMatJson.FechaCantConfStr = "22/06/2017" ;
+                            obj1listaMatJson.PosSup = "000000" ;
                             obj1listaMatJson.PosSupCorto = "" ;
-                            obj1listaMatJson.TipoPosicion = "" ;
-                            obj1listaMatJson.CambAlmacen = "" ;
-                            obj1listaMatJson.CantComp = "" ;
-                            obj1listaMatJson.PrecioTotal = "" ;
-                            obj1listaMatJson.PrecioUnitario = "" ;
-                            obj1listaMatJson.Total = "" ;
-                            obj1listaMatJson.IgvUnitario = "" ;
-                            obj1listaMatJson.IgvTotal = "" ;
-                            obj1listaMatJson.TotalDctos = "" ;
-                            obj1listaMatJson.SubTotal = "" ;
-                            obj1listaMatJson.CantConfirmada = "" ;
-                            obj1listaMatJson.PesoNeto = "" ;
-                            obj1listaMatJson.PrecioConIGV = "" ;
-                            obj1listaMatJson.TotalImpresion = "" ;
-                            obj1listaMatJson.DescCentro = "" ;
-                            obj1listaMatJson.DescAlmacen = "" ;
-                            obj1listaMatJson.FechaEntregaString = "" ;
-                            obj1listaMatJson.Reparto = "" ;
-                            obj1listaMatJson.TotPercep = "" ;
-                            obj1listaMatJson.DesGrupoMat = "" ;
-                            obj1listaMatJson.DivisionRendimiento = "" ;
+                            obj1listaMatJson.TipoPosicion = "Z006" ;
+                            obj1listaMatJson.CambAlmacen = false ;
+                            obj1listaMatJson.CantComp = 0 ;
+                            obj1listaMatJson.PrecioTotal = 210.06 ;
+                            obj1listaMatJson.PrecioUnitario = 210.06 ;
+                            obj1listaMatJson.Total = 247.87 ;
+                            obj1listaMatJson.IgvUnitario = 18 ;
+                            obj1listaMatJson.IgvTotal = 37.81 ;
+                            obj1listaMatJson.TotalDctos = 0 ;
+                            obj1listaMatJson.SubTotal = 210.06 ;
+                            obj1listaMatJson.CantConfirmada = 0 ;
+                            obj1listaMatJson.PesoNeto = 0.3 ;
+                            obj1listaMatJson.PrecioConIGV = 0 ;
+                            obj1listaMatJson.TotalImpresion = 0 ;
+                            obj1listaMatJson.DescCentro = "Tienda Arequipa" ;
+                            obj1listaMatJson.DescAlmacen = "0001 (Tienda)" ;
+                            obj1listaMatJson.FechaEntregaString = "22/06/2017" ;
+                            obj1listaMatJson.Reparto = "03 22/06/17" ;
+                            obj1listaMatJson.TotPercep = 4.96 ;
+                            obj1listaMatJson.link = "http://140.20.0.7/Catalogo/sistema/productos.php?sku=11000004" ;
+                            obj1listaMatJson.DesGrupoMat = "Baño Principal" ;
+                            obj1listaMatJson.DivisionRendimiento = 0 ;
                             obj1listaMatJson.mod = "" ;
-                            obj1listaMatJson.PosicionCorto = "" ;
-                            obj1listaMatJson.SubTotalLista = "" ;
-                            obj1listaMatJson.fullName = "" ;
+                            obj1listaMatJson.PosicionCorto = "10" ;
+                            obj1listaMatJson.SubTotalLista = 210.06 ;
+                            obj1listaMatJson.fullName = "1080 Tienda Arequipa / 0001 / 1000LD" ;
 
                         listaMatJson.push(obj1listaMatJson);
 
@@ -514,318 +527,323 @@
 
 
                         var obj1listaDsctoJson = {};
-                            obj1listaDsctoJson.matPosicion = "" ;
+                            obj1listaDsctoJson.matPosicion = 10 ;
                             obj1listaDsctoJson.id = 1;
                             obj1listaDsctoJson.Posicion = "" ;
-                            obj1listaDsctoJson.Condicion = "" ;
-                            obj1listaDsctoJson.Importe = "" ;
-                            obj1listaDsctoJson.ImporteAnterior = "" ;
+                            obj1listaDsctoJson.Condicion = "ZD00" ;
+                            obj1listaDsctoJson.Importe = 0 ;
+                            obj1listaDsctoJson.ImporteAnterior = 0 ;
                             obj1listaDsctoJson.Moneda = "" ;
-                            obj1listaDsctoJson.Valor = "" ;
-                            obj1listaDsctoJson.Denominacion = "" ;
-                            obj1listaDsctoJson.esPorcentaje = "" ;
-                            obj1listaDsctoJson.LimiteInferior = "" ;
+                            obj1listaDsctoJson.Valor = 0 ;
+                            obj1listaDsctoJson.Denominacion = "Dcto. DECOR %" ;
+                            obj1listaDsctoJson.esPorcentaje = true ;
+                            obj1listaDsctoJson.LimiteInferior = 55 ;
                             obj1listaDsctoJson.Recalcular = "" ;
 
                         var obj2listaDsctoJson = {};
-                            obj2listaDsctoJson.matPosicion = "" ;
+                            obj2listaDsctoJson.matPosicion = 10 ;
                             obj2listaDsctoJson.id = 2;
                             obj2listaDsctoJson.Posicion = "" ;
-                            obj2listaDsctoJson.Condicion = "" ;
-                            obj2listaDsctoJson.Importe = "" ;
-                            obj2listaDsctoJson.ImporteAnterior = "" ;
+                            obj2listaDsctoJson.Condicion = "ZD01" ;
+                            obj2listaDsctoJson.Importe = 0 ;
+                            obj2listaDsctoJson.ImporteAnterior = 0 ;
                             obj2listaDsctoJson.Moneda = "" ;
-                            obj2listaDsctoJson.Valor = "" ;
+                            obj2listaDsctoJson.Valor = 0 ;
                             obj2listaDsctoJson.Denominacion = "" ;
-                            obj2listaDsctoJson.esPorcentaje = "" ;
-                            obj2listaDsctoJson.LimiteInferior = "" ;
+                            obj2listaDsctoJson.esPorcentaje = false ;
+                            obj2listaDsctoJson.LimiteInferior = 0 ;
                             obj2listaDsctoJson.Recalcular = "" ;
 
                         var obj3listaDsctoJson = {};
-                            obj3listaDsctoJson.matPosicion = "" ;
+                            obj3listaDsctoJson.matPosicion = 10 ;
                             obj3listaDsctoJson.id = 3;
                             obj3listaDsctoJson.Posicion = "" ;
                             obj3listaDsctoJson.Condicion = "" ;
-                            obj3listaDsctoJson.Importe = "" ;
-                            obj3listaDsctoJson.ImporteAnterior = "" ;
+                            obj3listaDsctoJson.Importe = 0 ;
+                            obj3listaDsctoJson.ImporteAnterior = 0 ;
                             obj3listaDsctoJson.Moneda = "" ;
-                            obj3listaDsctoJson.Valor = "" ;
-                            obj3listaDsctoJson.Denominacion = "" ;
-                            obj3listaDsctoJson.esPorcentaje = "" ;
-                            obj3listaDsctoJson.LimiteInferior = "" ;
+                            obj3listaDsctoJson.Valor = 0 ;
+                            obj3listaDsctoJson.Denominacion = "Dscto Adic Cond Pago" ;
+                            obj3listaDsctoJson.esPorcentaje = true ;
+                            obj3listaDsctoJson.LimiteInferior = 0 ;
                             obj3listaDsctoJson.Recalcular = "" ;
 
                         var obj4listaDsctoJson = {};
-                            obj4listaDsctoJson.matPosicion = "" ;
+                            obj4listaDsctoJson.matPosicion = 10 ;
                             obj4listaDsctoJson.id = 4;
                             obj4listaDsctoJson.Posicion = "" ;
                             obj4listaDsctoJson.Condicion = "" ;
-                            obj4listaDsctoJson.Importe = "" ;
-                            obj4listaDsctoJson.ImporteAnterior = "" ;
+                            obj4listaDsctoJson.Importe = 0 ;
+                            obj4listaDsctoJson.ImporteAnterior = 0 ;
                             obj4listaDsctoJson.Moneda = "" ;
-                            obj4listaDsctoJson.Valor = "" ;
-                            obj4listaDsctoJson.Denominacion = "" ;
-                            obj4listaDsctoJson.esPorcentaje = "" ;
-                            obj4listaDsctoJson.LimiteInferior = "" ;
+                            obj4listaDsctoJson.Valor = 0 ;
+                            obj4listaDsctoJson.Denominacion = "Dcto. Estadistico" ;
+                            obj4listaDsctoJson.esPorcentaje = true ;
+                            obj4listaDsctoJson.LimiteInferior = 0 ;
                             obj4listaDsctoJson.Recalcular = "" ;
 
 
                         var obj5listaDsctoJson = {};
-                            obj5listaDsctoJson.matPosicion = "" ;
+                            obj5listaDsctoJson.matPosicion = 10 ;
                             obj5listaDsctoJson.id = 5;
                             obj5listaDsctoJson.Posicion = "" ;
                             obj5listaDsctoJson.Condicion = "" ;
-                            obj5listaDsctoJson.Importe = "" ;
-                            obj5listaDsctoJson.ImporteAnterior = "" ;
+                            obj5listaDsctoJson.Importe = 0 ;
+                            obj5listaDsctoJson.ImporteAnterior = 0 ;
                             obj5listaDsctoJson.Moneda = "" ;
-                            obj5listaDsctoJson.Valor = "" ;
-                            obj5listaDsctoJson.Denominacion = "" ;
-                            obj5listaDsctoJson.esPorcentaje = "" ;
-                            obj5listaDsctoJson.LimiteInferior = "" ;
+                            obj5listaDsctoJson.Valor = 0 ;
+                            obj5listaDsctoJson.Denominacion = "Dcto. Gerencia %" ;
+                            obj5listaDsctoJson.esPorcentaje = true ;
+                            obj5listaDsctoJson.LimiteInferior = 0 ;
                             obj5listaDsctoJson.Recalcular = "" ;
 
                         var obj6listaDsctoJson = {};
-                            obj6listaDsctoJson.matPosicion = "" ;
+                            obj6listaDsctoJson.matPosicion = 10 ;
                             obj6listaDsctoJson.id = 6;
                             obj6listaDsctoJson.Posicion = "" ;
                             obj6listaDsctoJson.Condicion = "" ;
-                            obj6listaDsctoJson.Importe = "" ;
-                            obj6listaDsctoJson.ImporteAnterior = "" ;
+                            obj6listaDsctoJson.Importe = 0 ;
+                            obj6listaDsctoJson.ImporteAnterior = 0 ;
                             obj6listaDsctoJson.Moneda = "" ;
-                            obj6listaDsctoJson.Valor = "" ;
-                            obj6listaDsctoJson.Denominacion = "" ;
-                            obj6listaDsctoJson.esPorcentaje = "" ;
-                            obj6listaDsctoJson.LimiteInferior = "" ;
+                            obj6listaDsctoJson.Valor = 0 ;
+                            obj6listaDsctoJson.Denominacion = "Dcto. Gerenc Importe" ;
+                            obj6listaDsctoJson.esPorcentaje = true ;
+                            obj6listaDsctoJson.LimiteInferior = 0 ;
                             obj6listaDsctoJson.Recalcular = "" ;
 
                         var obj7listaDsctoJson = {};
-                            obj7listaDsctoJson.matPosicion = "" ;
+                            obj7listaDsctoJson.matPosicion = 10 ;
                             obj7listaDsctoJson.id = 7;
                             obj7listaDsctoJson.Posicion = "" ;
                             obj7listaDsctoJson.Condicion = "" ;
-                            obj7listaDsctoJson.Importe = "" ;
-                            obj7listaDsctoJson.ImporteAnterior = "" ;
+                            obj7listaDsctoJson.Importe = 0 ;
+                            obj7listaDsctoJson.ImporteAnterior = 0 ;
                             obj7listaDsctoJson.Moneda = "" ;
-                            obj7listaDsctoJson.Valor = "" ;
+                            obj7listaDsctoJson.Valor = 0 ;
                             obj7listaDsctoJson.Denominacion = "" ;
-                            obj7listaDsctoJson.esPorcentaje = "" ;
-                            obj7listaDsctoJson.LimiteInferior = "" ;
+                            obj7listaDsctoJson.esPorcentaje = false ;
+                            obj7listaDsctoJson.LimiteInferior = 0 ;
                             obj7listaDsctoJson.Recalcular = "" ;
 
                         var obj8listaDsctoJson = {};
-                            obj8listaDsctoJson.matPosicion = "" ;
+                            obj8listaDsctoJson.matPosicion = 10 ;
                             obj8listaDsctoJson.id = 8;
                             obj8listaDsctoJson.Posicion = "" ;
                             obj8listaDsctoJson.Condicion = "" ;
-                            obj8listaDsctoJson.Importe = "" ;
-                            obj8listaDsctoJson.ImporteAnterior = "" ;
+                            obj8listaDsctoJson.Importe = 0 ;
+                            obj8listaDsctoJson.ImporteAnterior = 0 ;
                             obj8listaDsctoJson.Moneda = "" ;
-                            obj8listaDsctoJson.Valor = "" ;
+                            obj8listaDsctoJson.Valor = 0 ;
                             obj8listaDsctoJson.Denominacion = "" ;
-                            obj8listaDsctoJson.esPorcentaje = "" ;
-                            obj8listaDsctoJson.LimiteInferior = "" ;
+                            obj8listaDsctoJson.esPorcentaje = false ;
+                            obj8listaDsctoJson.LimiteInferior = 0 ;
                             obj8listaDsctoJson.Recalcular = "" ;
 
 
                         var obj9listaDsctoJson = {};
-                            obj9listaDsctoJson.matPosicion = "" ;
+                            obj9listaDsctoJson.matPosicion = 10 ;
                             obj9listaDsctoJson.id = 9;
                             obj9listaDsctoJson.Posicion = "" ;
                             obj9listaDsctoJson.Condicion = "" ;
-                            obj9listaDsctoJson.Importe = "" ;
-                            obj9listaDsctoJson.ImporteAnterior = "" ;
+                            obj9listaDsctoJson.Importe = 0 ;
+                            obj9listaDsctoJson.ImporteAnterior = 0 ;
                             obj9listaDsctoJson.Moneda = "" ;
-                            obj9listaDsctoJson.Valor = "" ;
+                            obj9listaDsctoJson.Valor = 0 ;
                             obj9listaDsctoJson.Denominacion = "" ;
-                            obj9listaDsctoJson.esPorcentaje = "" ;
-                            obj9listaDsctoJson.LimiteInferior = "" ;
+                            obj9listaDsctoJson.esPorcentaje = false ;
+                            obj9listaDsctoJson.LimiteInferior = 0 ;
                             obj9listaDsctoJson.Recalcular = "" ;
 
 
                         var obj10listaDsctoJson = {};
-                            obj10listaDsctoJson.matPosicion = "" ;
+                            obj10listaDsctoJson.matPosicion = 10 ;
                             obj10listaDsctoJson.id = 10;
                             obj10listaDsctoJson.Posicion = "" ;
                             obj10listaDsctoJson.Condicion = "" ;
-                            obj10listaDsctoJson.Importe = "" ;
-                            obj10listaDsctoJson.ImporteAnterior = "" ;
+                            obj10listaDsctoJson.Importe = 0 ;
+                            obj10listaDsctoJson.ImporteAnterior = 0 ;
                             obj10listaDsctoJson.Moneda = "" ;
-                            obj10listaDsctoJson.Valor = "" ;
-                            obj10listaDsctoJson.Denominacion = "" ;
-                            obj10listaDsctoJson.esPorcentaje = "" ;
-                            obj10listaDsctoJson.LimiteInferior = "" ;
+                            obj10listaDsctoJson.Valor = 0 ;
+                            obj10listaDsctoJson.Denominacion = "Dcto. DECOR % AdmTda" ;
+                            obj10listaDsctoJson.esPorcentaje = true ;
+                            obj10listaDsctoJson.LimiteInferior = 8 ;
                             obj10listaDsctoJson.Recalcular = "" ;
 
 
                         var obj11listaDsctoJson = {};
-                            obj11listaDsctoJson.matPosicion = "" ;
+                            obj11listaDsctoJson.matPosicion = 10 ;
                             obj11listaDsctoJson.id = 11;
                             obj11listaDsctoJson.Posicion = "" ;
                             obj11listaDsctoJson.Condicion = "" ;
-                            obj11listaDsctoJson.Importe = "" ;
-                            obj11listaDsctoJson.ImporteAnterior = "" ;
+                            obj11listaDsctoJson.Importe = 0 ;
+                            obj11listaDsctoJson.ImporteAnterior = 0 ;
                             obj11listaDsctoJson.Moneda = "" ;
-                            obj11listaDsctoJson.Valor = "" ;
-                            obj11listaDsctoJson.Denominacion = "" ;
-                            obj11listaDsctoJson.esPorcentaje = "" ;
-                            obj11listaDsctoJson.LimiteInferior = "" ;
+                            obj11listaDsctoJson.Valor = 0 ;
+                            obj11listaDsctoJson.Denominacion = "Dcto. Jefe Prod. %" ;
+                            obj11listaDsctoJson.esPorcentaje = true ;
+                            obj11listaDsctoJson.LimiteInferior = 25 ;
                             obj11listaDsctoJson.Recalcular = "" ;
 
 
                         var obj12listaDsctoJson = {};
-                            obj12listaDsctoJson.matPosicion = "" ;
+                            obj12listaDsctoJson.matPosicion = 10 ;
                             obj12listaDsctoJson.id = 12;
                             obj12listaDsctoJson.Posicion = "" ;
                             obj12listaDsctoJson.Condicion = "" ;
-                            obj12listaDsctoJson.Importe = "" ;
-                            obj12listaDsctoJson.ImporteAnterior = "" ;
+                            obj12listaDsctoJson.Importe = 0 ;
+                            obj12listaDsctoJson.ImporteAnterior = 0 ;
                             obj12listaDsctoJson.Moneda = "" ;
-                            obj12listaDsctoJson.Valor = "" ;
-                            obj12listaDsctoJson.Denominacion = "" ;
-                            obj12listaDsctoJson.esPorcentaje = "" ;
-                            obj12listaDsctoJson.LimiteInferior = "" ;
+                            obj12listaDsctoJson.Valor = 0 ;
+                            obj12listaDsctoJson.Denominacion = "Dcto. Adicional" ;
+                            obj12listaDsctoJson.esPorcentaje = true ;
+                            obj12listaDsctoJson.LimiteInferior = 0 ;
                             obj12listaDsctoJson.Recalcular = "" ;
 
                         var obj13listaDsctoJson = {};
-                            obj13listaDsctoJson.matPosicion = "" ;
+                            obj13listaDsctoJson.matPosicion = 10 ;
                             obj13listaDsctoJson.id = 13;
                             obj13listaDsctoJson.Posicion = "" ;
                             obj13listaDsctoJson.Condicion = "" ;
-                            obj13listaDsctoJson.Importe = "" ;
-                            obj13listaDsctoJson.ImporteAnterior = "" ;
+                            obj13listaDsctoJson.Importe = 0 ;
+                            obj13listaDsctoJson.ImporteAnterior = 0 ;
                             obj13listaDsctoJson.Moneda = "" ;
-                            obj13listaDsctoJson.Valor = "" ;
-                            obj13listaDsctoJson.Denominacion = "" ;
-                            obj13listaDsctoJson.esPorcentaje = "" ;
-                            obj13listaDsctoJson.LimiteInferior = "" ;
+                            obj13listaDsctoJson.Valor = 0 ;
+                            obj13listaDsctoJson.Denominacion = " Diferencia " ;
+                            obj13listaDsctoJson.esPorcentaje = false ;
+                            obj13listaDsctoJson.LimiteInferior = 0 ;
                             obj13listaDsctoJson.Recalcular = "" ;
 
                         var obj14listaDsctoJson = {};
-                            obj14listaDsctoJson.matPosicion = "" ;
+                            obj14listaDsctoJson.matPosicion = 10 ;
                             obj14listaDsctoJson.id = 14;
                             obj14listaDsctoJson.Posicion = "" ;
                             obj14listaDsctoJson.Condicion = "" ;
-                            obj14listaDsctoJson.Importe = "" ;
-                            obj14listaDsctoJson.ImporteAnterior = "" ;
+                            obj14listaDsctoJson.Importe = 0 ;
+                            obj14listaDsctoJson.ImporteAnterior = 0 ;
                             obj14listaDsctoJson.Moneda = "" ;
-                            obj14listaDsctoJson.Valor = "" ;
-                            obj14listaDsctoJson.Denominacion = "" ;
-                            obj14listaDsctoJson.esPorcentaje = "" ;
-                            obj14listaDsctoJson.LimiteInferior = "" ;
+                            obj14listaDsctoJson.Valor = 0 ;
+                            obj14listaDsctoJson.Denominacion = " Pr.Srv.Transp.Manual " ;
+                            obj14listaDsctoJson.esPorcentaje = false ;
+                            obj14listaDsctoJson.LimiteInferior = 0 ;
                             obj14listaDsctoJson.Recalcular = "" ;
 
 
                         var obj15listaDsctoJson = {};
-                            obj15listaDsctoJson.matPosicion = "" ;
+                            obj15listaDsctoJson.matPosicion = 10 ;
                             obj15listaDsctoJson.id = 15;
                             obj15listaDsctoJson.Posicion = "" ;
                             obj15listaDsctoJson.Condicion = "" ;
-                            obj15listaDsctoJson.Importe = "" ;
-                            obj15listaDsctoJson.ImporteAnterior = "" ;
+                            obj15listaDsctoJson.Importe = 0 ;
+                            obj15listaDsctoJson.ImporteAnterior = 0 ;
                             obj15listaDsctoJson.Moneda = "" ;
-                            obj15listaDsctoJson.Valor = "" ;
-                            obj15listaDsctoJson.Denominacion = "" ;
-                            obj15listaDsctoJson.esPorcentaje = "" ;
-                            obj15listaDsctoJson.LimiteInferior = "" ;
+                            obj15listaDsctoJson.Valor = 0 ;
+                            obj15listaDsctoJson.Denominacion = "Dcto. Esp. Tienda %" ;
+                            obj15listaDsctoJson.esPorcentaje = true ;
+                            obj15listaDsctoJson.LimiteInferior = 0 ;
                             obj15listaDsctoJson.Recalcular = "" ;
 
 
                         var obj16listaDsctoJson = {};
-                            obj16listaDsctoJson.matPosicion = "" ;
+                            obj16listaDsctoJson.matPosicion = 10 ;
                             obj16listaDsctoJson.id = 16;
                             obj16listaDsctoJson.Posicion = "" ;
                             obj16listaDsctoJson.Condicion = "" ;
-                            obj16listaDsctoJson.Importe = "" ;
-                            obj16listaDsctoJson.ImporteAnterior = "" ;
+                            obj16listaDsctoJson.Importe = 0 ;
+                            obj16listaDsctoJson.ImporteAnterior = 0 ;
                             obj16listaDsctoJson.Moneda = "" ;
-                            obj16listaDsctoJson.Valor = "" ;
-                            obj16listaDsctoJson.Denominacion = "" ;
-                            obj16listaDsctoJson.esPorcentaje = "" ;
-                            obj16listaDsctoJson.LimiteInferior = "" ;
+                            obj16listaDsctoJson.Valor = 0 ;
+                            obj16listaDsctoJson.Denominacion = "Dcto. Certificados %" ;
+                            obj16listaDsctoJson.esPorcentaje = true ;
+                            obj16listaDsctoJson.LimiteInferior = 0 ;
                             obj16listaDsctoJson.Recalcular = "" ;
 
 
                         var obj17listaDsctoJson = {};
-                            obj17listaDsctoJson.matPosicion = "" ;
+                            obj17listaDsctoJson.matPosicion = 10 ;
                             obj17listaDsctoJson.id = 17;
                             obj17listaDsctoJson.Posicion = "" ;
                             obj17listaDsctoJson.Condicion = "" ;
-                            obj17listaDsctoJson.Importe = "" ;
-                            obj17listaDsctoJson.ImporteAnterior = "" ;
+                            obj17listaDsctoJson.Importe = 0 ;
+                            obj17listaDsctoJson.ImporteAnterior = 0 ;
                             obj17listaDsctoJson.Moneda = "" ;
-                            obj17listaDsctoJson.Valor = "" ;
+                            obj17listaDsctoJson.Valor = 210.06 ;
                             obj17listaDsctoJson.Denominacion = "" ;
-                            obj17listaDsctoJson.esPorcentaje = "" ;
-                            obj17listaDsctoJson.LimiteInferior = "" ;
+                            obj17listaDsctoJson.esPorcentaje = false ;
+                            obj17listaDsctoJson.LimiteInferior = 0 ;
                             obj17listaDsctoJson.Recalcular = "" ;
 
 
 
                         var obj18listaDsctoJson = {};
-                            obj18listaDsctoJson.matPosicion = "" ;
+                            obj18listaDsctoJson.matPosicion = 10 ;
                             obj18listaDsctoJson.id = 18;
                             obj18listaDsctoJson.Posicion = "" ;
                             obj18listaDsctoJson.Condicion = "" ;
-                            obj18listaDsctoJson.Importe = "" ;
-                            obj18listaDsctoJson.ImporteAnterior = "" ;
+                            obj18listaDsctoJson.Importe = 0 ;
+                            obj18listaDsctoJson.ImporteAnterior = 0 ;
                             obj18listaDsctoJson.Moneda = "" ;
-                            obj18listaDsctoJson.Valor = "" ;
+                            obj18listaDsctoJson.Valor = 0 ;
                             obj18listaDsctoJson.Denominacion = "" ;
-                            obj18listaDsctoJson.esPorcentaje = "" ;
-                            obj18listaDsctoJson.LimiteInferior = "" ;
+                            obj18listaDsctoJson.esPorcentaje = false ;
+                            obj18listaDsctoJson.LimiteInferior = 0 ;
                             obj18listaDsctoJson.Recalcular = "" ;
 
+
+
+                    /////////////////////////////////////////////
+
+                    /*
                         var obj19listaDsctoJson = {};
-                            obj19listaDsctoJson.matPosicion = "" ;
+                            obj19listaDsctoJson.matPosicion = 10 ;
                             obj19listaDsctoJson.id = 19;
                             obj19listaDsctoJson.Posicion = "" ;
                             obj19listaDsctoJson.Condicion = "" ;
-                            obj19listaDsctoJson.Importe = "" ;
-                            obj19listaDsctoJson.ImporteAnterior = "" ;
+                            obj19listaDsctoJson.Importe = 0 ;
+                            obj19listaDsctoJson.ImporteAnterior = 0 ;
                             obj19listaDsctoJson.Moneda = "" ;
-                            obj19listaDsctoJson.Valor = "" ;
+                            obj19listaDsctoJson.Valor = 0 ;
                             obj19listaDsctoJson.Denominacion = "" ;
                             obj19listaDsctoJson.esPorcentaje = "" ;
                             obj19listaDsctoJson.LimiteInferior = "" ;
                             obj19listaDsctoJson.Recalcular = "" ;
 
                         var obj20listaDsctoJson = {};
-                            obj20listaDsctoJson.matPosicion = "" ;
+                            obj20listaDsctoJson.matPosicion = 10 ;
                             obj20listaDsctoJson.id = 20;
                             obj20listaDsctoJson.Posicion = "" ;
                             obj20listaDsctoJson.Condicion = "" ;
-                            obj20listaDsctoJson.Importe = "" ;
-                            obj20listaDsctoJson.ImporteAnterior = "" ;
+                            obj20listaDsctoJson.Importe = 0 ;
+                            obj20listaDsctoJson.ImporteAnterior = 0 ;
                             obj20listaDsctoJson.Moneda = "" ;
-                            obj20listaDsctoJson.Valor = "" ;
+                            obj20listaDsctoJson.Valor = 0 ;
                             obj20listaDsctoJson.Denominacion = "" ;
                             obj20listaDsctoJson.esPorcentaje = "" ;
                             obj20listaDsctoJson.LimiteInferior = "" ;
                             obj20listaDsctoJson.Recalcular = "" ;
 
                         var obj21listaDsctoJson = {};
-                            obj21listaDsctoJson.matPosicion = "" ;
+                            obj21listaDsctoJson.matPosicion = 10 ;
                             obj21listaDsctoJson.id = 21;
                             obj21listaDsctoJson.Posicion = "" ;
                             obj21listaDsctoJson.Condicion = "" ;
-                            obj21listaDsctoJson.Importe = "" ;
-                            obj21listaDsctoJson.ImporteAnterior = "" ;
+                            obj21listaDsctoJson.Importe = 0 ;
+                            obj21listaDsctoJson.ImporteAnterior = 0 ;
                             obj21listaDsctoJson.Moneda = "" ;
-                            obj21listaDsctoJson.Valor = "" ;
+                            obj21listaDsctoJson.Valor = 0 ;
                             obj21listaDsctoJson.Denominacion = "" ;
                             obj21listaDsctoJson.esPorcentaje = "" ;
                             obj21listaDsctoJson.LimiteInferior = "" ;
                             obj21listaDsctoJson.Recalcular = "" ;
 
                         var obj22listaDsctoJson = {};
-                            obj22listaDsctoJson.matPosicion = "" ;
+                            obj22listaDsctoJson.matPosicion = 10 ;
                             obj22listaDsctoJson.id = 22;
                             obj22listaDsctoJson.Posicion = "" ;
                             obj22listaDsctoJson.Condicion = "" ;
-                            obj22listaDsctoJson.Importe = "" ;
-                            obj22listaDsctoJson.ImporteAnterior = "" ;
+                            obj22listaDsctoJson.Importe = 0 ;
+                            obj22listaDsctoJson.ImporteAnterior = 0 ;
                             obj22listaDsctoJson.Moneda = "" ;
-                            obj22listaDsctoJson.Valor = "" ;
+                            obj22listaDsctoJson.Valor = 0 ;
                             obj22listaDsctoJson.Denominacion = "" ;
                             obj22listaDsctoJson.esPorcentaje = "" ;
                             obj22listaDsctoJson.LimiteInferior = "" ;
@@ -833,56 +851,56 @@
 
 
                         var obj23listaDsctoJson = {};
-                            obj23listaDsctoJson.matPosicion = "" ;
+                            obj23listaDsctoJson.matPosicion = 10 ;
                             obj23listaDsctoJson.id = 23;
                             obj23listaDsctoJson.Posicion = "" ;
                             obj23listaDsctoJson.Condicion = "" ;
-                            obj23listaDsctoJson.Importe = "" ;
-                            obj23listaDsctoJson.ImporteAnterior = "" ;
+                            obj23listaDsctoJson.Importe = 0 ;
+                            obj23listaDsctoJson.ImporteAnterior = 0 ;
                             obj23listaDsctoJson.Moneda = "" ;
-                            obj23listaDsctoJson.Valor = "" ;
+                            obj23listaDsctoJson.Valor = 0 ;
                             obj23listaDsctoJson.Denominacion = "" ;
                             obj23listaDsctoJson.esPorcentaje = "" ;
                             obj23listaDsctoJson.LimiteInferior = "" ;
                             obj23listaDsctoJson.Recalcular = "" ;
 
                         var obj24listaDsctoJson = {};
-                            obj24listaDsctoJson.matPosicion = "" ;
+                            obj24listaDsctoJson.matPosicion = 10 ;
                             obj24listaDsctoJson.id = 24;
                             obj24listaDsctoJson.Posicion = "" ;
                             obj24listaDsctoJson.Condicion = "" ;
-                            obj24listaDsctoJson.Importe = "" ;
-                            obj24listaDsctoJson.ImporteAnterior = "" ;
+                            obj24listaDsctoJson.Importe = 0 ;
+                            obj24listaDsctoJson.ImporteAnterior = 0 ;
                             obj24listaDsctoJson.Moneda = "" ;
-                            obj24listaDsctoJson.Valor = "" ;
+                            obj24listaDsctoJson.Valor = 0 ;
                             obj24listaDsctoJson.Denominacion = "" ;
                             obj24listaDsctoJson.esPorcentaje = "" ;
                             obj24listaDsctoJson.LimiteInferior = "" ;
                             obj24listaDsctoJson.Recalcular = "" ;
 
                         var obj25listaDsctoJson = {};
-                            obj25listaDsctoJson.matPosicion = "" ;
+                            obj25listaDsctoJson.matPosicion = 10 ;
                             obj25listaDsctoJson.id = 25;
                             obj25listaDsctoJson.Posicion = "" ;
                             obj25listaDsctoJson.Condicion = "" ;
-                            obj25listaDsctoJson.Importe = "" ;
-                            obj25listaDsctoJson.ImporteAnterior = "" ;
+                            obj25listaDsctoJson.Importe = 0 ;
+                            obj25listaDsctoJson.ImporteAnterior = 0 ;
                             obj25listaDsctoJson.Moneda = "" ;
-                            obj25listaDsctoJson.Valor = "" ;
+                            obj25listaDsctoJson.Valor = 0 ;
                             obj25listaDsctoJson.Denominacion = "" ;
                             obj25listaDsctoJson.esPorcentaje = "" ;
                             obj25listaDsctoJson.LimiteInferior = "" ;
                             obj25listaDsctoJson.Recalcular = "" ;
 
                         var obj26listaDsctoJson = {};
-                            obj26listaDsctoJson.matPosicion = "" ;
+                            obj26listaDsctoJson.matPosicion = 10 ;
                             obj26listaDsctoJson.id = 26;
                            obj26listaDsctoJson.Posicion = "" ;
                             obj26listaDsctoJson.Condicion = "" ;
-                            obj26listaDsctoJson.Importe = "" ;
-                            obj26listaDsctoJson.ImporteAnterior = "" ;
+                            obj26listaDsctoJson.Importe = 0 ;
+                            obj26listaDsctoJson.ImporteAnterior = 0 ;
                             obj26listaDsctoJson.Moneda = "" ;
-                            obj26listaDsctoJson.Valor = "" ;
+                            obj26listaDsctoJson.Valor = 0 ;
                             obj26listaDsctoJson.Denominacion = "" ;
                             obj26listaDsctoJson.esPorcentaje = "" ;
                             obj26listaDsctoJson.LimiteInferior = "" ;
@@ -890,14 +908,14 @@
 
 
                         var obj27listaDsctoJson = {};
-                            obj27listaDsctoJson.matPosicion = "" ;
+                            obj27listaDsctoJson.matPosicion = 10 ;
                             obj27listaDsctoJson.id = 27;
                            obj27listaDsctoJson.Posicion = "" ;
                             obj27listaDsctoJson.Condicion = "" ;
-                            obj27listaDsctoJson.Importe = "" ;
-                            obj27listaDsctoJson.ImporteAnterior = "" ;
+                            obj27listaDsctoJson.Importe = 0 ;
+                            obj27listaDsctoJson.ImporteAnterior = 0 ;
                             obj27listaDsctoJson.Moneda = "" ;
-                            obj27listaDsctoJson.Valor = "" ;
+                            obj27listaDsctoJson.Valor = 0 ;
                             obj27listaDsctoJson.Denominacion = "" ;
                             obj27listaDsctoJson.esPorcentaje = "" ;
                             obj27listaDsctoJson.LimiteInferior = "" ;
@@ -905,28 +923,28 @@
 
 
                         var obj28listaDsctoJson = {};
-                            obj28listaDsctoJson.matPosicion = "" ;
+                            obj28listaDsctoJson.matPosicion = 10 ;
                             obj28listaDsctoJson.id = 28;
                            obj28listaDsctoJson.Posicion = "" ;
                             obj28listaDsctoJson.Condicion = "" ;
-                            obj28listaDsctoJson.Importe = "" ;
-                            obj28listaDsctoJson.ImporteAnterior = "" ;
+                            obj28listaDsctoJson.Importe = 0 ;
+                            obj28listaDsctoJson.ImporteAnterior = 0 ;
                             obj28listaDsctoJson.Moneda = "" ;
-                            obj28listaDsctoJson.Valor = "" ;
+                            obj28listaDsctoJson.Valor = 0 ;
                             obj28listaDsctoJson.Denominacion = "" ;
                             obj28listaDsctoJson.esPorcentaje = "" ;
                             obj28listaDsctoJson.LimiteInferior = "" ;
                             obj28listaDsctoJson.Recalcular = "" ;
 
                         var obj29listaDsctoJson = {};
-                            obj29listaDsctoJson.matPosicion = "" ;
+                            obj29listaDsctoJson.matPosicion = 10 ;
                             obj29listaDsctoJson.id = 29;
                            obj29listaDsctoJson.Posicion = "" ;
                             obj29listaDsctoJson.Condicion = "" ;
-                            obj29listaDsctoJson.Importe = "" ;
-                            obj29listaDsctoJson.ImporteAnterior = "" ;
+                            obj29listaDsctoJson.Importe = 0 ;
+                            obj29listaDsctoJson.ImporteAnterior = 0 ;
                             obj29listaDsctoJson.Moneda = "" ;
-                            obj29listaDsctoJson.Valor = "" ;
+                            obj29listaDsctoJson.Valor = 0 ;
                             obj29listaDsctoJson.Denominacion = "" ;
                             obj29listaDsctoJson.esPorcentaje = "" ;
                             obj29listaDsctoJson.LimiteInferior = "" ;
@@ -934,14 +952,14 @@
 
 
                         var obj30listaDsctoJson = {};
-                            obj30listaDsctoJson.matPosicion = "" ;
+                            obj30listaDsctoJson.matPosicion = 10 ;
                             obj30listaDsctoJson.id = 30;
                            obj30listaDsctoJson.Posicion = "" ;
                             obj30listaDsctoJson.Condicion = "" ;
-                            obj30listaDsctoJson.Importe = "" ;
-                            obj30listaDsctoJson.ImporteAnterior = "" ;
+                            obj30listaDsctoJson.Importe = 0 ;
+                            obj30listaDsctoJson.ImporteAnterior = 0 ;
                             obj30listaDsctoJson.Moneda = "" ;
-                            obj30listaDsctoJson.Valor = "" ;
+                            obj30listaDsctoJson.Valor = 0 ;
                             obj30listaDsctoJson.Denominacion = "" ;
                             obj30listaDsctoJson.esPorcentaje = "" ;
                             obj30listaDsctoJson.LimiteInferior = "" ;
@@ -949,28 +967,28 @@
 
 
                         var obj31listaDsctoJson = {};
-                            obj31listaDsctoJson.matPosicion = "" ;
+                            obj31listaDsctoJson.matPosicion = 10 ;
                             obj31listaDsctoJson.id = 31;
                            obj31listaDsctoJson.Posicion = "" ;
                             obj31listaDsctoJson.Condicion = "" ;
-                            obj31listaDsctoJson.Importe = "" ;
-                            obj31listaDsctoJson.ImporteAnterior = "" ;
+                            obj31listaDsctoJson.Importe = 0 ;
+                            obj31listaDsctoJson.ImporteAnterior = 0 ;
                             obj31listaDsctoJson.Moneda = "" ;
-                            obj31listaDsctoJson.Valor = "" ;
+                            obj31listaDsctoJson.Valor = 0 ;
                             obj31listaDsctoJson.Denominacion = "" ;
                             obj31listaDsctoJson.esPorcentaje = "" ;
                             obj31listaDsctoJson.LimiteInferior = "" ;
                             obj31listaDsctoJson.Recalcular = "" ;
 
                         var obj32listaDsctoJson = {};
-                            obj32listaDsctoJson.matPosicion = "" ;
+                            obj32listaDsctoJson.matPosicion = 10 ;
                             obj32listaDsctoJson.id = 32;
                            obj32listaDsctoJson.Posicion = "" ;
                             obj32listaDsctoJson.Condicion = "" ;
-                            obj32listaDsctoJson.Importe = "" ;
-                            obj32listaDsctoJson.ImporteAnterior = "" ;
+                            obj32listaDsctoJson.Importe = 0 ;
+                            obj32listaDsctoJson.ImporteAnterior = 0 ;
                             obj32listaDsctoJson.Moneda = "" ;
-                            obj32listaDsctoJson.Valor = "" ;
+                            obj32listaDsctoJson.Valor = 0 ;
                             obj32listaDsctoJson.Denominacion = "" ;
                             obj32listaDsctoJson.esPorcentaje = "" ;
                             obj32listaDsctoJson.LimiteInferior = "" ;
@@ -978,14 +996,14 @@
 
 
                         var obj33listaDsctoJson = {};
-                            obj33listaDsctoJson.matPosicion = "" ;
+                            obj33listaDsctoJson.matPosicion = 10 ;
                             obj33listaDsctoJson.id = 33;
                            obj33listaDsctoJson.Posicion = "" ;
                             obj33listaDsctoJson.Condicion = "" ;
-                            obj33listaDsctoJson.Importe = "" ;
-                            obj33listaDsctoJson.ImporteAnterior = "" ;
+                            obj33listaDsctoJson.Importe = 0 ;
+                            obj33listaDsctoJson.ImporteAnterior = 0 ;
                             obj33listaDsctoJson.Moneda = "" ;
-                            obj33listaDsctoJson.Valor = "" ;
+                            obj33listaDsctoJson.Valor = 0 ;
                             obj33listaDsctoJson.Denominacion = "" ;
                             obj33listaDsctoJson.esPorcentaje = "" ;
                             obj33listaDsctoJson.LimiteInferior = "" ;
@@ -993,14 +1011,14 @@
 
 
                         var obj34listaDsctoJson = {};
-                            obj34listaDsctoJson.matPosicion = "" ;
+                            obj34listaDsctoJson.matPosicion = 10 ;
                             obj34listaDsctoJson.id = 34;
                            obj34listaDsctoJson.Posicion = "" ;
                             obj34listaDsctoJson.Condicion = "" ;
-                            obj34listaDsctoJson.Importe = "" ;
-                            obj34listaDsctoJson.ImporteAnterior = "" ;
+                            obj34listaDsctoJson.Importe = 0 ;
+                            obj34listaDsctoJson.ImporteAnterior = 0 ;
                             obj34listaDsctoJson.Moneda = "" ;
-                            obj34listaDsctoJson.Valor = "" ;
+                            obj34listaDsctoJson.Valor = 0 ;
                             obj34listaDsctoJson.Denominacion = "" ;
                             obj34listaDsctoJson.esPorcentaje = "" ;
                             obj34listaDsctoJson.LimiteInferior = "" ;
@@ -1008,14 +1026,14 @@
 
 
                         var obj35listaDsctoJson = {};
-                            obj35listaDsctoJson.matPosicion = "" ;
+                            obj35listaDsctoJson.matPosicion = 10 ;
                             obj35listaDsctoJson.id = 35;
                            obj35listaDsctoJson.Posicion = "" ;
                             obj35listaDsctoJson.Condicion = "" ;
-                            obj35listaDsctoJson.Importe = "" ;
-                            obj35listaDsctoJson.ImporteAnterior = "" ;
+                            obj35listaDsctoJson.Importe = 0 ;
+                            obj35listaDsctoJson.ImporteAnterior = 0 ;
                             obj35listaDsctoJson.Moneda = "" ;
-                            obj35listaDsctoJson.Valor = "" ;
+                            obj35listaDsctoJson.Valor = 0 ;
                             obj35listaDsctoJson.Denominacion = "" ;
                             obj35listaDsctoJson.esPorcentaje = "" ;
                             obj35listaDsctoJson.LimiteInferior = "" ;
@@ -1023,14 +1041,14 @@
 
 
                         var obj36listaDsctoJson = {};
-                            obj36listaDsctoJson.matPosicion = "" ;
+                            obj36listaDsctoJson.matPosicion = 10 ;
                             obj36listaDsctoJson.id = 36;
                            obj36listaDsctoJson.Posicion = "" ;
                             obj36listaDsctoJson.Condicion = "" ;
-                            obj36listaDsctoJson.Importe = "" ;
-                            obj36listaDsctoJson.ImporteAnterior = "" ;
+                            obj36listaDsctoJson.Importe = 0 ;
+                            obj36listaDsctoJson.ImporteAnterior = 0 ;
                             obj36listaDsctoJson.Moneda = "" ;
-                            obj36listaDsctoJson.Valor = "" ;
+                            obj36listaDsctoJson.Valor = 0 ;
                             obj36listaDsctoJson.Denominacion = "" ;
                             obj36listaDsctoJson.esPorcentaje = "" ;
                             obj36listaDsctoJson.LimiteInferior = "" ;
@@ -1038,14 +1056,14 @@
 
 
                         var obj37listaDsctoJson = {};
-                            obj37listaDsctoJson.matPosicion = "" ;
+                            obj37listaDsctoJson.matPosicion = 10 ;
                             obj37listaDsctoJson.id = 37;
                            obj37listaDsctoJson.Posicion = "" ;
                             obj37listaDsctoJson.Condicion = "" ;
-                            obj37listaDsctoJson.Importe = "" ;
-                            obj37listaDsctoJson.ImporteAnterior = "" ;
+                            obj37listaDsctoJson.Importe = 0 ;
+                            obj37listaDsctoJson.ImporteAnterior = 0 ;
                             obj37listaDsctoJson.Moneda = "" ;
-                            obj37listaDsctoJson.Valor = "" ;
+                            obj37listaDsctoJson.Valor = 0 ;
                             obj37listaDsctoJson.Denominacion = "" ;
                             obj37listaDsctoJson.esPorcentaje = "" ;
                             obj37listaDsctoJson.LimiteInferior = "" ;
@@ -1053,42 +1071,42 @@
 
 
                         var obj38listaDsctoJson = {};
-                            obj38listaDsctoJson.matPosicion = "" ;
+                            obj38listaDsctoJson.matPosicion = 10 ;
                             obj38listaDsctoJson.id = 38;
                            obj38listaDsctoJson.Posicion = "" ;
                             obj38listaDsctoJson.Condicion = "" ;
-                            obj38listaDsctoJson.Importe = "" ;
-                            obj38listaDsctoJson.ImporteAnterior = "" ;
+                            obj38listaDsctoJson.Importe = 0 ;
+                            obj38listaDsctoJson.ImporteAnterior = 0 ;
                             obj38listaDsctoJson.Moneda = "" ;
-                            obj38listaDsctoJson.Valor = "" ;
+                            obj38listaDsctoJson.Valor = 0 ;
                             obj38listaDsctoJson.Denominacion = "" ;
                             obj38listaDsctoJson.esPorcentaje = "" ;
                             obj38listaDsctoJson.LimiteInferior = "" ;
                             obj38listaDsctoJson.Recalcular = "" ;
 
                         var obj39listaDsctoJson = {};
-                            obj39listaDsctoJson.matPosicion = "" ;
+                            obj39listaDsctoJson.matPosicion = 10 ;
                             obj39listaDsctoJson.id = 39;
                            obj39listaDsctoJson.Posicion = "" ;
                             obj39listaDsctoJson.Condicion = "" ;
-                            obj39listaDsctoJson.Importe = "" ;
-                            obj39listaDsctoJson.ImporteAnterior = "" ;
+                            obj39listaDsctoJson.Importe = 0 ;
+                            obj39listaDsctoJson.ImporteAnterior = 0 ;
                             obj39listaDsctoJson.Moneda = "" ;
-                            obj39listaDsctoJson.Valor = "" ;
+                            obj39listaDsctoJson.Valor = 0 ;
                             obj39listaDsctoJson.Denominacion = "" ;
                             obj39listaDsctoJson.esPorcentaje = "" ;
                             obj39listaDsctoJson.LimiteInferior = "" ;
                             obj39listaDsctoJson.Recalcular = "" ;
 
                         var obj40listaDsctoJson = {};
-                            obj40listaDsctoJson.matPosicion = "" ;
+                            obj40listaDsctoJson.matPosicion = 10 ;
                             obj40listaDsctoJson.id = 40;
                            obj40listaDsctoJson.Posicion = "" ;
                             obj40listaDsctoJson.Condicion = "" ;
-                            obj40listaDsctoJson.Importe = "" ;
-                            obj40listaDsctoJson.ImporteAnterior = "" ;
+                            obj40listaDsctoJson.Importe = 0 ;
+                            obj40listaDsctoJson.ImporteAnterior = 0 ;
                             obj40listaDsctoJson.Moneda = "" ;
-                            obj40listaDsctoJson.Valor = "" ;
+                            obj40listaDsctoJson.Valor = 0 ;
                             obj40listaDsctoJson.Denominacion = "" ;
                             obj40listaDsctoJson.esPorcentaje = "" ;
                             obj40listaDsctoJson.LimiteInferior = "" ;
@@ -1096,14 +1114,14 @@
 
 
                         var obj41listaDsctoJson = {};
-                            obj41listaDsctoJson.matPosicion = "" ;
+                            obj41listaDsctoJson.matPosicion = 10 ;
                             obj41listaDsctoJson.id = 41;
                            obj41listaDsctoJson.Posicion = "" ;
                             obj41listaDsctoJson.Condicion = "" ;
-                            obj41listaDsctoJson.Importe = "" ;
-                            obj41listaDsctoJson.ImporteAnterior = "" ;
+                            obj41listaDsctoJson.Importe = 0 ;
+                            obj41listaDsctoJson.ImporteAnterior = 0 ;
                             obj41listaDsctoJson.Moneda = "" ;
-                            obj41listaDsctoJson.Valor = "" ;
+                            obj41listaDsctoJson.Valor = 0 ;
                             obj41listaDsctoJson.Denominacion = "" ;
                             obj41listaDsctoJson.esPorcentaje = "" ;
                             obj41listaDsctoJson.LimiteInferior = "" ;
@@ -1111,14 +1129,14 @@
 
 
                         var obj42listaDsctoJson = {};
-                            obj42listaDsctoJson.matPosicion = "" ;
+                            obj42listaDsctoJson.matPosicion = 10 ;
                             obj42listaDsctoJson.id = 42;
                            obj42listaDsctoJson.Posicion = "" ;
                             obj42listaDsctoJson.Condicion = "" ;
-                            obj42listaDsctoJson.Importe = "" ;
-                            obj42listaDsctoJson.ImporteAnterior = "" ;
+                            obj42listaDsctoJson.Importe = 0 ;
+                            obj42listaDsctoJson.ImporteAnterior = 0 ;
                             obj42listaDsctoJson.Moneda = "" ;
-                            obj42listaDsctoJson.Valor = "" ;
+                            obj42listaDsctoJson.Valor = 0 ;
                             obj42listaDsctoJson.Denominacion = "" ;
                             obj42listaDsctoJson.esPorcentaje = "" ;
                             obj42listaDsctoJson.LimiteInferior = "" ;
@@ -1126,14 +1144,14 @@
 
 
                         var obj43listaDsctoJson = {};
-                            obj43listaDsctoJson.matPosicion = "" ;
+                            obj43listaDsctoJson.matPosicion = 10 ;
                             obj43listaDsctoJson.id = 43;
                            obj43listaDsctoJson.Posicion = "" ;
                             obj43listaDsctoJson.Condicion = "" ;
-                            obj43listaDsctoJson.Importe = "" ;
-                            obj43listaDsctoJson.ImporteAnterior = "" ;
+                            obj43listaDsctoJson.Importe = 0 ;
+                            obj43listaDsctoJson.ImporteAnterior = 0 ;
                             obj43listaDsctoJson.Moneda = "" ;
-                            obj43listaDsctoJson.Valor = "" ;
+                            obj43listaDsctoJson.Valor = 0 ;
                             obj43listaDsctoJson.Denominacion = "" ;
                             obj43listaDsctoJson.esPorcentaje = "" ;
                             obj43listaDsctoJson.LimiteInferior = "" ;
@@ -1141,14 +1159,14 @@
 
 
                         var obj44listaDsctoJson = {};
-                            obj44listaDsctoJson.matPosicion = "" ;
+                            obj44listaDsctoJson.matPosicion = 10 ;
                             obj44listaDsctoJson.id = 44;
                            obj44listaDsctoJson.Posicion = "" ;
                             obj44listaDsctoJson.Condicion = "" ;
-                            obj44listaDsctoJson.Importe = "" ;
-                            obj44listaDsctoJson.ImporteAnterior = "" ;
+                            obj44listaDsctoJson.Importe = 0 ;
+                            obj44listaDsctoJson.ImporteAnterior = 0 ;
                             obj44listaDsctoJson.Moneda = "" ;
-                            obj44listaDsctoJson.Valor = "" ;
+                            obj44listaDsctoJson.Valor = 0 ;
                             obj44listaDsctoJson.Denominacion = "" ;
                             obj44listaDsctoJson.esPorcentaje = "" ;
                             obj44listaDsctoJson.LimiteInferior = "" ;
@@ -1156,14 +1174,14 @@
 
 
                         var obj45listaDsctoJson = {};
-                            obj45listaDsctoJson.matPosicion = "" ;
+                            obj45listaDsctoJson.matPosicion = 10 ;
                             obj45listaDsctoJson.id = 45;
                            obj45listaDsctoJson.Posicion = "" ;
                             obj45listaDsctoJson.Condicion = "" ;
-                            obj45listaDsctoJson.Importe = "" ;
-                            obj45listaDsctoJson.ImporteAnterior = "" ;
+                            obj45listaDsctoJson.Importe = 0 ;
+                            obj45listaDsctoJson.ImporteAnterior = 0 ;
                             obj45listaDsctoJson.Moneda = "" ;
-                            obj45listaDsctoJson.Valor = "" ;
+                            obj45listaDsctoJson.Valor = 0 ;
                             obj45listaDsctoJson.Denominacion = "" ;
                             obj45listaDsctoJson.esPorcentaje = "" ;
                             obj45listaDsctoJson.LimiteInferior = "" ;
@@ -1171,28 +1189,28 @@
 
 
                         var obj46listaDsctoJson = {};
-                            obj46listaDsctoJson.matPosicion = "" ;
+                            obj46listaDsctoJson.matPosicion = 10 ;
                             obj46listaDsctoJson.id = 46;
                            obj46listaDsctoJson.Posicion = "" ;
                             obj46listaDsctoJson.Condicion = "" ;
-                            obj46listaDsctoJson.Importe = "" ;
-                            obj46listaDsctoJson.ImporteAnterior = "" ;
+                            obj46listaDsctoJson.Importe = 0 ;
+                            obj46listaDsctoJson.ImporteAnterior = 0 ;
                             obj46listaDsctoJson.Moneda = "" ;
-                            obj46listaDsctoJson.Valor = "" ;
+                            obj46listaDsctoJson.Valor = 0 ;
                             obj46listaDsctoJson.Denominacion = "" ;
                             obj46listaDsctoJson.esPorcentaje = "" ;
                             obj46listaDsctoJson.LimiteInferior = "" ;
                             obj46listaDsctoJson.Recalcular = "" ;
 
                         var obj47listaDsctoJson = {};
-                            obj47listaDsctoJson.matPosicion = "" ;
+                            obj47listaDsctoJson.matPosicion = 10 ;
                             obj47listaDsctoJson.id = 47;
                            obj47listaDsctoJson.Posicion = "" ;
                             obj47listaDsctoJson.Condicion = "" ;
-                            obj47listaDsctoJson.Importe = "" ;
-                            obj47listaDsctoJson.ImporteAnterior = "" ;
+                            obj47listaDsctoJson.Importe = 0 ;
+                            obj47listaDsctoJson.ImporteAnterior = 0 ;
                             obj47listaDsctoJson.Moneda = "" ;
-                            obj47listaDsctoJson.Valor = "" ;
+                            obj47listaDsctoJson.Valor = 0 ;
                             obj47listaDsctoJson.Denominacion = "" ;
                             obj47listaDsctoJson.esPorcentaje = "" ;
                             obj47listaDsctoJson.LimiteInferior = "" ;
@@ -1200,14 +1218,14 @@
 
 
                         var obj48listaDsctoJson = {};
-                            obj48listaDsctoJson.matPosicion = "" ;
+                            obj48listaDsctoJson.matPosicion = 10 ;
                             obj48listaDsctoJson.id = 48;
                            obj48listaDsctoJson.Posicion = "" ;
                             obj48listaDsctoJson.Condicion = "" ;
-                            obj48listaDsctoJson.Importe = "" ;
-                            obj48listaDsctoJson.ImporteAnterior = "" ;
+                            obj48listaDsctoJson.Importe = 0 ;
+                            obj48listaDsctoJson.ImporteAnterior = 0 ;
                             obj48listaDsctoJson.Moneda = "" ;
-                            obj48listaDsctoJson.Valor = "" ;
+                            obj48listaDsctoJson.Valor = 0 ;
                             obj48listaDsctoJson.Denominacion = "" ;
                             obj48listaDsctoJson.esPorcentaje = "" ;
                             obj48listaDsctoJson.LimiteInferior = "" ;
@@ -1215,56 +1233,56 @@
 
 
                         var obj49listaDsctoJson = {};
-                            obj49listaDsctoJson.matPosicion = "" ;
+                            obj49listaDsctoJson.matPosicion = 10 ;
                             obj49listaDsctoJson.id = 49;
                            obj49listaDsctoJson.Posicion = "" ;
                             obj49listaDsctoJson.Condicion = "" ;
-                            obj49listaDsctoJson.Importe = "" ;
-                            obj49listaDsctoJson.ImporteAnterior = "" ;
+                            obj49listaDsctoJson.Importe = 0 ;
+                            obj49listaDsctoJson.ImporteAnterior = 0 ;
                             obj49listaDsctoJson.Moneda = "" ;
-                            obj49listaDsctoJson.Valor = "" ;
+                            obj49listaDsctoJson.Valor = 0 ;
                             obj49listaDsctoJson.Denominacion = "" ;
                             obj49listaDsctoJson.esPorcentaje = "" ;
                             obj49listaDsctoJson.LimiteInferior = "" ;
                             obj49listaDsctoJson.Recalcular = "" ;
 
                         var obj50listaDsctoJson = {};
-                            obj50listaDsctoJson.matPosicion = "" ;
+                            obj50listaDsctoJson.matPosicion = 10 ;
                             obj50listaDsctoJson.id = 50;
                            obj50listaDsctoJson.Posicion = "" ;
                             obj50listaDsctoJson.Condicion = "" ;
-                            obj50listaDsctoJson.Importe = "" ;
-                            obj50listaDsctoJson.ImporteAnterior = "" ;
+                            obj50listaDsctoJson.Importe = 0 ;
+                            obj50listaDsctoJson.ImporteAnterior = 0 ;
                             obj50listaDsctoJson.Moneda = "" ;
-                            obj50listaDsctoJson.Valor = "" ;
+                            obj50listaDsctoJson.Valor = 0 ;
                             obj50listaDsctoJson.Denominacion = "" ;
                             obj50listaDsctoJson.esPorcentaje = "" ;
                             obj50listaDsctoJson.LimiteInferior = "" ;
                             obj50listaDsctoJson.Recalcular = "" ;
 
                         var obj51listaDsctoJson = {};
-                            obj51listaDsctoJson.matPosicion = "" ;
+                            obj51listaDsctoJson.matPosicion = 10 ;
                             obj51listaDsctoJson.id = 51;
                            obj51listaDsctoJson.Posicion = "" ;
                             obj51listaDsctoJson.Condicion = "" ;
-                            obj51listaDsctoJson.Importe = "" ;
-                            obj51listaDsctoJson.ImporteAnterior = "" ;
+                            obj51listaDsctoJson.Importe = 0 ;
+                            obj51listaDsctoJson.ImporteAnterior = 0 ;
                             obj51listaDsctoJson.Moneda = "" ;
-                            obj51listaDsctoJson.Valor = "" ;
+                            obj51listaDsctoJson.Valor = 0 ;
                             obj51listaDsctoJson.Denominacion = "" ;
                             obj51listaDsctoJson.esPorcentaje = "" ;
                             obj51listaDsctoJson.LimiteInferior = "" ;
                             obj51listaDsctoJson.Recalcular = "" ;
 
                         var obj52listaDsctoJson = {};
-                            obj52listaDsctoJson.matPosicion = "" ;
+                            obj52listaDsctoJson.matPosicion = 10 ;
                             obj52listaDsctoJson.id = 52;
                            obj52listaDsctoJson.Posicion = "" ;
                             obj52listaDsctoJson.Condicion = "" ;
-                            obj52listaDsctoJson.Importe = "" ;
-                            obj52listaDsctoJson.ImporteAnterior = "" ;
+                            obj52listaDsctoJson.Importe = 0 ;
+                            obj52listaDsctoJson.ImporteAnterior = 0 ;
                             obj52listaDsctoJson.Moneda = "" ;
-                            obj52listaDsctoJson.Valor = "" ;
+                            obj52listaDsctoJson.Valor = 0 ;
                             obj52listaDsctoJson.Denominacion = "" ;
                             obj52listaDsctoJson.esPorcentaje = "" ;
                             obj52listaDsctoJson.LimiteInferior = "" ;
@@ -1272,14 +1290,14 @@
 
 
                         var obj53listaDsctoJson ={};
-                            obj53listaDsctoJson.matPosicion = "" ;
+                            obj53listaDsctoJson.matPosicion = 10 ;
                             obj53listaDsctoJson.id = 53;
                            obj53listaDsctoJson.Posicion = "" ;
                             obj53listaDsctoJson.Condicion = "" ;
-                            obj53listaDsctoJson.Importe = "" ;
-                            obj53listaDsctoJson.ImporteAnterior = "" ;
+                            obj53listaDsctoJson.Importe = 0 ;
+                            obj53listaDsctoJson.ImporteAnterior = 0 ;
                             obj53listaDsctoJson.Moneda = "" ;
-                            obj53listaDsctoJson.Valor = "" ;
+                            obj53listaDsctoJson.Valor = 0 ;
                             obj53listaDsctoJson.Denominacion = "" ;
                             obj53listaDsctoJson.esPorcentaje = "" ;
                             obj53listaDsctoJson.LimiteInferior = "" ;
@@ -1287,14 +1305,14 @@
 
 
                         var obj54listaDsctoJson = {};
-                            obj54listaDsctoJson.matPosicion = "" ;
+                            obj54listaDsctoJson.matPosicion = 10 ;
                             obj54listaDsctoJson.id = 54;
                            obj54listaDsctoJson.Posicion = "" ;
                             obj54listaDsctoJson.Condicion = "" ;
-                            obj54listaDsctoJson.Importe = "" ;
-                            obj54listaDsctoJson.ImporteAnterior = "" ;
+                            obj54listaDsctoJson.Importe = 0 ;
+                            obj54listaDsctoJson.ImporteAnterior = 0 ;
                             obj54listaDsctoJson.Moneda = "" ;
-                            obj54listaDsctoJson.Valor = "" ;
+                            obj54listaDsctoJson.Valor = 0 ;
                             obj54listaDsctoJson.Denominacion = "" ;
                             obj54listaDsctoJson.esPorcentaje = "" ;
                             obj54listaDsctoJson.LimiteInferior = "" ;
@@ -1302,14 +1320,14 @@
 
 
                         var obj55listaDsctoJson = {};
-                            obj55listaDsctoJson.matPosicion = "" ;
+                            obj55listaDsctoJson.matPosicion = 10 ;
                             obj55listaDsctoJson.id = 55;
                            obj55listaDsctoJson.Posicion = "" ;
                             obj55listaDsctoJson.Condicion = "" ;
-                            obj55listaDsctoJson.Importe = "" ;
-                            obj55listaDsctoJson.ImporteAnterior = "" ;
+                            obj55listaDsctoJson.Importe = 0 ;
+                            obj55listaDsctoJson.ImporteAnterior = 0 ;
                             obj55listaDsctoJson.Moneda = "" ;
-                            obj55listaDsctoJson.Valor = "" ;
+                            obj55listaDsctoJson.Valor = 0 ;
                             obj55listaDsctoJson.Denominacion = "" ;
                             obj55listaDsctoJson.esPorcentaje = "" ;
                             obj55listaDsctoJson.LimiteInferior = "" ;
@@ -1317,14 +1335,14 @@
 
 
                         var obj56listaDsctoJson = {};
-                            obj56listaDsctoJson.matPosicion = "" ;
+                            obj56listaDsctoJson.matPosicion = 10 ;
                             obj56listaDsctoJson.id = 56;
                            obj56listaDsctoJson.Posicion = "" ;
                             obj56listaDsctoJson.Condicion = "" ;
-                            obj56listaDsctoJson.Importe = "" ;
-                            obj56listaDsctoJson.ImporteAnterior = "" ;
+                            obj56listaDsctoJson.Importe = 0 ;
+                            obj56listaDsctoJson.ImporteAnterior = 0 ;
                             obj56listaDsctoJson.Moneda = "" ;
-                            obj56listaDsctoJson.Valor = "" ;
+                            obj56listaDsctoJson.Valor = 0 ;
                             obj56listaDsctoJson.Denominacion = "" ;
                             obj56listaDsctoJson.esPorcentaje = "" ;
                             obj56listaDsctoJson.LimiteInferior = "" ;
@@ -1332,14 +1350,14 @@
 
 
                         var obj57listaDsctoJson = {};
-                            obj57listaDsctoJson.matPosicion = "" ;
+                            obj57listaDsctoJson.matPosicion = 10 ;
                             obj57listaDsctoJson.id = 57;
                            obj57listaDsctoJson.Posicion = "" ;
                             obj57listaDsctoJson.Condicion = "" ;
-                            obj57listaDsctoJson.Importe = "" ;
-                            obj57listaDsctoJson.ImporteAnterior = "" ;
+                            obj57listaDsctoJson.Importe = 0 ;
+                            obj57listaDsctoJson.ImporteAnterior = 0 ;
                             obj57listaDsctoJson.Moneda = "" ;
-                            obj57listaDsctoJson.Valor = "" ;
+                            obj57listaDsctoJson.Valor = 0 ;
                             obj57listaDsctoJson.Denominacion = "" ;
                             obj57listaDsctoJson.esPorcentaje = "" ;
                             obj57listaDsctoJson.LimiteInferior = "" ;
@@ -1347,14 +1365,14 @@
 
 
                         var obj58listaDsctoJson = {};
-                            obj58listaDsctoJson.matPosicion = "" ;
+                            obj58listaDsctoJson.matPosicion = 10 ;
                             obj58listaDsctoJson.id = 58;
                            obj58listaDsctoJson.Posicion = "" ;
                             obj58listaDsctoJson.Condicion = "" ;
-                            obj58listaDsctoJson.Importe = "" ;
-                            obj58listaDsctoJson.ImporteAnterior = "" ;
+                            obj58listaDsctoJson.Importe = 0 ;
+                            obj58listaDsctoJson.ImporteAnterior = 0 ;
                             obj58listaDsctoJson.Moneda = "" ;
-                            obj58listaDsctoJson.Valor = "" ;
+                            obj58listaDsctoJson.Valor = 0 ;
                             obj58listaDsctoJson.Denominacion = "" ;
                             obj58listaDsctoJson.esPorcentaje = "" ;
                             obj58listaDsctoJson.LimiteInferior = "" ;
@@ -1362,14 +1380,14 @@
 
 
                         var obj59listaDsctoJson = {};
-                            obj59listaDsctoJson.matPosicion = "" ;
+                            obj59listaDsctoJson.matPosicion = 10 ;
                             obj59listaDsctoJson.id = 59;
                            obj59listaDsctoJson.Posicion = "" ;
                             obj59listaDsctoJson.Condicion = "" ;
-                            obj59listaDsctoJson.Importe = "" ;
-                            obj59listaDsctoJson.ImporteAnterior = "" ;
+                            obj59listaDsctoJson.Importe = 0 ;
+                            obj59listaDsctoJson.ImporteAnterior = 0 ;
                             obj59listaDsctoJson.Moneda = "" ;
-                            obj59listaDsctoJson.Valor = "" ;
+                            obj59listaDsctoJson.Valor = 0 ;
                             obj59listaDsctoJson.Denominacion = "" ;
                             obj59listaDsctoJson.esPorcentaje = "" ;
                             obj59listaDsctoJson.LimiteInferior = "" ;
@@ -1377,14 +1395,14 @@
 
 
                         var obj60listaDsctoJson = {};
-                            obj60listaDsctoJson.matPosicion = "" ;
+                            obj60listaDsctoJson.matPosicion = 10 ;
                             obj60listaDsctoJson.id = 60;
                            obj60listaDsctoJson.Posicion = "" ;
                             obj60listaDsctoJson.Condicion = "" ;
-                            obj60listaDsctoJson.Importe = "" ;
-                            obj60listaDsctoJson.ImporteAnterior = "" ;
+                            obj60listaDsctoJson.Importe = 0 ;
+                            obj60listaDsctoJson.ImporteAnterior = 0 ;
                             obj60listaDsctoJson.Moneda = "" ;
-                            obj60listaDsctoJson.Valor = "" ;
+                            obj60listaDsctoJson.Valor = 0 ;
                             obj60listaDsctoJson.Denominacion = "" ;
                             obj60listaDsctoJson.esPorcentaje = "" ;
                             obj60listaDsctoJson.LimiteInferior = "" ;
@@ -1392,14 +1410,14 @@
 
 
                         var obj61listaDsctoJson = {};
-                            obj61listaDsctoJson.matPosicion = "" ;
+                            obj61listaDsctoJson.matPosicion = 10 ;
                             obj61listaDsctoJson.id = 61;
                            obj61listaDsctoJson.Posicion = "" ;
                             obj61listaDsctoJson.Condicion = "" ;
-                            obj61listaDsctoJson.Importe = "" ;
-                            obj61listaDsctoJson.ImporteAnterior = "" ;
+                            obj61listaDsctoJson.Importe = 0 ;
+                            obj61listaDsctoJson.ImporteAnterior = 0 ;
                             obj61listaDsctoJson.Moneda = "" ;
-                            obj61listaDsctoJson.Valor = "" ;
+                            obj61listaDsctoJson.Valor = 0 ;
                             obj61listaDsctoJson.Denominacion = "" ;
                             obj61listaDsctoJson.esPorcentaje = "" ;
                             obj61listaDsctoJson.LimiteInferior = "" ;
@@ -1407,14 +1425,14 @@
 
 
                         var obj62listaDsctoJson = {};
-                            obj62listaDsctoJson.matPosicion = "" ;
+                            obj62listaDsctoJson.matPosicion = 10 ;
                             obj62listaDsctoJson.id = 62;
                            obj62listaDsctoJson.Posicion = "" ;
                             obj62listaDsctoJson.Condicion = "" ;
-                            obj62listaDsctoJson.Importe = "" ;
-                            obj62listaDsctoJson.ImporteAnterior = "" ;
+                            obj62listaDsctoJson.Importe = 0 ;
+                            obj62listaDsctoJson.ImporteAnterior = 0 ;
                             obj62listaDsctoJson.Moneda = "" ;
-                            obj62listaDsctoJson.Valor = "" ;
+                            obj62listaDsctoJson.Valor = 0 ;
                             obj62listaDsctoJson.Denominacion = "" ;
                             obj62listaDsctoJson.esPorcentaje = "" ;
                             obj62listaDsctoJson.LimiteInferior = "" ;
@@ -1422,14 +1440,14 @@
 
 
                         var obj63listaDsctoJson = {};
-                            obj63listaDsctoJson.matPosicion = "" ;
+                            obj63listaDsctoJson.matPosicion = 10 ;
                             obj63listaDsctoJson.id = 63;
                            obj63listaDsctoJson.Posicion = "" ;
                             obj63listaDsctoJson.Condicion = "" ;
-                            obj63listaDsctoJson.Importe = "" ;
-                            obj63listaDsctoJson.ImporteAnterior = "" ;
+                            obj63listaDsctoJson.Importe = 0 ;
+                            obj63listaDsctoJson.ImporteAnterior = 0 ;
                             obj63listaDsctoJson.Moneda = "" ;
-                            obj63listaDsctoJson.Valor = "" ;
+                            obj63listaDsctoJson.Valor = 0 ;
                             obj63listaDsctoJson.Denominacion = "" ;
                             obj63listaDsctoJson.esPorcentaje = "" ;
                             obj63listaDsctoJson.LimiteInferior = "" ;
@@ -1437,14 +1455,14 @@
 
 
                         var obj64listaDsctoJson = {};
-                            obj64listaDsctoJson.matPosicion = "" ;
+                            obj64listaDsctoJson.matPosicion = 10 ;
                             obj64listaDsctoJson.id = 64;
                            obj64listaDsctoJson.Posicion = "" ;
                             obj64listaDsctoJson.Condicion = "" ;
-                            obj64listaDsctoJson.Importe = "" ;
-                            obj64listaDsctoJson.ImporteAnterior = "" ;
+                            obj64listaDsctoJson.Importe = 0 ;
+                            obj64listaDsctoJson.ImporteAnterior = 0 ;
                             obj64listaDsctoJson.Moneda = "" ;
-                            obj64listaDsctoJson.Valor = "" ;
+                            obj64listaDsctoJson.Valor = 0 ;
                             obj64listaDsctoJson.Denominacion = "" ;
                             obj64listaDsctoJson.esPorcentaje = "" ;
                             obj64listaDsctoJson.LimiteInferior = "" ;
@@ -1452,14 +1470,14 @@
 
 
                         var obj65listaDsctoJson = {};
-                            obj65listaDsctoJson.matPosicion = "" ;
+                            obj65listaDsctoJson.matPosicion = 10 ;
                             obj65listaDsctoJson.id = 65;
                            obj65listaDsctoJson.Posicion = "" ;
                             obj65listaDsctoJson.Condicion = "" ;
-                            obj65listaDsctoJson.Importe = "" ;
-                            obj65listaDsctoJson.ImporteAnterior = "" ;
+                            obj65listaDsctoJson.Importe = 0 ;
+                            obj65listaDsctoJson.ImporteAnterior = 0 ;
                             obj65listaDsctoJson.Moneda = "" ;
-                            obj65listaDsctoJson.Valor = "" ;
+                            obj65listaDsctoJson.Valor = 0 ;
                             obj65listaDsctoJson.Denominacion = "" ;
                             obj65listaDsctoJson.esPorcentaje = "" ;
                             obj65listaDsctoJson.LimiteInferior = "" ;
@@ -1467,14 +1485,14 @@
 
 
                         var obj66listaDsctoJson = {};
-                            obj66listaDsctoJson.matPosicion = "" ;
+                            obj66listaDsctoJson.matPosicion = 10 ;
                             obj66listaDsctoJson.id = 66;
                            obj66listaDsctoJson.Posicion = "" ;
                             obj66listaDsctoJson.Condicion = "" ;
-                            obj66listaDsctoJson.Importe = "" ;
-                            obj66listaDsctoJson.ImporteAnterior = "" ;
+                            obj66listaDsctoJson.Importe = 0 ;
+                            obj66listaDsctoJson.ImporteAnterior = 0 ;
                             obj66listaDsctoJson.Moneda = "" ;
-                            obj66listaDsctoJson.Valor = "" ;
+                            obj66listaDsctoJson.Valor = 0 ;
                             obj66listaDsctoJson.Denominacion = "" ;
                             obj66listaDsctoJson.esPorcentaje = "" ;
                             obj66listaDsctoJson.LimiteInferior = "" ;
@@ -1482,14 +1500,14 @@
 
 
                         var obj67listaDsctoJson = {};
-                            obj67listaDsctoJson.matPosicion = "" ;
+                            obj67listaDsctoJson.matPosicion = 10 ;
                             obj67listaDsctoJson.id = 67;
                            obj67listaDsctoJson.Posicion = "" ;
                             obj67listaDsctoJson.Condicion = "" ;
-                            obj67listaDsctoJson.Importe = "" ;
-                            obj67listaDsctoJson.ImporteAnterior = "" ;
+                            obj67listaDsctoJson.Importe = 0 ;
+                            obj67listaDsctoJson.ImporteAnterior = 0 ;
                             obj67listaDsctoJson.Moneda = "" ;
-                            obj67listaDsctoJson.Valor = "" ;
+                            obj67listaDsctoJson.Valor = 0 ;
                             obj67listaDsctoJson.Denominacion = "" ;
                             obj67listaDsctoJson.esPorcentaje = "" ;
                             obj67listaDsctoJson.LimiteInferior = "" ;
@@ -1497,14 +1515,14 @@
 
 
                         var obj68listaDsctoJson = {};
-                            obj68listaDsctoJson.matPosicion = "" ;
+                            obj68listaDsctoJson.matPosicion = 10 ;
                             obj68listaDsctoJson.id = 68;
                            obj68listaDsctoJson.Posicion = "" ;
                             obj68listaDsctoJson.Condicion = "" ;
-                            obj68listaDsctoJson.Importe = "" ;
-                            obj68listaDsctoJson.ImporteAnterior = "" ;
+                            obj68listaDsctoJson.Importe = 0 ;
+                            obj68listaDsctoJson.ImporteAnterior = 0 ;
                             obj68listaDsctoJson.Moneda = "" ;
-                            obj68listaDsctoJson.Valor = "" ;
+                            obj68listaDsctoJson.Valor = 0 ;
                             obj68listaDsctoJson.Denominacion = "" ;
                             obj68listaDsctoJson.esPorcentaje = "" ;
                             obj68listaDsctoJson.LimiteInferior = "" ;
@@ -1512,14 +1530,14 @@
 
 
                         var obj69listaDsctoJson = {};
-                            obj69listaDsctoJson.matPosicion = "" ;
+                            obj69listaDsctoJson.matPosicion = 10 ;
                             obj69listaDsctoJson.id = 69;
                            obj69listaDsctoJson.Posicion = "" ;
                             obj69listaDsctoJson.Condicion = "" ;
-                            obj69listaDsctoJson.Importe = "" ;
-                            obj69listaDsctoJson.ImporteAnterior = "" ;
+                            obj69listaDsctoJson.Importe = 0 ;
+                            obj69listaDsctoJson.ImporteAnterior = 0 ;
                             obj69listaDsctoJson.Moneda = "" ;
-                            obj69listaDsctoJson.Valor = "" ;
+                            obj69listaDsctoJson.Valor = 0 ;
                             obj69listaDsctoJson.Denominacion = "" ;
                             obj69listaDsctoJson.esPorcentaje = "" ;
                             obj69listaDsctoJson.LimiteInferior = "" ;
@@ -1527,14 +1545,14 @@
 
 
                         var obj70listaDsctoJson = {};
-                            obj70listaDsctoJson.matPosicion = "" ;
+                            obj70listaDsctoJson.matPosicion = 10 ;
                             obj70listaDsctoJson.id = 70;
                            obj70listaDsctoJson.Posicion = "" ;
                             obj70listaDsctoJson.Condicion = "" ;
-                            obj70listaDsctoJson.Importe = "" ;
-                            obj70listaDsctoJson.ImporteAnterior = "" ;
+                            obj70listaDsctoJson.Importe = 0 ;
+                            obj70listaDsctoJson.ImporteAnterior = 0 ;
                             obj70listaDsctoJson.Moneda = "" ;
-                            obj70listaDsctoJson.Valor = "" ;
+                            obj70listaDsctoJson.Valor = 0 ;
                             obj70listaDsctoJson.Denominacion = "" ;
                             obj70listaDsctoJson.esPorcentaje = "" ;
                             obj70listaDsctoJson.LimiteInferior = "" ;
@@ -1542,14 +1560,14 @@
 
 
                         var obj71listaDsctoJson = {};
-                            obj71listaDsctoJson.matPosicion = "" ;
+                            obj71listaDsctoJson.matPosicion = 10 ;
                             obj71listaDsctoJson.id = 71;
                            obj71listaDsctoJson.Posicion = "" ;
                             obj71listaDsctoJson.Condicion = "" ;
-                            obj71listaDsctoJson.Importe = "" ;
-                            obj71listaDsctoJson.ImporteAnterior = "" ;
+                            obj71listaDsctoJson.Importe = 0 ;
+                            obj71listaDsctoJson.ImporteAnterior = 0 ;
                             obj71listaDsctoJson.Moneda = "" ;
-                            obj71listaDsctoJson.Valor = "" ;
+                            obj71listaDsctoJson.Valor = 0 ;
                             obj71listaDsctoJson.Denominacion = "" ;
                             obj71listaDsctoJson.esPorcentaje = "" ;
                             obj71listaDsctoJson.LimiteInferior = "" ;
@@ -1557,20 +1575,20 @@
 
 
                         var obj72listaDsctoJson = {};
-                            obj72listaDsctoJson.matPosicion = "" ;
+                            obj72listaDsctoJson.matPosicion = 10 ;
                             obj72listaDsctoJson.id = 72;
                            obj72listaDsctoJson.Posicion = "" ;
                             obj72listaDsctoJson.Condicion = "" ;
-                            obj72listaDsctoJson.Importe = "" ;
-                            obj72listaDsctoJson.ImporteAnterior = "" ;
+                            obj72listaDsctoJson.Importe = 0 ;
+                            obj72listaDsctoJson.ImporteAnterior = 0 ;
                             obj72listaDsctoJson.Moneda = "" ;
-                            obj72listaDsctoJson.Valor = "" ;
+                            obj72listaDsctoJson.Valor = 0 ;
                             obj72listaDsctoJson.Denominacion = "" ;
                             obj72listaDsctoJson.esPorcentaje = "" ;
                             obj72listaDsctoJson.LimiteInferior = "" ;
                             obj72listaDsctoJson.Recalcular = "" ;
 
-
+                        */
                     listaDsctoJson.push(obj1listaDsctoJson);
                     listaDsctoJson.push(obj2listaDsctoJson);
                     listaDsctoJson.push(obj3listaDsctoJson);
@@ -1589,6 +1607,8 @@
                     listaDsctoJson.push(obj16listaDsctoJson);
                     listaDsctoJson.push(obj17listaDsctoJson);
                     listaDsctoJson.push(obj18listaDsctoJson);
+
+                    /*
                     listaDsctoJson.push(obj19listaDsctoJson);
                     listaDsctoJson.push(obj20listaDsctoJson);
                     listaDsctoJson.push(obj21listaDsctoJson);
@@ -1644,20 +1664,20 @@
                     listaDsctoJson.push(obj71listaDsctoJson);
                     listaDsctoJson.push(obj72listaDsctoJson);
 
-
+                    */
 
 
             var listaRepJson = [];
-                obj1listaRepJson = {};
+                var obj1listaRepJson = {};
                         
-                            obj1listaRepJson.matPosicion = "" ; //10,
-                            obj1listaRepJson.id = "" ; //1,
+                            obj1listaRepJson.matPosicion = 10 ; //10,
+                            obj1listaRepJson.id = 1 ; //1,
                             obj1listaRepJson.TipoReparto = "" ; //"",
-                            obj1listaRepJson.Pos = "" ; //"0001",
-                            obj1listaRepJson.PosCorto = "" ; //"1",
-                            obj1listaRepJson.FechaEntrega = "" ; //"2014-02-01T05:00:00.000Z",
-                            obj1listaRepJson.CantPed = "" ; //2,
-                            obj1listaRepJson.CantConf = "" ; //2,
+                            obj1listaRepJson.Pos = "0001" ; //"0001",
+                            obj1listaRepJson.PosCorto = "1" ; //"1",
+                            obj1listaRepJson.FechaEntrega = "2017-06-22T10:00:00.000Z" ; //"2014-02-01T05:00:00.000Z",
+                            obj1listaRepJson.CantPed = 1 ; //2,
+                            obj1listaRepJson.CantConf = 1 ; //2,
                             obj1listaRepJson.CodUMedida = "" ; //""},
 
 
@@ -1666,27 +1686,28 @@
 
 
 
+
             var listaIntJson = [];
                         var obj1listaIntJson ={};
 
                             obj1listaIntJson.id = 1;
-                            obj1listaIntJson.PedidoId = "" ;
-                            obj1listaIntJson.Funcion = "" ;
-                            obj1listaIntJson.Codigo = "" ;
-                            obj1listaIntJson.Ruc = "" ;
-                            obj1listaIntJson.Descripcion = "" ;
+                            obj1listaIntJson.PedidoId = 0 ;
+                            obj1listaIntJson.Funcion = "AG" ;
+                            obj1listaIntJson.Codigo = "0000101317" ;
+                            obj1listaIntJson.Ruc = "41233469" ;
+                            obj1listaIntJson.Descripcion = "Erick De La Cruz De La Cruz" ;
                             obj1listaIntJson.Titulo = "" ;
-                            obj1listaIntJson.Direccion = "" ;
+                            obj1listaIntJson.Direccion = "LOS CEDROS" ;
                             obj1listaIntJson.DireccionCompleta = "" ;
-                            obj1listaIntJson.Ciudad = "" ;
+                            obj1listaIntJson.Ciudad = "CERCADO DE LIMA - LIMA" ;
                             obj1listaIntJson.Pais = "" ;
-                            obj1listaIntJson.CodigoPostal = "" ;
-                            obj1listaIntJson.Distrito = "" ;
-                            obj1listaIntJson.Telefono = "" ;
+                            obj1listaIntJson.CodigoPostal = "LIMA 01" ;
+                            obj1listaIntJson.Distrito = "CERCADO DE LIMA - LIMA" ;
+                            obj1listaIntJson.Telefono = "9879212992633555" ;
                             obj1listaIntJson.TelefonoMovil = "" ;
-                            obj1listaIntJson.Mail = "" ;
-                            obj1listaIntJson.PersonaFisica = "" ;
-                            obj1listaIntJson.Eventual = "" ;
+                            obj1listaIntJson.Mail = "erick@hot.com" ;
+                            obj1listaIntJson.PersonaFisica = false ;
+                            obj1listaIntJson.Eventual = false ;
                             obj1listaIntJson.ApPat = "" ;
                             obj1listaIntJson.ApMat = "" ;
                             obj1listaIntJson.TranspZone = "" ;
@@ -1702,23 +1723,23 @@
                         var obj2listaIntJson = {};
 
                             obj2listaIntJson.id = 2;
-                            obj2listaIntJson.PedidoId = "" ;
-                            obj2listaIntJson.Funcion = "" ;
-                            obj2listaIntJson.Codigo = "" ;
+                            obj2listaIntJson.PedidoId = 0 ;
+                            obj2listaIntJson.Funcion = "RE" ;
+                            obj2listaIntJson.Codigo = "0000101317" ;
                             obj2listaIntJson.Ruc = "" ;
-                            obj2listaIntJson.Descripcion = "" ;
+                            obj2listaIntJson.Descripcion = "Erick De La Cruz De La Cruz" ;
                             obj2listaIntJson.Titulo = "" ;
-                            obj2listaIntJson.Direccion = "" ;
+                            obj2listaIntJson.Direccion = "LOS CEDROS" ;
                             obj2listaIntJson.DireccionCompleta = "" ;
-                            obj2listaIntJson.Ciudad = "" ;
+                            obj2listaIntJson.Ciudad = "CERCADO DE LIMA - LIMA" ;
                             obj2listaIntJson.Pais = "" ;
-                            obj2listaIntJson.CodigoPostal = "" ;
-                            obj2listaIntJson.Distrito = "" ;
-                            obj2listaIntJson.Telefono = "" ;
+                            obj2listaIntJson.CodigoPostal = "LIMA 01" ;
+                            obj2listaIntJson.Distrito = "CERCADO DE LIMA - LIMA" ;
+                            obj2listaIntJson.Telefono = "9879212992633555" ;
                             obj2listaIntJson.TelefonoMovil = "" ;
                             obj2listaIntJson.Mail = "" ;
-                            obj2listaIntJson.PersonaFisica = "" ;
-                            obj2listaIntJson.Eventual = "" ;
+                            obj2listaIntJson.PersonaFisica = false ;
+                            obj2listaIntJson.Eventual = false ;
                             obj2listaIntJson.ApPat = "" ;
                             obj2listaIntJson.ApMat = "" ;
                             obj2listaIntJson.TranspZone = "" ;
@@ -1733,23 +1754,23 @@
 
                         var obj3listaIntJson = {};
                             obj3listaIntJson.id = 3;
-                            obj3listaIntJson.PedidoId = "" ;
-                            obj3listaIntJson.Funcion = "" ;
-                            obj3listaIntJson.Codigo = "" ;
+                            obj3listaIntJson.PedidoId = 0 ;
+                            obj3listaIntJson.Funcion = "WE" ;
+                            obj3listaIntJson.Codigo = "0000101317" ;
                             obj3listaIntJson.Ruc = "" ;
-                            obj3listaIntJson.Descripcion = "" ;
+                            obj3listaIntJson.Descripcion = "Erick De La Cruz De La Cruz" ;
                             obj3listaIntJson.Titulo = "" ;
-                            obj3listaIntJson.Direccion = "" ;
+                            obj3listaIntJson.Direccion = "LOS CEDROS" ;
                             obj3listaIntJson.DireccionCompleta = "" ;
-                            obj3listaIntJson.Ciudad = "" ;
+                            obj3listaIntJson.Ciudad = "CERCADO DE LIMA - LIMA" ;
                             obj3listaIntJson.Pais = "" ;
-                            obj3listaIntJson.CodigoPostal = "" ;
-                            obj3listaIntJson.Distrito = "" ;
-                            obj3listaIntJson.Telefono = "" ;
+                            obj3listaIntJson.CodigoPostal = "LIMA 01" ;
+                            obj3listaIntJson.Distrito = "CERCADO DE LIMA - LIMA" ;
+                            obj3listaIntJson.Telefono = "9879212992633555" ;
                             obj3listaIntJson.TelefonoMovil = "" ;
                             obj3listaIntJson.Mail = "" ;
-                            obj3listaIntJson.PersonaFisica = "" ;
-                            obj3listaIntJson.Eventual = "" ;
+                            obj3listaIntJson.PersonaFisica = false ;
+                            obj3listaIntJson.Eventual = false ;
                             obj3listaIntJson.ApPat = "" ;
                             obj3listaIntJson.ApMat = "" ;
                             obj3listaIntJson.TranspZone = "" ;
@@ -1765,23 +1786,23 @@
                         var obj4listaIntJson = {};
 
                             obj4listaIntJson.id = 4;
-                            obj4listaIntJson.PedidoId = "" ;
-                            obj4listaIntJson.Funcion = "" ;
-                            obj4listaIntJson.Codigo = "" ;
-                            obj4listaIntJson.Ruc = "" ;
-                            obj4listaIntJson.Descripcion = "" ;
+                            obj4listaIntJson.PedidoId = 0 ;
+                            obj4listaIntJson.Funcion = "RG" ;
+                            obj4listaIntJson.Codigo = "0000101317" ;
+                            obj4listaIntJson.Ruc = "41233469" ;
+                            obj4listaIntJson.Descripcion = "Erick De La Cruz De La Cruz" ;
                             obj4listaIntJson.Titulo = "" ;
-                            obj4listaIntJson.Direccion = "" ;
+                            obj4listaIntJson.Direccion = "LOS CEDROS" ;
                             obj4listaIntJson.DireccionCompleta = "" ;
-                            obj4listaIntJson.Ciudad = "" ;
+                            obj4listaIntJson.Ciudad = "CERCADO DE LIMA - LIMA" ;
                             obj4listaIntJson.Pais = "" ;
-                            obj4listaIntJson.CodigoPostal = "" ;
-                            obj4listaIntJson.Distrito = "" ;
-                            obj4listaIntJson.Telefono = "" ;
+                            obj4listaIntJson.CodigoPostal = "LIMA 01" ;
+                            obj4listaIntJson.Distrito = "CERCADO DE LIMA - LIMA" ;
+                            obj4listaIntJson.Telefono = "9879212992633555" ;
                             obj4listaIntJson.TelefonoMovil = "" ;
                             obj4listaIntJson.Mail = "" ;
-                            obj4listaIntJson.PersonaFisica = "" ;
-                            obj4listaIntJson.Eventual = "" ;
+                            obj4listaIntJson.PersonaFisica = false ;
+                            obj4listaIntJson.Eventual = false ;
                             obj4listaIntJson.ApPat = "" ;
                             obj4listaIntJson.ApMat = "" ;
                             obj4listaIntJson.TranspZone = "" ;
@@ -1798,8 +1819,8 @@
                         var obj5listaIntJson = {};
 
                             obj5listaIntJson.id = 5;
-                            obj5listaIntJson.PedidoId = "" ;
-                            obj5listaIntJson.Funcion = "" ;
+                            obj5listaIntJson.PedidoId = 0 ;
+                            obj5listaIntJson.Funcion = "VE" ;
                             obj5listaIntJson.Codigo = "" ;
                             obj5listaIntJson.Ruc = "" ;
                             obj5listaIntJson.Descripcion = "" ;
@@ -1813,17 +1834,17 @@
                             obj5listaIntJson.Telefono = "" ;
                             obj5listaIntJson.TelefonoMovil = "" ;
                             obj5listaIntJson.Mail = "" ;
-                            obj5listaIntJson.PersonaFisica = "" ;
-                            obj5listaIntJson.Eventual = "" ;
+                            obj5listaIntJson.PersonaFisica = false ;
+                            obj5listaIntJson.Eventual = false ;
                             obj5listaIntJson.ApPat = "" ;
                             obj5listaIntJson.ApMat = "" ;
                             obj5listaIntJson.TranspZone = "" ;
-                            obj5listaIntJson.CodPersona = "" ;
+                            obj5listaIntJson.CodPersona = "00001802" ;
                             obj5listaIntJson.Nombre = "" ;
                             obj5listaIntJson.Apellido = "" ;
                             obj5listaIntJson.Iniciales = "" ;
                             obj5listaIntJson.ApeSoltero = "" ;
-                            obj5listaIntJson.DescripcionP = "" ;
+                            obj5listaIntJson.DescripcionP = "Julio Edgardo Pingo" ;
                             obj5listaIntJson.Dni = "" ;
                             obj5listaIntJson.TelefonoP = "" ;
 
@@ -1831,8 +1852,8 @@
                         var obj6listaIntJson = {};
 
                             obj6listaIntJson.id = 6;
-                            obj6listaIntJson.PedidoId = "" ;
-                            obj6listaIntJson.Funcion = "" ;
+                            obj6listaIntJson.PedidoId = 0 ;
+                            obj6listaIntJson.Funcion = "Z3" ;
                             obj6listaIntJson.Codigo = "" ;
                             obj6listaIntJson.Ruc = "" ;
                             obj6listaIntJson.Descripcion = "" ;
@@ -1846,8 +1867,8 @@
                             obj6listaIntJson.Telefono = "" ;
                             obj6listaIntJson.TelefonoMovil = "" ;
                             obj6listaIntJson.Mail = "" ;
-                            obj6listaIntJson.PersonaFisica = "" ;
-                            obj6listaIntJson.Eventual = "" ;
+                            obj6listaIntJson.PersonaFisica = false ;
+                            obj6listaIntJson.Eventual = false ;
                             obj6listaIntJson.ApPat = "" ;
                             obj6listaIntJson.ApMat = "" ;
                             obj6listaIntJson.TranspZone = "" ;
@@ -1864,8 +1885,8 @@
                         var obj7listaIntJson = {};
 
                             obj7listaIntJson.id = 7;
-                            obj7listaIntJson.PedidoId = "" ;
-                            obj7listaIntJson.Funcion = "" ;
+                            obj7listaIntJson.PedidoId = 0 ;
+                            obj7listaIntJson.Funcion = "V2" ;
                             obj7listaIntJson.Codigo = "" ;
                             obj7listaIntJson.Ruc = "" ;
                             obj7listaIntJson.Descripcion = "" ;
@@ -1879,8 +1900,8 @@
                             obj7listaIntJson.Telefono = "" ;
                             obj7listaIntJson.TelefonoMovil = "" ;
                             obj7listaIntJson.Mail = "" ;
-                            obj7listaIntJson.PersonaFisica = "" ;
-                            obj7listaIntJson.Eventual = "" ;
+                            obj7listaIntJson.PersonaFisica = false ;
+                            obj7listaIntJson.Eventual = false ;
                             obj7listaIntJson.ApPat = "" ;
                             obj7listaIntJson.ApMat = "" ;
                             obj7listaIntJson.TranspZone = "" ;
@@ -1897,8 +1918,8 @@
                         var obj8listaIntJson = {};
 
                             obj8listaIntJson.id = 8;
-                            obj8listaIntJson.PedidoId = "" ;
-                            obj8listaIntJson.Funcion = "" ;
+                            obj8listaIntJson.PedidoId = 0 ;
+                            obj8listaIntJson.Funcion = "V3" ;
                             obj8listaIntJson.Codigo = "" ;
                             obj8listaIntJson.Ruc = "" ;
                             obj8listaIntJson.Descripcion = "" ;
@@ -1912,8 +1933,8 @@
                             obj8listaIntJson.Telefono = "" ;
                             obj8listaIntJson.TelefonoMovil = "" ;
                             obj8listaIntJson.Mail = "" ;
-                            obj8listaIntJson.PersonaFisica = "" ;
-                            obj8listaIntJson.Eventual = "" ;
+                            obj8listaIntJson.PersonaFisica = false ;
+                            obj8listaIntJson.Eventual = false ;
                             obj8listaIntJson.ApPat = "" ;
                             obj8listaIntJson.ApMat = "" ;
                             obj8listaIntJson.TranspZone = "" ;
@@ -1929,8 +1950,8 @@
 
                         var obj9listaIntJson = {};
                             obj9listaIntJson.id = 9;
-                            obj9listaIntJson.PedidoId = "" ;
-                            obj9listaIntJson.Funcion = "" ;
+                            obj9listaIntJson.PedidoId = 0 ;
+                            obj9listaIntJson.Funcion = "V4" ;
                             obj9listaIntJson.Codigo = "" ;
                             obj9listaIntJson.Ruc = "" ;
                             obj9listaIntJson.Descripcion = "" ;
@@ -1944,8 +1965,8 @@
                             obj9listaIntJson.Telefono = "" ;
                             obj9listaIntJson.TelefonoMovil = "" ;
                             obj9listaIntJson.Mail = "" ;
-                            obj9listaIntJson.PersonaFisica = "" ;
-                            obj9listaIntJson.Eventual = "" ;
+                            obj9listaIntJson.PersonaFisica = false ;
+                            obj9listaIntJson.Eventual = false ;
                             obj9listaIntJson.ApPat = "" ;
                             obj9listaIntJson.ApMat = "" ;
                             obj9listaIntJson.TranspZone = "" ;
@@ -1961,8 +1982,8 @@
 
                         var obj10listaIntJson = {};
                             obj10listaIntJson.id = 10;
-                            obj10listaIntJson.PedidoId = "" ;
-                            obj10listaIntJson.Funcion = "" ;
+                            obj10listaIntJson.PedidoId = 0 ;
+                            obj10listaIntJson.Funcion = "Z2" ;
                             obj10listaIntJson.Codigo = "" ;
                             obj10listaIntJson.Ruc = "" ;
                             obj10listaIntJson.Descripcion = "" ;
@@ -1976,8 +1997,8 @@
                             obj10listaIntJson.Telefono = "" ;
                             obj10listaIntJson.TelefonoMovil = "" ;
                             obj10listaIntJson.Mail = "" ;
-                            obj10listaIntJson.PersonaFisica = "" ;
-                            obj10listaIntJson.Eventual = "" ;
+                            obj10listaIntJson.PersonaFisica = false ;
+                            obj10listaIntJson.Eventual = false ;
                             obj10listaIntJson.ApPat = "" ;
                             obj10listaIntJson.ApMat = "" ;
                             obj10listaIntJson.TranspZone = "" ;
@@ -1992,8 +2013,8 @@
 
                         var obj11listaIntJson = {};
                             obj11listaIntJson.id = 11;
-                            obj11listaIntJson.PedidoId = "" ;
-                            obj11listaIntJson.Funcion = "" ;
+                            obj11listaIntJson.PedidoId = 0 ;
+                            obj11listaIntJson.Funcion = "Z5" ;
                             obj11listaIntJson.Codigo = "" ;
                             obj11listaIntJson.Ruc = "" ;
                             obj11listaIntJson.Descripcion = "" ;
@@ -2007,8 +2028,8 @@
                             obj11listaIntJson.Telefono = "" ;
                             obj11listaIntJson.TelefonoMovil = "" ;
                             obj11listaIntJson.Mail = "" ;
-                            obj11listaIntJson.PersonaFisica = "" ;
-                            obj11listaIntJson.Eventual = "" ;
+                            obj11listaIntJson.PersonaFisica = false ;
+                            obj11listaIntJson.Eventual = false ;
                             obj11listaIntJson.ApPat = "" ;
                             obj11listaIntJson.ApMat = "" ;
                             obj11listaIntJson.TranspZone = "" ;
@@ -2040,43 +2061,41 @@
 
 
 
-            var listaPedJson = "";
-
                 var listaPedJson = [];
-                        obj1listaPedJson = {};
+                       var obj1listaPedJson = {};
 
-                        obj1listaPedJson.id = "" ; //1497985445784,
-                        obj1listaPedJson.CodTipoDoc = "" ; //"ZO01",
+                        obj1listaPedJson.id = 1498155798420 ; //1497985445784,
+                        obj1listaPedJson.CodTipoDoc = "ZO01" ; //"ZO01",
                         obj1listaPedJson.CodTipoDocAnt = "" ; //"",
                         obj1listaPedJson.Referencia = "" ; //"",
-                        obj1listaPedJson.OrgVentas = "" ; //"1000",
-                        obj1listaPedJson.CanalDist = "" ; //"10",
-                        obj1listaPedJson.CodOficina = "" ; //"1010",
-                        obj1listaPedJson.CondPago = "" ; //"E000",
-                        obj1listaPedJson.Moneda = "" ; //"PEN",
-                        obj1listaPedJson.CondExp = "" ; //"03",
-                        obj1listaPedJson.FechaEntrega = "" ; //"2017-06-20T19:04:05.784Z",
-                        obj1listaPedJson.FechaReparto = "" ; //"2014-02-01T05:00:00.000Z",
-                        obj1listaPedJson.TipoCambio = "" ; //3.282,
-                        obj1listaPedJson.FechaFacturacion = "" ; //"2017-06-20T19:04:05.784Z",
+                        obj1listaPedJson.OrgVentas = "1000" ; //"1000",
+                        obj1listaPedJson.CanalDist = "10" ; //"10",
+                        obj1listaPedJson.CodOficina = "1010" ; //"1010",
+                        obj1listaPedJson.CondPago = "E000" ; //"E000",
+                        obj1listaPedJson.Moneda = "PEN" ; //"PEN",
+                        obj1listaPedJson.CondExp = "03" ; //"03",
+                        obj1listaPedJson.FechaEntrega = "2017-06-22T18:23:18.420Z" ; //"2017-06-20T19:04:05.784Z",
+                        obj1listaPedJson.FechaReparto = null ; //"2014-02-01T05:00:00.000Z",
+                        obj1listaPedJson.TipoCambio = 3.282 ; //3.282,
+                        obj1listaPedJson.FechaFacturacion = "2017-06-22T18:23:18.420Z" ; //"2017-06-20T19:04:05.784Z",
                         obj1listaPedJson.CodigoBanco = "" ; //"",
                         obj1listaPedJson.Motivo = "" ; //"002",
                         obj1listaPedJson.BloqueoEntrega = "" ; //"01",
                         obj1listaPedJson.BloqueoFactura = "" ; //"01",
                         obj1listaPedJson.OrdenCompra = "" ; //"7",
-                        obj1listaPedJson.FechaPedido = "" ; //"2017-06-20T19:04:05.784Z",
-                        obj1listaPedJson.FechaValidez = "" ; //"2017-06-27T19:04:05.831Z",
+                        obj1listaPedJson.FechaPedido = "2017-06-22T18:23:18.420Z" ; //"2017-06-20T19:04:05.784Z",
+                        obj1listaPedJson.FechaValidez = "2017-06-29T18:23:18.439Z" ; //"2017-06-27T19:04:05.831Z",
                         obj1listaPedJson.Estado = "" ; //"",
                         obj1listaPedJson.nomProyecto = "" ; //"nombreProyecto",
                         obj1listaPedJson.TipoVisita = "" ; //"03",
-                        obj1listaPedJson.cbxReembolsable = "" ; //false,
-                        obj1listaPedJson.dsctoAdicionalZD12 = "" ; //0,
-                        obj1listaPedJson.dsctoAdicionalZD12tmp = "" ; //0,
-                        obj1listaPedJson.FechaPrecio = "" ; //null,
-                        obj1listaPedJson.Mail = "" ; //"soli@hotmail.com",
+                        obj1listaPedJson.cbxReembolsable = false ; //false,
+                        obj1listaPedJson.dsctoAdicionalZD12 = 0 ; //0,
+                        obj1listaPedJson.dsctoAdicionalZD12tmp = 0 ; //0,
+                        obj1listaPedJson.FechaPrecio = null ; //null,
+                        obj1listaPedJson.Mail = "erick@hot.com" ; //"soli@hotmail.com",
                         obj1listaPedJson.BonoCampania = "" ; //"",
                         obj1listaPedJson.RegaloCampania = "" ; //"",
-                        obj1listaPedJson.Reenbolsable = "" ; //false,
+                        obj1listaPedJson.Reenbolsable = false ; //false,
                         obj1listaPedJson.PedidoVenta1 = "" ; //"",
                         obj1listaPedJson.PedidoVenta2 = "" ; //"",
                         obj1listaPedJson.PedidoVenta3 = "" ; //"",
@@ -2085,35 +2104,35 @@
                         obj1listaPedJson.PedidoVisita2 = "" ; //"",
                         obj1listaPedJson.PedidoVisita3 = "" ; //"",
                         obj1listaPedJson.PedidoVisita4 = "" ; //"",
-                        obj1listaPedJson.SubtotalImp = "" ; //0,
-                        obj1listaPedJson.TieneEntrega = "" ; //false,
+                        obj1listaPedJson.SubtotalImp = 0 ; //0,
+                        obj1listaPedJson.TieneEntrega = false ; //false,
                         obj1listaPedJson.DocOriginal = "" ; //"",
                         obj1listaPedJson.Znpiso = "" ; //"",
                         obj1listaPedJson.Ztransporte = "" ; //"",
-                        obj1listaPedJson.Zasensor = "" ; //false,
-                        obj1listaPedJson.Zncservicio = "" ; //false,
-                        obj1listaPedJson.TieneKitCombo = "" ; //false,
+                        obj1listaPedJson.Zasensor = false ; //false,
+                        obj1listaPedJson.Zncservicio = false ; //false,
+                        obj1listaPedJson.TieneKitCombo = false ; //false,
                         obj1listaPedJson.NumPedido = "" ; //"",
                         obj1listaPedJson.NumPedidoCorto = "" ; //"",
                         obj1listaPedJson.FechaPedidoString = "" ; //"",
                         obj1listaPedJson.FechaValidezString = "" ; //"",
                         obj1listaPedJson.FechaEntregaString = "" ; //"",
-                        obj1listaPedJson.CodCliente = "" ; //"0000101317",
+                        obj1listaPedJson.CodCliente = "0000101317" ; //"0000101317",
                         obj1listaPedJson.CodClienteCorto = "" ; //"",
                         obj1listaPedJson.CodGrupoVend = "" ; //"",
                         obj1listaPedJson.Sector = "" ; //"",
-                        obj1listaPedJson.SubTotal = "" ; //155.67,
-                        obj1listaPedJson.Igv = "" ; //28.02,
-                        obj1listaPedJson.Total = "" ; //183.69,
-                        obj1listaPedJson.TotalImp = "" ; //28.02,
-                        obj1listaPedJson.PesoTotal = "" ; //0,
+                        obj1listaPedJson.SubTotal = 210.06 ; //155.67,
+                        obj1listaPedJson.Igv = 37.81 ; //28.02,
+                        obj1listaPedJson.Total = 247.87 ; //183.69,
+                        obj1listaPedJson.TotalImp = 37.81 ; //28.02,
+                        obj1listaPedJson.PesoTotal = 0 ; //0,
                         obj1listaPedJson.GrupoCond = "" ; //"01",
-                        obj1listaPedJson.Tratado = "" ; //false,
+                        obj1listaPedJson.Tratado = false ; //false,
                         obj1listaPedJson.ClasePedidoCliente = "" ; //"",
                         obj1listaPedJson.ClaseDocumento = "" ; //"",
-                        obj1listaPedJson.CodVendedor1 = "" ; //"00001802",
-                        obj1listaPedJson.NomVendedor1 = "" ; //"Julio Edgardo Pingo",
-                        obj1listaPedJson.TotalConIgv = "" ; //0,
+                        obj1listaPedJson.CodVendedor1 = "00001802" ; //"00001802",
+                        obj1listaPedJson.NomVendedor1 = "Julio Edgardo Pingo" ; //"Julio Edgardo Pingo",
+                        obj1listaPedJson.TotalConIgv = 0 ; //0,
                         obj1listaPedJson.textoAtencion = "" ; //"observacionAtencion",
                         obj1listaPedJson.textoObsAdministrativas = "" ; //"observacionObservacionesAdministrativas",
                         obj1listaPedJson.textoRefFactura = "" ; //"observacionReferenciaFactura",
@@ -2142,9 +2161,9 @@
                         obj1listaPedJson.codigoPostalResPago = "" ; //"",
                         obj1listaPedJson.telefonoResPago = "" ; //"",
                         obj1listaPedJson.nifResPago = "" ; //"",
-                        obj1listaPedJson.codigoCliente = "" ; //"0000101317",
-                        obj1listaPedJson.nombreCliente = "" ; //"nombreSoli",
-                        obj1listaPedJson.direccionCliente = "" ; //"direSoli",
+                        obj1listaPedJson.codigoCliente = "0000101317" ; //"0000101317",
+                        obj1listaPedJson.nombreCliente = "Erick De La Cruz De La Cruz" ; //"nombreSoli",
+                        obj1listaPedJson.direccionCliente = "LOS CEDROS" ; //"direSoli",
                         obj1listaPedJson.apePatSolicitante = "" ; //"",
                         obj1listaPedJson.apeMatSolicitante = "" ; //"",
                         obj1listaPedJson.textoContacto = "" ; //"",
@@ -2156,43 +2175,43 @@
 
 
                         ////////////////////////////////////
-                        var datosCliente = {}; //Un objeto puede estar dentro de otro ? Preguntar a Franz
+                        obj1listaPedJson.datosCliente = {//Un objeto puede estar dentro de otro ? Preguntar a Franz
 
-                                /*
-                                datosCliente.1 = "" ; //"1",
-                                datosCliente.10 = "" ; //"1",
-                                datosCliente.15 = "" ; //"1",
-                                datosCliente.20 = "" ; //"",
-                                datosCliente.25 = "" ; //"1",
-                                datosCliente.35 = "" ; //"30",
+                                 1 : "2" , //"1",
+                                10 : "1" , //"1",
+                                15 : "" , //"1",
+                                20 : "10" , //"",
+                                25 : "" , //"1",
+                                35 : "15" ,  //"30",
+                                CODIG : "41233469" , //"87654321",
+                                APPAT : "De La Cruz" , //"apellidoPSoli",
+                                APMAT : "De La Cruz" , //"apellidoMSoli",
+                                NOMBRE : "Erick" , //"nombreSoli",
+                                FECNAC : "2015-03-04T05:00:00.000Z" , //"2013-06-20T11:00:00.000Z",
+                                GRAINS : "10" , //"10",
+                                SEXO : "1" , //"1",
+                                CIUDAD : "140101" , //"140101",
+                                EDAD : "2" , //"4",
+                                RANGOED : "1" , //"1",
+                                NIVELSE : "A" , //"A",
+                                DIREC : "LOS CEDROS"  //"direSoli"},
 
-                                */
-                                datosCliente.CODIG = "" ; //"87654321",
-                                datosCliente.APPAT = "" ; //"apellidoPSoli",
-                                datosCliente.APMAT = "" ; //"apellidoMSoli",
-                                datosCliente.NOMBRE = "" ; //"nombreSoli",
-                                datosCliente.FECNAC = "" ; //"2013-06-20T11:00:00.000Z",
-                                datosCliente.GRAINS = "" ; //"10",
-                                datosCliente.SEXO = "" ; //"1",
-                                datosCliente.CIUDAD = "" ; //"140101",
-                                datosCliente.EDAD = "" ; //"4",
-                                datosCliente.RANGOED = "" ; //"1",
-                                datosCliente.NIVELSE = "" ; //"A",
-                                datosCliente.DIREC = "" ; //"direSoli"},
+
+                                }; 
 
                         //obj1listaPedJson.datosCliente;
                             ///////////////////////////////
 
 
                         obj1listaPedJson.listaPre = "" ; //"",
-                        obj1listaPedJson.TotalDcto = "" ; //0,
+                        obj1listaPedJson.TotalDcto = 0 ; //0,
                         obj1listaPedJson.codProyecto = "" ; //"codigoProyecto",
                         obj1listaPedJson.codVersion = "" ; //"1025",
                         obj1listaPedJson.GrupoForecast = "" ; //"01",
-                        obj1listaPedJson.TipoForecast = "" ; //" ",
+                        obj1listaPedJson.TipoForecast = " " ; //" ",
                         obj1listaPedJson.NoImpFac = "" ; //"",
                         obj1listaPedJson.Certificado = "" ; //"nroCertificado",
-                        obj1listaPedJson.FechaVisita = "" ; //"2017-08-01T05:00:00.000Z"}
+                        obj1listaPedJson.FechaVisita = null ; //"2017-08-01T05:00:00.000Z"}
 
 
 
@@ -2206,33 +2225,42 @@
 
             var listadatosCliente = {}; // se envia de frente
 
-     /*
-                                datosCliente.1 = "" ; //"1",
-                                datosCliente.10 = "" ; //"1",
-                                datosCliente.15 = "" ; //"1",
-                                datosCliente.20 = "" ; //"",
-                                datosCliente.25 = "" ; //"1",
-                                datosCliente.35 = "" ; //"30",
+                            listadatosCliente = {
+                                1 : "2" , //"1",
+                                10 : "1" , //"1",
+                                15 : "" , //"1",
+                                20 : "10" , //"",
+                                25 : "" , //"1",
+                                35 : "15" ,  //"30",
+                                CODIG : "41233469" , //"87654321",
+                                APPAT : "De La Cruz" , //"apellidoPSoli",
+                                APMAT : "De La Cruz" , //"apellidoMSoli",
+                                NOMBRE : "Erick" , //"nombreSoli",
+                                FECNAC : "2015-03-04T05:00:00.000Z" , //"2013-06-20T11:00:00.000Z",
+                                GRAINS : "10" , //"10",
+                                SEXO : "1" , //"1",
+                                CIUDAD : "140101" , //"140101",
+                                EDAD : "2" , //"4",
+                                RANGOED : "1" , //"1",
+                                NIVELSE : "A" , //"A",
+                                DIREC : "LOS CEDROS"  //"direSoli"},
 
-                                */
-                                datosCliente.CODIG = "" ; //"87654321",
-                                datosCliente.APPAT = "" ; //"apellidoPSoli",
-                                datosCliente.APMAT = "" ; //"apellidoMSoli",
-                                datosCliente.NOMBRE = "" ; //"nombreSoli",
-                                datosCliente.FECNAC = "" ; //"2013-06-20T11:00:00.000Z",
-                                datosCliente.GRAINS = "" ; //"10",
-                                datosCliente.SEXO = "" ; //"1",
-                                datosCliente.CIUDAD = "" ; //"140101",
-                                datosCliente.EDAD = "" ; //"4",
-                                datosCliente.RANGOED = "" ; //"1",
-                                datosCliente.NIVELSE = "" ; //"A",
-                                datosCliente.DIREC = "" ; //"direSoli"},
+                                    };
+                                
+                                
+
+
+
+            var UserId = "JPINGO" ;
+            var PwdId = "JPINGO1*" ;
+            var Id = "e48be9f4-82b1-4cc4-9894-1c01e78c0722" ;
+            var GrpVend = "100" ;
+            var Descripcion = "Julio Edgardo Pingo" ;
 
 
 
 
-
-            var CodigoVendedor = ""; //00001802
+            var CodigoVendedor = "00001802"; //00001802
             var numPedido = "";
             var op = "crear";
 
@@ -2241,6 +2269,8 @@
 
                     var result = guardarDocumento.guardar(codigoCliente,
                                                             nombreCliente,
+                                                            OrgVentas,
+                                                            CanalDist,
                                                             CodOficina,
                                                             CondPago,
                                                             Moneda,
@@ -2273,6 +2303,11 @@
                                                             listaIntJson,
                                                             listaPedJson,
                                                             listadatosCliente,
+                                                            UserId,
+                                                            PwdId,
+                                                            Id,
+                                                            GrpVend,
+                                                            Descripcion,
                                                             CodigoVendedor,
                                                             numPedido,
                                                             op);
@@ -2858,7 +2893,7 @@
                         objDet.TieneServ = this.getView().getModel().getProperty("/materialSelec/TieneServ");
                         objDet.TipoMaterial = this.getView().getModel().getProperty("/materialSelec/TipoMaterial");
                         objDet.Jerarquia = this.getView().getModel().getProperty("/materialSelec/Jerarquia");
-                        objDet.Cantidad = this.getView().byid("txt_cantidad_material").getValue();
+                        objDet.Cantidad = this.getView().byId("txt_cantidad_material").getValue();
                         objDet.FechaCantConf = "" ;
                         objDet.DescCentro = "" ;
                         objDet.DescAlmacen = "" ;
@@ -2911,34 +2946,34 @@
                 var objetoMaterial = [];
                 var objMat = {};
 
-                        objMat.Stock = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.CodMaterial = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.DescMaterial = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.Descripcion = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.CodUMedida = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.PrecioUnit = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.Jerarquia = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.Peso = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.UMedidaRendimiendo = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.ValorRendimiento = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.Rendimiento = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.TipoMaterial = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.EsFlete = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.EsEstiba = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.EspecialServ = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.Tipo = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.CodMaterialCorto = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.TieneServ = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.Descontinuado = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.DescMovil = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.sStock = "";
-                        objMat.Posicion = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.PrecioUnitario = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.Catalogo = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.StatusDespacho = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.StockPos = this.getView().getModel().getProperty("/materialSelec/Stock");
-                        objMat.link = "";
-                        objMat.MSTAE = this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.Stock = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.CodMaterial = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.DescMaterial = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.Descripcion = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.CodUMedida = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.PrecioUnit = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.Jerarquia = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.Peso = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.UMedidaRendimiendo = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.ValorRendimiento = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.Rendimiento = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.TipoMaterial = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.EsFlete = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.EsEstiba = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.EspecialServ = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.Tipo = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.CodMaterialCorto = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.TieneServ = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.Descontinuado = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.DescMovil = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.sStock = ""; //"";
+                        objMat.Posicion = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.PrecioUnitario = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.Catalogo = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.StatusDespacho = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.StockPos = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
+                        objMat.link = ""; //"";
+                        objMat.MSTAE = ""; //this.getView().getModel().getProperty("/materialSelec/Stock");
                         objMat.CodAntiguo = "" ;//del Dialog
                         objMat.id = 22;
 
