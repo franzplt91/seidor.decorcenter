@@ -507,7 +507,7 @@
 
                 
         <s:pagingAction>
-            <Button icon="sap-icon://save" tooltip="Guardar"/>
+            <Button icon="sap-icon://save" tooltip="Guardar" press="onBtnGuardarDocumento"/>
         </s:pagingAction>
         <s:printAction>
             <s:PrintAction press="onDocNuevoSemanticButtonPress"/>
