@@ -10,6 +10,7 @@
     "pe/com/seidor/sap/decor/ventas/services/guardarDocumento"
 ], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery, crearDocumentoServices, guardarDocumento) {
     "use strict";
+    
 
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocNuevo", {
 
