@@ -23,6 +23,8 @@ sap.ui.define([
 					this.getView().getModel().setProperty("/dataIni",window.dataIni);
 		            this.getView().getModel().refresh(true);
 					this.getView().byId("dlg_rec_nuevo_inicio").open();
+
+					//this.getView().byId("txt_numeroPedido").setValue("fgfjhgh");
                 };
 
                 var tipoCabecera = [];
@@ -208,9 +210,9 @@ sap.ui.define([
 		onBuscardlg_list_reclamos:function(){
 			//this.getView().byId("dlg_rec_nuevo_inicio").close();
 			//this.getView().byId("dlg_list_reclamos").open();BusquedaReclamos
-			var num_rec = this.getView().byId("v_pNumeroReclamo").getValue();
-			var fecha_ini = this.getView().byId("v_pFechaCreacionI").getValue();
-			var fecha_fin = this.getView().byId("v_pFechaCreacionF").getValue();
+			var num_rec = this.getView().byId("txt_pNumeroReclamo").getValue();
+			var fecha_ini = this.getView().byId("txt_pFechaCreacionI").getValue();
+			var fecha_fin = this.getView().byId("txt_pFechaCreacionF").getValue();
 			if (num_rec || fecha_ini || fecha_fin) {
 				var result = reclamoServices.buscarReclamos(num_rec,"","","","",fecha_ini,fecha_fin,"","");
 				if(result.c === "s"){
@@ -221,7 +223,6 @@ sap.ui.define([
 						this.getView().getModel().refresh();
 						this.getView().byId("dlg_rec_nuevo_inicio").close();
 						this.getView().byId("dlg_list_reclamos").open();
-
 					}else{
 
 						sap.m.MessageToast.show(result.data.errors.reason, {
@@ -273,15 +274,44 @@ sap.ui.define([
 					if(result.data.success){
 
 						this.getView().getModel().setProperty("/seleccionado",result.data);
-						this.getView().getModel().setProperty("/Reclamos",result.data.reclamo);
+						//this.getView().getModel().setProperty("/Reclamos",result.data.reclamo);
 
 						var resultData = this.getView().getModel().getProperty("/seleccionado");
 						var rec = [];
 								rec = resultData.reclamo[0];
 								this.getView().getModel().setProperty("/listReclamo",rec);
+								this.getView().getModel().refresh();
 								
+								//Llamar campos
+								var Numpedido =  this.getView().getModel().getProperty("/listReclamo/numeroPedido");
+								var EmpresaDet = this.getView().getModel().getProperty("/listReclamo/EmpresaDet");
+								var NOMBRE = this.getView().getModel().getProperty("/seleccionado/objReclamo/Interlocutor/0/NOMBRE");
+								var Asesor = this.getView().getModel().getProperty("/listReclamo/NomResPago"); 
 
-						this.getView().getModel().refresh();
+								//Llenar campos
+								this.getView().byId("txt_Numero_Pedido").setValue(Numpedido);
+								this.getView().byId("txt_Codigo_Cliente").setValue(EmpresaDet);
+								this.getView().byId("txt_cliente_eventual").setValue(NOMBRE);
+								this.getView().byId("txt_Asesor").setValue(Asesor);
+
+								//Llamar campos interlocutores
+								var Funcion_interlocutor = this.getView().getModel().getProperty("/seleccionado/objReclamo/Interlocutor/0/PARVW");
+								var Codigo_interlocutor = this.getView().getModel().getProperty("/seleccionado/objReclamo/Interlocutor/0/KUNNR");
+								var NOMBRE_interlocutor = this.getView().getModel().getProperty("/seleccionado/objReclamo/Interlocutor/0/NOMBRE");
+								var direccion_iterlocutor = this.getView().getModel().getProperty("/seleccionado/objReclamo/Interlocutor/0/Direccion");
+								var telefono_interlocutor = this.getView().getModel().getProperty("/seleccionado/objReclamo/Interlocutor/0/Telefono");	
+								var nif = this.getView().getModel().getProperty("/seleccionado/objReclamo/Interlocutor/0/NIF");
+								var correo_interlocutor = this.getView().getModel().getProperty("/seleccionado/reclamo/0/mail");
+
+								//Llenar campos interlocutores
+								this.getView().byId("txt_funcion").setValue(Funcion_interlocutor);
+								this.getView().byId("txt_codigo").setValue(Codigo_interlocutor);
+								this.getView().byId("txt_nombre").setValue(NOMBRE_interlocutor);
+								this.getView().byId("txt_direccion").setValue(direccion_iterlocutor);
+								this.getView().byId("txt_telefono").setValue(telefono_interlocutor);
+								this.getView().byId("txt_nif").setValue(nif);
+								this.getView().byId("txt_correo").setValue(correo_interlocutor);
+
 						this.getView().byId("dlg_list_reclamos").close();
 					}else{
 						sap.m.MessageToast.show(result.data.errors.reason, {
