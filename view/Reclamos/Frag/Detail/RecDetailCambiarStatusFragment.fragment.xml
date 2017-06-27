@@ -13,12 +13,11 @@
 
         <s:DetailPage title="Status" id="detail_rec_nuevo_cambiar_status">
                 <s:content>
-
-                    <f:Form editable="true">
-                           <!--<f:title>
-                                <core:Title text=" " />
-                            </f:title>-->
-                            <f:layout>
+                    <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
+                        <items>
+                            <IconTabFilter showAll="false" text="Tratamiento Inicial">
+                                <f:Form editable="true">
+                                    <f:layout>
                                 <f:ResponsiveGridLayout
                                     labelSpanXL="3"
                                     labelSpanL="3"
@@ -48,12 +47,13 @@
                                         <f:FormElement label="Persona">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese Nombre Persona" 
-                                                    value=""></Input>
+                                                    id="txt_persona_status"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Fecha Realización">
                                             <f:fields>
-                                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" value="">
+                                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" 
+                                                    id="txt_fecha_realizacion">
                                 <layoutData>
                                     <l:GridData span="L4 M4 S6" />
                                 </layoutData>
@@ -62,15 +62,18 @@
                                         </f:FormElement>
                                         <f:FormElement label="Descripción">
                                             <f:fields>
-                                                <TextArea value="{/listReclamo/Descripcion}"></TextArea>
+                                                <TextArea value="{/listReclamo/Descripcion}" id="txt_Descripcion_Status"></TextArea>
                                             </f:fields>
                                         </f:FormElement>
                                         
                                     </f:formElements>
                                 </f:FormContainer>
                             </f:formContainers>
-                        </f:Form>
-
+                                </f:Form>
+                               
+                            </IconTabFilter>
+                        </items>
+                    </IconTabBar>
                     
                 </s:content>
                 <s:pagingAction>

@@ -19,7 +19,7 @@
                 <customHeader>
                     <Toolbar>
                         <Label text="Número de Pedido:"></Label>
-                        <Input width="60%" placeholder="Ingrese Número de Pedido" id="v_pNumPedido"></Input>
+                        <Input width="60%" placeholder="Ingrese Número de Pedido" id="txt_pNumPedido"></Input>
                     </Toolbar>
                 </customHeader>
                 <content></content>
@@ -104,7 +104,23 @@
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgBuscarRecNuevo" />
         </endButton>
     </Dialog>
-    
+       <!--Dialog Inicio Mostrar Revlamos-->
+    <Dialog title="" id="dlg_mostrar_reclamo" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
+        <content>
+            <Page>
+                <customHeader>
+                    <Toolbar>
+                        <Label text="Número de Pedido:"></Label>
+                        <Input width="60%" value="{/Reclamo}" id="hjjh"></Input>
+                    </Toolbar>
+                </customHeader>
+                <content></content>
+            </Page>
+        </content>
+        <beginButton>
+            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCrearDlgRecNuevo" />
+        </beginButton>
+    </Dialog>
     <!--Split Container-->
     <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Reclamos.Frag.RecContenedorFragment" type="XML"></core:Fragment>
 

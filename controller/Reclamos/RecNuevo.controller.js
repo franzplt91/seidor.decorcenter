@@ -68,21 +68,92 @@ sap.ui.define([
 		
 
 		onCrearDlgRecNuevo: function(oEvent){
-                this.getView().byId("dlg_filtros").close();
+                
                 var num_pe = this.getView().byId("txt_pNumPedido").getValue();
                 if(num_pe)
                 {
-                	//var result1 = reclamoServices.documentoVentas(num_pe);
                 	var result = reclamoServices.documentoVentas(num_pe,"ver","reclamo");
-                	this.getView().getModel().setProperty("/listaPedido",result.data);
-                	this.getView().getModel().setProperty("/Reclamos",result.data.objPedido.Detalle);
-						this.getView().getModel().refresh();
+                	if(result.c === "s")
+                	{
+						if(result.data.success)
+						{
+							this.getView().getModel().setProperty("/Pedido",result.data);
+		                	this.getView().getModel().setProperty("/Reclamos",result.data.objPedido.Detalle);
+							this.getView().getModel().refresh();
+							
+							//Llamar campos
+							var Numpedido =  this.getView().getModel().getProperty("/Pedido/objPedido/NumPedido");
+							var CodCliente =  this.getView().getModel().getProperty("/Pedido/objPedido/CodCliente");
+							var Descripcion = this.getView().getModel().getProperty("/Pedido/objCliente/Descripcion");
+							var Asesor = this.getView().getModel().getProperty("/Pedido/NomVendedor1");
+
+							//Llenar campos
+							this.getView().byId("txt_Numero_Pedido").setValue(Numpedido);
+							this.getView().byId("txt_Codigo_Cliente").setValue(CodCliente);
+							this.getView().byId("txt_cliente_eventual").setValue(Descripcion);
+							this.getView().byId("txt_Asesor").setValue(Asesor);
+							console.log(Asesor);
+
+							//LLamar campos interlocutores
+							var Funcion = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Funcion");
+							var Codigo = this.getView().getModel().getProperty("/Pedido/objCliente/Codigo");
+							var Nombre = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Cliente/Descripcion");
+							var Direccion = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Cliente/Direccion");
+							var Telefono = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Cliente/Telefono");
+							var nif = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Cliente/Ruc");
+							
+							var codigo_asesor = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/3/Persona/CodPersona");
+						 	var Descripcion_asesor = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/3/Persona/Descripcion");
+
+						 	var Funcion_Enmpresa_Comercial = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/3/Funcion");
+
+							var fecha_realizacion = this.getView().getModel().getProperty("/Pedido/FechaValidez");
+
+							//Llenar campos
+							this.getView().byId("txt_funcion").setValue(Funcion); 
+
+							this.getView().byId("txt_codigo").setValue(Codigo); 
+							this.getView().byId("txt_nombre").setValue(Nombre);
+							this.getView().byId("txt_direccion").setValue(Direccion);
+							this.getView().byId("txt_telefono").setValue(Telefono);
+							this.getView().byId("txt_nif").setValue(nif);
+
+							this.getView().byId("txt_codigo_asesor").setValue(codigo_asesor);
+							this.getView().byId("txt_nombre_codigo_asesor").setValue(Descripcion_asesor);
+
+							this.getView().byId("txt_funcion_comercial").setValue(Funcion_Enmpresa_Comercial);
+							this.getView().byId("txt_codigo_empresa_comercial").setValue(codigo_asesor);
+							this.getView().byId("txt_nombre_empresa_comercial").setValue(Descripcion_asesor);
+
+							this.getView().byId("txt_fecha_realizacion").setValue(fecha_realizacion);
+							
+
+							this.getView().byId("dlg_filtros").close();
+						}
+						else
+						{
+							sap.m.MessageToast.show(result.data.errors.reason, {
+				                duration: 3000
+				            });
+						}
+					}
+					else
+					{
+						sap.m.MessageToast.show(result.m, {
+			                duration: 3000
+			            			});
+					}
+		                	console.log(result);	
                 }
                 else
                 {
-                	MessageToast.show("hjjghk");
-                }
-                console.log(result);
+					sap.m.MessageToast.show('Número de reclamo incorrecto', {
+		                duration: 1000
+		            });
+					
+					return;
+
+				}
             },
 
 		onOpenDlgBuscarRecNuevo:function(){

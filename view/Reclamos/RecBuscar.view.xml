@@ -44,44 +44,44 @@
                     <f:formElements>
                         <f:FormElement label="Número de Reclamo">
                             <f:fields>
-                                <Input placeholder="Ingrese Nro. de Reclamo" id="v_pNumeroReclamo"></Input>
+                                <Input placeholder="Ingrese Nro. de Reclamo" id="txt_pNumeroReclamo"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Pedido de Venta">
                             <f:fields>
-                                <Input placeholder="Ingrese Pedido de Venta" id="v_pNumeroPedido"></Input>
+                                <Input placeholder="Ingrese Pedido de Venta" id="txt_pNumeroPedido"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Cliente">
                             <f:fields>
-                               <Input placeholder="Ingrese Cliente" id="v_pCodigoCliente"></Input>
+                               <Input placeholder="Ingrese Cliente" id="txt_pCodigoCliente"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Nombre de Cliente">
                             <f:fields>
-                                <Input placeholder="Ingrese Nombre Cliente" id="v_pNombreCliente"></Input>
+                                <Input placeholder="Ingrese Nombre Cliente" id="txt_pNombreCliente"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Material">
                             <f:fields>
-                                <Input placeholder="Ingrese Nro. de Material" id="v_pMaterial"></Input>
+                                <Input placeholder="Ingrese Nro. de Material" id="txt_pMaterial"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Fecha Inicio">
                             <f:fields>
-                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" id="v_pFechaCreacionI">
+                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" id="txt_pFechaCreacionI">
                                 </DatePicker>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Fecha Fin">
                             <f:fields>
-                               <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" id="v_pFechaCreacionF">
+                               <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" id="txt_pFechaCreacionF">
                             </DatePicker>
                             </f:fields>
                         </f:FormElement>
@@ -96,7 +96,7 @@
 
                         <f:FormElement label="Usuario">
                             <f:fields>
-                                <Input placeholder="" id="v_pUsuario"></Input>
+                                <Input placeholder="" id="txt_pUsuario"></Input>
                             </f:fields>
                         </f:FormElement>
 

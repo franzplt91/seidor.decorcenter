@@ -39,22 +39,22 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaPedido/objCliente/Codigo}" id="txt_funcion"></Input>
+                                                <Input width="100%" id="txt_funcion"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaPedido/objCliente/Codigo}" id="txt_codigo"></Input>
+                                                <Input width="100%" id="txt_codigo"></Input>
                                             </f:fields>
                                         </f:FormElement>                   
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaPedido/objCliente/Descripcion}" id="txt_nombre"></Input>
+                                                <Input width="100%" id="txt_nombre"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" value="PRUEBA" id="txt_direccion"></Input>
+                                                <Input width="100%" id="txt_direccion"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Ubicación">
@@ -68,18 +68,17 @@
                                         </f:FormElement>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" value="" id="txt_telefono"></Input>
+                                                <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="NIF">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese NIF" value="45454545"
-                                                    id="txt_nif"></Input>
+                                                <Input width="100%" placeholder="Ingrese NIF" id="txt_nif"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Correo">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Correo" value="" id="txt_correo"></Input>
+                                                <Input width="100%" placeholder="Ingrese Correo" id="txt_correo"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -115,17 +114,17 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" value=""></Input>
+                                                <Input width="100%" value="AP" id="txt_funcion_persona_contacto"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/PCONTACTO}"></Input>
+                                                <Input width="100%" id="txt_nombre_persona_contacto"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/DIRECCION}"></Input>
+                                                <Input width="100%" id="txt_direccion_persona_contacto"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Ubicación">
@@ -137,7 +136,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/TELEFONO}"></Input>
+                                                <Input width="100%" id="txt_telefono_persona_contacto"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -172,17 +171,17 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" value="ZM"></Input>
+                                                <Input width="100%" value="ZM" id="txt_funcion_codigo_asesor"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" value="00001802"></Input>
+                                                <Input width="100%" id="txt_codigo_asesor"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" value="Julio Edgardo Pingo"></Input>
+                                                <Input width="100%" id="txt_nombre_codigo_asesor"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -219,18 +218,19 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" value="VE"></Input>
+                                                <Input width="100%" id="txt_funcion_comercial"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese código" value="00001812" 
-                                                    id="v_codigoEmpResp"></Input>
+                                                <Input width="100%" placeholder="Ingrese código"
+                                                 id="txt_codigo_empresa_comercial"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre" value="Julio Edgardo Pingo"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" 
+                                                    id="txt_nombre_empresa_comercial"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         

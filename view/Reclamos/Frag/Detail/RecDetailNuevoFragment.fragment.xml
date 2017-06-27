@@ -105,22 +105,22 @@
                                         
                                          <f:FormElement label="Nro. de Pedido">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaPedido/objPedido/NumPedido}{/listReclamo/numeroPedido}" id="txt_numeroPedido"></Input>
+                                                <Input width="100%" id="txt_Numero_Pedido"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Cliente">
                                             <f:fields>
-                                               <Input width="100%" value="{/listaPedido/objPedido/CodCliente}{/listReclamo/EmpresaDet}" id="txt_EmpresaDet"></Input>
+                                               <Input width="100%" id="txt_Codigo_Cliente"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="CLIENTE EVENTUAL">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaPedido/objCliente/Descripcion}{/seleccionado/reclamo/Object/reclamoRef}" id="txt_cliente_eventual"></Input>
+                                                <Input width="100%" id="txt_cliente_eventual"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Asesor">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaPedido/NomVendedor1}{/listReclamo/NomResPago}" id="txt_asesor"></Input>
+                                                <Input width="100%" id="txt_Asesor"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -243,7 +243,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Factura / Boleta">
                                             <f:fields>
-                                                <Input width="100%" value=""></Input>
+                                                <Input width="100%" id="txt_factura"></Input>
                                             </f:fields>
                                         </f:FormElement>                                        
                                         

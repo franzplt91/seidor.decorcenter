@@ -2,9 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
 	"sap/ui/core/UIComponent",
-
 	"sap/ui/model/json/JSONModel",
-], function (Controller, MessageToast, UIComponent,JSONModel) {
+	"pe/com/seidor/sap/decor/ventas/services/reclamoServices"
+], function (Controller, MessageToast, UIComponent,JSONModel, reclamoServices) {
 	"use strict";
 
 	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Reclamos.RecVisualizar", {
@@ -26,6 +26,28 @@ sap.ui.define([
             if (oEvent.getParameter("name") == "appRecVisualizar") {
 					this.getView().byId("dlg_rec_nuevo_inicio").open();
                 };
+                var tipoCabecera = [];
+                tipoCabecera.push({
+                    codigo:1,
+                    descripcion:'Reclamo Nuevo'
+                });
+
+                tipoCabecera.push({
+                    codigo:2,
+                    descripcion:'Interlocutores'
+                });
+
+                tipoCabecera.push({
+                    codigo:3,
+                    descripcion:'Datos Reclamo'
+                });
+
+                tipoCabecera.push({
+                    codigo:4,
+                    descripcion:'Cambiar Status'
+                });
+
+            this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);    
             this.getView().getModel().setProperty("/nombre","Visualizar Reclamo");
             this.getView().getModel().refresh();    
 		},
@@ -35,27 +57,43 @@ sap.ui.define([
                 oRouter.navTo("appHome");
         },
 
-		onAfterRendering: function() {
+		onBuscardlg_list_reclamos:function(){
 
-			var oSplitCont= this.getSplitContObj(),
-				ref = oSplitCont.getDomRef() && oSplitCont.getDomRef().parentNode;
-			// set all parent elements to 100% height, this should be done by app developer, but just in case
-			if (ref && !ref._sapui5_heightFixed) {
-				ref._sapui5_heightFixed = true;
-				while (ref && ref !== document.documentElement) {
-					var $ref = jQuery(ref);
-					if ($ref.attr("data-sap-ui-root-content")) { // Shell as parent does this already
-						break;
+				var num_rec = this.getView().byId("txt_pNumeroReclamo").getValue();
+				if (num_rec) {
+					var result = reclamoServices.verReclamos(num_rec);
+					if(result.c === "s"){
+
+						if(result.data.success){
+
+							this.getView().getModel().setProperty("/ListaReclamos",result.data.listaReclamos);
+							this.getView().getModel().refresh();
+							this.getView().byId("dlg_rec_nuevo_inicio").close();
+
+						}else{
+
+							sap.m.MessageToast.show(result.data.errors.reason, {
+	                duration: 3000
+	            });
+
+						}
+
+
+					}else{
+						sap.m.MessageToast.show(result.m, {
+	                duration: 3000
+	            });
 					}
-					if (!ref.style.height) {
-						ref.style.height = "100%";
-					}
-					ref = ref.parentNode;
+
+				 console.log(result);
+				}else{
+					sap.m.MessageToast.show('Ingrese los campos correspondientes', {
+	                duration: 1000
+	            });
+					return;
+
 				}
-			}
 		},
-
-
 
 
 		onCloseDlgRecNuevo: function(oEvent){
@@ -127,7 +165,6 @@ sap.ui.define([
 
 			this.getSplitContObj().to(this.createId("pag_producto_agregado1"));
 
-
 			this.getView().byId("dlg_addProducto").close();
 			
 		},
@@ -142,11 +179,9 @@ sap.ui.define([
 
 			this.getSplitContObj().to(this.createId("pag_productos_buscar1"));
 
-
 			this.getView().byId("dlg_buscar").close();
 
 		},
-
 
 		ondlg_editListaReparto:function(){
 			this.getView().byId("dlg_editListaReparto").open();
@@ -162,8 +197,6 @@ sap.ui.define([
 
 		onSemanticButtonPress: function (evt) {
 			MessageToast.show(evt.getSource().getText() + " Pressed");
-
-
 		},
 
 
@@ -172,33 +205,35 @@ sap.ui.define([
 
                 var objeto = oEvent.getSource().getBindingContext().getObject();
                 console.log(objeto.codigo);
-
                 
         },
-        onMasterProductos: function(oEvent){
-                this.getSplitContObj().toMaster(this.createId("MasterProductos"));
-
-                var objeto = oEvent.getSource().getBindingContext().getObject();
-                console.log(objeto.codigo);
-
-                
-            },
 
 		onListMasterDatos : function(oEvent) {
-			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
- 
-			this.getSplitContObj().toDetail(this.createId(sToPageId));
+			var obj = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
+
+            if(obj.codigo===1){
+                    this.byId("SplitAppId").to(this.createId("pag_rec_nuevo_reclamo"));
+                }
+
+                if(obj.codigo===2){
+                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
+                }
+
+                if(obj.codigo===3){
+                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_datos_reclamo"));
+                }
+
+                if(obj.codigo===4){
+                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
+                }
 		},
 
 		onListMasterProductos : function(oEvent) {
 			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
  
 			this.getSplitContObj().toDetail(this.createId(sToPageId));
-		}
+		},
 
-
-
-            
 	});
 
 });
