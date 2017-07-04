@@ -23,6 +23,19 @@ sap.ui.define([
 					this.getView().getModel().setProperty("/dataIni",window.dataIni);
 		            this.getView().getModel().refresh(true);
 					this.getView().byId("dlg_rec_nuevo_inicio").open();
+					this.getView().byId("txt_cantRecla1").setEnabled(false);
+					this.getView().byId("txt_cantRecla2").setEnabled(false);
+					this.getView().byId("txt_Numero_Pedido").setEnabled(false);
+					this.getView().byId("txt_Codigo_Cliente").setEnabled(false);
+					this.getView().byId("txt_cliente_eventual").setEnabled(false);
+					this.getView().byId("txt_Asesor").setEnabled(false);
+					this.getView().byId("txt_funcion").setEnabled(false);
+					this.getView().byId("txt_codigo").setEnabled(false);
+					this.getView().byId("txt_nombre").setEnabled(false);
+					this.getView().byId("txt_direccion").setEnabled(false);
+					this.getView().byId("txt_telefono").setEnabled(false);
+					this.getView().byId("txt_nif").setEnabled(false);
+					this.getView().byId("txt_correo").setEnabled(false);
 
 					//this.getView().byId("txt_numeroPedido").setValue("fgfjhgh");
                 };
@@ -303,6 +316,11 @@ sap.ui.define([
 								var nif = this.getView().getModel().getProperty("/seleccionado/objReclamo/Interlocutor/0/NIF");
 								var correo_interlocutor = this.getView().getModel().getProperty("/seleccionado/reclamo/0/mail");
 
+								var codigo_asesor = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/3/Persona/CodPersona");
+							 	var Descripcion_asesor = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/3/Persona/Descripcion");
+							 	var Funcion_Enmpresa_Comercial = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/3/Funcion");
+								var fecha_realizacion = this.getView().getModel().getProperty("/Pedido/FechaValidez");
+								
 								//Llenar campos interlocutores
 								this.getView().byId("txt_funcion").setValue(Funcion_interlocutor);
 								this.getView().byId("txt_codigo").setValue(Codigo_interlocutor);
@@ -311,6 +329,18 @@ sap.ui.define([
 								this.getView().byId("txt_telefono").setValue(telefono_interlocutor);
 								this.getView().byId("txt_nif").setValue(nif);
 								this.getView().byId("txt_correo").setValue(correo_interlocutor);
+
+							
+
+							this.getView().byId("txt_codigo_asesor").setValue(codigo_asesor);
+							this.getView().byId("txt_nombre_codigo_asesor").setValue(Descripcion_asesor);
+
+							this.getView().byId("txt_funcion_comercial").setValue(Funcion_Enmpresa_Comercial);
+							this.getView().byId("txt_codigo_empresa_comercial").setValue(codigo_asesor);
+							this.getView().byId("txt_nombre_empresa_comercial").setValue(Descripcion_asesor);
+
+							this.getView().byId("txt_fecha_realizacion").setValue(fecha_realizacion);
+							
 
 						this.getView().byId("dlg_list_reclamos").close();
 					}else{
