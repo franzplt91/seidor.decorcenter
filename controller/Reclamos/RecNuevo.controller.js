@@ -24,9 +24,20 @@ sap.ui.define([
             if (oEvent.getParameter("name") == "appRecNuevo") {
             	this.getView().byId("SplitAppId").setMode("HideMode");
             	this.getView().setModel(new JSONModel({}));
-			this.getView().getModel().setProperty("/dataIni",window.dataIni);
-            this.getView().getModel().refresh(true);
-					this.getView().byId("dlg_filtros").open();
+				this.getView().getModel().setProperty("/dataIni",window.dataIni);
+	            this.getView().getModel().refresh(true);
+	            this.getView().byId("txt_Numero_Pedido").setEnabled(false);
+				this.getView().byId("txt_Codigo_Cliente").setEnabled(false);
+				this.getView().byId("txt_cliente_eventual").setEnabled(false);
+				this.getView().byId("txt_Asesor").setEnabled(false);
+				this.getView().byId("txt_funcion").setEnabled(false);
+				this.getView().byId("txt_codigo").setEnabled(false);
+				this.getView().byId("txt_nombre").setEnabled(false);
+				this.getView().byId("txt_direccion").setEnabled(false);
+				this.getView().byId("txt_telefono").setEnabled(false);
+				this.getView().byId("txt_nif").setEnabled(false);
+				this.getView().byId("txt_correo").setEnabled(false);
+				this.getView().byId("dlg_filtros").open();
 
 
 
@@ -93,7 +104,6 @@ sap.ui.define([
 							this.getView().byId("txt_cliente_eventual").setValue(Descripcion);
 							this.getView().byId("txt_Asesor").setValue(Asesor);
 							console.log(Asesor);
-
 							//LLamar campos interlocutores
 							var Funcion = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Funcion");
 							var Codigo = this.getView().getModel().getProperty("/Pedido/objCliente/Codigo");
@@ -128,6 +138,11 @@ sap.ui.define([
 							this.getView().byId("txt_fecha_realizacion").setValue(fecha_realizacion);
 							
 
+							//Llenar campos Empresa comercial
+							var oficina = this.getView().getModel().getProperty("/Pedido/oficina");
+							//console.log(oficina);
+							this.getView().byId("cbo_OfiVenta").setSelectedKey(oficina);
+
 							this.getView().byId("dlg_filtros").close();
 						}
 						else
@@ -157,7 +172,8 @@ sap.ui.define([
             },
 
 		onOpenDlgBuscarRecNuevo:function(){
-			this.getView().byId("dlg_buscar_rec_nuevo").open();
+			
+				this.getView().byId("dlg_buscar_rec_nuevo").open();
 		},  
 
 
@@ -300,15 +316,26 @@ sap.ui.define([
 		},
 
 		onGuardarReclamo : function(){
+			
+			//Captura material 1
+			var material_primero = this.getView().byId("cbo_material21").getSelectedItem();
+			this.getView().getModel().setProperty("/Pedido",material_primero);
+			var material1 = this.getView().getModel().getProperty("/Pedido/mProperties/text");
+
+			//Caputurar material 2
+			var material_segundo = this.getView().byId("cbo_material22").getSelectedItem();
+			this.getView().getModel().setProperty("/Pedido",material_segundo);
+			var material2 = this.getView().getModel().getProperty("/Pedido/mProperties/text");
+
 			var material11 ="";
 			var material12 = "";
-			var material21 = "11000004";
-			var material22 = "11000898";
-			var cantRecla1 = 1;
-			var cantRecla2 = 2;
-			var reclamoRef = "david moreno ortiz reclamo referencia";
-			var numeroPedido = "238187";
-			var EmpresaDet = "0006679277";
+			var material21 = material1.substr(0,8);
+			var material22 = material2.substr(0,8);
+			var cantRecla1 = this.getView().byId("txt_cantRecla1").getValue();
+			var cantRecla2 = this.getView().byId("txt_cantRecla2").getValue();
+			var reclamoRef = this.getView().byId("txt_reclamoRef").getValue();
+			var numeroPedido = this.getView().byId("txt_Numero_Pedido").getValue();
+			var EmpresaDet = this.getView().byId("txt_Codigo_Cliente").getValue();
 			var NomCliente = "";
 			var codigoEmpResp = "00001802";
 			var Motivo = "A01";
@@ -327,20 +354,20 @@ sap.ui.define([
 						ob1listaReclamo.fechaI = null;
 						ob1listaReclamo.horaReclamoI = "14:49:02";
 						ob1listaReclamo.horaReclamoF = "14:49:02";
-						ob1listaReclamo.empresa = "0006679277";
-						ob1listaReclamo.numeroPedido = "238187";
+						ob1listaReclamo.empresa = EmpresaDet;
+						ob1listaReclamo.numeroPedido = numeroPedido;
 						ob1listaReclamo.comentario = "";
 						ob1listaReclamo.material1 = "";
 						ob1listaReclamo.material2 = "";
 						ob1listaReclamo.material11 = "";
 						ob1listaReclamo.material12 = "";
-						ob1listaReclamo.material21 = "11000004";
-						ob1listaReclamo.material22 = "11000898";
-						ob1listaReclamo.cantRecla1 = "1";
-						ob1listaReclamo.cantRecla2 = "2";
+						ob1listaReclamo.material21 = material21;
+						ob1listaReclamo.material22 = material22;
+						ob1listaReclamo.cantRecla1 = cantRecla1;
+						ob1listaReclamo.cantRecla2 = cantRecla2;
 						ob1listaReclamo.montoRecla1 = "";
 						ob1listaReclamo.montoRecla2 = "";
-						ob1listaReclamo.reclamoRef = "reclamo referencia";
+						ob1listaReclamo.reclamoRef = reclamoRef;
 						ob1listaReclamo.TextoTratemInicial = "nota trtamiento inicialDavid";
 						ob1listaReclamo.TextoNotaDireccion = "nota direccion";
 						ob1listaReclamo.TextoSeguimiento = "nota seguimiento";
@@ -568,6 +595,7 @@ sap.ui.define([
 						this.getView().getModel().setProperty("/Reclamo",result.data.nroRec);
 						this.getView().byId("dlg_mostrar_reclamo").open();
                     	this.getView().getModel().refresh();
+
 					}
 					else
 					{
@@ -585,8 +613,8 @@ sap.ui.define([
 
 		},
 
-        onLlenarCombo : function(){
-        	this.getView().byId("cbo_material21").setText("{CodMaterialCorto}-{DescMaterial}");
+        onCerraDialog : function(){
+        	this.getView().byId("dlg_mostrar_reclamo").close();
         }    
 	});
 

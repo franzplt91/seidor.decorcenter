@@ -23,7 +23,6 @@ sap.ui.define([
 					this.getView().getModel().setProperty("/dataIni",window.dataIni);
             		this.getView().getModel().refresh(true);
 					this.getView().byId("dlg_rec_nuevo_inicio").open();
-
 					this.getView().byId("btn_guardar_reclamo").setText("Modificar");
                 };
 
