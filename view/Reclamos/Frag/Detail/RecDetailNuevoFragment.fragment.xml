@@ -1,8 +1,8 @@
 <core:FragmentDefinition 
-	height="100%" 
-	xmlns:core="sap.ui.core" 
-	xmlns:mvc="sap.ui.core.mvc" 
-	xmlns="sap.m"
+    height="100%" 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
     xmlns:l="sap.ui.layout" 
     xmlns:f="sap.ui.layout.form"
     xmlns:t="sap.ui.table" 
@@ -44,7 +44,7 @@
                                                     <Select width="100%" items="{ path : '/Reclamos' }" 
                                                         change="onSeleccionaSurtido" required="true" selectedKey="{CodMaterial}"
                                                      id="cbo_material21">
-                                                        <core:Item  key="{CodMaterial}" text="{CodMaterialCorto}-{DescMaterial}{material1}" />
+                                                        <core:Item  text="{CodMaterialCorto}-{DescMaterial}{material1}" />
                                                     </Select>
                                                 </f:fields>
                                             </f:FormElement>
@@ -52,23 +52,23 @@
                                                 <f:fields>
                                                     <Select width="100%" items="{ path : '/Reclamos' }" change="onSeleccionaSurtido" required="true" selectedKey="{CodMaterial}"
                                                      id="cbo_material22">
-                                                        <core:Item key="{CodMaterial}" text="{CodMaterialCorto}-{DescMaterial}{material2}" />
+                                                        <core:Item  text="{CodMaterialCorto}-{DescMaterial}{material2}" />
                                                     </Select>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="Cantidad Material 1">
                                                 <f:fields>
-                                                    <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/CANTRECLA1}" text="{}" id="txt_cantRecla1"></Input>
+                                                    <Input width="100%" id="txt_cantRecla1" ></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="Cantidad Material 2">
                                                 <f:fields>
-                                                    <Input width="100%" value="{/seleccionado/objReclamo/Z_Reclamo/CANTRECLA2}" id="txt_cantRecla2"></Input>
+                                                    <Input width="100%" id="txt_cantRecla2" ></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="reclamo Referencia">
                                                 <f:fields>
-                                                    <Input width="100%" value="{/listReclamo/reclamoRef}" id="txt_reclamoRef"></Input>
+                                                    <Input width="100%" id="txt_reclamoRef"></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                         
@@ -215,14 +215,14 @@
                                     <f:formElements>
                                         <f:FormElement label="Organización de Ventas">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/listaPedido/lstOrgVtas' }" change="onSeleccionaSurtido" required="true" id="cbo_OrgVenta">
+                                                <Select width="100%" items="{ path : '/Pedido/lstOrgVtas' }" change="onSeleccionaSurtido" required="true" id="cbo_OrgVenta">
                                                     <core:Item key="{Bbtyp}" text="{Bbtyp} {Descripcion}" />
                                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Canal">
                                             <f:fields>
-                                               <Select width="100%" items="{ path : '/listaPedido/lstCanalDist' }" change="onSeleccionaSurtido" required="true" id="cbo_Canal">
+                                               <Select width="100%" items="{ path : '/Pedido/lstCanalDist' }" change="onSeleccionaSurtido" required="true" id="cbo_Canal">
                                 <core:Item key="{Bbtyp}" text="{Descripcion}" />
                             </Select>
                                             </f:fields>
@@ -236,7 +236,8 @@
                                         </f:FormElement>
                                         <f:FormElement label="Oficina Ventas">
                                             <f:fields>
-                                                <Select width="100%" items="{ path : '/dataIni/lstOfVtas' }" change="onSeleccionaSurtido" required="true" id="cbo_OfiVenta">
+                                                <Select width="100%" items="{ path : '/dataIni/lstOfVtas' }" change="onSeleccionaSurtido" required="true" id="cbo_OfiVenta" 
+                                                    selectedKey="">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </Select>
                                             </f:fields>

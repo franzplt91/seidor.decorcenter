@@ -110,7 +110,7 @@
             <Page>
                 <customHeader>
                     <Toolbar>
-                        <Label text="Número de Pedido:"></Label>
+                        <Label text="Se creó el reclamo con el número de Reclamo:" value="{/Reclamo}"></Label>
                         <Input width="60%" value="{/Reclamo}" id="hjjh"></Input>
                     </Toolbar>
                 </customHeader>
@@ -118,7 +118,7 @@
             </Page>
         </content>
         <beginButton>
-            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCrearDlgRecNuevo" />
+            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCerraDialog" />
         </beginButton>
     </Dialog>
     <!--Split Container-->
