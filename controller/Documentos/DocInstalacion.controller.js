@@ -5,8 +5,10 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "pe/com/seidor/sap/decor/ventas/services/clienteServices",
     "pe/com/seidor/sap/decor/ventas/services/materialServices",
-    'jquery.sap.global'
-], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
+    'jquery.sap.global',
+    "pe/com/seidor/sap/decor/ventas/services/documentosServices"
+    
+], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery, documentosServices) {
     "use strict";
 
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocInstalacion", {
@@ -18,9 +20,28 @@ sap.ui.define([
         },
         onRouteMatched: function (oEvent) {
 
+             var oData = {
+                    modelInstala : {
+                        "pedido1": "",
+                        "pedido2": "",
+                        "pedido3": "",
+                        "pedido4": "",
+                        "cotiza1": "",
+                        "cotiza2": "",
+                        "cotiza3": "",
+                        "pedvisi": ""
+                        
+                    }
+                };
+
+
                 if (oEvent.getParameter("name") == "appDocInstalacion") {
                     this.getView().byId("SplitAppId").setMode("HideMode");
-                    this.getView().setModel(new JSONModel({}));
+                    //this.getView().setModel(new JSONModel({}));
+
+                    this.getView().setModel(new JSONModel(oData));
+
+
             this.getView().getModel().setProperty("/dataIni",window.dataIni);
             this.getView().getModel().refresh(true);
                     this.getView().byId("dlg_DialogDocInstalacion").open();
@@ -61,13 +82,39 @@ sap.ui.define([
 
         onContinuarDlg_DialogDocInstalacion:function(){
                 this.getView().byId("dlg_MensajeAvisoInstalacion").open();
+
+                var pedido1 = this.getView().getModel().getProperty("/modelInstala/pedido1");
+                var pedido2 = this.getView().getModel().getProperty("/modelInstala/pedido2");
+                var pedido3 = this.getView().getModel().getProperty("/modelInstala/pedido3");
+                var pedido4 = this.getView().getModel().getProperty("/modelInstala/pedido4");
+                var cotiza1 = this.getView().getModel().getProperty("/modelInstala/cotiza1");
+                var cotiza2 = this.getView().getModel().getProperty("/modelInstala/cotiza2");
+                var cotiza3 = this.getView().getModel().getProperty("/modelInstala/cotiza3");
+                var pedvisi = this.getView().getModel().getProperty("/modelInstala/pedvisi");
+
+                var result = documentosServices.crearInstalacion(pedido1,pedido2,pedido3,pedido4,cotiza1,cotiza2,cotiza3,pedvisi);
+
+                if (result.data.success)
+                {
+                    this.getView().getModel().setProperty("/resultIntala", result.data.result);
+                    this.getView().getModel().refresh();
+                } else
+                {
+                    //sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
+                    this.getView().getModel().setProperty("/resultIntala", result.data.result);
+                    this.getView().getModel().refresh();
+                }
+
                 this.getView().byId("dlg_DialogDocInstalacion").close();
             },
 
             onOkMensajeInstalacion:function(){
                 this.getView().byId("dlg_MensajeAvisoInstalacion").close();
 
-                this.getView().byId("dlg_DialogDocModificar").open();
+                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                 oRouter.navTo("appHome");
+
+                //this.getView().byId("dlg_DialogDocModificar").open();
             },
 
             onContinuarDlg_DialogDocModificar: function(oEvent) {
