@@ -20,10 +20,229 @@ sap.ui.define([
 
 		},
 		onRouteMatched: function(oEvent) {
+			var oData = {
+                    "reclamo" : {
+                        "material11" : "",
+						"material12" : "",
+						"material21" : "",
+						"material22" : "",
+						"cantRecla1" : "",
+						"cantRecla2" : "",
+						"reclamoRef" : "",
+						"numeroPedido" : "",
+						"EmpresaDet" : "",
+						"NomCliente" : "",
+						"codigoEmpResp" : "",
+						"Motivo" : "",
+						"Status" : "",
+						"Resultado" : "",
+						"JustificResul" : "",
+						"OrgVenta" : "",
+						"Canal" : "",
+						"Sector" : "",
+						"OfiVenta" : "",
+						"comentario" : "",
+
+                        "listaReclamo" : [
+                        					{
+                        						"pNumeroReclamo":"",
+                        						"fechaI":null,
+                        						"fechaF":null,
+                        						"horaReclamoI":"14:49:02",
+                        						"horaReclamoF":"14:49:02",
+                        						"empresa":"",
+                        						"numeroPedido":"238187",
+                        						"comentario":"",
+                        						"material1":"",
+                        						"material2":"",
+                        						"material11":"",
+                        						"material12":"",
+                        						"material21":"",
+                        						"material22":"",
+                        						"cantRecla1":"",
+                        						"cantRecla2":"",
+                        						"montoRecla1":"",
+                        						"montoRecla2":"",
+                        						"reclamoRef":"",
+                        						"TextoTratemInicial":"",
+                        						"TextoNotaDireccion":"",
+                        						"TextoSeguimiento":"",
+                        						"TextoDiagnostico":"",
+                        						"TextoSolucion":"",
+                        						"TextoPersonaContacto":"",
+                        						"TextoDatosFacturacion":"",
+                        						"TextoPedidoReferencia":"",
+                        						"TextoMotivosOtros":"",
+                        						"mail":"",
+                        						"_nif":"0006679277",
+                        						"PersonaContacto":"",
+                        						"NomPContac":"",
+                        						"DirPContac":"",
+                        						"NIFCont":"",
+                        						"TelfCont":"",
+                        						"CodpPContac":"",
+                        						"NomCliente":"",
+                        						"EmpresaDet":"",
+                        						"NomEmpresa":"",
+                        						"DirEmpresa":"CAL. GABRIELA MISTRAL Nº 250",
+                        						"TelfEmpre":"2734613",
+                        						"CodpEmpresa":"LIMA 34",
+                        						"CodDestMerc":"0006679277",
+                        						"NomDestMerc":"",
+                        						"DirDestMerc":"CAL. GABRIELA MISTRAL Nº 250",
+                        						"CodpDestMerc":"LIMA 34",
+                        						"CodECom":"",
+                        						"NomECom":"CAL. GABRIELA MISTRAL Nº 250",
+                        						"codigoEmpResp":"",
+                        						"nombreEmpResp":"",
+                        						"CodResPago":"00001802",
+                        						"NomResPago":"Julio Edgardo Pingo",
+                        						"OrgVenta":"",
+                        						"Canal":"",
+                        						"OfiVenta":"",
+                        						"Motivo":"",
+                        						"Resultado":"",
+                        						"JustificResul":"",
+                        						"Sector":"",
+                        						"Status":"",
+                        						"UsuarioStatus":"persona status",
+                        						"Descripcion":"Julio Edgardo Pingo",
+                        						"fechaSts":"2017-06-21T19:48:57.789Z"
+                        					}],
+                        
+                        "pIndiceResultado" : 4,
+                        
+                        "listaIntJson" : [
+                        					{
+                        						"id":1,
+                        						"PedidoId":0,
+                        						"Funcion":"",
+                        						"Codigo":"",
+                        						"Ruc":"06679277",
+                        						"Descripcion":"",
+                        						"Titulo":"",
+                        						"Direccion":"",
+                        						"DireccionCompleta":"CAL. GABRIELA MISTRAL Nº 250 LIMA 34 SURQUILLO - LIMA",
+                        						"Ciudad":"LIMA 34",
+                        						"Pais":"PE",
+                        						"CodigoPostal":"LIMA 34",
+                        						"Distrito":"SURQUILLO - LIMA",
+                        						"Telefono":"2734613",
+                        						"Mail":"ihkj@hotmail.com",
+                        						"PersonaFisica":true,
+                        						"Eventual":false,
+                        						"CodPersona":"",
+                        						"Nombre":"",
+                        						"ADRNR":"",
+                        						"DescripcionP":"",
+                        						"POSNR":"000000",
+                        						"PARVW":"AG",
+                        						"NOMBRE":"ALBERTO ALVARADO FIGUEROA",
+                        						"Name1":"ALBERTO ALVARADO FIGUEROA",
+                        						"Calle":"CAL. GABRIELA MISTRAL Nº 250",
+                        						"KUNNR":"0006679277",
+                        						"NIF":"",
+                        						"CPOSTAL":"LIMA 34",
+                        						"CodPostal":"LIMA 34",
+                        						"DIRECCION":"CAL. GABRIELA MISTRAL Nº 250",
+                        						"TELEFONO":"",
+                        						"PCONTACTO":"ALBERTO ALVARADO FIGUEROA"
+                        					},
+
+                        					{
+                        						"id":3,
+                        						"PedidoId":0,
+                        						"Funcion":"VE",
+                        						"Codigo":"",
+                        						"Ruc":"",
+                        						"Descripcion":"",
+                        						"Titulo":"",
+                        						"Direccion":"",
+                        						"DireccionCompleta":"",
+                        						"Ciudad":"",
+                        						"Pais":"",
+                        						"CodigoPostal":"",
+                        						"Distrito":"",
+                        						"Telefono":"",
+                        						"Mail":"",
+                        						"PersonaFisica":false,
+                        						"Eventual":false,
+                        						"CodPersona":"00001802",
+                        						"Nombre":"Julio Edgardo Pingo",
+                        						"ADRNR":"",
+                        						"DescripcionP":"",
+                        						"POSNR":"000000",
+                        						"PARVW":"VE",
+                        						"PERNR":"00001802"
+                        					},
+
+                        					{
+                        						"id":4,
+                        						"PedidoId":0,
+                        						"Funcion":"ZM",
+                        						"Codigo":"",
+                        						"Ruc":"",
+                        						"Descripcion":"",
+                        						"Titulo":"",
+                        						"Direccion":"",
+                        						"DireccionCompleta":"",
+                        						"Ciudad":"",
+                        						"Pais":"",
+                        						"CodigoPostal":"",
+                        						"Distrito":"",
+                        						"Telefono":"",
+                        						"Mail":"",
+                        						"PersonaFisica":false,
+                        						"Eventual":false,
+                        						"CodPersona":"00001802",
+                        						"Nombre":"Julio Edgardo Pingo",
+                        						"ADRNR":"",
+                        						"DescripcionP":"",
+                        						"POSNR":"000000",
+                        						"PARVW":"ZM",
+                        						"PERNR":"00001802"
+                        					},
+
+                        					{
+                        						"id":5,
+                        						"PedidoId":0,
+                        						"Funcion":"AP",
+                        						"Codigo":"",
+                        						"Ruc":"",
+                        						"Descripcion":"",
+                        						"Titulo":"",
+                        						"Direccion":"",
+                        						"DireccionCompleta":"",
+                        						"Ciudad":"",
+                        						"Pais":"PE",
+                        						"CodigoPostal":"LIMA 02",
+                        						"Distrito":"",
+                        						"Telefono":"",
+                        						"Mail":"",
+                        						"PersonaFisica":false,
+                        						"Eventual":false,
+                        						"CodPersona":"",
+                        						"Nombre":"",
+                        						"ADRNR":"",
+                        						"DescripcionP":"",
+                        						"POSNR":"",
+                        						"PARVW":"AP",
+                        						"NOMBRE":"nombre persona contacto",
+                        						"Name1":"nombre persona contacto",
+                        						"Calle":"direccionPersonaContacto",
+                        						"CPOSTAL":"LIMA 02",
+                        						"CodPostal":"LIMA 02",
+                        						"DIRECCION":"direccionPersonaContacto",
+                        						"TELEFONO":"telcon",
+                        						"PCONTACTO":"nombre persona contacto"
+                        					}
+                        				]
+                    }
+                };
 
             if (oEvent.getParameter("name") == "appRecNuevo") {
             	this.getView().byId("SplitAppId").setMode("HideMode");
-            	this.getView().setModel(new JSONModel({}));
+            	this.getView().setModel(new JSONModel(oData));
 				this.getView().getModel().setProperty("/dataIni",window.dataIni);
 	            this.getView().getModel().refresh(true);
 	            this.getView().byId("txt_Numero_Pedido").setEnabled(false);
@@ -173,7 +392,11 @@ sap.ui.define([
 
 		onOpenDlgBuscarRecNuevo:function(){
 			
-				this.getView().byId("dlg_buscar_rec_nuevo").open();
+				//this.getView().byId("dlg_buscar_rec_nuevo").open();
+				var material_primero = this.getView().byId("cbo_Motivo").getSelectedItem();
+				this.getView().getModel().setProperty("/Motivo",material_primero);
+				var material1 = this.getView().getModel().getProperty("/Motivo/mProperties/key");
+				console.log(material_primero);
 		},  
 
 
@@ -316,9 +539,9 @@ sap.ui.define([
 		},
 
 		onGuardarReclamo : function(){
-			
+
 			//Captura material 1
-			var material_primero = this.getView().byId("cbo_material21").getSelectedItem();
+			/*var material_primero = this.getView().byId("cbo_material21").getSelectedItem();
 			this.getView().getModel().setProperty("/Pedido",material_primero);
 			var material1 = this.getView().getModel().getProperty("/Pedido/mProperties/text");
 
@@ -338,14 +561,46 @@ sap.ui.define([
 			var EmpresaDet = this.getView().byId("txt_Codigo_Cliente").getValue();
 			var NomCliente = "";
 			var codigoEmpResp = "00001802";
-			var Motivo = "A01";
-			var Status = 0;
-			var Resultado = "004";
-			var JustificResul = "001";
-			var OrgVenta = "1000";
-			var Canal = "10";
-			var Sector = "00";
-			var OfiVenta = "1010";
+
+			//Captura motivo reclamo
+			var motivo_reclamo = this.getView().byId("cbo_Motivo").getSelectedItem();
+			this.getView().getModel().setProperty("/Motivo",motivo_reclamo);
+			var Motivo = this.getView().getModel().getProperty("/Motivo/mProperties/key");
+
+			//Captura status
+			var motivo_status = this.getView().byId("cbo_status").getSelectedItem();
+			this.getView().getModel().setProperty("/Status",motivo_status);
+			var Status = this.getView().getModel().getProperty("/Status/mProperties/key");
+
+			//Captura resultado
+			var motivo_resultado = this.getView().byId("cbo_Resultado").getSelectedItem();
+			this.getView().getModel().setModel("/Resultado",motivo_resultado);
+			var Resultado = this.getView().getModel().getProperty("/Resultado/mProperties/key");
+			
+			//Captura justificacion resultado
+			var justificacion_resultado = this.getView().byId("cbo_JustificResul").getSelectedItem();
+			this.getView().getModel().setModel("/JustificResul",justificacion_resultado);
+			var JustificResul = this.getView().getModel().getProperty("/JustificResul/mProperties/key");
+
+			//Captura OrgVenta
+			var organizacion_venta = this.getView().byId("cbo_JustificResul").getSelectedItem();
+			this.getView().getModel().setModel("/OrgVenta",organizacion_venta);
+			var OrgVenta = this.getView().getModel().getProperty("/OrgVenta/mProperties/key");
+
+			//Captura canal
+			var motivo_canal = this.getView().byId("cbo_Canal").getSelectedItem();
+			this.getView().getModel().setModel("/Canal",motivo_canal);
+			var Canal = this.getView().getModel().getProperty("/Canal/mProperties/key");
+
+			//Captura sector
+			var motivo_sector = this.getView().byId("cbo_Sector").getSelectedItem();
+			this.getView().getModel().setModel("/Sector",motivo_sector);
+			var Sector = this.getView().getModel().getProperty("/Sector/mProperties/key");
+
+			//Captura oficina venta
+			var oficina_venta = this.getView.byId("cbo_OfiVenta").getSelectedItem();
+			this.getView().getModel().setModel("/OfiVenta",oficina_venta);
+			var OfiVenta = this.getView().getModel().getProperty("/OfiVenta/mProperties/key");
 			var comentario = "";
 			var listaReclamo = [];
 				var ob1listaReclamo = {};
@@ -368,15 +623,15 @@ sap.ui.define([
 						ob1listaReclamo.montoRecla1 = "";
 						ob1listaReclamo.montoRecla2 = "";
 						ob1listaReclamo.reclamoRef = reclamoRef;
-						ob1listaReclamo.TextoTratemInicial = "nota trtamiento inicialDavid";
-						ob1listaReclamo.TextoNotaDireccion = "nota direccion";
-						ob1listaReclamo.TextoSeguimiento = "nota seguimiento";
-						ob1listaReclamo.TextoDiagnostico = "nota diagnostico";
-						ob1listaReclamo.TextoSolucion = "nota solucion";
-						ob1listaReclamo.TextoPersonaContacto = "nota persona contacto";
-						ob1listaReclamo.TextoDatosFacturacion = "nota datos facturacion";
-						ob1listaReclamo.TextoPedidoReferencia = "notas pedidods referencia";
-						ob1listaReclamo.TextoMotivosOtros = "nota informacion";
+						ob1listaReclamo.TextoTratemInicial = this.getView().byId("txt_nota_reclamo").getValue();
+						ob1listaReclamo.TextoNotaDireccion = this.getView().byId("txt_nota_direccion").getValue();
+						ob1listaReclamo.TextoSeguimiento = this.getView().byId("txt_nota_seguimiento").getValue();
+						ob1listaReclamo.TextoDiagnostico = this.getView().byId("txt_nota_diagnostico").getValue();
+						ob1listaReclamo.TextoSolucion = this.getView().byId("txt_nota_solucion").getValue();
+						ob1listaReclamo.TextoPersonaContacto = this.getView().byId("txt_nota_persona_contacto").getValue();
+						ob1listaReclamo.TextoDatosFacturacion = this.getView().byId("txt_nota_datos_facturacion").getValue();
+						ob1listaReclamo.TextoPedidoReferencia = this.getView().byId("txt_nota_pedidos_referencia").getValue();
+						ob1listaReclamo.TextoMotivosOtros = this.getView().byId("txt_nota_informacion_servicio_interno").getValue();
 						ob1listaReclamo.mail = "";
 						ob1listaReclamo._nif = "0006679277";
 						ob1listaReclamo.PersonaContacto = "";
@@ -386,7 +641,7 @@ sap.ui.define([
 						ob1listaReclamo.TelfCont = "";
 						ob1listaReclamo.CodpPContac = "";
 						ob1listaReclamo.NomCliente = "";
-						ob1listaReclamo.EmpresaDet= "0006679277";
+						ob1listaReclamo.EmpresaDet= EmpresaDet;
 						ob1listaReclamo.NomEmpresa = "";
 						ob1listaReclamo.DirEmpresa = "CAL. GABRIELA MISTRAL Nº 250";
 						ob1listaReclamo.TelfEmpre = "2734613";
@@ -401,14 +656,14 @@ sap.ui.define([
 						ob1listaReclamo.nombreEmpResp = "";
 						ob1listaReclamo.CodResPago = "00001802";
 						ob1listaReclamo.NomResPago = "Julio Edgardo Pingo";
-						ob1listaReclamo.OrgVenta = "1000";
-						ob1listaReclamo.Canal = "10";
-						ob1listaReclamo.OfiVenta = "1010";
-						ob1listaReclamo.Motivo = "A01";
-						ob1listaReclamo.Resultado = "004";
-						ob1listaReclamo.JustificResul = "001";
-						ob1listaReclamo.Sector = "00";
-						ob1listaReclamo.Status = "0";
+						ob1listaReclamo.OrgVenta = OrgVenta;
+						ob1listaReclamo.Canal = Canal;
+						ob1listaReclamo.OfiVenta = OfiVenta;
+						ob1listaReclamo.Motivo = Motivo;
+						ob1listaReclamo.Resultado = Resultado;
+						ob1listaReclamo.JustificResul = JustificResul;
+						ob1listaReclamo.Sector = Sector;
+						ob1listaReclamo.Status = Status;
 						ob1listaReclamo.UsuarioStatus = "persona status";
 						ob1listaReclamo.Descripcion = "Julio Edgardo Pingo";
 						ob1listaReclamo.fechaSts = "2017-06-21T19:48:57.789Z";
@@ -550,43 +805,34 @@ sap.ui.define([
 			var CodigoVendedor = "00001802" ;
 			var OrgVentas = "1000" ;
 			var CanalDist = "10" ;
-			var OfVentas = "1010" ;
+			var OfVentas = "1010" ;*/
 
-
-				var result = reclamoServices.guardarReclamo(material11,
-							                                 material12,
-							                                 material21,
-							                                 material22,
-							                                 cantRecla1,
-							                                 cantRecla2, 
-							                                 reclamoRef, 
-							                                 numeroPedido,
-							                                 EmpresaDet, 
-							                                 NomCliente, 
-							                                 codigoEmpResp, 
-							                                 Motivo, 
-							                                 Status, 
-							                                 Resultado, 
-							                                 JustificResul, 
-							                                 OrgVenta,
-							                                 Canal, 
-							                                 Sector, 
-							                                 OfiVenta, 
-							                                 comentario, 
-							                                 listaReclamoLleno, 
-							                                 pIndiceResultado, 
-							                                 listaIntJsonLleno,
-							                                 UserId,
-															 PwdId,
-															Id,
-															GrpVend,
-															Descripcion,
-															CodigoVendedor,
-															OrgVentas,
-															CanalDist,
-															OfVentas);
-				//console.log(v_listaReclamo, v_listaIntJson);
-				
+				var reclamo = this.getView().getModel().getProperty("/reclamo");
+				var listaReclamo = this.getView().getModel().getProperty("/reclamo/listaReclamo");
+				listaReclamo[0].material21 = reclamo.material21.substr(0,8);
+				listaReclamo[0].material22 = reclamo.material22.substr(0,8);
+				listaReclamo[0].cantRecla1 = reclamo.cantRecla1;
+				listaReclamo[0].cantRecla2 = reclamo.cantRecla2;
+				listaReclamo[0].reclamoRef = reclamo.reclamoRef;
+				listaReclamo[0].numeroPedido = reclamo.numeroPedido;
+				listaReclamo[0].empresa = reclamo.EmpresaDet
+				listaReclamo[0].EmpresaDet = reclamo.EmpresaDet;
+				listaReclamo[0].NomCliente = reclamo.NomCliente;
+				listaReclamo[0].codigoEmpResp = reclamo.codigoEmpResp;
+				listaReclamo[0].Motivo = reclamo.Motivo.substr(0,3);
+				listaReclamo[0].Status = reclamo.Status.substr(0,1);
+				listaReclamo[0].Resultado = reclamo.Resultado.substr(0,3);
+				listaReclamo[0].JustificResul = reclamo.JustificResul.substr(0,3);
+				listaReclamo[0].OrgVenta = reclamo.OrgVenta.substr(0,4);
+				listaReclamo[0].Canal = reclamo.Canal.substr(0,2);
+				listaReclamo[0].Sector = reclamo.Sector.substr(0,2);
+				listaReclamo[0].OfiVenta = reclamo.OfiVenta.substr(0,4);
+				listaReclamo[0].comentario = reclamo.comentario;
+				var reclamo1 = JSON.stringify(listaReclamo);
+				var listaIntJson = this.getView().getModel().getProperty("/reclamo/listaIntJson");
+				var reclamo2 = JSON.stringify(listaIntJson);
+				var result = reclamoServices.guardarReclamo(reclamo, reclamo1, reclamo2);
+		
 
 				if (result.c === "s") 
 				{
