@@ -40,7 +40,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_reclamo" rows="8" />
+                                                <TextArea id="txt_nota_reclamo" value="{/reclamo/listaReclamo/0/TextoTratemInicial}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -76,7 +76,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_direccion" rows="8" />
+                                                <TextArea id="txt_nota_direccion" value="{/reclamo/listaReclamo/0/TextoNotaDireccion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -111,7 +111,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_seguimiento" rows="8" />
+                                                <TextArea id="txt_nota_seguimiento" value="{/reclamo/listaReclamo/0/TextoSeguimiento}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -146,7 +146,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_diagnostico" rows="8" />
+                                                <TextArea id="txt_nota_diagnostico" value="{reclamo/listaReclamo/0/TextoDiagnostico}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -181,7 +181,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_solucion" rows="8" />
+                                                <TextArea id="txt_nota_solucion" value="{/reclamo/listaReclamo/0/TextoSolucion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -216,7 +216,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_persona_contacto" rows="8" />
+                                                <TextArea id="txt_nota_persona_contacto" value="{/reclamo/listaReclamo/0/TextoPersonaContacto}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -251,7 +251,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_datos_facturacion" rows="8" />
+                                                <TextArea id="txt_nota_datos_facturacion" value="{/reclamo/listaReclamo/0/TextoDatosFacturacion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -286,7 +286,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_pedidos_referencia" rows="8" />
+                                                <TextArea id="txt_nota_pedidos_referencia" value="{/reclamo/listaReclamo/0/TextoPedidoReferencia}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -321,7 +321,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_informacion_servicio_interno" rows="8" />
+                                                <TextArea id="txt_nota_informacion_servicio_interno" value="{/reclamo/listaReclamo/0/TextoMotivosOtros}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         

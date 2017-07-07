@@ -39,7 +39,7 @@
                                         <f:FormElement label="Status">
                                             <f:fields>
                                                 <Select placeholder="Seleccione Moneda" items="{ path : '/dataIni/lstSectores' }" change="onSeleccionaSurtido" maxWidth="50%" required="true"
-                                                id="v_Status">
+                                                id="cbo_Status" selectedKey="{}">
                                 <core:Item key="{Codigo}" text="{Descripcion}" />
                             </Select>
                                             </f:fields>
