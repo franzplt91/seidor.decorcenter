@@ -25,7 +25,28 @@ sap.ui.define([
             };
             var resultado = utilService.exec(contexto);
             return resultado;
-        }
+        },
         //FIN EDELACRUZ
+        
+        
+        
+        crearInstalacion: function (venta1, venta2, venta3, venta4, visita1, visita2, visita3,visita4)
+        {
+            var contexto = {};
+            contexto.servicio = "documentosServices.crearInstalacion()";
+            contexto.url = "documentoVentas.aspx";
+            contexto.parametros = {venta1: venta1,
+                                   venta2: venta2,
+                                   venta3: venta3,
+                                   venta4: venta4,
+                                   visita1: visita1,
+                                   visita2: visita2,
+                                   visita3: visita3,
+                                   visita4: visita4,
+                                   instalacion: "instalacion"
+            };
+            var resultado = utilService.exec(contexto);
+            return resultado;
+        }
     };
 });

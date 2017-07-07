@@ -1,8 +1,10 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/UIComponent",
-    "pe/com/seidor/sap/decor/ventas/util/utilString"
-], function (Controller,  UIComponent, utilString) {
+    "pe/com/seidor/sap/decor/ventas/util/utilString",
+    "pe/com/seidor/sap/decor/ventas/services/QuejaServices",
+    "sap/ui/model/json/JSONModel"
+], function (Controller,  UIComponent, utilString, QuejaServices, JSONModel) {
 
         "use strict";
 
@@ -15,12 +17,22 @@ sap.ui.define([
 
             onRouteMatched: function (oEvent) {
 
-                utilString.prepareDataIni();
-                //this.getView().byId("loadingControl").open();
-                
-                // console.log(accesoServices.login("JPINGO","JPINGO1*"));
+              utilString.prepareDataIni();
 
-                //this.getView().byId("loadingControl").close();
+                var oData = {
+                        modelQueja : {
+                            "CodCli": "",
+                            "NomCliente": "",
+                            "Calles": "",
+                            "Ubicacion": "",
+                            "Telefono": "",
+                            "OfiVenta": "",
+                            "TextoQueja": ""
+                        }
+                 };
+                this.getView().setModel(new JSONModel(oData));
+                this.getView().getModel().setProperty("/dataIni",window.dataIni);
+                this.getView().getModel().refresh(true);   
             },
 
             //Documentos----------------------
@@ -164,6 +176,44 @@ sap.ui.define([
             goUsuInformacion: function(oEvent){
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("appUsuInformacion");
+            },
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            ///////Erick De la Cruz
+            
+            onGrabarQueja:function(){
+                
+                var CodCli = this.getView().getModel().getProperty("/modelQueja/CodCli");
+                var NomCliente = this.getView().getModel().getProperty("/modelQueja/NomCliente");
+                var Calles = this.getView().getModel().getProperty("/modelQueja/Calles");
+                var Ubicacion = this.getView().getModel().getProperty("/modelQueja/Ubicacion");
+                var Telefono = this.getView().getModel().getProperty("/modelQueja/Telefono");
+                var OfiVenta = this.getView().getModel().getProperty("/modelQueja/OfiVenta");
+                var Texto = this.getView().getModel().getProperty("/modelQueja/TextoQueja");
+
+                var result = QuejaServices.grabarQueja(CodCli, NomCliente, Calles, Ubicacion, Telefono, OfiVenta, Texto);
+
+                if (result.data.success)
+                {
+                    this.getView().getModel().setProperty("/resultQueja", result.data.result);
+                    this.getView().getModel().refresh();
+                } else
+                {
+                    //sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
+                    this.getView().getModel().setProperty("/resultQueja", result.data.result);
+                    this.getView().getModel().refresh();
+                }
             },
 
         });

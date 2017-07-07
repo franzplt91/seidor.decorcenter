@@ -17,13 +17,11 @@
         <!--Dialogs-->
 
         <!--dlg_DialogDocInstalacion-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocInstalacionInicio" type="XML"></core:Fragment>
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocInstalacionInicio" type="XML"></core:Fragment>          
 
-            
-
-<Dialog title="Aviso" id="dlg_MensajeAvisoInstalacion" stretchOnPhone="true" contentWidth="2%" contentHeight="9%">
+    <Dialog title="Aviso" id="dlg_MensajeAvisoInstalacion" stretchOnPhone="true" contentWidth="2%" contentHeight="9%">
         <content>
-            <Text text="Ped. Serv. Instalac. se ha grabado. Se envió correo."></Text>
+            <Text text="{/resultIntala}"></Text>
         </content>
         <beginButton>
             <Button text="OK" type="Accept" press="onOkMensajeInstalacion"></Button>
@@ -32,12 +30,7 @@
 
     <!--dlg_DialogDocModificar-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocModificarInicio" type="XML"></core:Fragment>
-
-
-
-
-
-    
+   
 
  <SplitContainer id="SplitAppId" initialMaster="DocMasterInstalacion" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange">
         <masterPages>
@@ -92,14 +85,5 @@
         </detailPages>
     </SplitContainer>
 
-
-
-
-
-
-
-
-
- 
 	
 </mvc:View>

@@ -1,122 +1,77 @@
-<core:FragmentDefinition 
-    height="100%"
-    xmlns:core="sap.ui.core"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
-    controllerName="pe.com.seidor.sap.decor.ventas.controller.Quejas.QueNuevo"
-    xmlns:l="sap.ui.layout" 
-    xmlns:f="sap.ui.layout.form"
-    xmlns:t="sap.ui.table" 
-    xmlns:s="sap.m.semantic"
+<core:FragmentDefinition height="100%" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="pe.com.seidor.sap.decor.ventas.controller.Quejas.QueNuevo" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:s="sap.m.semantic" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" displayBlock="true">
 
-    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-        displayBlock="true">
-
-
-
-
-
-        <Dialog title="Nueva Queja" id="dlg_QueNuevo" stretchOnPhone="true" contentWidth="22%"
-                    contentHeight="69%">
+    <Dialog title="Nueva Queja" id="dlg_QueNuevo" stretchOnPhone="true" contentWidth="22%" contentHeight="69%">
         <content>
-                            
-                            
-        <f:Form 
-            minWidth="1024"
-            maxContainerCols="4"
-            editable="true">
-            <f:title>
-                <!--<core:Title text="Address" />-->
-            </f:title>
-            <f:layout>
-                <f:ResponsiveGridLayout
-                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-            </f:layout>
-            <f:formContainers>
-                <f:FormContainer>
-                    <f:formElements>
-                        <f:FormElement label="RUC / DNI">
-                            <f:fields>
-                                <Input value="{SupplierName}" placeholder="Ingrese RUC / DNI" />
-                            </f:fields>
-                        </f:FormElement>
 
-                        <f:FormElement label="Descripción">
-                            <f:fields>
-                                <Input value="{SupplierName}" />
-                            </f:fields>
-                        </f:FormElement>
+            <f:Form minWidth="1024" maxContainerCols="4" editable="true">
+                <f:title>
+                    <!--<core:Title text="Address" />-->
+                </f:title>
+                <f:layout>
+                    <f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false" />
+                </f:layout>
 
-                        <f:FormElement label="Calle">
-                            <f:fields>
-                                <Input value="{SupplierName}" />
-                            </f:fields>
-                        </f:FormElement>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="RUC / DNI">
+                                <f:fields>
+                                    <Input value="{/modelQueja/CodCli}" placeholder="Ingrese RUC / DNI" />
+                                </f:fields>
+                            </f:FormElement>
 
-                        <f:FormElement label="Ubicación">
-                            <f:fields>
-                                <Input value="{SupplierName}" />
-                            </f:fields>
-                        </f:FormElement>
+                            <f:FormElement label="Descripción">
+                                <f:fields>
+                                    <Input value="{/modelQueja/NomCliente}" />
+                                </f:fields>
+                            </f:FormElement>
 
-                        <f:FormElement label="Teléfono">
-                            <f:fields>
-                                <Input value="{SupplierName}" />
-                            </f:fields>
-                        </f:FormElement>
+                            <f:FormElement label="Calle">
+                                <f:fields>
+                                    <Input value="{/modelQueja/Calles}" />
+                                </f:fields>
+                            </f:FormElement>
 
-                        <f:FormElement label="Oficina Ventas">
-                            <f:fields>
-                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                </Select>
-                            </f:fields>
-                        </f:FormElement>
+                            <f:FormElement label="Ubicación">
+                                <f:fields>
+                                    <Input value="{/modelQueja/Ubicacion}" />
+                                </f:fields>
+                            </f:FormElement>
 
-                        <f:FormElement label="Motivo de la Queja">
-                            <f:fields>
-                                <TextArea></TextArea>
-                            </f:fields>
-                        </f:FormElement>
+                            <f:FormElement label="Teléfono">
+                                <f:fields>
+                                    <Input value="{/modelQueja/Telefono}" />
+                                </f:fields>
+                            </f:FormElement>
 
-                    </f:formElements>
-                </f:FormContainer>
-            </f:formContainers>
-        </f:Form>
-                        
+                            <f:FormElement label="Oficina Ventas">
+                                <f:fields>
+                                   
+                                    <ComboBox width="100%" items="{ path : '/dataIni/lstOfVtas' }" 
+                                        change="onSelOfVentas" required="true" selectedKey="{/modelQueja/OfiVenta}"  id="cbo_ofVentas">
+                                        <core:Item key="{Codigo}" text="{Descripcion}" />
+                                    </ComboBox>
 
-                        
+                                </f:fields>
+                            </f:FormElement>
 
+                            <f:FormElement label="Motivo de la Queja">
+                                <f:fields>
+                                    <TextArea value="{/modelQueja/TextoQueja}">  </TextArea>
+                                </f:fields>
+                            </f:FormElement>
 
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
         </content>
-
-       
 
         <buttons>
             <Button text="Buscar Cliente" type="Accion" icon="sap-icon://search" press=""></Button>
-            <Button text="Guardar" type="Accion" icon="sap-icon://save" press=""></Button>
+            <Button text="Guardar" type="Accion" icon="sap-icon://save" press="onGrabarQueja"></Button>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueNuevo"></Button>
         </buttons>
     </Dialog>
 
-
-
-
-
-
-
-
- 
 </core:FragmentDefinition>

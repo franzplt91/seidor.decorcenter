@@ -8,10 +8,6 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 
-
-
-
-
 <Dialog title="Servicio de Instalación" id="dlg_DialogDocInstalacion" stretchOnPhone="true" contentWidth="30%"
                     contentHeight="70%">
         <content>
@@ -42,33 +38,29 @@
                                     <f:formElements>
                                         <f:FormElement label="Pedido de Venta N°1">
                                             <f:fields>
-                                                <Input   placeholder="Ingrese Código"></Input>
+                                                <Input value="{/modelInstala/pedido1}"  placeholder="Ingrese Código"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Pedido de Venta N°2">
                                             <f:fields>
-                                                <Input   placeholder="Ingrese Código"></Input>
+                                                <Input value="{/modelInstala/pedido2}"  placeholder="Ingrese Código"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Pedido de Venta N°3">
                                             <f:fields>
-                                                <Input   placeholder="Ingrese Código"></Input>
+                                                <Input value="{/modelInstala/pedido3}"  placeholder="Ingrese Código"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Pedido de Venta N°4">
                                             <f:fields>
-                                                <Input   placeholder="Ingrese Código"></Input>
+                                                <Input value="{/modelInstala/pedido4}"  placeholder="Ingrese Código"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                     </f:formElements>
+
                                 </f:FormContainer>
                             </f:formContainers>
                         </f:Form>
-
-
-
-
-
 
                         <f:Form editable="true">
                             <f:title>
@@ -95,22 +87,22 @@
                                     <f:formElements>
                                         <f:FormElement label="Cotización de Servicio N°1">
                                             <f:fields>
-                                                <Input  placeholder="Ingrese Código"></Input>
+                                                <Input value="{/modelInstala/cotiza1}" placeholder="Ingrese Código"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Cotización de Servicio N°2">
                                             <f:fields>
-                                                <Input   placeholder="Ingrese Código"></Input>
+                                                <Input value="{/modelInstala/cotiza2}"  placeholder="Ingrese Código"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Cotización de Servicio N°3">
                                             <f:fields>
-                                                <Input   placeholder="Ingrese Código"></Input>
+                                                <Input value="{/modelInstala/cotiza3}"  placeholder="Ingrese Código"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Pedido de Visita">
                                             <f:fields>
-                                                <Input   placeholder="Ingrese Código"></Input>
+                                                <Input value="{/modelInstala/pedvisi}"  placeholder="Ingrese Código"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                     </f:formElements>
@@ -127,7 +119,7 @@
         <buttons>
 
             <Button text="Continuar" type="Accion" press="onContinuarDlg_DialogDocInstalacion" />
-             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </buttons>
         
     </Dialog>
