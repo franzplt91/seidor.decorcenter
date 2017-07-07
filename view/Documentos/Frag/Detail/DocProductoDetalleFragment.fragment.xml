@@ -1,4 +1,4 @@
-﻿<core:FragmentDefinition 
+<core:FragmentDefinition 
     xmlns:core="sap.ui.core" 
     xmlns:mvc="sap.ui.core.mvc" 
     xmlns="sap.m"
@@ -15,15 +15,41 @@
         <s:content>
 
 
-            <ObjectHeader id="" backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/dataIni/person/E_NAME1}"
-                number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">  
-                <attributes>
-                    <ObjectAttribute title="Código" text="{/dataIni/person/ClienteEvent}"/>
-                </attributes>
-            </ObjectHeader>
-            
+            <ObjectHeader
+         responsive="true"
+        fullScreenOptimized="true"
+        binding=""
+        intro="Código: {/listaTotalMateriales/CodMaterialCorto}"
+        title="{/listaTotalMateriales/DescMaterial}"
+        number="{
+            parts:[{path:'/listaTotalMateriales/Material/PrecioUnit'},{path:'Currency'}],
+            type: 'sap.ui.model.type.Currency',
+            formatOptions: {showMeasure: false}
+        }"
+        numberUnit="S/."
+        showMarkers="true"
+        markFlagged="true"
+        markFavorite="true"
+        numberState="Success"
+        backgroundDesign="Translucent">
+        <attributes>
+                <ObjectAttribute
+                title="Peso"
+                text="{/listaTotalMateriales/Peso}"/>
 
-            <IconTabBar expandable="false" stretchContentHeight="true" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
+
+                <ObjectAttribute
+                text="{/CodCentroStockMayor} {/DescCentroStockMayor} / {/CodAlmacenStockMayor} / {/CodLoteStockMayor}"/>
+        </attributes>
+        <statuses>
+            <ObjectStatus
+                title="Approval"
+                text="Pending"
+                state="Warning"/>
+        </statuses>
+        <headerContainer>
+            
+                <IconTabBar expandable="false" stretchContentHeight="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
                 <items>
                     <IconTabFilter text="Detalle Material 1">
 
@@ -220,7 +246,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Precio Unitario">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaTotalMateriales/PrecioUnitario}" >
+                                                <Input width="100%" value="{/listaTotalMateriales/Material/PrecioUnit}" >
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -435,6 +461,14 @@
                     </IconTabFilter>
                 </items>
             </IconTabBar>
+
+
+
+        </headerContainer>
+    </ObjectHeader>
+            
+
+            
         </s:content>
         
                 <s:customFooterContent>

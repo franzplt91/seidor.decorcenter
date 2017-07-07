@@ -1,4 +1,4 @@
-﻿sap.ui.define([
+sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
@@ -191,6 +191,7 @@
 
         onBuscarInterlocutores:function(){
 
+
             if(this.getView().byId("tabInterlocutores").getSelectedKey()=="filterSolicitante"){
 
                 if(this.getView().byId("txt_dni_ruc_solicitante").getValue()!=="" || this.getView().byId("txt_nombre_solicitante").getValue()!==""){
@@ -209,6 +210,16 @@
                        
                        var canal = "10";
 
+
+                       var self = this;
+
+
+                            self.getView().byId("loadingControl").open();
+                            setTimeout(function(){
+
+
+
+                            
                             var result = clienteServices.buscarSolicitante(codigo,dni_ruc,dni_ruc,codcliente,descripcion,
                                                 direccion,distrito,telefono,mail,esRuc,canal);
 
@@ -216,50 +227,50 @@
 
                                 if (result.data.success) {
 
-                                    this.getView().getModel().setProperty("/BusquedaSolicitante", result.data);
+                                    self.getView().getModel().setProperty("/BusquedaSolicitante", result.data);
 
 
                                     //Lista Respuestas de Lista Preguntas
                                     //Tipo de cliente
-                                     this.getView().getModel().setProperty("/listaR0",result.data.listCliPregResp[0]);
+                                     self.getView().getModel().setProperty("/listaR0",result.data.listCliPregResp[0]);
                                      
                                      
                                      //Tipo de construcción
-                                     this.getView().getModel().setProperty("/listaR1",result.data.listCliPregResp[1]);
+                                     self.getView().getModel().setProperty("/listaR1",result.data.listCliPregResp[1]);
 
                                      //Tipo de proyecto - Residencial
-                                     this.getView().getModel().setProperty("/listaR2",result.data.listCliPregResp[2]);
+                                     self.getView().getModel().setProperty("/listaR2",result.data.listCliPregResp[2]);
 
                                      //Tipo de proyecto - Institucional
-                                     this.getView().getModel().setProperty("/listaR3",result.data.listCliPregResp[3]);
+                                     self.getView().getModel().setProperty("/listaR3",result.data.listCliPregResp[3]);
 
                                      //Presupuesto para el proyecto
-                                     this.getView().getModel().setProperty("/listaR4",result.data.listCliPregResp[4]);
+                                     self.getView().getModel().setProperty("/listaR4",result.data.listCliPregResp[4]);
 
                                      //Ambiente 1
-                                     this.getView().getModel().setProperty("/listaR5",result.data.listCliPregResp[5]);
+                                     self.getView().getModel().setProperty("/listaR5",result.data.listCliPregResp[5]);
 
                                      //Estilo 1
-                                     this.getView().getModel().setProperty("/listaR6",result.data.listCliPregResp[6]);
+                                     self.getView().getModel().setProperty("/listaR6",result.data.listCliPregResp[6]);
 
                                      //Ambiente 2
-                                     this.getView().getModel().setProperty("/listaR7",result.data.listCliPregResp[7]);
+                                     self.getView().getModel().setProperty("/listaR7",result.data.listCliPregResp[7]);
 
                                      //Estilo 2
-                                     this.getView().getModel().setProperty("/listaR8",result.data.listCliPregResp[8]);
+                                     self.getView().getModel().setProperty("/listaR8",result.data.listCliPregResp[8]);
 
                                      //Ambiente 3
-                                     this.getView().getModel().setProperty("/listaR9",result.data.listCliPregResp[9]);
+                                     self.getView().getModel().setProperty("/listaR9",result.data.listCliPregResp[9]);
 
                                      //Estilo 3
-                                     this.getView().getModel().setProperty("/listaR10",result.data.listCliPregResp[10]);
+                                     self.getView().getModel().setProperty("/listaR10",result.data.listCliPregResp[10]);
 
                                      //
 
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().refresh();
 
 
-                                    this.getView().byId("tituloDetailCliente_datosClientes").bindProperty("title",{ parts:[
+                                    self.getView().byId("tituloDetailCliente_datosClientes").bindProperty("title",{ parts:[
 
                                                                                                             {path:"/BusquedaSolicitante/objCliente/NOMBRE"},
                                                                                                             {path:"/BusquedaSolicitante/objCliente/APPAT"},
@@ -268,7 +279,7 @@
                                                                                                             ] });
 
 
-                                    this.getView().byId("tituloDetailCliente_interlocutores").bindProperty("title",{ parts:[
+                                    self.getView().byId("tituloDetailCliente_interlocutores").bindProperty("title",{ parts:[
 
                                                                                                             {path:"/BusquedaSolicitante/objCliente/NOMBRE"},
                                                                                                             {path:"/BusquedaSolicitante/objCliente/APPAT"},
@@ -288,14 +299,25 @@
                                 }
 
 
-                            } else {
+                            }
+
+
+                             else {
                                 sap.m.MessageToast.show(result.m, {
                                     duration: 3000
                                 });
                             }
 
                             console.log(result.data);
+
+
+
+                            self.getView().byId("loadingControl").close();
+                            },1000);
+
+
                         }
+
                         
 
                 ///////////////////////////////////////////////////////////////
@@ -305,17 +327,28 @@
                             var BusNombres = "BusNombres";
                             var NombresBuscado = this.getView().byId("txt_nombre_solicitante").getValue();
 
+
+                            var self = this;
+
+
+                            self.getView().byId("loadingControl").open();
+                            setTimeout(function(){
+
+
+
+                            
+
                             var result = clienteServices.buscarSolicitanteNombre(BusNombres,NombresBuscado);
 
                                                 if (result.c === "s") {
 
                                                             if (result.data.success) {
 
-                                                                this.getView().getModel().setProperty("/BusquedaSolicitanteNombre", result.data);
+                                                                self.getView().getModel().setProperty("/BusquedaSolicitanteNombre", result.data);
                                                                 
-                                                                this.getView().getModel().refresh();
+                                                                self.getView().getModel().refresh();
 
-                                                                var ejem = this.getView().getModel().getProperty("/BusquedaSolicitanteNombre");
+                                                                var ejem = self.getView().getModel().getProperty("/BusquedaSolicitanteNombre");
                                                                 console.log(ejem);
 
 
@@ -334,6 +367,10 @@
                                                     });
                                                 }    
                                         
+
+                        self.getView().byId("loadingControl").close();
+                            },1000);
+
 
                 }
            
@@ -398,6 +435,17 @@
 
             var pNumPedido = this.getView().byId("txt_refDocNuevo").getValue();
 
+
+
+             var self = this;
+
+
+            self.getView().byId("loadingControl").open();
+            setTimeout(function(){
+
+
+
+
             var result = crearDocumentoServices.crearDoc(tipoDocumento,pNumPedido);
              
 
@@ -405,9 +453,9 @@
 
                     if (result.data.success) {
 
-                        this.getView().getModel().setProperty("/RetornoCrearDocumento", result.data);
-                        this.getView().getModel().refresh();
-                        this.getView().byId("dlg_DialogDocNuevo").close();
+                        self.getView().getModel().setProperty("/RetornoCrearDocumento", result.data);
+                        self.getView().getModel().refresh();
+                        self.getView().byId("dlg_DialogDocNuevo").close();
                     MessageToast.show(obj.Descripcion);
 
                     } else {
@@ -426,6 +474,9 @@
                 }
 
 
+
+        self.getView().byId("loadingControl").close();
+        },1000);
 
 
 
@@ -932,6 +983,15 @@
 
             //////////////////////////////////////////////////////////
 
+
+            var self = this;
+
+
+self.getView().byId("loadingControl").open();
+setTimeout(function(){
+
+
+
                     var result = guardarDocumento.guardar(codigoCliente,
                                                             nombreCliente,
                                                             OrgVentas,
@@ -981,12 +1041,12 @@
 
                                 if (result.data.success) {
 
-                                    this.getView().getModel().setProperty("/RetornoGuardarDocumento", result.data);
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().setProperty("/RetornoGuardarDocumento", result.data);
+                                    self.getView().getModel().refresh();
 
-                                    var reason = this.getView().getModel().getProperty("/RetornoGuardarDocumento/errors/reason");
-                                    this.getView().byId("dlg_MensajeAvisoGeneral").open();
-                                    this.getView().byId("txt_aviso_general").setText(reason);
+                                    var reason = self.getView().getModel().getProperty("/RetornoGuardarDocumento/errors/reason");
+                                    self.getView().byId("dlg_MensajeAvisoGeneral").open();
+                                    self.getView().byId("txt_aviso_general").setText(reason);
                                     
 
                                     } else {
@@ -1003,6 +1063,12 @@
                                     });
                                 }   
                                 console.log(result);
+
+
+
+
+                self.getView().byId("loadingControl").close();
+                },1000);
         },
 
 
@@ -1229,6 +1295,15 @@
                 var objPedidoLleno = JSON.stringify(objPedido);
 
 
+                var self = this;
+
+
+self.getView().byId("loadingControl").open();
+setTimeout(function(){
+
+
+
+
                         var result = materialServices.anadirMaterialMaster(codigo,
                                                                 cantidad,
                                                                 CodAmbiente,
@@ -1256,14 +1331,14 @@
 
                                 if (result.data.success) {
 
-                                    this.getView().getModel().setProperty("/RetornoAnadirMaterialMaster", result.data);
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().setProperty("/RetornoAnadirMaterialMaster", result.data);
+                                    self.getView().getModel().refresh();
                                     
                                     ////////////////////Retorno Total de Materiales/////////////////////////
-                                    var retorno = this.getView().getModel().getProperty("/RetornoAnadirMaterialMaster");
-                                    var disp = this.getView().getModel().getProperty("/RetornoMaterial");
+                                    var retorno = self.getView().getModel().getProperty("/RetornoAnadirMaterialMaster");
+                                    var disp = self.getView().getModel().getProperty("/RetornoMaterial");
 
-                                    this.getView().getModel().setProperty("/RetornoMaterial", disp);
+                                    self.getView().getModel().setProperty("/RetornoMaterial", disp);
                                     if(disp){
                                             disp.push(retorno);
                                         }else{
@@ -1273,16 +1348,16 @@
                                             
                                         }
                                         
-                                        this.getView().getModel().setProperty("/RetornoMaterial", disp);
-                                        this.getView().getModel().refresh();
+                                        self.getView().getModel().setProperty("/RetornoMaterial", disp);
+                                        self.getView().getModel().refresh();
 
                                     //////////////////////////Retorno Solo de Materiales/////////////////////////////////////////////////
                                     
-                                   var objSeleccionado = this.getView().getModel().getProperty("/RetornoAnadirMaterialMaster/materiales");
+                                   var objSeleccionado = self.getView().getModel().getProperty("/RetornoAnadirMaterialMaster/materiales");
                                    
-                                    var listaDisplay = this.getView().getModel().getProperty("/listaMatAnadido");
+                                    var listaDisplay = self.getView().getModel().getProperty("/listaMatAnadido");
 
-                                    this.getView().getModel().setProperty("/listaMatAnadido", listaDisplay);
+                                    self.getView().getModel().setProperty("/listaMatAnadido", listaDisplay);
                                         
                                         if(listaDisplay){
                                             listaDisplay.push(objSeleccionado[0]);
@@ -1293,17 +1368,17 @@
                                             
                                         }
                                         
-                                        this.getView().getModel().setProperty("/listaMatAnadido", listaDisplay);
-                                        this.getView().getModel().refresh();
+                                        self.getView().getModel().setProperty("/listaMatAnadido", listaDisplay);
+                                        self.getView().getModel().refresh();
 
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().refresh();
 
-                                    this.getView().byId("dlg_DocNuevoaddProducto").close();
+                                    self.getView().byId("dlg_DocNuevoaddProducto").close();
 
 
                                     ////////////////Crear listaRepartosJson///////////////////////////////////////////////////////////////
                                     
-                                    var lstTotal1 = this.getView().getModel().getProperty("/RetornoAnadirMaterialMaster/lstTotal");
+                                    var lstTotal1 = self.getView().getModel().getProperty("/RetornoAnadirMaterialMaster/lstTotal");
                                     var lstTotal = lstTotal1[0];
                                     console.log(lstTotal.PosicionCorto);
                                     
@@ -1313,22 +1388,22 @@
                                         TipoReparto : "" ,
                                         Pos : lstTotal.Repartos[0].Pos ,
                                         PosCorto : lstTotal.Repartos[0].PosCorto ,
-                                        FechaEntrega : this.getView().byId("date_fechaEntReferencial_datosDocumento").getDateValue() ,
-                                        CantPed : this.getView().byId("txt_cantidad_anadir_material").getValue() ,
-                                        CantConf : this.getView().byId("txt_cantidad_anadir_material").getValue() ,
+                                        FechaEntrega : self.getView().byId("date_fechaEntReferencial_datosDocumento").getDateValue() ,
+                                        CantPed : self.getView().byId("txt_cantidad_anadir_material").getValue() ,
+                                        CantConf : self.getView().byId("txt_cantidad_anadir_material").getValue() ,
                                         CodUMedida : "" ,
                                     };
                                     
-                                    //this.getView().getModel().setProperty("/listaRepartos",listaRepartosJson);
-                                    this.getView().getModel().setProperty("/listaRepartos",obj1listaRepartosJson);
-                                    this.getView().getModel().refresh();
+                                    //self.getView().getModel().setProperty("/listaRepartos",listaRepartosJson);
+                                    self.getView().getModel().setProperty("/listaRepartos",obj1listaRepartosJson);
+                                    self.getView().getModel().refresh();
 
 
-                                    var objRepartos = this.getView().getModel().getProperty("/listaRepartos");
+                                    var objRepartos = self.getView().getModel().getProperty("/listaRepartos");
                                    
-                                    var listaRepar = this.getView().getModel().getProperty("/listaRepartosLleno");
+                                    var listaRepar = self.getView().getModel().getProperty("/listaRepartosLleno");
 
-                                    this.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
+                                    self.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
                                         
                                         if(listaRepar){
                                             listaRepar.push(objRepartos);
@@ -1339,16 +1414,16 @@
                                             
                                         }
                                         
-                                        this.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
-                                        this.getView().getModel().refresh();
+                                        self.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
+                                        self.getView().getModel().refresh();
 
-                                        var ejemss = this.getView().getModel().getProperty("/listaRepartosLleno");
+                                        var ejemss = self.getView().getModel().getProperty("/listaRepartosLleno");
 
                                         console.log(ejemss);
 
                                     ////Coger Centro Almacen y Lote de Mayor Stock//////////////////////////////////////////////////////
 
-                                    var listaTotalStock = this.getView().getModel().getProperty("/RetornoAnadirMaterialMaster/lstStock");
+                                    var listaTotalStock = self.getView().getModel().getProperty("/RetornoAnadirMaterialMaster/lstStock");
                                     var Mayor = listaTotalStock.length - 1;
                                     console.log(listaTotalStock[Mayor]);
 
@@ -1437,15 +1512,15 @@
                                     
 
 
-                                    this.getView().getModel().setProperty("/listaMatJson",obj1listaMatJson);
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().setProperty("/listaMatJson",obj1listaMatJson);
+                                    self.getView().getModel().refresh();
 
 
-                                    var objMat = this.getView().getModel().getProperty("/listaMatJson");
+                                    var objMat = self.getView().getModel().getProperty("/listaMatJson");
                                    
-                                    var listaMat = this.getView().getModel().getProperty("/listaMatLleno");
+                                    var listaMat = self.getView().getModel().getProperty("/listaMatLleno");
 
-                                    this.getView().getModel().setProperty("/listaMatLleno", listaMat);
+                                    self.getView().getModel().setProperty("/listaMatLleno", listaMat);
                                         
                                         if(listaMat){
                                             listaMat.push(objMat);
@@ -1456,8 +1531,8 @@
                                             
                                         }
                                         
-                                        this.getView().getModel().setProperty("/listaMatLleno", listaMat);
-                                        this.getView().getModel().refresh();
+                                        self.getView().getModel().setProperty("/listaMatLleno", listaMat);
+                                        self.getView().getModel().refresh();
 
 
                                     ////////////////////////////////////////////////////////////////////////////////////////////
@@ -1479,6 +1554,9 @@
                                 console.log(result);
 
 
+                                self.getView().byId("loadingControl").close();
+                                },1000);
+
             
             }else{
                 MessageToast.show("No ha ingresado Ambiente y/o Opcion de Ambiente"); 
@@ -1493,6 +1571,7 @@
 
         onMasterProductoSeleccionarMaterial:function(evt){
 
+            console.log(this.getView().getModel().getProperty("/listaTotalMateriales"));
             if(this.getView().getModel().getProperty("/listaTotalMateriales")){
                 this.getView().getModel().setProperty("/listaTotalMateriales",null);
                 this.getView().getModel().refresh();
@@ -1957,15 +2036,23 @@
 
             if (ruc || nombre) {
 
+                var self = this;
+
+
+self.getView().byId("loadingControl").open();
+setTimeout(function(){
+
+
+
                 var result = clienteServices.buscarCliente(ruc, nombre);
 
                 if (result.c === "s") {
 
                     if (result.data.success) {
 
-                        this.getView().byId("dlg_DocNuevobuscarCliente_resultado").open();
-                        this.getView().getModel().setProperty("/BusquedaClientes", result.data.lstClientes);
-                        this.getView().getModel().refresh();
+                        self.getView().byId("dlg_DocNuevobuscarCliente_resultado").open();
+                        self.getView().getModel().setProperty("/BusquedaClientes", result.data.lstClientes);
+                        self.getView().getModel().refresh();
 
                     } else {
 
@@ -1983,6 +2070,10 @@
                 }
 
                 console.log(result);
+
+                self.getView().byId("loadingControl").close();
+},1000);
+
             } else {
                 sap.m.MessageToast.show('Ingrese RUC ó Razón social', {
                     duration: 1000
@@ -2159,6 +2250,14 @@
 
 
             this.getView().getModel().setProperty("/documentoSeleccionado",numeroDoc);
+
+
+            var self = this;
+
+
+self.getView().byId("loadingControl").open();
+setTimeout(function(){
+
             var result = crearDocumentoServices.crearDoc("ZO01","");
              
 
@@ -2166,12 +2265,12 @@
 
                     if (result.data.success) {
 
-                        this.getView().getModel().setProperty("/RetornoCrearDocumento", result.data);
-                        this.getView().getModel().refresh();
+                        self.getView().getModel().setProperty("/RetornoCrearDocumento", result.data);
+                        self.getView().getModel().refresh();
 
 
-                        this.getView().byId("dlg_MensajeAvisoCrearCotizacion").close();
-                        this.getView().byId("dlg_MensajeAviso1").open();
+                        self.getView().byId("dlg_MensajeAvisoCrearCotizacion").close();
+                        self.getView().byId("dlg_MensajeAviso1").open();
 
                     } else {
 
@@ -2192,30 +2291,30 @@
 
             /////Añadir Material//////////////////////////
             //////////////////////////////////////////////////////////////////////////////////////
-            var listaMateriales = this.getView().byId("lista_BuscarMaterial").getSelectedItem().getBindingContext().getObject();
+            var listaMateriales = self.getView().byId("lista_BuscarMaterial").getSelectedItem().getBindingContext().getObject();
 
 
 
-                if(this.getView().byId("com_ambiente_buscarMaterial").getSelectedKey() !=="" && this.getView().byId("com_opcion_buscarMaterial").getSelectedKey() !==""){
+                if(self.getView().byId("com_ambiente_buscarMaterial").getSelectedKey() !=="" && self.getView().byId("com_opcion_buscarMaterial").getSelectedKey() !==""){
 
-            this.getView().byId("loadingControl").open(); // INDICADOR
+            self.getView().byId("loadingControl").open(); // INDICADOR
             var codigo = listaMateriales.CodMaterial ;
-            var cantidad = this.getView().byId("txt_cantidad_buscarMaterial").getValue() ;
-            var CodAmbiente = this.getView().byId("com_ambiente_buscarMaterial").getSelectedKey() ;
-            var Opcion = this.getView().byId("com_opcion_buscarMaterial").getSelectedKey() ;
+            var cantidad = self.getView().byId("txt_cantidad_buscarMaterial").getValue() ;
+            var CodAmbiente = self.getView().byId("com_ambiente_buscarMaterial").getSelectedKey() ;
+            var Opcion = self.getView().byId("com_opcion_buscarMaterial").getSelectedKey() ;
             var UserId = window.dataIni.user.User ;
             var PwdId = window.dataIni.user.Password ;
             var Id = "e48be9f4-82b1-4cc4-9894-1c01e78c0722" ;
             var GrpVend = window.dataIni.person.GrpVend ;
             var Descripcion = window.dataIni.person.Descripcion ;
             var CodigoVendedor = window.dataIni.person.PerNr ;
-            var OrgVentas = this.getView().byId("com_orgVentas_areaVentas").getSelectedKey() ;
-            var CanalDist = this.getView().byId("com_Canal_areaVentas").getSelectedKey() ;
-            var OfVentas = this.getView().byId("com_oficina_areaVentas").getSelectedKey() ;
+            var OrgVentas = self.getView().byId("com_orgVentas_areaVentas").getSelectedKey() ;
+            var CanalDist = self.getView().byId("com_Canal_areaVentas").getSelectedKey() ;
+            var OfVentas = self.getView().byId("com_oficina_areaVentas").getSelectedKey() ;
             var añadirForm = 1 ;
             ////////////////////////////////////////////////////////////////////////////////////////////////////
             
-            var tamanoList = (this.getView().byId("list_listaMasterMateriales").getItems().length + 1)*10; //captar posicion del item dentro de la lista
+            var tamanoList = (self.getView().byId("list_listaMasterMateriales").getItems().length + 1)*10; //captar posicion del item dentro de la lista
             
             console.log(tamanoList);
             
@@ -2225,30 +2324,30 @@
             var objPedido = {
 
                         id: 1498248940715,
-                        CodTipoDoc: this.getView().getModel().getProperty("/documentoSeleccionado/Codigo"),
+                        CodTipoDoc: self.getView().getModel().getProperty("/documentoSeleccionado/Codigo"),
                         CodTipoDocAnt:"",
                         Referencia:"",
-                        OrgVentas:this.getView().byId("com_orgVentas_areaVentas").getSelectedKey(),
-                        CanalDist: this.getView().byId("com_Canal_areaVentas").getSelectedKey(),
-                        CodOficina: this.getView().byId("com_oficina_areaVentas").getSelectedKey(),
-                        CondPago: this.getView().byId("com_condPago_pago").getSelectedKey() ,
-                        Moneda: this.getView().byId("com_moneda_pago").getSelectedKey(),
+                        OrgVentas:self.getView().byId("com_orgVentas_areaVentas").getSelectedKey(),
+                        CanalDist: self.getView().byId("com_Canal_areaVentas").getSelectedKey(),
+                        CodOficina: self.getView().byId("com_oficina_areaVentas").getSelectedKey(),
+                        CondPago: self.getView().byId("com_condPago_pago").getSelectedKey() ,
+                        Moneda: self.getView().byId("com_moneda_pago").getSelectedKey(),
                         CondExp: "03",
-                        FechaEntrega: this.getView().byId("date_fechaEntReferencial_datosDocumento").getDateValue(),
+                        FechaEntrega: self.getView().byId("date_fechaEntReferencial_datosDocumento").getDateValue(),
                         FechaReparto: null,
-                        TipoCambio: this.getView().byId("txt_tipoCambio_pago").getValue(),
-                        FechaFacturacion: this.getView().byId("date_fechaFacturacion_datosFacturacion").getDateValue(),
-                        CodigoBanco: this.getView().byId("com_nombreBanco_datosFacturacion").getSelectedKey(), // ""
-                        Motivo: this.getView().byId("com_motivoNcNd_datosFacturacion").getSelectedKey(), // ""
-                        BloqueoEntrega: this.getView().byId("com_bloqueoEntrega_datosFacturacion").getSelectedKey(),//"",
-                        BloqueoFactura: this.getView().byId("com_bloqueoFactura_datosFacturacion").getSelectedKey(),//"",
-                        OrdenCompra: this.getView().byId("txt_nroOrdenCompra_datosDocumento").getValue(), //""
-                        FechaPedido: this.getView().byId("date_fechaPedido_datosDocumento").getDateValue(),
-                        FechaValidez: this.getView().byId("date_fechaValidez_datosDocumento").getDateValue(),
+                        TipoCambio: self.getView().byId("txt_tipoCambio_pago").getValue(),
+                        FechaFacturacion: self.getView().byId("date_fechaFacturacion_datosFacturacion").getDateValue(),
+                        CodigoBanco: self.getView().byId("com_nombreBanco_datosFacturacion").getSelectedKey(), // ""
+                        Motivo: self.getView().byId("com_motivoNcNd_datosFacturacion").getSelectedKey(), // ""
+                        BloqueoEntrega: self.getView().byId("com_bloqueoEntrega_datosFacturacion").getSelectedKey(),//"",
+                        BloqueoFactura: self.getView().byId("com_bloqueoFactura_datosFacturacion").getSelectedKey(),//"",
+                        OrdenCompra: self.getView().byId("txt_nroOrdenCompra_datosDocumento").getValue(), //""
+                        FechaPedido: self.getView().byId("date_fechaPedido_datosDocumento").getDateValue(),
+                        FechaValidez: self.getView().byId("date_fechaValidez_datosDocumento").getDateValue(),
                         Estado: "",
-                        nomProyecto: this.getView().byId("txt_nombreProyecto_proyectoVisita").getValue(),
-                        TipoVisita: this.getView().byId("com_tipoVisita_proyectoVisita").getSelectedKey(),
-                        cbxReembolsable: this.getView().byId("check_visitaNoReembolsable_proyectoVisita").getSelected(),
+                        nomProyecto: self.getView().byId("txt_nombreProyecto_proyectoVisita").getValue(),
+                        TipoVisita: self.getView().byId("com_tipoVisita_proyectoVisita").getSelectedKey(),
+                        cbxReembolsable: self.getView().byId("check_visitaNoReembolsable_proyectoVisita").getSelected(),
                         dsctoAdicionalZD12: 0,
                         dsctoAdicionalZD12tmp: 0,
                         FechaPrecio: null,
@@ -2277,7 +2376,7 @@
                         FechaPedidoString: "",
                         FechaValidezString: "",
                         FechaEntregaString: "",
-                        CodCliente: this.getView().getModel().getProperty("/dataIni/person/ClienteEvent"),
+                        CodCliente: self.getView().getModel().getProperty("/dataIni/person/ClienteEvent"),
                         CodClienteCorto: "",
                         CodGrupoVend: "",
                         Sector: "",
@@ -2293,10 +2392,10 @@
                         CodVendedor1: window.dataIni.person.PerNr,
                         NomVendedor1: window.dataIni.person.Descripcion,
                         TotalConIgv: 0,
-                        textoAtencion: this.getView().byId("txtArea_contactoEntrega_Observaciones").getValue(),
-                        textoObsAdministrativas: this.getView().byId("txtArea_observacionAdministrativa_Observaciones").getValue(),
-                        textoRefFactura: this.getView().byId("txtArea_referenciaFactura_Observaciones").getValue(),
-                        textoRefDireccion: this.getView().byId("txtArea_contactoLugar_Observaciones").getValue(),
+                        textoAtencion: self.getView().byId("txtArea_contactoEntrega_Observaciones").getValue(),
+                        textoObsAdministrativas: self.getView().byId("txtArea_observacionAdministrativa_Observaciones").getValue(),
+                        textoRefFactura: self.getView().byId("txtArea_referenciaFactura_Observaciones").getValue(),
+                        textoRefDireccion: self.getView().byId("txtArea_contactoLugar_Observaciones").getValue(),
                         correo: "",
                         codigoSolicitante: "",
                         codigoDestFact: "",
@@ -2321,9 +2420,9 @@
                         codigoPostalResPago: "",
                         telefonoResPago: "",
                         nifResPago: "",
-                        codigoCliente: this.getView().getModel().getProperty("/dataIni/person/ClienteEvent"),
-                        nombreCliente: this.getView().getModel().getProperty("/dataIni/person/E_NAME1"),
-                        direccionCliente: this.getView().byId("txt_direccion_solicitante").getValue(),
+                        codigoCliente: self.getView().getModel().getProperty("/dataIni/person/ClienteEvent"),
+                        nombreCliente: self.getView().getModel().getProperty("/dataIni/person/E_NAME1"),
+                        direccionCliente: self.getView().byId("txt_direccion_solicitante").getValue(),
                         apePatSolicitante: "" ,                                            
                         apeMatSolicitante: "",
                         textoContacto: "",
@@ -2340,40 +2439,40 @@
                                             25:"1",
                                             35:"30",
                                             CODIG:"87654321",
-                                            APPAT:this.getView().byId("txt_apellido_paterno_datosAdicionales").getValue(),
-                                            APMAT:this.getView().byId("txt_apellido_materno_datosAdicionales").getValue(),
-                                            NOMBRE:this.getView().byId("txt_nombre_datosAdicionales").getValue(),
-                                            FECNAC:this.getView().byId("dt_fecha_nacimiento_datosAdicionales").getDateValue(),
+                                            APPAT:self.getView().byId("txt_apellido_paterno_datosAdicionales").getValue(),
+                                            APMAT:self.getView().byId("txt_apellido_materno_datosAdicionales").getValue(),
+                                            NOMBRE:self.getView().byId("txt_nombre_datosAdicionales").getValue(),
+                                            FECNAC:self.getView().byId("dt_fecha_nacimiento_datosAdicionales").getDateValue(),
                                             GRAINS:"10",
-                                            SEXO:this.getView().byId("com_sexo_datosAdicionales").getSelectedKey(),
+                                            SEXO:self.getView().byId("com_sexo_datosAdicionales").getSelectedKey(),
                                             CIUDAD:"140101",
-                                            EDAD:this.getView().byId("txt_edad_datosAdicionales").getValue(),
-                                            RANGOED:this.getView().byId("com_rango_edad_datosAdicionales").getSelectedKey(),
+                                            EDAD:self.getView().byId("txt_edad_datosAdicionales").getValue(),
+                                            RANGOED:self.getView().byId("com_rango_edad_datosAdicionales").getSelectedKey(),
                                             NIVELSE:"A",
-                                            DIREC:this.getView().byId("txt_direccion_solicitante").getValue()  },
+                                            DIREC:self.getView().byId("txt_direccion_solicitante").getValue()  },
                         listaPre: "",
                         TotalDcto: 0,
-                        codProyecto: this.getView().byId("txt_codigoProyecto_proyectoVisita").getValue(),
-                        codVersion: this.getView().byId("txt_codigoVersion_proyectoVisita").getValue(),
-                        GrupoForecast: this.getView().byId("com_grupoForecast_proyectoVisita").getSelectedKey(),
-                        TipoForecast: this.getView().byId("com_tipoForecast_proyectoVisita").getSelectedKey(),
+                        codProyecto: self.getView().byId("txt_codigoProyecto_proyectoVisita").getValue(),
+                        codVersion: self.getView().byId("txt_codigoVersion_proyectoVisita").getValue(),
+                        GrupoForecast: self.getView().byId("com_grupoForecast_proyectoVisita").getSelectedKey(),
+                        TipoForecast: self.getView().byId("com_tipoForecast_proyectoVisita").getSelectedKey(),
                         NoImpFac: "",
-                        Certificado: this.getView().byId("txt_nroCertificado_proyectoVisita").getValue(),
-                        FechaVisita: this.getView().byId("date_fechaVisita_proyectoVisita").getDateValue(), //null
+                        Certificado: self.getView().byId("txt_nroCertificado_proyectoVisita").getValue(),
+                        FechaVisita: self.getView().byId("date_fechaVisita_proyectoVisita").getDateValue(), //null
 
                         };
 
-                var cantidadtmp = this.getView().byId("txt_cantidad_buscarMaterial").getValue() ;
-                var ambiente = this.getView().byId("com_ambiente_buscarMaterial").getSelectedKey() ;
-                var desamb = this.getView().byId("com_ambiente_buscarMaterial").getSelectedItem().getText() ;
-                var opcamb = this.getView().byId("com_opcion_buscarMaterial").getSelectedKey() ;
-                var auart = this.getView().getModel().getProperty("/documentoSeleccionado/Codigo") ;
+                var cantidadtmp = self.getView().byId("txt_cantidad_buscarMaterial").getValue() ;
+                var ambiente = self.getView().byId("com_ambiente_buscarMaterial").getSelectedKey() ;
+                var desamb = self.getView().byId("com_ambiente_buscarMaterial").getSelectedItem().getText() ;
+                var opcamb = self.getView().byId("com_opcion_buscarMaterial").getSelectedKey() ;
+                var auart = self.getView().getModel().getProperty("/documentoSeleccionado/Codigo") ;
 
 
                 var objPedidoLleno = JSON.stringify(objPedido);
-                this.getView().byId("loadingControl").close();
+                self.getView().byId("loadingControl").close();
 
-                        this.getView().byId("loadingControl").open(); // INDICADOR
+                        self.getView().byId("loadingControl").open(); // INDICADOR
                         var result = materialServices.anadirMaterialMaster(codigo,
                                                                 cantidad,
                                                                 CodAmbiente,
@@ -2396,27 +2495,27 @@
                                                                 opcamb,
                                                                 auart
                                                                 );
-                        this.getView().byId("loadingControl").close();
+                        self.getView().byId("loadingControl").close();
                             if (result.c === "s") {
 
                                 if (result.data.success) {
-                                    this.getView().byId("loadingControl").open(); // INDICADOR
-                                    this.getView().getModel().setProperty("/RetornoAnadirMaterialBuscarMaster", result.data);
+                                    self.getView().byId("loadingControl").open(); // INDICADOR
+                                    self.getView().getModel().setProperty("/RetornoAnadirMaterialBuscarMaster", result.data);
 
                                     //////////////////Redirigir Master Detail////////////////////////////////////////////////////////
 
 
-                                    this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoProductos"));
-                                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
+                                    self.byId("SplitAppId").toMaster(self.createId("MasterDocNuevoProductos"));
+                                    self.byId("SplitAppId").to(self.createId("pagDocNuevo_productos_lista1"));
 
 
                                     /////////////////////////////////////////////////////////////////////////
 
                                     ////////////////////Retorno Total de Materiales/////////////////////////
-                                    var retorno = this.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster");
-                                    var disp = this.getView().getModel().getProperty("/RetornoMaterial");
+                                    var retorno = self.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster");
+                                    var disp = self.getView().getModel().getProperty("/RetornoMaterial");
 
-                                    this.getView().getModel().setProperty("/RetornoMaterial", disp);
+                                    self.getView().getModel().setProperty("/RetornoMaterial", disp);
                                     if(disp){
                                             disp.push(retorno);
                                         }else{
@@ -2426,15 +2525,15 @@
                                             
                                         }
                                         
-                                        this.getView().getModel().setProperty("/RetornoMaterial", disp);
-                                        this.getView().getModel().refresh();
+                                        self.getView().getModel().setProperty("/RetornoMaterial", disp);
+                                        self.getView().getModel().refresh();
 
                                     ///////////////////////Retorno Solo de Materiales////////////////////////////////////////////////////
 
 
                                     
-                                    var objSeleccionado = this.getView().getModel().getProperty("/materialSelec");
-                                    var listaDisplay = this.getView().getModel().getProperty("/listaMatAnadido");
+                                    var objSeleccionado = self.getView().getModel().getProperty("/materialSelec");
+                                    var listaDisplay = self.getView().getModel().getProperty("/listaMatAnadido");
                                     
                                     if(listaDisplay){
                                         listaDisplay.push(objSeleccionado);
@@ -2445,22 +2544,22 @@
                                         
                                     }
                                     
-                                    this.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
+                                    self.getView().getModel().refresh();
 
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().refresh();
 
 
-                                    this.getView().byId("dlg_DocNuevoaddProducto").close();
-                                    this.getView().byId("lb_mensajeAviso1").setText("Se creó nueva Cotización. Material Añadido. Desea seguir añadiendo materiales?");
-                                    this.getView().byId("dlg_MensajeAviso1").open();
-                                    this.getView().byId("loadingControl").close(); 
+                                    self.getView().byId("dlg_DocNuevoaddProducto").close();
+                                    self.getView().byId("lb_mensajeAviso1").setText("Se creó nueva Cotización. Material Añadido. Desea seguir añadiendo materiales?");
+                                    self.getView().byId("dlg_MensajeAviso1").open();
+                                    self.getView().byId("loadingControl").close(); 
 
 
 
                                     ////////////////Crear listaRepartosJson///////////////////////////////////////////////////////////////
 
-                                    var lstTotal1 = this.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster/lstTotal");
+                                    var lstTotal1 = self.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster/lstTotal");
                                     var lstTotal = lstTotal1[0];
                                     console.log(lstTotal.PosicionCorto);
 
@@ -2472,22 +2571,22 @@
                                         Pos : "1" ,
                                         PosCorto : "" ,
                                         FechaEntrega : "2017-06-22T05:00:00.000Z" ,
-                                        CantPed : this.getView().byId("txt_cantidad_buscarMaterial").getValue() ,
-                                        CantConf : this.getView().byId("txt_cantidad_buscarMaterial").getValue() ,
+                                        CantPed : self.getView().byId("txt_cantidad_buscarMaterial").getValue() ,
+                                        CantConf : self.getView().byId("txt_cantidad_buscarMaterial").getValue() ,
                                         CodUMedida : "" ,
                                     };
 
                                         
-                                    //this.getView().getModel().setProperty("/listaRepartos",listaRepartosJson);
-                                    this.getView().getModel().setProperty("/listaRepartos",obj1listaRepartosJson);
-                                    this.getView().getModel().refresh();
+                                    //self.getView().getModel().setProperty("/listaRepartos",listaRepartosJson);
+                                    self.getView().getModel().setProperty("/listaRepartos",obj1listaRepartosJson);
+                                    self.getView().getModel().refresh();
 
 
-                                    var objRepartos = this.getView().getModel().getProperty("/listaRepartos");
+                                    var objRepartos = self.getView().getModel().getProperty("/listaRepartos");
                                    
-                                    var listaRepar = this.getView().getModel().getProperty("/listaRepartosLleno");
+                                    var listaRepar = self.getView().getModel().getProperty("/listaRepartosLleno");
 
-                                    this.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
+                                    self.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
                                         
                                         if(listaRepar){
                                             listaRepar.push(objRepartos);
@@ -2498,10 +2597,10 @@
                                             
                                         }
                                         
-                                        this.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
-                                        this.getView().getModel().refresh();
+                                        self.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
+                                        self.getView().getModel().refresh();
 
-                                        var ejemss = this.getView().getModel().getProperty("/listaRepartosLleno");
+                                        var ejemss = self.getView().getModel().getProperty("/listaRepartosLleno");
 
                                         console.log(ejemss);
 
@@ -2509,7 +2608,7 @@
 
                                     ////Coger Centro Almacen y Lote de Mayor Stock//////////////////////////////////////////////////////
 
-                                    var listaTotalStock = this.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster/lstStock");
+                                    var listaTotalStock = self.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster/lstStock");
                                     var Mayor = listaTotalStock.length - 1;
                                     console.log(listaTotalStock[Mayor]);
 
@@ -2595,15 +2694,15 @@
 
 
 
-                                    this.getView().getModel().setProperty("/listaMatJson",obj1listaMatJson);
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().setProperty("/listaMatJson",obj1listaMatJson);
+                                    self.getView().getModel().refresh();
 
 
-                                    var objMat = this.getView().getModel().getProperty("/listaMatJson");
+                                    var objMat = self.getView().getModel().getProperty("/listaMatJson");
                                    
-                                    var listaMat = this.getView().getModel().getProperty("/listaMatLleno");
+                                    var listaMat = self.getView().getModel().getProperty("/listaMatLleno");
 
-                                    this.getView().getModel().setProperty("/listaMatLleno", listaMat);
+                                    self.getView().getModel().setProperty("/listaMatLleno", listaMat);
                                         
                                         if(listaMat){
                                             listaMat.push(objMat);
@@ -2614,13 +2713,13 @@
                                             
                                         }
                                         
-                                        this.getView().getModel().setProperty("/listaMatLleno", listaMat);
-                                        this.getView().getModel().refresh();
+                                        self.getView().getModel().setProperty("/listaMatLleno", listaMat);
+                                        self.getView().getModel().refresh();
 
 
                                     //////////////Eliminar contenido de modelo materialSelec//////////////////////////////////////////////////////////////////////////////
-                                    this.getView().getModel().setProperty("/materialSelec",null);
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().setProperty("/materialSelec",null);
+                                    self.getView().getModel().refresh();
                                     
                                     ///////////////////////////////////////////////////////////////////////////////
 
@@ -2629,20 +2728,20 @@
 
 
                                     } else {
-                                        this.getView().byId("loadingControl").open(); // INDICADOR
+                                        self.getView().byId("loadingControl").open(); // INDICADOR
                                         sap.m.MessageToast.show(result.data.errors.reason, {
                                             duration: 3000
                                         });
-                                        this.getView().byId("loadingControl").close();
+                                        self.getView().byId("loadingControl").close();
 
                                     }
 
                              } else {
-                                    this.getView().byId("loadingControl").open(); // INDICADOR
+                                    self.getView().byId("loadingControl").open(); // INDICADOR
                                     sap.m.MessageToast.show(result.m, {
                                         duration: 3000
                                     });
-                                    this.getView().byId("loadingControl").close();
+                                    self.getView().byId("loadingControl").close();
                                 }   
                                 console.log(result);
 
@@ -2654,7 +2753,8 @@
             }
 
 
-
+        self.getView().byId("loadingControl").close();
+        },1000);
 
         },
 
@@ -2853,7 +2953,16 @@
                 var objPedidoLleno = JSON.stringify(objPedido);
                 this.getView().byId("loadingControl").close();
 
-                        this.getView().byId("loadingControl").open(); // INDICADOR
+                var self = this;
+
+
+self.getView().byId("loadingControl").open();
+setTimeout(function(){
+
+
+
+
+                        self.getView().byId("loadingControl").open(); // INDICADOR
                         var result = materialServices.anadirMaterialMaster(codigo,
                                                                 cantidad,
                                                                 CodAmbiente,
@@ -2876,19 +2985,19 @@
                                                                 opcamb,
                                                                 auart
                                                                 );
-                        this.getView().byId("loadingControl").close();
+                        self.getView().byId("loadingControl").close();
                             if (result.c === "s") {
 
                                 if (result.data.success) {
-                                    this.getView().byId("loadingControl").open(); // INDICADOR
-                                    this.getView().getModel().setProperty("/RetornoAnadirMaterialBuscarMaster", result.data);
+                                    self.getView().byId("loadingControl").open(); // INDICADOR
+                                    self.getView().getModel().setProperty("/RetornoAnadirMaterialBuscarMaster", result.data);
 
 
                                     ////////////////////Retorno Total de Materiales/////////////////////////
-                                    var retorno = this.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster");
-                                    var disp = this.getView().getModel().getProperty("/RetornoMaterial");
+                                    var retorno = self.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster");
+                                    var disp = self.getView().getModel().getProperty("/RetornoMaterial");
 
-                                    this.getView().getModel().setProperty("/RetornoMaterial", disp);
+                                    self.getView().getModel().setProperty("/RetornoMaterial", disp);
                                     if(disp){
                                             disp.push(retorno);
                                         }else{
@@ -2898,15 +3007,15 @@
                                             
                                         }
                                         
-                                        this.getView().getModel().setProperty("/RetornoMaterial", disp);
-                                        this.getView().getModel().refresh();
+                                        self.getView().getModel().setProperty("/RetornoMaterial", disp);
+                                        self.getView().getModel().refresh();
 
                                     ///////////////////////Retorno Solo de Materiales////////////////////////////////////////////////////
 
 
                                     
-                                    var objSeleccionado = this.getView().getModel().getProperty("/materialSelec");
-                                    var listaDisplay = this.getView().getModel().getProperty("/listaMatAnadido");
+                                    var objSeleccionado = self.getView().getModel().getProperty("/materialSelec");
+                                    var listaDisplay = self.getView().getModel().getProperty("/listaMatAnadido");
                                     
                                     if(listaDisplay){
                                         listaDisplay.push(objSeleccionado);
@@ -2917,22 +3026,22 @@
                                         
                                     }
                                     
-                                    this.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
+                                    self.getView().getModel().refresh();
 
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().refresh();
 
 
-                                    this.getView().byId("dlg_DocNuevoaddProducto").close();
-                                    this.getView().byId("lb_mensajeAviso1").setText("Material Añadido. Desea seguir añadiendo materiales?");
-                                    this.getView().byId("dlg_MensajeAviso1").open();
-                                    this.getView().byId("loadingControl").close(); 
+                                    self.getView().byId("dlg_DocNuevoaddProducto").close();
+                                    self.getView().byId("lb_mensajeAviso1").setText("Material Añadido. Desea seguir añadiendo materiales?");
+                                    self.getView().byId("dlg_MensajeAviso1").open();
+                                    self.getView().byId("loadingControl").close(); 
 
 
 
                                     ////////////////Crear listaRepartosJson///////////////////////////////////////////////////////////////
 
-                                    var lstTotal1 = this.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster/lstTotal");
+                                    var lstTotal1 = self.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster/lstTotal");
                                     var lstTotal = lstTotal1[0];
                                     console.log(lstTotal.PosicionCorto);
 
@@ -2944,22 +3053,22 @@
                                         Pos : "1" ,
                                         PosCorto : "" ,
                                         FechaEntrega : "2017-06-22T05:00:00.000Z" ,
-                                        CantPed : this.getView().byId("txt_cantidad_buscarMaterial").getValue() ,
-                                        CantConf : this.getView().byId("txt_cantidad_buscarMaterial").getValue() ,
+                                        CantPed : self.getView().byId("txt_cantidad_buscarMaterial").getValue() ,
+                                        CantConf : self.getView().byId("txt_cantidad_buscarMaterial").getValue() ,
                                         CodUMedida : "" ,
                                     };
 
                                         
-                                    //this.getView().getModel().setProperty("/listaRepartos",listaRepartosJson);
-                                    this.getView().getModel().setProperty("/listaRepartos",obj1listaRepartosJson);
-                                    this.getView().getModel().refresh();
+                                    //self.getView().getModel().setProperty("/listaRepartos",listaRepartosJson);
+                                    self.getView().getModel().setProperty("/listaRepartos",obj1listaRepartosJson);
+                                    self.getView().getModel().refresh();
 
 
-                                    var objRepartos = this.getView().getModel().getProperty("/listaRepartos");
+                                    var objRepartos = self.getView().getModel().getProperty("/listaRepartos");
                                    
-                                    var listaRepar = this.getView().getModel().getProperty("/listaRepartosLleno");
+                                    var listaRepar = self.getView().getModel().getProperty("/listaRepartosLleno");
 
-                                    this.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
+                                    self.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
                                         
                                         if(listaRepar){
                                             listaRepar.push(objRepartos);
@@ -2970,10 +3079,10 @@
                                             
                                         }
                                         
-                                        this.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
-                                        this.getView().getModel().refresh();
+                                        self.getView().getModel().setProperty("/listaRepartosLleno", listaRepar);
+                                        self.getView().getModel().refresh();
 
-                                        var ejemss = this.getView().getModel().getProperty("/listaRepartosLleno");
+                                        var ejemss = self.getView().getModel().getProperty("/listaRepartosLleno");
 
                                         console.log(ejemss);
 
@@ -2981,7 +3090,7 @@
 
                                     ////Coger Centro Almacen y Lote de Mayor Stock//////////////////////////////////////////////////////
 
-                                    var listaTotalStock = this.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster/lstStock");
+                                    var listaTotalStock = self.getView().getModel().getProperty("/RetornoAnadirMaterialBuscarMaster/lstStock");
                                     var Mayor = listaTotalStock.length - 1;
                                     console.log(listaTotalStock[Mayor]);
 
@@ -3067,15 +3176,15 @@
 
 
 
-                                    this.getView().getModel().setProperty("/listaMatJson",obj1listaMatJson);
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().setProperty("/listaMatJson",obj1listaMatJson);
+                                    self.getView().getModel().refresh();
 
 
-                                    var objMat = this.getView().getModel().getProperty("/listaMatJson");
+                                    var objMat = self.getView().getModel().getProperty("/listaMatJson");
                                    
-                                    var listaMat = this.getView().getModel().getProperty("/listaMatLleno");
+                                    var listaMat = self.getView().getModel().getProperty("/listaMatLleno");
 
-                                    this.getView().getModel().setProperty("/listaMatLleno", listaMat);
+                                    self.getView().getModel().setProperty("/listaMatLleno", listaMat);
                                         
                                         if(listaMat){
                                             listaMat.push(objMat);
@@ -3086,13 +3195,13 @@
                                             
                                         }
                                         
-                                        this.getView().getModel().setProperty("/listaMatLleno", listaMat);
-                                        this.getView().getModel().refresh();
+                                        self.getView().getModel().setProperty("/listaMatLleno", listaMat);
+                                        self.getView().getModel().refresh();
 
 
                                     //////////////Eliminar contenido de modelo materialSelec//////////////////////////////////////////////////////////////////////////////
-                                    this.getView().getModel().setProperty("/materialSelec",null);
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().setProperty("/materialSelec",null);
+                                    self.getView().getModel().refresh();
                                     
                                     ///////////////////////////////////////////////////////////////////////////////
 
@@ -3101,24 +3210,26 @@
 
 
                                     } else {
-                                        this.getView().byId("loadingControl").open(); // INDICADOR
+                                        self.getView().byId("loadingControl").open(); // INDICADOR
                                         sap.m.MessageToast.show(result.data.errors.reason, {
                                             duration: 3000
                                         });
-                                        this.getView().byId("loadingControl").close();
+                                        self.getView().byId("loadingControl").close();
 
                                     }
 
                              } else {
-                                    this.getView().byId("loadingControl").open(); // INDICADOR
+                                    self.getView().byId("loadingControl").open(); // INDICADOR
                                     sap.m.MessageToast.show(result.m, {
                                         duration: 3000
                                     });
-                                    this.getView().byId("loadingControl").close();
+                                    self.getView().byId("loadingControl").close();
                                 }   
                                 console.log(result);
 
 
+                                self.getView().byId("loadingControl").close();
+},1000);
             
 
             }else{
@@ -3913,6 +4024,12 @@
                         var listaPedJsonLleno = JSON.stringify(listaPedJson);
 
 
+                        var self = this;
+
+
+self.getView().byId("loadingControl").open();
+setTimeout(function(){
+
                         var result = materialServices.recalcular(UserId,
                                                                 PwdId,
                                                                 Id,
@@ -3933,17 +4050,17 @@
 
                                 if (result.data.success) {
 
-                                    this.getView().getModel().setProperty("/RetornoRecalcular", result.data);
-                                    this.getView().getModel().refresh();
+                                    self.getView().getModel().setProperty("/RetornoRecalcular", result.data);
+                                    self.getView().getModel().refresh();
 
 
                                     //////////////////Crear listaDsctoJson/////////////////////////////////////////////////
 
                                     
-                                        var Dscto = this.getView().getModel().getProperty("/RetornoRecalcular/objPedido/Detalle");
+                                        var Dscto = self.getView().getModel().getProperty("/RetornoRecalcular/objPedido/Detalle");
 
                                     
-                                    var retornoMaterial = this.getView().getModel().getProperty("/RetornoMaterial");
+                                    var retornoMaterial = self.getView().getModel().getProperty("/RetornoMaterial");
                                     
                                     
 
@@ -4305,26 +4422,26 @@
 
                                             
 
-                                            var dsctoRetornoRecalcular =  this.getView().getModel().getProperty("/dsctoRetornoRecalcular");
+                                            var dsctoRetornoRecalcular =  self.getView().getModel().getProperty("/dsctoRetornoRecalcular");
 
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD00);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD01);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD02);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD03);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD04);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD05);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD06);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD07);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD08);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD09);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD11);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD12);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP01);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP08);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD13);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZDCT);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP00);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP02);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD00);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD01);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD02);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD03);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD04);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD05);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD06);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD07);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD08);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD09);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD11);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD12);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP01);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP08);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD13);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZDCT);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP00);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP02);
 
                                             
                                                 
@@ -4373,23 +4490,23 @@
                                                     
                                                 }
 
-                                                this.getView().getModel().setProperty("/dsctoRetornoRecalcular", dsctoRetornoRecalcular);
-                                                this.getView().getModel().refresh();
+                                                self.getView().getModel().setProperty("/dsctoRetornoRecalcular", dsctoRetornoRecalcular);
+                                                self.getView().getModel().refresh();
   
                                     }
 
 
-                                     var dsctoRetornoRecalcularLleno = JSON.stringify(this.getView().getModel().getProperty("/dsctoRetornoRecalcular"));
+                                     var dsctoRetornoRecalcularLleno = JSON.stringify(self.getView().getModel().getProperty("/dsctoRetornoRecalcular"));
 
                                      console.log(dsctoRetornoRecalcularLleno);
 
 
                                     ///////////////////////////////////////////////////////////////////////////////////////
                                    /*
-                                    var Dscto = this.getView().getModel().getProperty("/RetornoRecalcular/objPedido/Detalle");
+                                    var Dscto = self.getView().getModel().getProperty("/RetornoRecalcular/objPedido/Detalle");
 
                                     
-                                    var retornoMaterial = this.getView().getModel().getProperty("/RetornoMaterial");
+                                    var retornoMaterial = self.getView().getModel().getProperty("/RetornoMaterial");
                                     console.log(retornoMaterial.length);
 
                                     var j = 1;
@@ -4468,26 +4585,26 @@
                                                 ZP02.id = j ;
                                                 j = j + 1 ;
 
-                                            var dsctoRetornoRecalcular =  this.getView().getModel().getProperty("/dsctoRetornoRecalcular");
+                                            var dsctoRetornoRecalcular =  self.getView().getModel().getProperty("/dsctoRetornoRecalcular");
 
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD00);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD01);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD02);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD03);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD04);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD05);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD06);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD07);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD08);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD09);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD11);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD12);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP01);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP08);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD13);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZDCT);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP00);
-                                            this.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP02);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD00);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD01);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD02);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD03);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD04);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD05);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD06);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD07);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD08);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD09);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD11);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD12);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP01);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP08);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZD13);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZDCT);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP00);
+                                            self.getView().getModel().setProperty("/dsctoRetornoRecalcular", ZP02);
 
                                             
                                                 
@@ -4536,12 +4653,12 @@
                                                     
                                                 }
 
-                                                this.getView().getModel().setProperty("/dsctoRetornoRecalcular", dsctoRetornoRecalcular);
-                                                this.getView().getModel().refresh();
+                                                self.getView().getModel().setProperty("/dsctoRetornoRecalcular", dsctoRetornoRecalcular);
+                                                self.getView().getModel().refresh();
   
                                     }
 
-                                        var dsctoRetornoRecalcularLleno = JSON.stringify(this.getView().getModel().getProperty("/dsctoRetornoRecalcular"));
+                                        var dsctoRetornoRecalcularLleno = JSON.stringify(self.getView().getModel().getProperty("/dsctoRetornoRecalcular"));
 
                                      console.log(dsctoRetornoRecalcularLleno);
                                     *//////////////////////////////////////////////////////////////
@@ -4562,6 +4679,9 @@
                                     });
                                 }   
                                 console.log(result);
+
+                                self.getView().byId("loadingControl").close();
+},1000);
 
 
            }else{
@@ -4592,8 +4712,3 @@
     });
 
 });        
-
-
-
-
-        

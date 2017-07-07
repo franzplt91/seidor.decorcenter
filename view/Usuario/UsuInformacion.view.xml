@@ -48,37 +48,37 @@
                     <f:formElements>
                         <f:FormElement label="Usuario SAP">
                             <f:fields>
-                                    <Input  ></Input>
+                                    <Input  value="{/informacionUsuario/Usuario}"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Código de Asesor">
                             <f:fields>
-                                    <Input  ></Input>
+                                    <Input value="{/informacionUsuario/extcomp1007}" ></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Nombre de Asesor">
                             <f:fields>
-                                    <Input  ></Input>
+                                    <Input value="{/informacionUsuario/extcomp1008}" ></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Organización de Ventas">
                             <f:fields>
-                                    <Input  ></Input>
+                                    <Input value="{/informacionUsuario/extcomp1009}" ></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Canal de Ventas">
                             <f:fields>
-                                    <Input  ></Input>
+                                    <Input value="{/informacionUsuario/extcomp1010}" ></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Correo Electrónico">
                             <f:fields>
-                                    <Input  ></Input>
+                                    <Input value="{/informacionUsuario/extcomp1011}" ></Input>
                             </f:fields>
                         </f:FormElement>
 
@@ -118,19 +118,19 @@
                     <f:formElements>
                         <f:FormElement label="Contraseña Actual">
                             <f:fields>
-                                    <Input ></Input>
+                                    <Input value="{/informacionUsuario/curPassword}"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Contraseña Nueva">
                             <f:fields>
-                                    <Input ></Input>
+                                    <Input value="{/informacionUsuario/newPassword}"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Repetir Contraseña Nueva">
                             <f:fields>
-                                    <Input ></Input>
+                                    <Input value="{/informacionUsuario/newPassword2}"></Input>
                             </f:fields>
                         </f:FormElement>
 
@@ -146,7 +146,7 @@
                         </Panel>
                     
                     <s:customFooterContent>
-                    <Button text="Guardar" icon="sap-icon://save"></Button>
+                    <Button text="Guardar" icon="sap-icon://save" press="onGuardarInformacionUsuario"></Button>
                 </s:customFooterContent>
                    
  
