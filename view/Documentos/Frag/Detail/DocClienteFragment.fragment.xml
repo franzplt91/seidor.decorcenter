@@ -17,12 +17,14 @@
 
         <s:content>
             
-            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/dataIni/person/E_NAME1}"
-                number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
+            <ObjectHeader id="tituloDetailCliente_datosClientes" backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/dataIni/person/E_NAME1}"
+                number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">  
                 <attributes>
                     <ObjectAttribute title="Código" text="{/dataIni/person/ClienteEvent}"/>
                 </attributes>
             </ObjectHeader>
+
+            
             <IconTabBar stretchContentHeight="false" expandable="false" headerMode="Inline" upperCase="false" expanded="{device/isNoPhone}"
                 class="sapUiResponsiveContentPadding">
                 
@@ -58,7 +60,7 @@
                                         <f:FormElement label="Organización de Ventas">
                                             <f:fields>
                                                 <Select  maxwidth="100%" required="true" id="com_orgVentas_areaVentas">
-                                                    <core:Item key="" text="{/dataIni/person/OrgVentas} :: DECOR CENTER"/>
+                                                    <core:Item key="{/dataIni/person/OrgVentas}" text="{/dataIni/person/OrgVentas} :: DECOR CENTER"/>
                                                 </Select>
                                             </f:fields>
                                         </f:FormElement>

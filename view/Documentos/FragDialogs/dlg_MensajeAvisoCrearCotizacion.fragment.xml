@@ -7,18 +7,18 @@
     xmlns:t="sap.ui.table" 
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-    	
+        
 
 
-    	<Dialog title="Aviso" id="dlg_MensajeAviso1" stretchOnPhone="true" contentWidth="2%" contentHeight="9%">
+        <Dialog title="Aviso" id="dlg_MensajeAvisoCrearCotizacion" stretchOnPhone="true" contentWidth="2%" contentHeight="9%">
         <content>
-            <Text id="lb_mensajeAviso1" text="Material Añadido. Desea seguir añadiendo materiales?"></Text>
+            <Text id="lb_mensajeAvisoCrearCotizacion" text="No se está creando Documento Nuevo. Desea crear uno?"></Text>
         </content>
         <beginButton>
-            <Button text="Si" type="Accept" press="onSiMensajeAviso1"></Button>
+            <Button text="Si" type="Accept" press="onCrearCotizacion"></Button>
         </beginButton>
         <endButton>
-            <Button text="No" type="Reject" press="onNoMensajeAviso1"></Button>
+            <Button text="No" type="Reject" press="onNOCrearCotizacion"></Button>
         </endButton>
     </Dialog>
 

@@ -1,39 +1,47 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
-	"sap/ui/core/UIComponent"
-], function (Controller, MessageToast, UIComponent) {
+	"sap/ui/core/UIComponent",
+	"sap/ui/model/json/JSONModel",
+	"pe/com/seidor/sap/decor/ventas/services/userServices",
+], function (Controller, MessageToast, UIComponent,JSONModel,userServices) {
 	"use strict";
 
 	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Usuario.UsuInformacion", {
 
 		onInit: function () {
+			 var oRouter = UIComponent.getRouterFor(this);
+            oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
             },
 
 
 
-		onAfterRendering: function() {
+            onRouteMatched: function(oEvent) {
+            	var oData = {
+                    informacionUsuario : {
 
-			var oSplitCont= this.getSplitContObj(),
-				ref = oSplitCont.getDomRef() && oSplitCont.getDomRef().parentNode;
-			// set all parent elements to 100% height, this should be done by app developer, but just in case
-			if (ref && !ref._sapui5_heightFixed) {
-				ref._sapui5_heightFixed = true;
-				while (ref && ref !== document.documentElement) {
-					var $ref = jQuery(ref);
-					if ($ref.attr("data-sap-ui-root-content")) { // Shell as parent does this already
-						break;
-					}
-					if (!ref.style.height) {
-						ref.style.height = "100%";
-					}
-					ref = ref.parentNode;
-				}
-			}
-		},
-		onImprimir:function(){
-			MessageToast.show("Imprimiendo...");
-		},
+                       		Usuario: window.dataIni.person.Uname,
+							extcomp1007: window.dataIni.person.PerNr,
+							extcomp1008: window.dataIni.person.Descripcion,
+							extcomp1009: window.dataIni.person.OrgVentas,
+							extcomp1010: window.dataIni.person.CanalDist,
+							extcomp1011: window.dataIni.person.Email,
+							curPassword: "",
+							newPassword:"",
+							newPassword2:""							
+							
+                    }
+                };
+
+
+                if (oEvent.getParameter("name") == "appUsuInformacion") {
+                    this.getView().setModel(new JSONModel(oData));
+                    this.getView().getModel().setProperty("/dataIni",window.dataIni);
+                    this.getView().getModel().refresh(true);
+                    
+                }
+            },
+
 
 		goHome:function(){
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -41,125 +49,26 @@ sap.ui.define([
         },
 
 
-		onCloseDialog: function(oEvent){
-                this.getView().byId("dlg_filtros").close()
-            },
 
-		getSplitContObj : function() {
-			var result = this.byId("SplitAppId");
-			if (!result) {
-				jQuery.sap.log.error("SplitApp object can't be found");
-			}
-			return result;
-		},
+        onGuardarInformacionUsuario:function(){
+        	var OfVentas = window.dataIni.person.OfVentas;
+        	var datosUser = this.getView().getModel().getProperty("/informacionUsuario");     
 
-		onShowHello : function () {
+        	var result = userServices.cambioPassword(datosUser, OfVentas);
 
-			// read msg from i18n model
-			var oBundle = this.getView().getModel("i18n").getResourceBundle();
-			var sRecipient = this.getView().getModel().getProperty("/recipient/name");
-			var sMsg = oBundle.getText("helloMsg", [sRecipient]);
+            if (result.data.success)
+            {                 
 
-			// show message
-			MessageToast.show(sMsg);
-		},
+                //var data = this.getView().byId("form_OrgVentas").setEditable(false);
+                //this.getView().getModel().refresh(true);
+            } else
+            {
+                sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
+            }
 
 
-		onPressMasterBack : function() {
-			this.getSplitContObj().backMaster();
-		},
-		
 
-		onOpenDialog : function () {
-			this.getOwnerComponent().openHelloDialog();
-		},
-
-
-		ondlg_buscar: function(){
-			this.getView().byId("dlg_buscar").open();
-		},
-
-		ondlg_addProducto:function(){
-		},
-
-		onClosedlg_addProducto:function(){
-			this.getView().byId("dlg_addProducto").close();
-		},
-
-		onMasterProductosAdd:function(){
-
-			this.getSplitContObj().toMaster(this.createId("MasterProductosAgregar"));
-
-			this.getSplitContObj().to(this.createId("pag_producto_agregado1"));
-
-
-			this.getView().byId("dlg_addProducto").close();
-			
-		},
-		
-
-		onClosedlg_buscar: function(){
-			this.getView().byId("dlg_buscar").close();
-		},
-
-		onMasterProductosBuscar:function(){
-			this.getSplitContObj().toMaster(this.createId("MasterProductosBuscar"));
-
-			this.getSplitContObj().to(this.createId("pag_productos_buscar1"));
-
-
-			this.getView().byId("dlg_buscar").close();
-
-		},
-
-
-		ondlg_editListaReparto:function(){
-			this.getView().byId("dlg_editListaReparto").open();
-		},
-
-		onClosedlg_editListaReparto:function(){
-			this.getView().byId("dlg_editListaReparto").close();
-		},
-
-		onAddinBuscar:function(){
-			MessageToast.show("Producto Añadido");
-		},
-
-		onSemanticButtonPress: function (evt) {
-			MessageToast.show(evt.getSource().getText() + " Pressed");
-
-
-		},
-
-
-		onMasterDatos: function(oEvent){
-                this.getSplitContObj().toMaster(this.createId("MasterDatos"));
-
-                var objeto = oEvent.getSource().getBindingContext().getObject();
-                console.log(objeto.codigo);
-
-                
-        },
-        onMasterProductos: function(oEvent){
-                this.getSplitContObj().toMaster(this.createId("MasterProductos"));
-
-                var objeto = oEvent.getSource().getBindingContext().getObject();
-                console.log(objeto.codigo);
-
-                
-            },
-
-		onListMasterDatos : function(oEvent) {
-			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
- 
-			this.getSplitContObj().toDetail(this.createId(sToPageId));
-		},
-
-		onListMasterProductos : function(oEvent) {
-			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
- 
-			this.getSplitContObj().toDetail(this.createId(sToPageId));
-		}
+        }
 
 
 

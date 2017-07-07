@@ -17,7 +17,7 @@
                 <Page >
                     <customHeader>
                         <Toolbar>
-                            <SegmentedButton selectedKey="datos" width="100%">
+                            <SegmentedButton id="buttonMasterDatos" selectedKey="datos" width="100%">
                                 <items>
                                     <SegmentedButtonItem text="Datos" key="datos" press="onDocNuevoMasterDatos"/>
                                     <SegmentedButtonItem text="Productos" press="onDocNuevoMasterProductos"/>

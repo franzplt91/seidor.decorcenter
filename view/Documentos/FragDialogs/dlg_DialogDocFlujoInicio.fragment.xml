@@ -39,7 +39,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Número de Documento">
                                             <f:fields>
-                                                <Input ></Input>
+                                                <Input id="txt_numDoc_flujo" ></Input>
                                             </f:fields>
                                         </f:FormElement>
                                     </f:formElements>

@@ -23,6 +23,10 @@
         </beginButton>
     </Dialog>
 
+<!--dlg_MensajeAvisoCrearCotizacion-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAvisoCrearCotizacion" type="XML"></core:Fragment>
+
+
 <!--Dialgs-->
         
              <!--dlg_DialogDocNuevo-->

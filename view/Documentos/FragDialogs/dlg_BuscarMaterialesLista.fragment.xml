@@ -13,12 +13,12 @@
 
     <Dialog title="Stock Disponible" id="dlg_BuscarMateriales" contentWidth="100%" contentHeight="100%" stretch="false">
         <content>
-            <List selectionChange="" mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+            <List id="lista_BuscarMaterial" selectionChange="" mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                         enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" 
                         itemPress="SeleccionarMaterial"  
 
                         items="{
-                        path : '/BusquedaMateriales',
+                        path : '/BusquedaMateriales/materiales',
                                 sorter : {
                                     path : 'DescMaterial',
                                     group : false

@@ -9,10 +9,21 @@
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     
     <s:DetailPage title="Detalle Producto" id="pagDocNuevo_productos_lista1">
+    
+        
+
         <s:content>
+
+
+            <ObjectHeader id="" backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/dataIni/person/E_NAME1}"
+                number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">  
+                <attributes>
+                    <ObjectAttribute title="Código" text="{/dataIni/person/ClienteEvent}"/>
+                </attributes>
+            </ObjectHeader>
             
 
-            <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
+            <IconTabBar expandable="false" stretchContentHeight="true" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
                 <items>
                     <IconTabFilter text="Detalle Material 1">
 
@@ -38,7 +49,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Posición">
                                             <f:fields>
-                                                <Input width="100%">
+                                                <Input width="100%" value="{/listaTotalMateriales/Posicion}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -51,10 +62,10 @@
                                 <f:FormContainer>
                                     <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" >
+                                                <Input width="100%" value="{/listaTotalMateriales/CodMaterialCorto}">
                                                     <layoutData>
-                                        <l:GridData span="L12 M12 S12"/>
-                                    </layoutData>
+                                                        <l:GridData span="L12 M12 S12"/>
+                                                    </layoutData>
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
@@ -85,7 +96,7 @@
                                     <f:formElements>
                                          <f:FormElement label="Descripción">
                                             <f:fields>
-                                                <Input width="100%" >
+                                                <Input width="100%" value="{/listaTotalMateriales/DescMaterial}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -94,7 +105,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Cantidad">
                                             <f:fields>
-                                                <Input width="100%" >
+                                                <Input width="100%" value="{/listaTotalMateriales/Cantidad}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -108,7 +119,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Unidad de Medida">
                                             <f:fields>
-                                                <Input width="100%" >
+                                                <Input width="100%" id="txt_unidadMedida_detalleMaterial1" value="{/listaTotalMateriales/CodUMedida}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -117,7 +128,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Unidad de Rendimiento">
                                             <f:fields>
-                                                <Input width="100%" >
+                                                <Input width="100%" value="{/listaTotalMateriales/Rendimiento}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -129,9 +140,9 @@
 
                                 <f:FormContainer>
                                     <f:formElements>
-                                        <f:FormElement label="Centro/Almacen/Lote">
+                                            <f:FormElement label="Centro/Almacen/Lote">
                                             <f:fields>
-                                                <Input width="100%" >
+                                                <Input width="100%" id="txt_centro_almacen_lote" value="">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -179,7 +190,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Peso">
                                             <f:fields>
-                                                <Input width="100%" >
+                                                <Input width="100%" value="{/listaTotalMateriales/Peso}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -193,7 +204,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Peso Total">
                                             <f:fields>
-                                                <Input width="100%" >
+                                                <Input width="100%" value="{/listaTotalMateriales/PesoNeto}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -209,7 +220,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Precio Unitario">
                                             <f:fields>
-                                                <Input width="100%" >
+                                                <Input width="100%" value="{/listaTotalMateriales/PrecioUnitario}" >
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -226,7 +237,7 @@
                                     <f:formElements>
                                             <f:FormElement label="Descuentos">
                                             <f:fields>
-                                                <Input width="100%" >
+                                                <Input width="100%" value="{/listaTotalMateriales/lskkl}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -266,7 +277,7 @@
                         
                                         <f:FormElement label="Sub Total">
                                             <f:fields>
-                                                <Input width="100%" placeholder="">
+                                                <Input width="100%" placeholder="" value="{/listaTotalMateriales/SubTotal}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -276,7 +287,7 @@
                                         <f:FormElement label="Repartos">
                                             <f:fields>
                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
-                                                    value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                                    value="{/listaTotalMateriales/Reparto}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -293,8 +304,8 @@
                                     <f:formElements>
                                         <f:FormElement label="Ambiente">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" maxwidth="100%" required="true">
-                                                        <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" maxwidth="100%" required="true" selectedKey="{/listaTotalMateriales/CodGrupoMat}">
+                                                        <core:Item key="{Codigo}" text="{= ${Codigo} === ' '? 'Seleccione' : ${Descripcion} }"/>
                                                         <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -303,7 +314,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Opción Ambiente">
                                             <f:fields>
-                                                <Select maxwidth="100%" required="true">
+                                                <Select maxwidth="100%" required="true" selectedKey="{/listaTotalMateriales/Opcion}">
                                                     <core:Item key="01" text="01"/>
                                                     <core:Item key="02" text="02"/>
                                                     <core:Item key="03" text="03"/>
@@ -325,8 +336,8 @@
                                     <f:formElements>
                                         <f:FormElement label="Motivo de Rechazo">
                                             <f:fields>
-                                                <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxwidth="100%" required="true">
-                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
+                                                <Select  items="{ path : '/dataIni/lstMotivosRechazo' }" change="onSeleccionaSurtido" maxwidth="100%" required="true">
+                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ' '? 'Seleccione' : ${Descripcion} }"/>
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -335,8 +346,8 @@
                                         </f:FormElement>
                                         <f:FormElement label="Prioridad">
                                             <f:fields>
-                                                <Select placeholder="Seleccione Moneda" items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxwidth="100%" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
+                                                <Select  items="{ path : '/dataIni/lstCondExp' }" change="onSeleccionaSurtido" maxwidth="100%" required="true" selectedKey="{/listaTotalMateriales/PrioridadEntrega}">
+                                                <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione' : ${Descripcion} }"/>
                                                 <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -356,14 +367,14 @@
                     </IconTabFilter>
 
                     <IconTabFilter text="Centro/Almacen/Lote">
-                        <List  mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
-                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos" 
-                              itemPress=""  
+                        <List  id="lista_centro_almacen_lote" mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Centro/Almacen/Lote" 
+                              itemPress="onSeleccionarCentroAlmacenLote"  
                               items="{
-                        path : '/listaMatAnadido',
+                        path : '/RetornoStockDetallado/lstLoteTotal',
                                 sorter : {
-                                    path : 'DescMaterial',
-                                    group : false
+                                    path : 'DescCentro',
+                                    group : true
                                 }
                         }"
                 >
@@ -371,16 +382,12 @@
 
 
                         <ObjectListItem
-                            title="{CodMaterial}"
-                            number="Peso: {Peso}"
-                            numberUnit="Precio: {PrecioUnit} Stock: {Stock}{CodUMedida}"
-                            numberState=""
+                            title="{CodCentro} {DescCentro} / {DescAlmacen} / {CodLote}"
+                            number="Stock: {StockDisponible}"
                             type="Navigation"
                             press=""
                             custom:to="">
-                            <firstStatus>
-                                <ObjectStatus text="Descontinuado: {Descontinuado}"/>
-                            </firstStatus>
+                                
                         </ObjectListItem>
 
 
@@ -430,9 +437,18 @@
             </IconTabBar>
         </s:content>
         
-        <s:customFooterContent>
-                    <Button icon="sap-icon://refresh" tooltip="" text="" press="onBtnRefresh"></Button>
+                <s:customFooterContent>
+                    <!--Text class="txt_Total_Dscto" text="Tot.Doc.: S/. {} (c/IGV) | Tot.Dcto. : S/. {}" ></Text-->
+                    <Text class="txt_Total_Dscto" text="Total: S/. " ></Text>
+                    <Text class="monto_Total_Dscto" text="{/RetornoRecalcular/objPedido/Total}"></Text>
+                    <Text class="txt_Total_Dscto" text="Dscto.: S/. "></Text>
+                    <Text class="monto_Total_Dscto" text="{/RetornoRecalcular/objPedido/TotalDcto}"></Text>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://refresh" tooltip="" text="" press="onBtnRecalcular"></Button>
                 </s:customFooterContent>
+                
+
+
     </s:DetailPage>
 
 </core:FragmentDefinition>

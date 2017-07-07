@@ -10,7 +10,7 @@
     
     <s:DetailPage title="Documento" id="pagDocNuevo_datos_detail2">
         <s:content>
-            <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/dataIni/person/E_NAME1}"
+            <ObjectHeader id="tituloDetailCliente_interlocutores" backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/dataIni/person/E_NAME1}"
                 number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
                 <attributes>
                     <ObjectAttribute title="Código" text="{/dataIni/person/ClienteEvent}"/>
@@ -151,7 +151,7 @@
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData>
                                 </Input>
-                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true" id="com_distrito_solicitante" selectedKey="{/BusquedaSolicitante/objCliente/CodigoPostal}">
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="false" id="com_distrito_solicitante" selectedKey="{/BusquedaSolicitante/objCliente/CodigoPostal}">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
@@ -1129,7 +1129,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Grado de Instrucción*">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstGradoInst' }" maxwidth="100%" required="true" id="com_grado_instruccion_datosAdicionales">
+                                                <Select items="{ path : '/dataIni/lstGradoInst' }" maxwidth="100%" required="true" id="com_grado_instruccion_datosAdicionales" selectedKey="{/BusquedaSolicitante/objCliente/GRAINS}">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
@@ -1168,7 +1168,7 @@
 
                                                     <f:FormElement label="Edad">
                                             <f:fields>
-                                                <Input  placeholder="Ingrese Edad" id="txt_edad_datosAdicionales" value="{/BusquedaSolicitante/objCliente/EDAD}">
+                                                <Input  placeholder="Llene Fecha de Nac." id="txt_edad_datosAdicionales" value="{/BusquedaSolicitante/objCliente/EDAD}">
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -1178,7 +1178,7 @@
                                         <f:FormElement label="Rango Edad">
                                             <f:fields>
                                                 <Select  maxwidth="100%" required="true" selectedKey="0" id="com_rango_edad_datosAdicionales">
-                                    <core:Item key="0" text="Joven"/>
+                                    <core:Item key="1" text="Joven"/>
                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -1188,7 +1188,7 @@
                                         <f:FormElement label="Tipo de Cliente">
                                             <f:fields>
                                                 <Select items="{ path : '/listaRespuestas' }" maxwidth="100%" required="true" id="com_tipo_cliente_datosAdicionales" selectedKey="{/listaR0/CODR}">
-                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Cliente' : ${Descripcion} }"/>
+                                                    <core:Item key="{Codigo}" text="{Codigo} {= ${Codigo} === ''? 'Seleccione Tipo de Cliente' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -1199,7 +1199,7 @@
                                         <f:FormElement label="Tipo de Construcción">
                                             <f:fields>
                                                  <Select items="{ path : '/listaRespuestas1' }" maxwidth="100%" required="true" id="com_tipo_construccion_datosAdicionales" selectedKey="{/listaR1/CODR}">
-                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Construcción' : ${Descripcion} }"/>
+                                                    <core:Item key="{Codigo}" text="{Codigo} {= ${Codigo} === ''? 'Seleccione Tipo de Construcción' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -1210,7 +1210,7 @@
                                         <f:FormElement label="Tipo de Proyecto-Residencial">
                                             <f:fields>
                                                 <Select items="{ path : '/listaRespuestas2' }" maxwidth="100%" required="true" id="com_proyecto_residencial_datosAdicionales" selectedKey="{/listaR2/CODR}">
-                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Proyecto-Residencial' : ${Descripcion} }"/>
+                                                    <core:Item key="{Codigo}" text="{Codigo} {= ${Codigo} === ''? 'Seleccione Tipo de Proyecto-Residencial' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -1220,7 +1220,7 @@
                                         <f:FormElement label="Tipo de Proyecto-Institucional">
                                             <f:fields>
                                                 <Select items="{ path : '/listaRespuestas3' }" maxwidth="100%" required="true" id="com_proyecto_institucional_datosAdicionales" selectedKey="{/listaR3/CODR}">
-                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Tipo de Proyecto-Institucional' : ${Descripcion} }"/>
+                                                    <core:Item key="{Codigo}" text="{Codigo} {= ${Codigo} === ''? 'Seleccione Tipo de Proyecto-Institucional' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -1230,7 +1230,7 @@
                                         <f:FormElement label="Presupuesto para el Proyecto">
                                             <f:fields>
                                                   <Select items="{ path : '/listaRespuestas4' }" maxwidth="100%" required="true" id="com_presupuesto_proyecto_datosAdicionales" selectedKey="{/listaR4/CODR}">
-                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Presupuesto para el Proyecto' : ${Descripcion} }"/>
+                                                    <core:Item key="{Codigo}" text="{Codigo} {= ${Codigo} === ''? 'Seleccione Presupuesto para el Proyecto' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>
@@ -1240,7 +1240,7 @@
                                         <f:FormElement label="Estilo 1">
                                             <f:fields>
                                                  <Select items="{ path : '/listaRespuestas6' }" maxwidth="100%" required="true" id="com_estilo1_datosAdicionales" selectedKey="{/listaR6/CODR}">
-                                                    <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione Estilo 1' : ${Descripcion} }"/>
+                                                    <core:Item key="{Codigo}" text="{Codigo} {= ${Codigo} === ''? 'Seleccione Estilo 1' : ${Descripcion} }"/>
                                                     <layoutData>
                                                         <l:GridData span="L12 M12 S12"/>
                                                     </layoutData>

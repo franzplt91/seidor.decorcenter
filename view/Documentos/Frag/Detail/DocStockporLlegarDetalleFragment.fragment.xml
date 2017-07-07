@@ -8,28 +8,64 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     
-    <s:DetailPage title="Detalle Stock por Llegar" id="DocStockporLlegarDetalle">
-        <s:content>
-            
-             <Table>
-                            <columns>
-                                <Column>
-                                    <Text text="Fecha"></Text>
-                                </Column>
-                                <Column>
-                                    <Text text="Material"></Text>
-                                </Column>
-                                <Column>
-                                    <Text text="Descripción"></Text>
-                                </Column>
-                                <Column>
-                                    <Text text="UM"></Text>
-                                </Column>
-                                <Column>
-                                    <Text text="Disponibilidad"></Text>
-                                </Column>
-                            </columns>
-                        </Table>
-        </s:content>
-    </s:DetailPage>
+
+
+    
+
+                    <Table 
+                        inset="false"
+                        items="{
+                            path: '/retornoStockPorLlegar/lstStockCurso'  }">
+                        <columns>
+                            <Column
+                                width="12em">
+                                <Text text="Fecha" />
+                            </Column>
+                            <Column
+                                width="12em">
+                                <Text text="Material" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true">
+                                <Text text="Descripción" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Right">
+                                <Text text="UM" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Disponibilidad" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <ObjectIdentifier
+                                        title="{LFDAT}"
+                                        text="{ProductId}"/>
+                                    <Text
+                                        text="{MATNR}" />
+                                    <Text
+                                        text="{MAKTX}" />
+                                        <Text
+                                        text="{MEINS}" />
+                                        <Text
+                                        text="{MENGE}" />
+                                    
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+
+
+
+                        
+     
 </core:FragmentDefinition>

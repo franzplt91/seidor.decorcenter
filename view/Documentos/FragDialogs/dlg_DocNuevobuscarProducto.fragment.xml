@@ -104,7 +104,7 @@
         </content>
          <buttons>
             <Button text="Selec. Carac." type="Accion"  press="onSeleccionarCaracteristicas" />
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onDocNuevoBuscarMateriales" />
+            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onDocNuevoBuscarMateriales" id="btnBuscarMaterial"/>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoClosedlg_buscar" />
         </buttons>
     </Dialog>

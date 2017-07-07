@@ -15,7 +15,7 @@
 
 
 
-        <Dialog title="Stock por Llegar" id="dlg_filtros" stretchOnPhone="true" contentWidth="35%"
+        <Dialog title="Stock por Llegar" id="dlg_stockPorLlegar" stretchOnPhone="true" contentWidth="35%"
                     contentHeight="32%">
         <content>
 
@@ -44,13 +44,13 @@
                                     <f:formElements>
                                         <f:FormElement label="Código de Material">
                                             <f:fields>
-                                                <Input placeholder="Ingrese Código de Material"></Input>
+                                                <Input placeholder="Ingrese Código de Material" value="{}" id="txt_cod_material_stockPorLlegar"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Fecha de Inicio">
                                             <f:fields>
                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}" id="date_fec_inicio_stockPorLlegar">
                                             <layoutData>
                                                 <l:GridData span="L4 M4 S6"/>
                                             </layoutData>
@@ -60,7 +60,7 @@
                                         <f:FormElement label="Fecha de Fin">
                                             <f:fields>
                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}" id="date_fec_fin_stockPorLlegar">
                                             <layoutData>
                                                 <l:GridData span="L4 M4 S6"/>
                                             </layoutData>
@@ -79,7 +79,7 @@
 
 
         <beginButton>
-            <Button text="Continuar" type="Accept" icon="sap-icon://accept" press="onCloseDialog" />
+            <Button text="Continuar" type="Accept" icon="sap-icon://accept" press="onContinuarStockPorLlegar" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
@@ -91,325 +91,14 @@
 
 
 
-
-<Dialog title="Stock Disponible" id="dlg_buscar" stretchOnPhone="true" contentWidth="20%"
-                    contentHeight="75%">
-        <content>
-
-
-                
-            
-                        <Panel>
-                            <content>
-
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input placeholder="Ingresar Código"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Código Antiguo">
-                                            <f:fields>
-                                                <Input placeholder="Ingresar Código Antiguo"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Descripción">
-                                            <f:fields>
-                                                <Input placeholder="Ingresar Descripción"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Categoría">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Línea">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
-                                            </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Marca">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" required="true">
-                                                <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}"/>
-                                            </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-
-                            
-                            
-                            </content>
-                        </Panel>  
-
-
-        </content>
-
-
-        
-        <beginButton>
-            <Button text="Buscar" type="Accept" icon="sap-icon://search" press="onMasterProductosBuscar" />
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_buscar" />
-        </endButton>
-    </Dialog>
-
-
-
-
-    <Dialog title="Material" id="dlg_addProducto" stretchOnPhone="true" contentWidth="20%"
-                    contentHeight="65%">
-        <content>
-
-
-                
-            
-                        <Panel>
-                            <content>
-
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Código">
-                                            <f:fields>
-                                                <Input  placeholder="Ingrese Código de Material"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Cantidad">
-                                            <f:fields>
-                                                <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Ambiente">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Opción">
-                                            <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido"  required="true">
-                                    <core:Item key="{Bbtyp}" text="{Bbtyp} {Bbtext}" />
-                                    </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-
-
-                            
-                            
-                            </content>
-                        </Panel>  
-
-
-        </content>
-
-
-        
-        <beginButton>
-            <Button text="Añadir" type="Accept" icon="sap-icon://add" press="onMasterProductosAdd" ></Button>
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_addProducto" />
-        </endButton>
-    </Dialog>
-
-
-
-    <Dialog title="Editar Lista de Reparto" id="dlg_editListaReparto" stretchOnPhone="true" contentWidth="20%"
-                    contentHeight="60%">
-        <content>
-
-
-                
-            
-                        <Panel>
-                            <content>
-
-                                <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Fecha Entrega">
-                                            <f:fields>
-                                                <DatePicker id="FechaListReparto" valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
-                                            <layoutData>
-                                                <l:GridData span="L4 M4 S6"/>
-                                            </layoutData>
-                                    </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Cantidad">
-                                            <f:fields>
-                                                <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Cantidad Confirmada">
-                                            <f:fields>
-                                                <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Tipo">
-                                            <f:fields>
-                                                <Input  value="1"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-
-                            
-                            
-                            </content>
-                        </Panel>  
-
-
-        </content>
-
-
-        
-        <beginButton>
-            <Button text="Guardar" type="Accept" icon="sap-icon://save" press="" ></Button>
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_editListaReparto" />
-        </endButton>
-    </Dialog>
-
-
-
-
-
-
-
-
- 
-	<SplitContainer id="SplitAppId" initialMaster="DocMasterStockporLlegar" initialDetail="DocStockporLlegarDetalle" orientationChange="onOrientationChange" mode="PopoverMode">
-
-		<masterPages>
-            <!--Master Stock por Llegar-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterStockporLlegarFragment" type="XML"></core:Fragment>
-
-            <!--Master Datos-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterDatosFragment" type="XML"></core:Fragment>
-
-
-            <!--Master Producto-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterProductosFragment" type="XML"></core:Fragment>
-
-            <!--Master Producto Buscar-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterProductoBuscarFragment" type="XML"></core:Fragment>
-
-
-            <!--Master Productos Agregar-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterProductoAgregarFragment" type="XML"></core:Fragment>
-
-            
-        </masterPages>
-        <detailPages>
-
-            <!--Detail Stock por LLegar-->
+<s:FullscreenPage title="Stock Por Llegar">
+                    <!--Detail Stock por LLegar-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocStockporLlegarDetalleFragment" type="XML"></core:Fragment>
-
-            <!--Detail Cliente-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocClienteFragment" type="XML"></core:Fragment>
-
-            <!--Detail Interlocutores-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocInterlocutoresFragment" type="XML"></core:Fragment>
-
-            <!--Detail Observaciones-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocObservacionesFragment" type="XML"></core:Fragment>
-
-            <!--Detail Producto Detalle-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocProductoDetalleFragment" type="XML"></core:Fragment>
-
-            <!--Detail Producto Agregado-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocProductoAgregadoFragment" type="XML"></core:Fragment>
-
-            <!--Detail Producto Buscado-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocProductoBuscadoFragment" type="XML"></core:Fragment>
-        </detailPages>
  
-	</SplitContainer>
+            </s:FullscreenPage>
+
+            
+
+          
  
 </mvc:View>

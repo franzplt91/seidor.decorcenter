@@ -179,3 +179,13 @@
 .IconSize50 .sapUiIcon{
     font-size: 50px !important;
 }
+
+/*-------- Estilo texto Total Dscto---------------------*/
+.txt_Total_Dscto{
+    font-size: 100% !important;
+}
+/*------------------------------------------------------*/
+
+.monto_Total_Dscto{
+    font-size: 150% !important;
+}

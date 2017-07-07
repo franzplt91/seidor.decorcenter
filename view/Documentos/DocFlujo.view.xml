@@ -50,59 +50,73 @@
 		<detailPages>
 
 			<s:DetailPage
-					title="Documento" id="pag_flujo_detail1">
-
-
+					title="Flujo de Venta" id="pag_flujo_detail1">
 
 						<s:content>
-							
-							<t:Table 
-                                    rows="{/ProductCollection}"
-                                    selectionMode="Single"
-                                    selectionBehavior="RowOnly"
-                                    visibleRowCount="7"
-                                    ariaLabelledBy="title">
-                                    
-                     
-                                    <t:columns>
-                                        <t:Column width="11rem">
-                                            <Label text="Tipo de Documento" />
-                                            <t:template>
-                                                <Text text="{Name}"/>
-                                            </t:template>
-                                        </t:Column>
-                                        <t:Column width="11rem">
-                                            <Label text="Número de Documento" />
-                                            <t:template>
-                                                <Input value="{ProductId}"/>
-                                            </t:template>
-                                        </t:Column>
-                                        <t:Column width="6rem" hAlign="End">
-                                            <Label text="Fecha de Documento" />
-                                            <t:template>
-                                                <Label text="{Quantity}" />
-                                            </t:template>
-                                        </t:Column>
-                                        <t:Column width="9rem">
-                                            <Label text="Estado de Documento" />
-                                            <t:template>
-                                                <ObjectStatus text="{Status}" state="{
-                                                    path: 'Available',
-                                                    formatter: '.formatAvailableToObjectState'
-                                                }"/>
-                                            </t:template>
-                                        </t:Column>
-                                        <t:Column width="9rem">
-                                            <Label text="Referencia" />
-                                            <t:template>
-                                                <u:Currency value="{Price}" currency="{CurrencyCode}"/>
-                                            </t:template>
-                                        </t:Column>
-                                        
-                                    </t:columns>
-                                </t:Table>
-							
+                            <Page>
 
+
+                                <Table 
+                        inset="false"
+                        items="{
+                            path: '/retornoFlujo/flujo'  }">
+                        <columns>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Tipo de Documento" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Número de Documento" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Fecha de Documento" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Estado de Documento" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Referencia" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <ObjectIdentifier
+                                        title="{TipoDocumento}"
+                                        text="{ProductId}"/>
+                                    <Text
+                                        text="{NumDocumento}" />
+                                    <Text
+                                        text="{DocFechaStr}" />
+                                        <Text
+                                        text="{Estado}" />
+                                        <Text
+                                        text="{Referencia}" />
+                                    
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+
+							
+							
+							
+                            </Page>
 
 						</s:content>
  
@@ -113,12 +127,12 @@
 
 
             <s:DetailPage
-                    title="Documento" id="pag_status_detail1">
+                    title="Flujo de Venta" id="pag_status_detail1">
 
 
 
                         <s:content>
-                            
+                            <Page>
                            
         <f:Form editable="true">
             <f:title>
@@ -145,31 +159,31 @@
                     <f:formElements>
                         <f:FormElement label="Status Global">
                             <f:fields>
-                                <Input value="{SupplierName}" />
+                                <Input value="{/retornoFlujo/global}" />
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Status Rechazo">
                             <f:fields>
-                                <Input value="{SupplierName}" />
+                                <Input value="{/retornoFlujo/rechazo}" />
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Status Entrega">
                             <f:fields>
-                                <Input value="{SupplierName}" />
+                                <Input value="{/retornoFlujo/entrega}" />
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Status Crédito">
                             <f:fields>
-                                <Input value="{SupplierName}" />
+                                <Input value="{/retornoFlujo/credito}" />
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Status Bloque Total">
                             <f:fields>
-                                <Input value="{SupplierName}" />
+                                <Input value="{/retornoFlujo/bloqueo}" />
                             </f:fields>
                         </f:FormElement>
                         
@@ -178,7 +192,7 @@
             </f:formContainers>
         </f:Form>
                             
-
+                            </Page>
 
                         </s:content>
 

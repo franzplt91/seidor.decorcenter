@@ -26,7 +26,10 @@ sap.ui.define([
             //Documentos----------------------
             goDocNuevo: function (oEvent){
                // sap.ui.core.BusyIndicator.show();
-                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+               ///////////////////////////////////////////////
+               window.IsDocNuevo = true;
+               ///////////////////////////////////////////////
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);                
                 oRouter.navTo("appDocNuevo");
 
             },
@@ -61,8 +64,11 @@ sap.ui.define([
             //Stock------------------------------
 
             goStockDisponible: function(oEvent){
+                ///////////////////////////////////77777
+                window.IsDocNuevo = false;
+                ////////////////////////////////////////
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                oRouter.navTo("appStockDisponible");
+                oRouter.navTo("appDocNuevo");
             },
             goStockporLlegar: function(oEvent){
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

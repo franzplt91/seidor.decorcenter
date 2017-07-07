@@ -46,7 +46,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Contacto de Entrega">
                                             <f:fields>
-                                                <TextArea value="" rows="8"/>
+                                                <TextArea value="" rows="8" id="txtArea_contactoEntrega_Observaciones"/>
                                             </f:fields>
                                         </f:FormElement>
                                     </f:formElements>
@@ -82,7 +82,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Contacto de Lugar">
                                             <f:fields>
-                                                <TextArea value="" rows="8"/>
+                                                <TextArea value="" rows="8" id="txtArea_contactoLugar_Observaciones"/>
                                             </f:fields>
                                         </f:FormElement>
                                     </f:formElements>
@@ -118,7 +118,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8"/>
+                                                <TextArea value="" rows="8" id="txtArea_observacionAdministrativa_Observaciones"/>
                                             </f:fields>
                                         </f:FormElement>
                                     </f:formElements>
@@ -153,7 +153,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea value="" rows="8"/>
+                                                <TextArea value="" rows="8" id="txtArea_referenciaFactura_Observaciones"/>
                                             </f:fields>
                                         </f:FormElement>
                                     </f:formElements>
