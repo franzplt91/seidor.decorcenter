@@ -5,8 +5,9 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "pe/com/seidor/sap/decor/ventas/services/clienteServices",
     "pe/com/seidor/sap/decor/ventas/services/materialServices",
-    'jquery.sap.global'
-], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
+    'jquery.sap.global',
+    "pe/com/seidor/sap/decor/ventas/services/flujoDocumentoServices"
+], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery, flujoDocumentoServices) {
     "use strict";
 
 	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocFlujo", {
@@ -45,7 +46,78 @@ sap.ui.define([
 
 		//Continuar en Dialog Flujo
 		onContinuarDlg_DialogDocFlujo: function(oEvent) {
-			this.getView().byId("dlg_DialogDocFlujo").close()
+
+
+
+
+            if(this.getView().byId("txt_numDoc_flujo").getValue()!==""){
+
+                                        var pNumPedido = this.getView().byId("txt_numDoc_flujo").getValue() ;
+                                        var UserId = window.dataIni.user.User;
+                                        var PwdId = window.dataIni.user.Password;
+                                        var Id = "e48be9f4-82b1-4cc4-9894-1c01e78c0722";
+                                        var GrpVend = window.dataIni.person.GrpVend;
+                                        var Descripcion = window.dataIni.person.Descripcion;
+                                        var CodigoVendedor = window.dataIni.person.PerNr;
+                                        var OrgVentas = window.dataIni.person.OrgVentas;
+                                        var CanalDist = window.dataIni.person.CanalDist;
+                                        var OfVentas = window.dataIni.person.OfVentas;
+
+
+                                    var result = flujoDocumentoServices.flujoDocumento(pNumPedido,
+                                                                                        UserId,
+                                                                                        PwdId,
+                                                                                        Id,
+                                                                                        GrpVend,
+                                                                                        Descripcion,
+                                                                                        CodigoVendedor,
+                                                                                        OrgVentas,
+                                                                                        CanalDist,
+                                                                                        OfVentas
+                                                                                        );  
+
+                if (result.c === "s") {
+
+                                if (result.data.success) {
+
+                                   this.getView().getModel().setProperty("/retornoFlujo", result.data);
+                                   console.log(this.getView().getModel().getProperty("/retornoFlujo"));
+
+
+                                   var flujo = this.getView().getModel().getProperty("/retornoFlujo/flujo");
+
+                                   this.getView().getModel().setProperty("/flujo0",flujo[0]);
+                                   this.getView().getModel().setProperty("/flujo1",flujo[1]);
+
+                                   console.log(this.getView().getModel().getProperty("/flujo0/TipoDocumento"));
+                                   this.getView().byId("dlg_DialogDocFlujo").close();
+                                   
+                                } else {
+
+                                    sap.m.MessageToast.show(result.data.errors.reason, {
+                                        duration: 3000
+                                    });
+
+
+                                }
+
+
+                            } else {
+                                sap.m.MessageToast.show(result.m, {
+                                    duration: 3000
+                                });
+                            }
+
+                            console.log(result.data);
+
+
+                                    
+
+                        }else{
+                            MessageToast.show("Falta Ingresar Nro. de Documento");
+                        }
+
+			
 		},
 
         
