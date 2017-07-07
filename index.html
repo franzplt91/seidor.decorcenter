@@ -29,6 +29,10 @@
                 $("#txt-usuario-seidor").val("JPINGO");
                 $("#txt-clave-seidor").val("JPINGO1*");
                 $("#btnLogin").click(function () {
+                    ///////Deshabilitar el boton despues de dar click////////////////////////////////
+                    var button = $('#btnLogin');
+                    button.prop('disabled', true);
+                    ////////////////////////////////////////////////////////////////////////////////
                     login();
                 });
 
