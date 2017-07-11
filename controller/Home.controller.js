@@ -36,7 +36,7 @@ sap.ui.define([
                             "pNumeroReclamo": "" ,
                             "pCodigoCliente": "" ,
                             "pFechaCreacionI": "" ,
-                            "pFechaCreacionF": "" ,
+                            "pFechaCreacionF": "" 
                         },
 
                         imprimirDoc:{
