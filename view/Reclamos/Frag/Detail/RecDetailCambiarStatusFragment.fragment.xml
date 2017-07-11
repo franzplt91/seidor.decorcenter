@@ -40,29 +40,32 @@
                                             <f:fields>
                                                 <Select placeholder="Seleccione Moneda" items="{ path : '/dataIni/lstSectores' }" change="onSeleccionaSurtido" maxWidth="50%" required="true"
                                                 id="cbo_Status" >
-                                <core:Item key="{Codigo}" text="{Descripcion}" />
-                            </Select>
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Persona">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese Nombre Persona" 
-                                                    id="txt_persona_status" value="{/reclamo/listaReclamo/0/UsuarioStatus}"></Input>
+                                                     id="txt_persona_status" value="{/reclamo/listaReclamo/0/UsuarioStatus}">
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Fecha Realización">
                                             <f:fields>
                                                 <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" 
-                                                    id="txt_fecha_realizacion">
-                                <layoutData>
-                                    <l:GridData span="L4 M4 S6" />
-                                </layoutData>
-                            </DatePicker>
+                                                 id="txt_fecha_realizacion">
+                                                    <layoutData>
+                                                        <l:GridData span="L4 M4 S6" />
+                                                    </layoutData>
+                                                </DatePicker>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Descripción">
                                             <f:fields>
-                                                <TextArea value="{/reclamo/listaReclamo/0/Descripcion}" id="txt_Descripcion_Status"></TextArea>
+                                                <TextArea value="{/reclamo/listaReclamo/0/Descripcion}" 
+                                                    id="txt_Descripcion_Status">
+                                                </TextArea>
                                             </f:fields>
                                         </f:FormElement>
                                         
