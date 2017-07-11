@@ -47,20 +47,19 @@
                     <f:formElements>
                         <f:FormElement label="Número de Queja">
                             <f:fields>
-                                    <Input  width=""></Input>
+                                    <Input  width="" value="{/datosQueja/pNumeroReclamo}"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Cliente">
                             <f:fields>
-                                    <Input ></Input>
+                                    <Input value="{/datosQueja/pCodigoCliente}"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Fecha Inicio">
                             <f:fields>
-                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" value="{/datosQueja/pFechaCreacionI}">
                                             <layoutData>
                                                 <l:GridData span="L4 M4 S6"/>
                                             </layoutData>
@@ -71,7 +70,7 @@
                         <f:FormElement label="Fecha Fin">
                             <f:fields>
                                     <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}">
+                                         value="{/datosQueja/pFechaCreacionF}">
                                             <layoutData>
                                                 <l:GridData span="L4 M4 S6"/>
                                             </layoutData>
@@ -96,7 +95,7 @@
        
 
         <buttons>
-            <Button text="Ver Queja" type="Accion" icon="sap-icon://search" press="onOpenDlg_QueBuscarLista"></Button>
+            <Button text="Ver Queja" type="Accion" icon="sap-icon://search" press="onBuscarListaQueja"></Button>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueBuscar"></Button>
         </buttons>
     </Dialog>
@@ -107,21 +106,40 @@
         <content>
 
 
-                    <List mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
-                        enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onListMasterProductos"  items="{
-                                        path : '/dataIni/lstTipoDoc',
-                                        sorter : {
-                                            path : 'Codigo',
-                                            group: false
-                                        }
-                                    }">
-                        <items>
-                            <StandardListItem selected="true" title="{Descripcion}" type="Active" custom:to=""/>
-                        </items>
-                    </List>
+                     <List id="list_listaMasterMateriales"   mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos" 
+                              itemPress="onListaBuscarQueja"  
+                              items="{
+                        path : '/RetornoBuscarListaQueja/listaReclamos',
+                                sorter : {
+                                    path : '',
+                                    group : false
+                                }
+                        }"
+                >
+                    <items>
+
+
+                        <ObjectListItem
+                            title="Nro. Documento {VBELN} - {KTABG}"
+                            number=""
+                            numberUnit=""
+                            numberState=""
+                            type="Active"
+                            press="onListaBuscarQueja"
+                            custom:to=""
+                            ><!--type="Navigation"-->
+                            <firstStatus>
+                                <ObjectStatus text="{NAME1}"/>
+                            </firstStatus>
+                        </ObjectListItem>
+
+
+                    </items>
+                </List>
         </content>
         <beginButton>
-            <Button text="Ver" type="Accion" icon="sap-icon://accept" press="goQueVisualizar"/>
+            <Button text="Ver" type="Accion" icon="sap-icon://accept" press="verQuejaSeleccionado"/>
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueBuscarLista"/>

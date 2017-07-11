@@ -25,6 +25,8 @@ sap.ui.define([
             this.getView().getModel().setProperty("/dataIni",window.dataIni);
             this.getView().getModel().refresh(true);
                     this.getView().byId("dlg_DialogDocFlujo").open();
+
+                   this.getView().getModel().setProperty("/NumeroDocumento",window.numeroDocumeto); 
                 };
                  
 

@@ -180,12 +180,137 @@
     font-size: 50px !important;
 }
 
+/*Detalle Producto*/
 /*-------- Estilo texto Total Dscto---------------------*/
 .txt_Total_Dscto{
     font-size: 100% !important;
 }
-/*------------------------------------------------------*/
+
 
 .monto_Total_Dscto{
     font-size: 150% !important;
 }
+
+/*------------------------------------------------------------------*/
+
+/*Estilo Menu Principal----------------------------------------------------------*/
+/*
+.FondoMenuPrincipal{
+    
+background: #ededed !important;
+}*/
+
+/*
+.FondoMenuPrincipal{
+    
+background: #6d0019 !important;
+}
+
+.sapUiGlobalBackgroundImage {
+background: #2f3c48 !important;
+}
+*/
+.btnMenuPrincipal{
+   border-radius: 18px 18px 18px 18px !important;
+-moz-border-radius: 18px 18px 18px 18px !important;
+-webkit-border-radius: 18px 18px 18px 18px !important;
+border: 0px solid #000000 !important;
+
+/*
+background: rgba(23,92,117,1) !important;
+background: -moz-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.98) 12%, rgba(23,92,117,0.96) 25%, rgba(23,92,117,0.94) 39%, rgba(23,92,117,0.92) 50%, rgba(0,0,0,0.92) 51%, rgba(23,92,117,0.9) 60%, rgba(23,92,117,0.9) 60%, rgba(23,92,117,0.88) 76%, rgba(23,92,117,0.86) 85%, rgba(23,92,117,0.85) 91%, rgba(23,92,117,0.84) 100%) !important;
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(23,92,117,1)), color-stop(12%, rgba(23,92,117,0.98)), color-stop(25%, rgba(23,92,117,0.96)), color-stop(39%, rgba(23,92,117,0.94)), color-stop(50%, rgba(23,92,117,0.92)), color-stop(51%, rgba(0,0,0,0.92)), color-stop(60%, rgba(23,92,117,0.9)), color-stop(60%, rgba(23,92,117,0.9)), color-stop(76%, rgba(23,92,117,0.88)), color-stop(85%, rgba(23,92,117,0.86)), color-stop(91%, rgba(23,92,117,0.85)), color-stop(100%, rgba(23,92,117,0.84))) ;
+background: -webkit-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.98) 12%, rgba(23,92,117,0.96) 25%, rgba(23,92,117,0.94) 39%, rgba(23,92,117,0.92) 50%, rgba(0,0,0,0.92) 51%, rgba(23,92,117,0.9) 60%, rgba(23,92,117,0.9) 60%, rgba(23,92,117,0.88) 76%, rgba(23,92,117,0.86) 85%, rgba(23,92,117,0.85) 91%, rgba(23,92,117,0.84) 100%) !important;
+background: -o-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.98) 12%, rgba(23,92,117,0.96) 25%, rgba(23,92,117,0.94) 39%, rgba(23,92,117,0.92) 50%, rgba(0,0,0,0.92) 51%, rgba(23,92,117,0.9) 60%, rgba(23,92,117,0.9) 60%, rgba(23,92,117,0.88) 76%, rgba(23,92,117,0.86) 85%, rgba(23,92,117,0.85) 91%, rgba(23,92,117,0.84) 100%) !important;
+background: -ms-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.98) 12%, rgba(23,92,117,0.96) 25%, rgba(23,92,117,0.94) 39%, rgba(23,92,117,0.92) 50%, rgba(0,0,0,0.92) 51%, rgba(23,92,117,0.9) 60%, rgba(23,92,117,0.9) 60%, rgba(23,92,117,0.88) 76%, rgba(23,92,117,0.86) 85%, rgba(23,92,117,0.85) 91%, rgba(23,92,117,0.84) 100%) !important;
+background: linear-gradient(to right, rgba(23,92,117,1) 0%, rgba(23,92,117,0.98) 12%, rgba(23,92,117,0.96) 25%, rgba(23,92,117,0.94) 39%, rgba(23,92,117,0.92) 50%, rgba(0,0,0,0.92) 51%, rgba(23,92,117,0.9) 60%, rgba(23,92,117,0.9) 60%, rgba(23,92,117,0.88) 76%, rgba(23,92,117,0.86) 85%, rgba(23,92,117,0.85) 91%, rgba(23,92,117,0.84) 100%) !important;
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#175c75', endColorstr='#175c75', GradientType=1 ) ;
+
+
+background: rgba(23,92,117,1) !important;
+background: -moz-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.96) 12%, rgba(23,92,117,0.92) 25%, rgba(23,92,117,0.88) 36%, rgba(23,92,117,0.81) 55%, rgba(0,0,0,0.81) 56%, rgba(23,92,117,0.76) 71%, rgba(23,92,117,0.75) 73%, rgba(23,92,117,0.73) 78%, rgba(23,92,117,0.71) 85%, rgba(23,92,117,0.69) 91%, rgba(23,92,117,0.66) 100%) !important;
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(23,92,117,1)), color-stop(12%, rgba(23,92,117,0.96)), color-stop(25%, rgba(23,92,117,0.92)), color-stop(36%, rgba(23,92,117,0.88)), color-stop(55%, rgba(23,92,117,0.81)), color-stop(56%, rgba(0,0,0,0.81)), color-stop(71%, rgba(23,92,117,0.76)), color-stop(73%, rgba(23,92,117,0.75)), color-stop(78%, rgba(23,92,117,0.73)), color-stop(85%, rgba(23,92,117,0.71)), color-stop(91%, rgba(23,92,117,0.69)), color-stop(100%, rgba(23,92,117,0.66)));
+background: -webkit-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.96) 12%, rgba(23,92,117,0.92) 25%, rgba(23,92,117,0.88) 36%, rgba(23,92,117,0.81) 55%, rgba(0,0,0,0.81) 56%, rgba(23,92,117,0.76) 71%, rgba(23,92,117,0.75) 73%, rgba(23,92,117,0.73) 78%, rgba(23,92,117,0.71) 85%, rgba(23,92,117,0.69) 91%, rgba(23,92,117,0.66) 100%) !important;
+background: -o-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.96) 12%, rgba(23,92,117,0.92) 25%, rgba(23,92,117,0.88) 36%, rgba(23,92,117,0.81) 55%, rgba(0,0,0,0.81) 56%, rgba(23,92,117,0.76) 71%, rgba(23,92,117,0.75) 73%, rgba(23,92,117,0.73) 78%, rgba(23,92,117,0.71) 85%, rgba(23,92,117,0.69) 91%, rgba(23,92,117,0.66) 100%) !important;
+background: -ms-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.96) 12%, rgba(23,92,117,0.92) 25%, rgba(23,92,117,0.88) 36%, rgba(23,92,117,0.81) 55%, rgba(0,0,0,0.81) 56%, rgba(23,92,117,0.76) 71%, rgba(23,92,117,0.75) 73%, rgba(23,92,117,0.73) 78%, rgba(23,92,117,0.71) 85%, rgba(23,92,117,0.69) 91%, rgba(23,92,117,0.66) 100%) !important;
+background: linear-gradient(to right, rgba(23,92,117,1) 0%, rgba(23,92,117,0.96) 12%, rgba(23,92,117,0.92) 25%, rgba(23,92,117,0.88) 36%, rgba(23,92,117,0.81) 55%, rgba(0,0,0,0.81) 56%, rgba(23,92,117,0.76) 71%, rgba(23,92,117,0.75) 73%, rgba(23,92,117,0.73) 78%, rgba(23,92,117,0.71) 85%, rgba(23,92,117,0.69) 91%, rgba(23,92,117,0.66) 100%) !important;
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#175c75', endColorstr='#175c75', GradientType=1 );
+
+
+background: rgba(23,92,117,1) !important;
+background: -moz-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.99) 12%, rgba(23,92,117,0.97) 25%, rgba(23,92,117,0.95) 39%, rgba(23,92,117,0.93) 56%, rgba(0,0,0,0.93) 58%, rgba(23,92,117,0.92) 68%, rgba(23,92,117,0.91) 76%, rgba(23,92,117,0.89) 91%, rgba(23,92,117,0.88) 100%) !important;
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(23,92,117,1)), color-stop(12%, rgba(23,92,117,0.99)), color-stop(25%, rgba(23,92,117,0.97)), color-stop(39%, rgba(23,92,117,0.95)), color-stop(56%, rgba(23,92,117,0.93)), color-stop(58%, rgba(0,0,0,0.93)), color-stop(68%, rgba(23,92,117,0.92)), color-stop(76%, rgba(23,92,117,0.91)), color-stop(91%, rgba(23,92,117,0.89)), color-stop(100%, rgba(23,92,117,0.88))) !important;
+background: -webkit-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.99) 12%, rgba(23,92,117,0.97) 25%, rgba(23,92,117,0.95) 39%, rgba(23,92,117,0.93) 56%, rgba(0,0,0,0.93) 58%, rgba(23,92,117,0.92) 68%, rgba(23,92,117,0.91) 76%, rgba(23,92,117,0.89) 91%, rgba(23,92,117,0.88) 100%) !important;
+background: -o-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.99) 12%, rgba(23,92,117,0.97) 25%, rgba(23,92,117,0.95) 39%, rgba(23,92,117,0.93) 56%, rgba(0,0,0,0.93) 58%, rgba(23,92,117,0.92) 68%, rgba(23,92,117,0.91) 76%, rgba(23,92,117,0.89) 91%, rgba(23,92,117,0.88) 100%) !important;
+background: -ms-linear-gradient(left, rgba(23,92,117,1) 0%, rgba(23,92,117,0.99) 12%, rgba(23,92,117,0.97) 25%, rgba(23,92,117,0.95) 39%, rgba(23,92,117,0.93) 56%, rgba(0,0,0,0.93) 58%, rgba(23,92,117,0.92) 68%, rgba(23,92,117,0.91) 76%, rgba(23,92,117,0.89) 91%, rgba(23,92,117,0.88) 100%) !important;
+background: linear-gradient(to right, rgba(23,92,117,1) 0%, rgba(23,92,117,0.99) 12%, rgba(23,92,117,0.97) 25%, rgba(23,92,117,0.95) 39%, rgba(23,92,117,0.93) 56%, rgba(0,0,0,0.93) 58%, rgba(23,92,117,0.92) 68%, rgba(23,92,117,0.91) 76%, rgba(23,92,117,0.89) 91%, rgba(23,92,117,0.88) 100%) !important;
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#175c75', endColorstr='#175c75', GradientType=1 ) !important;
+
+
+background: rgba(47,60,72,1) !important;
+background: -moz-linear-gradient(left, rgba(47,60,72,1) 0%, rgba(47,60,72,0.98) 12%, rgba(47,60,72,0.97) 25%, rgba(47,60,72,0.95) 39%, rgba(47,60,72,0.92) 58%, rgba(0,0,0,0.92) 59%, rgba(47,60,72,0.9) 74%, rgba(47,60,72,0.89) 81%, rgba(47,60,72,0.88) 91%, rgba(47,60,72,0.87) 100%) !important;
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(47,60,72,1)), color-stop(12%, rgba(47,60,72,0.98)), color-stop(25%, rgba(47,60,72,0.97)), color-stop(39%, rgba(47,60,72,0.95)), color-stop(58%, rgba(47,60,72,0.92)), color-stop(59%, rgba(0,0,0,0.92)), color-stop(74%, rgba(47,60,72,0.9)), color-stop(81%, rgba(47,60,72,0.89)), color-stop(91%, rgba(47,60,72,0.88)), color-stop(100%, rgba(47,60,72,0.87))) !important;
+background: -webkit-linear-gradient(left, rgba(47,60,72,1) 0%, rgba(47,60,72,0.98) 12%, rgba(47,60,72,0.97) 25%, rgba(47,60,72,0.95) 39%, rgba(47,60,72,0.92) 58%, rgba(0,0,0,0.92) 59%, rgba(47,60,72,0.9) 74%, rgba(47,60,72,0.89) 81%, rgba(47,60,72,0.88) 91%, rgba(47,60,72,0.87) 100%) !important;
+background: -o-linear-gradient(left, rgba(47,60,72,1) 0%, rgba(47,60,72,0.98) 12%, rgba(47,60,72,0.97) 25%, rgba(47,60,72,0.95) 39%, rgba(47,60,72,0.92) 58%, rgba(0,0,0,0.92) 59%, rgba(47,60,72,0.9) 74%, rgba(47,60,72,0.89) 81%, rgba(47,60,72,0.88) 91%, rgba(47,60,72,0.87) 100%) !important;
+background: -ms-linear-gradient(left, rgba(47,60,72,1) 0%, rgba(47,60,72,0.98) 12%, rgba(47,60,72,0.97) 25%, rgba(47,60,72,0.95) 39%, rgba(47,60,72,0.92) 58%, rgba(0,0,0,0.92) 59%, rgba(47,60,72,0.9) 74%, rgba(47,60,72,0.89) 81%, rgba(47,60,72,0.88) 91%, rgba(47,60,72,0.87) 100%) !important;
+background: linear-gradient(to right, rgba(47,60,72,1) 0%, rgba(47,60,72,0.98) 12%, rgba(47,60,72,0.97) 25%, rgba(47,60,72,0.95) 39%, rgba(47,60,72,0.92) 58%, rgba(0,0,0,0.92) 59%, rgba(47,60,72,0.9) 74%, rgba(47,60,72,0.89) 81%, rgba(47,60,72,0.88) 91%, rgba(47,60,72,0.87) 100%) !important;
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f3c48', endColorstr='#2f3c48', GradientType=1 ) !important;
+
+*/
+
+
+-webkit-box-shadow: -13px 12px 31px 0px rgba(0,0,0,1) !important;
+-moz-box-shadow: -13px 12px 31px 0px rgba(0,0,0,1) !important;
+box-shadow: -13px 12px 31px 0px rgba(0,0,0,1) !important;
+
+
+
+
+}
+
+
+/*Color Letras solo del boton
+ 
+ .btnMenuPrincipal .sapMTextMaxLine  {
+color: white;
+ }
+***************************/
+
+/*Color Letras Iconos de boton
+.sapMImageContentImageIcon {
+color: #c5d2d6 !important;
+}*/
+/*TITULO MENU
+.sapMBarContainer   
+*/
+
+/*Color Letras Titulo de Panel Desplegable
+.sapMPanelHdr{
+    font-family: "Segoe UI" !important;
+    color: white !important;
+font-weight: bold !important;
+}
+*/
+
+/*Panel Principal Barra Usuario*/
+.sapUiUfdShellBrand{
+    background: #2f3c48 !important;
+}
+
+.sapUiUfdShellHeader{
+    background: #2f3c48 !important;
+}
+
+/*Boton Usuario*/
+.sapUiUfdShellHeadUsrItmName{
+    color: white !important;
+}
+.sapUiUfdShellHeadUsrItmImg{
+    color: white !important;
+}
+
+
+
+
+
+/*********************************---------***************************************************/

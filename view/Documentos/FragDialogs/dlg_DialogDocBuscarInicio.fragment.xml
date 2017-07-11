@@ -37,41 +37,41 @@
                         <f:formElements>
                             <f:FormElement label="Tipo de búsqueda">
                                 <f:fields>                                
-                                    <Select id="cbo_tipo_buqueda" items="{ path : '/modelTipoBusq' }" required="true">
-                                        <core:Item key="{Codigo}" text="{Descripcion}" />
-                                    </Select>
+                                    <ComboBox  items="{ path : '/modelTipoBusq' }" change="" maxwidth="100%" required="true" selectedKey="{/datosBuscarDoc/tipoBusqueda}">
+                                                <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                            </ComboBox>
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="Dato de búsqueda">
                                 <f:fields>
-                                    <Input id="DatoBusqTXT" placeholder="Ingrese el Dato de búsqueda"></Input>
+                                    <Input id="DatoBusqTXT" placeholder="Ingrese el Dato de búsqueda" value="{/datosBuscarDoc/datoBusqueda}"></Input>
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="Código ó Descripción Material">
                                 <f:fields>
-                                    <Input id="DesMaterialTXT" placeholder="Ingrese Código ó Descripción Material"></Input>
+                                    <Input id="DesMaterialTXT" placeholder="Ingrese Código ó Descripción Material" value="{/datosBuscarDoc/nMaterial}"></Input>
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="Clase de documento">
                                 <f:fields>
-                                    <ComboBox id="claseDocTXT" selectedKey=" " items="{ path : '/dataIni/lstTipoDoc' }" required="true">
+                                    <ComboBox id="claseDocTXT" selectedKey="{/datosBuscarDoc/claseDoc}" items="{ path : '/dataIni/lstTipoDoc' }" required="true">
                                         <core:Item key="{Codigo}" text="{= ${Codigo} === ' '? 'Seleccione Clase de Doc.' : ${Descripcion} }" />
                                     </ComboBox>
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="Fecha Inicio">
                                 <f:fields>
-                                    <DatePicker id="fechaIniTXT" valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"></DatePicker>
+                                    <DatePicker id="fechaIniTXT" valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" value="{/datosBuscarDoc/fecInicio1}"></DatePicker>
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="Fecha Fin">
                                 <f:fields>
-                                    <DatePicker id="fechaFinTXT" valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" ></DatePicker>
+                                    <DatePicker id="fechaFinTXT" valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" value="{/datosBuscarDoc/fecFin1}"></DatePicker>
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="Código Asesor">
                                 <f:fields>
-                                    <Input id="asesorTXT"></Input>
+                                    <Input id="asesorTXT" value="{/datosBuscarDoc/codAsesor}"></Input>
                                 </f:fields>
                             </f:FormElement>
                         </f:formElements>

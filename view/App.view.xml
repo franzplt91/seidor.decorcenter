@@ -9,12 +9,20 @@
 		<u:Shell
       icon="{/logo}"
       tooltip="Marinasol"
-   id="myShell">
+   id="myShell"
+   >
      <u:user>
         <u:ShellHeadUserItem
           image="sap-icon://person-placeholder"
           showPopupIndicator="false"
-          username="JPINGO" />
+          username="JPINGO" 
+          />
+
+          <u:ShellHeadUserItem
+          image="sap-icon://person-placeholder"
+          showPopupIndicator="false"
+          username="JPINGO" 
+          />
 
       </u:user>
       <u:headEndItems>
@@ -24,9 +32,10 @@
           icon="sap-icon://home"
           tooltip="Menu"
           selected="false"
-          press="goHome" />
+          press="goHome"/>
 
         <u:ShellHeadItem
+          class="btnLogout"
           icon="sap-icon://log"
           tooltip="Cerrar session"
           selected="false"
@@ -35,8 +44,8 @@
       </u:headEndItems>
 
 
-      <u:content>
-        <App id="app" autoFocus="false"/>
+      <u:content >
+        <App class="FondoMenuPrincipal" id="app" autoFocus="false"/>
       </u:content>
   </u:Shell>
         

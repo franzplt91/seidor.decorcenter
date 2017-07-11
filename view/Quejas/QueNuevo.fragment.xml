@@ -16,31 +16,31 @@
                         <f:formElements>
                             <f:FormElement label="RUC / DNI">
                                 <f:fields>
-                                    <Input value="{/modelQueja/CodCli}" placeholder="Ingrese RUC / DNI" />
+                                    <Input value="{/datosQueja/CodCli}" placeholder="Ingrese RUC / DNI" id="txt_ruc_nuevaQueja"/>
                                 </f:fields>
                             </f:FormElement>
 
                             <f:FormElement label="Descripción">
                                 <f:fields>
-                                    <Input value="{/modelQueja/NomCliente}" />
+                                    <Input value="{/datosQueja/NomCliente}" id="txt_descripcion_nuevaQueja"/>
                                 </f:fields>
                             </f:FormElement>
 
                             <f:FormElement label="Calle">
                                 <f:fields>
-                                    <Input value="{/modelQueja/Calles}" />
+                                    <Input value="{/datosQueja/Calles}" id="txt_calle_nuevaQueja"/>
                                 </f:fields>
                             </f:FormElement>
 
                             <f:FormElement label="Ubicación">
                                 <f:fields>
-                                    <Input value="{/modelQueja/Ubicacion}" />
+                                    <Input value="{/datosQueja/Ubicacion}" id="txt_ubicacion_nuevaQueja"/>
                                 </f:fields>
                             </f:FormElement>
 
                             <f:FormElement label="Teléfono">
                                 <f:fields>
-                                    <Input value="{/modelQueja/Telefono}" />
+                                    <Input value="{/datosQueja/Telefono}" id="txt_telefono_nuevaQueja"/>
                                 </f:fields>
                             </f:FormElement>
 
@@ -48,7 +48,7 @@
                                 <f:fields>
                                    
                                     <ComboBox width="100%" items="{ path : '/dataIni/lstOfVtas' }" 
-                                        change="onSelOfVentas" required="true" selectedKey="{/modelQueja/OfiVenta}"  id="cbo_ofVentas">
+                                        change="onSelOfVentas" required="true" selectedKey="{/datosQueja/OfiVenta}"  id="com_ofVentas_nuevaQueja">
                                         <core:Item key="{Codigo}" text="{Descripcion}" />
                                     </ComboBox>
 
@@ -57,7 +57,7 @@
 
                             <f:FormElement label="Motivo de la Queja">
                                 <f:fields>
-                                    <TextArea value="{/modelQueja/TextoQueja}">  </TextArea>
+                                    <TextArea value="{/datosQueja/TextoQueja}" id="txtArea_motivo_nuevaQueja">  </TextArea>
                                 </f:fields>
                             </f:FormElement>
 
@@ -68,8 +68,8 @@
         </content>
 
         <buttons>
-            <Button text="Buscar Cliente" type="Accion" icon="sap-icon://search" press=""></Button>
-            <Button text="Guardar" type="Accion" icon="sap-icon://save" press="onGrabarQueja"></Button>
+            <Button text="Buscar Cliente" type="Accion" icon="sap-icon://search" press="onBuscarCliQueja"></Button>
+            <Button text="Guardar" type="Accion" icon="sap-icon://save" press="onGuardarQueja"></Button>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueNuevo"></Button>
         </buttons>
     </Dialog>

@@ -47,55 +47,51 @@
                     <f:formElements>
                         <f:FormElement label="Número de Queja">
                             <f:fields>
-                                    <Input  width=""></Input>
+                                <Input value="{/datosQueja/NumQueja}" placeholder="Ingrese Número de Queja" />
                             </f:fields>
                         </f:FormElement>
-
                         <f:FormElement label="RUC / DNI">
                             <f:fields>
-                                    <Input ></Input>
+                                <Input value="{/datosQueja/CodCli}" />
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Descripción">
                             <f:fields>
-                                    <Input  ></Input>
+                                <Input value="{/datosQueja/NomCliente}" />
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Calle">
                             <f:fields>
-                                    <Input  ></Input>
+                                <Input value="{/datosQueja/Calles}" />
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Ubicación">
                             <f:fields>
-                                    <Input  ></Input>
+                                <Input value="{/datosQueja/Ubicacion}" />
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Teléfono">
                             <f:fields>
-                                    <Input  ></Input>
+                                <Input value="{/datosQueja/Telefono}" />
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Oficina Ventas">
                             <f:fields>
-                                    <ComboBox
-                                        items="{
-                                            path: '/ProductCollection',
-                                            sorter: { path: 'Name' }
-                                        }">
-                                        <core:Item key="{ProductId}" text="{Name}" />
+                                 <ComboBox width="100%" items="{ path : '/dataIni/lstOfVtas' }" 
+                                        change="onSelOfVentas" required="true" selectedKey="{/datosQueja/OfiVenta}" >
+                                        <core:Item key="{Codigo}" text="{Descripcion}" />
                                     </ComboBox>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Motivo de la Queja">
                             <f:fields>
-                                    <TextArea></TextArea>
+                                <TextArea value="{/datosQueja/TextoQueja}">  </TextArea>
                             </f:fields>
                         </f:FormElement>
 
@@ -115,7 +111,7 @@
        
 
         <buttons>
-            <Button text="Ver Queja" type="Accion" icon="sap-icon://search" press=""></Button>
+            <Button text="Buscar Queja" type="Accion" icon="sap-icon://search" press="onVerBuscarQueja"></Button>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueVisualizar"></Button>
         </buttons>
     </Dialog>

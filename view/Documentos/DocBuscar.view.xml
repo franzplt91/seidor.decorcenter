@@ -3,126 +3,139 @@
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    controllerName="pe.com.seidor.sap.decor.ventas.controller.Documentos.DocBuscar"
     xmlns:l="sap.ui.layout" 
     xmlns:f="sap.ui.layout.form"
     xmlns:t="sap.ui.table" 
     xmlns:s="sap.m.semantic"
-
+    controllerName="pe.com.seidor.sap.decor.ventas.controller.Documentos.DocBuscar"
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     displayBlock="true">
     
-
+<BusyDialog id="loadingControl" />
     <!--Dialogs-->
 
     <!--dlg_DialogDocBuscar-->
     <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocBuscarInicio" type="XML"></core:Fragment>
         
- 
-    <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoProductos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange">
 
-        <masterPages>
-            <!--Lista de Documentos-->
-            <s:MasterPage title="Lista de Documentos" id="MasterDocBuscarListaDocumentos" showNavButton="true" navButtonPress="onDocNuevoPressMasterBack">
-                <Page >
-                    <customHeader>
-                        <Toolbar>
-                            <SegmentedButton selectedKey="productos" width="100%">
-                                <items>
-                                    <SegmentedButtonItem  text="Datos" press="onDocNuevoMasterDatos"/>
-                                    <SegmentedButtonItem  key="productos" text="Productos" press="onDocNuevoMasterProductos"/>
-                                </items>
-                            </SegmentedButton>
-                        </Toolbar>
-                    </customHeader>
-                    <subHeader>
-                        <Toolbar>
-                            <ToolbarSpacer/>
-                            <SearchField width="100%" search="onFilterInvoices" selectOnFocus="false"/>
-                        </Toolbar>
-                    </subHeader>
-                    <content>
-                        <List mode="SingleSelectMaster" growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
-                              enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onDocNuevoListMasterProductos">
-                            <items>
-                                <StandardListItem selected="true" title="10214001" description="REPISA CROMADO ARIETE SAMANTHA" info="161.20 " type="Active"
-                                                  custom:to="pagDocNuevo_productos_buscar1"/>
-                            </items>
-                        </List>
-                    </content>
-                </Page>
+
+<Dialog title="Lista de Documentos" id="dlg_DocBuscarLista" stretchOnPhone="true" contentWidth="80%" contentHeight="80%">
+        <content>
+
+
+                     <List    mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Documentos" 
+                              itemPress="onListaBuscarDoc"  
+                              items="{
+                        path : '/retornoBuscarDoc/lstPedidos',
+                                sorter : {
+                                    path : '',
+                                    group : false
+                                }
+                        }"
+                >
+                    <items>
+
+
+                        <ObjectListItem
+                            title="Nro. Pedido: {NumeroPedido} - NIF: {NIF}"
+                            number="Total: {Total}"
+                            numberUnit=""
+                            numberState=""
+                            type="Navigation"
+                            press=""
+                            custom:to=""
+                            ><!--type="Navigation"-->
+                            <attributes>
+                                    <ObjectAttribute
+                                    text="{ClaseDocumento}"/>
+
+
+                                    <ObjectAttribute
+                                    text="{FechaDocumento}"/>
+                            </attributes>
+                            <firstStatus>
+                                <ObjectStatus text="Cliente: {CodigoCliente} - {NombreCliente}"/>
+                                
+                            </firstStatus>
+
+                            <secondStatus>
+                                <ObjectStatus text="Estado: {Estado}"/>
+                            </secondStatus>
+                        </ObjectListItem>
+        
+
+                    </items>
+                </List>
+        </content>
+    </Dialog>
+ 
+   <s:FullscreenPage title="Detalle Documento Nro. : {/datosBuscarDoc/NumeroPedido}"
+                                     navButtonPress="">
+                    
+                    <List    mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Detalle de Documento" 
+                              itemPress="onListaDetalleDoc"  
+                              items="{
+                        path : '/datosBuscarDoc/Detalle',
+                                sorter : {
+                                    path : '',
+                                    group : false
+                                }
+                        }"
+                >
+                    <items>
+
+
+                        <ObjectListItem
+                            title="{Posicion} - {CodigoMaterial}"
+                            number=""
+                            numberUnit=""
+                            numberState=""
+                            type="Active"
+                            press=""
+                            custom:to=""
+                            ><!--type="Navigation"-->
+
+                            <attributes>
+                                    <ObjectAttribute
+                                    text="{Material}"/>
+
+
+                                    <ObjectAttribute
+                                        title="Fecha Conf."
+                                    text="{FConf} Fecha Reparto: {FechaReparto}"/>
+                                    
+                            </attributes>
+
+                            <firstStatus>
+                                <ObjectStatus text="Centro Almacen: {CentroAlmacen} Cantidad Conf. : {CantidadConf}"/>
+                            </firstStatus>
+                            <secondStatus>
+                                <ObjectStatus text="Motivo Rechazo: {MotivoRechazo} - Lote: {Lote}"/>
+                            </secondStatus>
+                        </ObjectListItem>
+
+
+                    </items>
+                </List>
+
                 <s:customFooterContent>
-                    <OverflowToolbarButton icon="sap-icon://add" press="onDocNuevoAddinBuscar"/>
-                    <OverflowToolbarButton icon="sap-icon://search" press="onDocNuevodlg_buscar"/>
-                    <Button text="Stock Disponible"></Button>
-                    <Button text="Stock por Llegar"></Button>
-                    <Button text="Stock por Pedir"></Button>
+                    <!--Text class="txt_Total_Dscto" text="Tot.Doc.: S/. {} (c/IGV) | Tot.Dcto. : S/. {}" ></Text-->
+                    <Button icon="sap-icon://decision" tooltip="" text="Conv. Pedido" press="onBtnRecalcular"></Button>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://edit" tooltip="" text="Modificar" press="onBtnRecalcular"></Button>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://sys-find" tooltip="" text="Visualizar" press="onBtnRecalcular"></Button>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://table-view" tooltip="" text="Flujo" press="onBtnFlujo"></Button>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://print" tooltip="" text="Imprimir" press="onBtnRecalcular"></Button>
+                    <ToolbarSpacer />
                 </s:customFooterContent>
-                <s:multiSelectAction>
-                    <s:MultiSelectAction press="onDocNuevoMultiSelectPress"/>
-                </s:multiSelectAction>
-            </s:MasterPage>
+
+            </s:FullscreenPage>
 
 
-            <!--Master Datos-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterDatosFragment" type="XML"></core:Fragment>
-
-            <!--Master Buscar Cliente-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterDatosBuscarClienteFragment" type="XML"></core:Fragment>
-
-            <!--Master Producto-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterProductosFragment" type="XML"></core:Fragment>
-
-            <!--Master Producto Buscar-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterProductoBuscarFragment" type="XML"></core:Fragment>
-
-
-            <!--Master Productos Agregar-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Master.DocMasterProductoAgregarFragment" type="XML"></core:Fragment>
-
-            
-        </masterPages>
-        <detailPages>
-
-            <s:DetailPage title="Detalle Documento" id="pagDocBuscar_Documento">
-                <s:content>
-                    <ObjectHeader backgroundDesign="Solid" intro="{/CentroClaseModel/Werks}" title="{/clienteSeleccionado/nombrecliente}"
-                                  number="{/MaterialModel/material/descripcion_cantidad}" numberUnit="{/MaterialModel/material/Meins}">
-                        <attributes>
-                            <ObjectAttribute title="Código" text="{/clienteSeleccionado/codigo}"/>
-                        </attributes>
-                    </ObjectHeader>
-
-                </s:content>
-            </s:DetailPage>
-
-
-            <!--Detail Cliente-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocClienteFragment" type="XML"></core:Fragment>
-
-            <!--Detalle Cliente Buscado-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocDatosClienteBuscadoFragment" type="XML"></core:Fragment>
-
-            <!--Detail Interlocutores-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocInterlocutoresFragment" type="XML"></core:Fragment>
-
-            <!--Detail Observaciones-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocObservacionesFragment" type="XML"></core:Fragment>
-
-            <!--Detail Producto Detalle-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocProductoDetalleFragment" type="XML"></core:Fragment>
-
-            <!--Detail Producto Agregado-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocProductoAgregadoFragment" type="XML"></core:Fragment>
-
-            <!--Detail Producto Buscado-->
-            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocProductoBuscadoFragment" type="XML"></core:Fragment>
-
-            
-            
-        </detailPages>
-		
- 
-    </SplitContainer>
  
 </mvc:View>

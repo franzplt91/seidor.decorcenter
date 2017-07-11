@@ -10,18 +10,22 @@ sap.ui.define([
         //Valores Dialog "Buscar Documento"(dlg_DialogDocBuscarInicio.xml)
         //Combo campo: "tipo de busqueda"
         // Listar busqueda de documentos
-        buscarDocumento: function (tipoBusq, datoBusq, nMat, claseD, fecIni, fecfin, asesor)
+        buscarDocumento: function (buscarDoc)
         {
             var contexto = {};
             contexto.servicio = "documentosServices.buscarDocumento()";
             contexto.url = "buscarDocumento.aspx";
-            contexto.parametros = {tipoBusqueda: tipoBusq,
-                datoBusqueda: datoBusq,
-                nMaterial: nMat,
-                claseDoc: claseD,
-                fecInicio1: fecIni,
-                fecFin1: fecfin,
-                asesor: asesor
+            contexto.parametros = {tipoBusqueda: buscarDoc.tipoBusqueda ,
+                                    datoBusqueda: buscarDoc.datoBusqueda ,
+                                    nMaterial: buscarDoc.nMaterial ,
+                                    fechaInicio: buscarDoc.fechaInicio ,
+                                    fechaFin: buscarDoc.fechaFin ,
+                                    claseDoc: buscarDoc.claseDoc ,
+                                    codAsesor: buscarDoc.codAsesor ,
+                                    fecInicio1: buscarDoc.fecInicio1 ,
+                                    fecFin1: buscarDoc.fecFin1 ,
+                                    
+
             };
             var resultado = utilService.exec(contexto);
             return resultado;

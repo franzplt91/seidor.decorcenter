@@ -5,7 +5,7 @@
     xmlns:core="sap.ui.core" 
     xmlns:f="sap.ui.layout.form" 
     controllerName="pe.com.seidor.sap.decor.ventas.controller.Home">
-    <BusyDialog id="loadingControl" />
+    <BusyDialog id="loadingControl" size="30px" />
 
 
 <!--Nueva Queja-->
@@ -19,6 +19,10 @@
 
 <!--Buscar Queja-->
 <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Quejas.QueBuscar" type="XML"></core:Fragment>
+
+
+<!--Aviso General-->
+<core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAvisoGeneral" type="XML"></core:Fragment>
 
 
     <!--Dialog Imprimir Documento-->
@@ -53,7 +57,7 @@
                     <f:formElements>
                         <f:FormElement label="Número de Documento">
                             <f:fields>
-                                    <Input width="100%"></Input>
+                                    <Input width="100%" value="{/imprimirDoc/pNumPedido}"></Input>
                             </f:fields>
                         </f:FormElement>
                     </f:formElements>
@@ -87,15 +91,15 @@
             <f:formContainers>
                 <f:FormContainer>
                     <f:formElements>
-                        <f:FormElement label="Oferta / Pedido Agrupada">
+                        <f:FormElement label="Oferta / Pedido Agrupada" >
                             <f:fields> 
-                                    <RadioButton groupName="GroupA"  selected="true" />
+                                    <RadioButton groupName="GroupA"   selected="true"/>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Condición de Entregas">
                             <f:fields>
-                                    <RadioButton groupName="GroupA"  />
+                                    <RadioButton groupName="GroupA"   />
                             </f:fields>
                         </f:FormElement>
                     </f:formElements>
@@ -105,7 +109,7 @@
 
         </content>
         <beginButton>
-            <Button text="Imprimir" type="Accion" icon="sap-icon://print" press="goDocImprimir"/>
+            <Button text="Imprimir" type="Accion" icon="sap-icon://print" press="onImprimirDoc"/>
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDocImprimir"/>
@@ -120,13 +124,13 @@
                 <customHeader>
                     <Toolbar>
                         <Label text="Número de Reclamo:"></Label>
-                        <Input width="55%" placeholder="Ingrese Nro. de Reclamo"></Input>
+                        <Input width="55%" placeholder="Ingrese Nro. de Reclamo" value="{/imprimirRec/pNumeroReclamo}"></Input>
                     </Toolbar>
                 </customHeader>
             </Page>
         </content>
         <beginButton>
-            <Button text="Imprimir" type="Accion" icon="sap-icon://print" press="" />
+            <Button text="Imprimir" type="Accion" icon="sap-icon://print" press="onImprimirRec" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseRecImprimir" />
@@ -141,13 +145,13 @@
                 <customHeader>
                     <Toolbar>
                         <Label text="Número de Queja:"></Label>
-                        <Input width="55%" placeholder="Ingrese Nro. de Queja"></Input>
+                        <Input width="55%" placeholder="Ingrese Nro. de Queja" value="{/imprimirQue/pNumeroQueja}"></Input>
                     </Toolbar>
                 </customHeader>
             </Page>
         </content>
         <beginButton>
-            <Button text="Imprimir" type="Accion" icon="sap-icon://print" press="" />
+            <Button text="Imprimir" type="Accion" icon="sap-icon://print" press="onImprimirQue" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseQueImprimir" />
@@ -395,7 +399,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goDocNuevo">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Nuevo" press="goDocNuevo">
                                 <tileContent >
                                     <TileContent>
                                         <content>
@@ -406,7 +410,7 @@
 
                         
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goDocModificar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Modificar" press="goDocModificar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -415,7 +419,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goDocVisualizar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Visualizar" press="goDocVisualizar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -431,7 +435,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goDocBuscar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Buscar" press="goDocBuscar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -440,7 +444,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Instalación" press="goDocInstalacion">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Instalación" press="goDocInstalacion">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -449,7 +453,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goDocImprimir">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Imprimir" press="goDocImprimir">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -465,7 +469,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Flujo" press="goDocFlujo">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Flujo" press="goDocFlujo">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -492,7 +496,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock disponible" press="goStockDisponible">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Stock disponible" press="goStockDisponible">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -501,7 +505,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock por llegar" press="goStockporLlegar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Stock por llegar" press="goStockporLlegar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -510,7 +514,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Stock por pedir" press="goStockporPedir">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Stock por pedir" press="goStockporPedir">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -536,7 +540,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goRecNuevo">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Nuevo" press="goRecNuevo">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -545,7 +549,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goRecModificar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Modificar" press="goRecModificar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -554,7 +558,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goRecVisualizar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Visualizar" press="goRecVisualizar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -570,7 +574,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goRecBuscar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Buscar" press="goRecBuscar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -579,7 +583,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goRecImprimir">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Imprimir" press="goRecImprimir">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -606,7 +610,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Nuevo" press="goQueNuevo">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Nuevo" press="goQueNuevo">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -615,7 +619,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Modificar" press="goQueModificar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Modificar" press="goQueModificar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -624,7 +628,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Visualizar" press="goQueVisualizar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Visualizar" press="goQueVisualizar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -640,7 +644,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Buscar" press="goQueBuscar">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Buscar" press="goQueBuscar">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -649,7 +653,7 @@
                                     </TileContent>
                                 </tileContent>
                             </GenericTile>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Imprimir" press="goQueImprimir">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Imprimir" press="goQueImprimir">
                                 <tileContent>
                                     <TileContent>
                                         <content>
@@ -675,7 +679,7 @@
                         alignItems="Center"
                         justifyContent="Center">
                         <items>
-                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Información" press="goUsuInformacion">
+                            <GenericTile class="IconSize50 sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout btnMenuPrincipal" header="Información" press="goUsuInformacion">
                                 <tileContent>
                                     <TileContent>
                                         <content>
