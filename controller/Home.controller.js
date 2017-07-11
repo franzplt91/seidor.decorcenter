@@ -33,8 +33,6 @@ sap.ui.define([
                             "OfiVenta": "" ,
                             "TextoQueja": "",
                             "ADRNR": "",
-
-
                             "pNumeroReclamo": "" ,
                             "pCodigoCliente": "" ,
                             "pFechaCreacionI": "" ,
