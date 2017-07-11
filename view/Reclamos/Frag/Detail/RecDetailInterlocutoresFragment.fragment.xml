@@ -60,21 +60,21 @@
                                         </f:FormElement>
                                         <f:FormElement label="Ubicación">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstZipCodes'}" 
+                                                <ComboBox items="{ path : '/dataIni/lstZipCodes'}" 
                                                     change="onSeleccionaSurtido" maxWidth="50%" required="true"
-                                                    id="cbo_ubicacion" value="{/reclamo/0/Ciudad}">
-                                            <core:Item key="{Codigo}" text="{Descripcion}" />
-                                        </Select>
+                                                    id="cbo_ubicacion" value="{/reclamo/listaIntJson/0/Distrito}">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono" value="{/reclamo/listaIntJson/0/TELEFONO}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Telefono}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono" value="{/reclamo/listaIntJson/0/Telefono}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Telefono}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="NIF">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese NIF" id="txt_nif" value="{/reclamo/listaIntJson/0/NIF}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Ruc}"></Input>
+                                                <Input width="100%" placeholder="Ingrese NIF" id="txt_nif" value="{/reclamo/listaIntJson/0/Ruc}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Ruc}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Correo">
@@ -130,9 +130,9 @@
                                         </f:FormElement>
                                         <f:FormElement label="Ubicación">
                                             <f:fields>
-                                                <Select items="{ path : '/SurtidosModel' }" change="onSeleccionaSurtido" maxWidth="50%" required="true" value="{/reclamo/listaIntJson/3/Ciudad}">
-                                            <core:Item key="{Bbtyp}" text="{Bbtext}" />
-                                        </Select>
+                                                <ComboBox items="{ path : '/dataIni/lstZipCodes' }" change="onSeleccionaSurtido" maxWidth="50%" required="true" id="cbo_ubicacion_persona_contacto" value="{/reclamo/listaIntJson/3/Ciudad}">
+                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Teléfono">
@@ -177,12 +177,12 @@
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" id="txt_codigo_asesor" value="{/reclamo/listaIntJson/2/CodPersona}"></Input>
+                                                <Input width="100%" id="txt_codigo_asesor" value="{/reclamo/listaIntJson/2/CodPersona}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Ruc}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" id="txt_nombre_codigo_asesor" value="{/reclamo/listaIntJson/2/CodPersona}"></Input>
+                                                <Input width="100%" id="txt_nombre_codigo_asesor" value="{/reclamo/listaIntJson/2/Nombre}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Ruc}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         

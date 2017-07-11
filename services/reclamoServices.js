@@ -1,239 +1,160 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/m/MessageToast",
-	"sap/ui/core/UIComponent",
-	"sap/ui/model/json/JSONModel",
-	"pe/com/seidor/sap/decor/ventas/services/reclamoServices"
-], function (Controller, MessageToast, UIComponent,JSONModel, reclamoServices) {
-	"use strict";
+    "sap/ui/model/odata/v2/ODataModel",
+    "pe/com/seidor/sap/decor/ventas/util/utilService"
+], function(ODataModel, utilService) {
+    "use strict";
 
-	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Reclamos.RecVisualizar", {
+    return {
 
-		onInit: function() {
-			
-			var oRouter = UIComponent.getRouterFor(this);
-			oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
+        // Listar centros
+        buscarReclamos: function(v_pNumeroReclamo,v_pNumeroPedido,v_pCodigoCliente,v_pNombreCliente,v_pMaterial,
+            v_pFechaCreacionI,v_pFechaCreacionF,v_pEstado,v_pUsuario) {
 
-			this.getView().setModel(new JSONModel({}));
-			this.getView().getModel().setProperty("/dataIni",window.dataIni);
-            this.getView().getModel().refresh(true);
+            var contexto = {};
+            contexto.servicio = "reclamoServices.buscarReclamos()";
+            contexto.url = "BuscarReclamos.aspx";
+            contexto.parametros = { pNumeroReclamo : v_pNumeroReclamo , pNumeroPedido: v_pNumeroPedido,
+                                    pCodigoCliente : v_pCodigoCliente, pNombreCliente : v_pNombreCliente, 
+                                    pMaterial : v_pMaterial, pFechaCreacionI : v_pFechaCreacionI, 
+                                    pFechaCreacionF : v_pFechaCreacionF, pEstado : v_pEstado, 
+                                    pUsuario: v_pUsuario};
 
-			
+            return utilService.exec(contexto);
 
-		},
-		onRouteMatched: function(oEvent) {
-
-            if (oEvent.getParameter("name") == "appRecVisualizar") {
-					this.getView().byId("dlg_rec_nuevo_inicio").open();
-                };
-                var tipoCabecera = [];
-                tipoCabecera.push({
-                    codigo:1,
-                    descripcion:'Reclamo Nuevo'
-                });
-
-                tipoCabecera.push({
-                    codigo:2,
-                    descripcion:'Interlocutores'
-                });
-
-                tipoCabecera.push({
-                    codigo:3,
-                    descripcion:'Datos Reclamo'
-                });
-
-                tipoCabecera.push({
-                    codigo:4,
-                    descripcion:'Cambiar Status'
-                });
-
-            this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);    
-            this.getView().getModel().setProperty("/nombre","Visualizar Reclamo");
-            this.getView().getModel().refresh();    
-		},
-
-		goHome:function(){
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                oRouter.navTo("appHome");
         },
 
-		onBuscardlg_list_reclamos:function(){
+        verReclamos: function(v_pNumeroReclamo) {
 
-				var num_rec = this.getView().byId("txt_pNumeroReclamo").getValue();
-				if (num_rec) {
-					var result = reclamoServices.verReclamos(num_rec);
-					if(result.c === "s"){
+            var contexto = {};
+            contexto.servicio = "reclamoServices.verReclamos()";
+            contexto.url = "editarReclamo.aspx";
+            contexto.parametros = { pNumeroReclamo : v_pNumeroReclamo };
 
-						if(result.data.success){
+            return utilService.exec(contexto);
 
-							this.getView().getModel().setProperty("/ListaReclamos",result.data.listaReclamos);
-							this.getView().getModel().refresh();
-							this.getView().byId("dlg_rec_nuevo_inicio").close();
-
-						}else{
-
-							sap.m.MessageToast.show(result.data.errors.reason, {
-	                duration: 3000
-	            });
-
-						}
-
-
-					}else{
-						sap.m.MessageToast.show(result.m, {
-	                duration: 3000
-	            });
-					}
-
-				 console.log(result);
-				}else{
-					sap.m.MessageToast.show('Ingrese los campos correspondientes', {
-	                duration: 1000
-	            });
-					return;
-
-				}
-		},
-
-
-		onCloseDlgRecNuevo: function(oEvent){
-                this.getView().byId("dlg_rec_nuevo_inicio").close()
-            },
-
-		onOpenDlgBuscarRecNuevo:function(){
-			this.getView().byId("dlg_buscar_rec_nuevo").open();
-		},  
-
-
-		onCloseDlgBuscarRecNuevo:function(){
-
-			this.getView().byId("dlg_buscar_rec_nuevo").close();
-		},    
-
-
-		onBuscarRecNuvoInterlocutores:function(){
-			this.getSplitContObj().toMaster(this.createId("MasterRecNuevoInter"));
-			this.getSplitContObj().to(this.createId("detail_rec_nuevo_interlocutores"));
-			this.getView().byId("dlg_buscar_rec_nuevo").close();
-		},
-
-		getSplitContObj : function() {
-			var result = this.byId("SplitAppId");
-			if (!result) {
-				jQuery.sap.log.error("SplitApp object can't be found");
-			}
-			return result;
-		},
-
-		onShowHello : function () {
-
-			// read msg from i18n model
-			var oBundle = this.getView().getModel("i18n").getResourceBundle();
-			var sRecipient = this.getView().getModel().getProperty("/recipient/name");
-			var sMsg = oBundle.getText("helloMsg", [sRecipient]);
-
-			// show message
-			MessageToast.show(sMsg);
-		},
-
-
-		onPressMasterBack : function() {
-			this.getSplitContObj().backMaster();
-		},
-		
-
-		onOpenDialog : function () {
-			this.getOwnerComponent().openHelloDialog();
-		},
-
-
-		ondlg_buscar: function(){
-			this.getView().byId("dlg_buscar").open();
-		},
-
-		ondlg_addProducto:function(){
-			this.getView().byId("dlg_addProducto").open();
-		},
-
-		onClosedlg_addProducto:function(){
-			this.getView().byId("dlg_addProducto").close();
-		},
-
-		onMasterProductosAdd:function(){
-
-			this.getSplitContObj().toMaster(this.createId("MasterProductosAgregar"));
-
-			this.getSplitContObj().to(this.createId("pag_producto_agregado1"));
-
-			this.getView().byId("dlg_addProducto").close();
-			
-		},
-		
-
-		onClosedlg_buscar: function(){
-			this.getView().byId("dlg_buscar").close();
-		},
-
-		onMasterProductosBuscar:function(){
-			this.getSplitContObj().toMaster(this.createId("MasterProductosBuscar"));
-
-			this.getSplitContObj().to(this.createId("pag_productos_buscar1"));
-
-			this.getView().byId("dlg_buscar").close();
-
-		},
-
-		ondlg_editListaReparto:function(){
-			this.getView().byId("dlg_editListaReparto").open();
-		},
-
-		onClosedlg_editListaReparto:function(){
-			this.getView().byId("dlg_editListaReparto").close();
-		},
-
-		onAddinBuscar:function(){
-			MessageToast.show("Producto Añadido");
-		},
-
-		onSemanticButtonPress: function (evt) {
-			MessageToast.show(evt.getSource().getText() + " Pressed");
-		},
-
-
-		onMasterDatos: function(oEvent){
-                this.getSplitContObj().toMaster(this.createId("MasterDatos"));
-
-                var objeto = oEvent.getSource().getBindingContext().getObject();
-                console.log(objeto.codigo);
-                
         },
 
-		onListMasterDatos : function(oEvent) {
-			var obj = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
+        documentoVentas: function(v_pNumPedido, v_accion, v_modo){
+            var contexto = {};
+            contexto.servicio = "reclamoServices.documentoVentas()";
+            contexto.url = "documentoVentas.aspx";
+            contexto.parametros = {pNumPedido : v_pNumPedido, accion : v_accion, modo : v_modo}
 
-            if(obj.codigo===1){
-                    this.byId("SplitAppId").to(this.createId("pag_rec_nuevo_reclamo"));
-                }
+            return utilService.exec(contexto);
+        },
+        
+        crearReclamo: function(v_pNumPedido, v_accion, v_modo){
+            var contexto = {};
+            contexto.servicio = "reclamoServices.crearReclamo()";
+            contexto.url = "crearReclamo.aspx";
+            contexto.parametros = {pNumPedido : v_pNumPedido, accion : v_accion, modo : v_modo}
 
-                if(obj.codigo===2){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
-                }
+            return utilService.exec(contexto);
+        },
 
-                if(obj.codigo===3){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_datos_reclamo"));
-                }
+        guardarReclamo: function(reclamo,reclamo1,reclamo2){
+            var contexto= {};
+            contexto.servicio = "reclamoServices.guardarReclamo()";
+            contexto.url = "guardarReclamo.aspx";
+            contexto.parametros = {
+                                   material11 : reclamo.material11, 
+                                   material12 : reclamo.material12, 
+                                   material21 : reclamo.material21, 
+                                   material22 : reclamo.material22,
+                                   cantRecla1 : reclamo.cantRecla1, 
+                                   cantRecla2 : reclamo.cantRecla2, 
+                                   reclamoRef : reclamo.reclamoRef, 
+                                   numeroPedido : reclamo.nummeroPedido,
+                                   EmpresaDet : reclamo.EmpresaDet, 
+                                   NomCliente : reclamo.NomCliente, 
+                                   codigoEmpResp : reclamo.codigoEmpResp, 
+                                   Motivo : reclamo.Motivo,
+                                   Status : reclamo.Status, 
+                                   Resultado : reclamo.Resultado, 
+                                   JustificResul : reclamo.JustificResul, 
+                                   OrgVenta : reclamo.OrgVenta,
+                                   Canal : reclamo.Canal, 
+                                   Sector : reclamo.Sector, 
+                                   OfiVenta : reclamo.OfiVenta, 
+                                   comentario : reclamo.comentario, 
+                                   listaReclamo : reclamo1,
+                                   pIndiceResultado : reclamo.pIndiceResultado, 
+                                   listaIntJson : reclamo2
+                                 }
 
-                if(obj.codigo===4){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
-                }
-		},
+            return utilService.exec(contexto);
+        },
+        EditarReclamo: function(material11,
+                                 material12,
+                                 material21,
+                                 material22,
+                                 cantRecla1,
+                                 cantRecla2, 
+                                 reclamoRef, 
+                                 nummeroPedido,
+                                 EmpresaDet, 
+                                 NomCliente, 
+                                 codigoEmpResp, 
+                                 Motivo, 
+                                 Status, 
+                                 Resultado, 
+                                 JustificResul, 
+                                 OrgVenta,
+                                 Canal, 
+                                 Sector, 
+                                 OfiVenta, 
+                                 comentario,
+                                 pNumeroReclamo, 
+                                 listaReclamo, 
+                                 pIndiceResultado, 
+                                 listaIntJson,
+                                 UserId,
+                                PwdId,
+                                Id,
+                                GrpVend,
+                                Descripcion,
+                                CodigoVendedor,
+                                OrgVentas,
+                                CanalDist,
+                                OfVentas ){
+            var contexto= {};
+            contexto.servicio = "reclamoServices.guardarReclamo()";
+            contexto.url = "guardarReclamo.aspx";
+            contexto.parametros = {material11 : material11, 
+                                    material12 : material12, 
+                                    material21 : material21, 
+                                    material22 : material22,
+                                   cantRecla1 : cantRecla1, 
+                                   cantRecla2 : cantRecla2, 
+                                   reclamoRef : reclamoRef, 
+                                   numeroPedido : nummeroPedido,
+                                   EmpresaDet : EmpresaDet, 
+                                   NomCliente : NomCliente, 
+                                   codigoEmpResp : codigoEmpResp, 
+                                   Motivo : Motivo,
+                                   Status : Status, 
+                                   Resultado : Resultado, 
+                                   JustificResul : JustificResul, 
+                                   OrgVenta : OrgVenta,
+                                   Canal : Canal, 
+                                   Sector : Sector, 
+                                   OfiVenta : OfiVenta, 
+                                   comentario : comentario,
+                                   pNumeroReclamo : pNumeroReclamo, 
+                                   listaReclamo : listaReclamo,
+                                   pIndiceResultado : pIndiceResultado, 
+                                   listaIntJson : listaIntJson,
+                                UserId: UserId,
+                                PwdId: PwdId,
+                                Id: Id ,
+                                GrpVend: GrpVend,
+                                Descripcion: Descripcion,
+                                CodigoVendedor: CodigoVendedor,
+                                OrgVentas: OrgVentas,
+                                CanalDist: CanalDist,
+                                OfVentas: OfVentas }
 
-		onListMasterProductos : function(oEvent) {
-			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
- 
-			this.getSplitContObj().toDetail(this.createId(sToPageId));
-		},
-
-	});
-
+            return utilService.exec(contexto);
+        },
+    };
 });
