@@ -48,7 +48,65 @@ sap.ui.define([
 
 
 
+        crearReclamo: function(crearReclamo){
+            var contexto = {};
+            contexto.servicio = "reclamoServices.crearReclamo()";
+            contexto.url = "crearReclamo.aspx";
+            contexto.parametros = {pNumPedido : crearReclamo.pNumPedido, accion : crearReclamo.accion, modo : crearReclamo.modo}
 
+            return utilService.exec(contexto);
+        },
+
+
+        documentoVentas: function(documentoVentas){
+            var contexto = {};
+            contexto.servicio = "reclamoServices.documentoVentas()";
+            contexto.url = "documentoVentas.aspx";
+            contexto.parametros = {pNumPedido : documentoVentas.pNumPedido, accion : documentoVentas.accion, modo : documentoVentas.modo}
+
+            return utilService.exec(contexto);
+        },
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        guardarReclamo: function(guardarReclamo, listaReclamoLleno, listaIntJsonLleno){
+            var contexto= {};
+            contexto.servicio = "reclamoServices.guardarReclamo()";
+            contexto.url = "guardarReclamo.aspx";
+            contexto.parametros = {
+                                    material11: guardarReclamo.material11 ,
+                                    material12: guardarReclamo.material12 ,
+                                    material21: guardarReclamo.material21 ,
+                                    material22: guardarReclamo.material22 ,
+                                    cantRecla1: guardarReclamo.cantRecla1 ,
+                                    cantRecla2: guardarReclamo.cantRecla2 ,
+                                    reclamoRef: guardarReclamo.reclamoRef ,
+                                    numeroPedido: guardarReclamo.numeroPedido ,
+                                    EmpresaDet: guardarReclamo.EmpresaDet , 
+                                    NomCliente: guardarReclamo.NomCliente ,
+                                    codigoEmpResp: guardarReclamo.codigoEmpResp ,
+                                    Motivo: guardarReclamo.Motivo , 
+                                    Status: guardarReclamo.Status , 
+                                    Resultado: guardarReclamo.Resultado , 
+                                    JustificResul: guardarReclamo.JustificResul , 
+                                    OrgVenta: guardarReclamo.OrgVenta , 
+                                    Canal: guardarReclamo.Canal , 
+                                    Sector: guardarReclamo.Sector ,
+                                    OfiVenta: guardarReclamo.OfiVenta ,
+                                    comentario: guardarReclamo.comentario ,
+                                    pNumeroReclamo: guardarReclamo.pNumeroReclamo ,
+                                    listaReclamo: listaReclamoLleno ,
+                                    pIndiceResultado: 5 ,
+                                    listaIntJson: listaIntJsonLleno
+                                 }
+
+            return utilService.exec(contexto);
+        },
+
+
+
+/*
         documentoVentas: function(v_pNumPedido, v_accion, v_modo){
             var contexto = {};
             contexto.servicio = "reclamoServices.documentoVentas()";
@@ -97,38 +155,79 @@ sap.ui.define([
 
             return utilService.exec(contexto);
         },
-        EditarReclamo: function(reclamo1,reclamo2){
+        EditarReclamo: function(material11,
+                                 material12,
+                                 material21,
+                                 material22,
+                                 cantRecla1,
+                                 cantRecla2, 
+                                 reclamoRef, 
+                                 nummeroPedido,
+                                 EmpresaDet, 
+                                 NomCliente, 
+                                 codigoEmpResp, 
+                                 Motivo, 
+                                 Status, 
+                                 Resultado, 
+                                 JustificResul, 
+                                 OrgVenta,
+                                 Canal, 
+                                 Sector, 
+                                 OfiVenta, 
+                                 comentario,
+                                 pNumeroReclamo, 
+                                 listaReclamo, 
+                                 pIndiceResultado, 
+                                 listaIntJson,
+                                 UserId,
+                                PwdId,
+                                Id,
+                                GrpVend,
+                                Descripcion,
+                                CodigoVendedor,
+                                OrgVentas,
+                                CanalDist,
+                                OfVentas ){
             var contexto= {};
             contexto.servicio = "reclamoServices.guardarReclamo()";
             contexto.url = "guardarReclamo.aspx";
-            contexto.parametros = {
-                                  material11:"11000004",
-                                  material12:"11000898",
-                                  material21:"",
-                                  material22:"",
-                                  cantRecla1:1,
-                                  cantRecla2:2,
-                                  reclamoRef:"",
-                                  numeroPedido:"0000238187",
-                                  EmpresaDet:"0000101317",
-                                  NomCliente:"Cliente Eventual La Molina",
-                                  codigoEmpResp:"00001802",
-                                  Motivo:"A01",
-                                  Status:0,
-                                  Resultado:"004",
-                                  JustificResul:"001",
-                                  OrgVenta:"1000",
-                                  Canal:10,
-                                  Sector:"00",
-                                  OfiVenta:"1010",
-                                  comentario:"",
-                                  pNumeroReclamo:"0100004422",
-                                  listaReclamo : reclamo1,
-                                  pIndiceResultado : 4, 
-                                  listaIntJson : reclamo2}
+            contexto.parametros = {material11 : material11, 
+                                    material12 : material12, 
+                                    material21 : material21, 
+                                    material22 : material22,
+                                   cantRecla1 : cantRecla1, 
+                                   cantRecla2 : cantRecla2, 
+                                   reclamoRef : reclamoRef, 
+                                   numeroPedido : nummeroPedido,
+                                   EmpresaDet : EmpresaDet, 
+                                   NomCliente : NomCliente, 
+                                   codigoEmpResp : codigoEmpResp, 
+                                   Motivo : Motivo,
+                                   Status : Status, 
+                                   Resultado : Resultado, 
+                                   JustificResul : JustificResul, 
+                                   OrgVenta : OrgVenta,
+                                   Canal : Canal, 
+                                   Sector : Sector, 
+                                   OfiVenta : OfiVenta, 
+                                   comentario : comentario,
+                                   pNumeroReclamo : pNumeroReclamo, 
+                                   listaReclamo : listaReclamo,
+                                   pIndiceResultado : pIndiceResultado, 
+                                   listaIntJson : listaIntJson,
+                                UserId: UserId,
+                                PwdId: PwdId,
+                                Id: Id ,
+                                GrpVend: GrpVend,
+                                Descripcion: Descripcion,
+                                CodigoVendedor: CodigoVendedor,
+                                OrgVentas: OrgVentas,
+                                CanalDist: CanalDist,
+                                OfVentas: OfVentas }
 
             return utilService.exec(contexto);
         },
 
+        */
     };
 });
