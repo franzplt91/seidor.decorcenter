@@ -193,12 +193,12 @@
                     <f:formElements>
                         <f:FormElement label="RUC / DNI">
                             <f:fields>
-                                <Input placeholder="Ingrese RUC o Nro. de DNI"></Input>
+                                <Input placeholder="Ingrese RUC o Nro. de DNI" value="" id="txt_ruc_cliente_busqueda"></Input>
                             </f:fields>
                         </f:FormElement>
                         <f:FormElement label="Razón Social">
                             <f:fields>
-                                <Input placeholder="Ingrese Razón Social"></Input>
+                                <Input placeholder="Ingrese Razón Social" value="" id="txt_nombre_cliente_busqueda"></Input>
                             </f:fields>
                         </f:FormElement>
                     </f:formElements>
@@ -209,10 +209,10 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onBuscarRecNuvoInterlocutores"></Button>
+            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onCarga"></Button>
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgBuscarRecNuevo" />
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCarga" />
         </endButton>
     </Dialog>
     

@@ -29,6 +29,24 @@ sap.ui.define([
             return utilService.exec(contexto);
 
         },
+        // Listar centros
+        buscarCliente: function(ruc,nombre) {
+
+            var contexto = {};
+            contexto.servicio = "clienteServices.buscarCliente()";
+            contexto.url = "buscarClientes.aspx";
+            contexto.parametros = { rucdni : ruc , nombreCliente: nombre };
+
+            return utilService.exec(contexto);
+
+        },
+        reemplazarCiente: function(codigo){
+          var contexto = {};
+          contexto.servicio = "reclamoServices.reemplazarCiente()";
+          contexto.url = "buscarClientes.aspx";
+          contexto.parametros = {codigoClienteA : codigo}
+          return utilService.exec(contexto);
+        },
 
         verReclamos: function(v_pNumeroReclamo) {
 
