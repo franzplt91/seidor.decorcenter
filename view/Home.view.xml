@@ -25,7 +25,7 @@
 <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAvisoGeneral" type="XML"></core:Fragment>
 
 
-    <!--Dialog Imprimir Documento-->
+   <!--Dialog Imprimir Documento-->
     <Dialog title="Impresión de Documento" id="dlg_doc_impresion" stretchOnPhone="true" contentWidth="35%" contentHeight="47%">
         <content>
            
@@ -91,17 +91,18 @@
             <f:formContainers>
                 <f:FormContainer>
                     <f:formElements>
-                        <f:FormElement label="Oferta / Pedido Agrupada" >
+                        <f:FormElement label="Oferta/Pedido Agrupada" >
                             <f:fields> 
-                                    <RadioButton groupName="GroupA"   selected="true"/>
+                                    <RadioButton groupName="GroupA" id="opcion1"  selected="true"/>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Condición de Entregas">
                             <f:fields>
-                                    <RadioButton groupName="GroupA"   />
+                                    <RadioButton groupName="GroupA" id="opcion2"  />
                             </f:fields>
                         </f:FormElement>
+
                     </f:formElements>
                 </f:FormContainer>
             </f:formContainers>
@@ -157,12 +158,6 @@
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseQueImprimir" />
         </endButton>
     </Dialog>
-
-
-    
-
-
-
 
 
     <Page id="pag_principal" title="Menu" backgroundDesign="Transparent" >
