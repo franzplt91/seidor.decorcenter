@@ -6,12 +6,29 @@ sap.ui.define([
 
     return {
 
+        /////Documento Nuevo/////////////////////////////
+
+        // Crear Cotizacion
+        crearDoc: function(crearDoc) {
+
+            var contexto = {};
+            contexto.servicio = "documentosServices.crearDoc()";
+            contexto.url = "crearDocumento.aspx";
+            contexto.parametros = { tipoDocumento: crearDoc.tipoDocumento, pNumPedido: crearDoc.referencia};
+
+            return utilService.exec(contexto);
+            
+        },
+
+
+
+        ///////Fin Documento Nuevo//////////////////////////////////////////
+
         //INICIO EDELACRUZ: 
         //Valores Dialog "Buscar Documento"(dlg_DialogDocBuscarInicio.xml)
         //Combo campo: "tipo de busqueda"
         // Listar busqueda de documentos
-        buscarDocumento: function (buscarDoc)
-        {
+        buscarDocumento: function (buscarDoc){
             var contexto = {};
             contexto.servicio = "documentosServices.buscarDocumento()";
             contexto.url = "buscarDocumento.aspx";
@@ -32,6 +49,19 @@ sap.ui.define([
         },
         //FIN EDELACRUZ
         
+
+        conversionPedido:function(convPedido){
+            var contexto = {};
+            contexto.servicio = "documentosServices.conversionPedido()";
+            contexto.url = "flujoDocumento.aspx";
+            contexto.parametros = {pNumPedido: convPedido.NumeroPedido ,
+                                    tipoDocumento: "Z001" 
+                                    };
+
+                                    
+            var resultado = utilService.exec(contexto);
+            return resultado;
+        },
         
         
         crearInstalacion: function (venta1, venta2, venta3, venta4, visita1, visita2, visita3,visita4)
