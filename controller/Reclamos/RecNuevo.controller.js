@@ -21,220 +21,171 @@ sap.ui.define([
 		},
 		onRouteMatched: function(oEvent) {
 			var oData = {
-                    "reclamo" : {
-                        "material11" : "",
-						"material12" : "",
-						"material21" : "",
-						"material22" : "",
-						"cantRecla1" : "",
-						"cantRecla2" : "",
-						"reclamoRef" : "",
-						"numeroPedido" : "",
-						"EmpresaDet" : "",
-						"NomCliente" : "",
-						"codigoEmpResp" : "",
-						"Motivo" : "",
-						"Status" : "",
-						"Resultado" : "",
-						"JustificResul" : "",
-						"OrgVenta" : "",
-						"Canal" : "",
-						"Sector" : "",
-						"OfiVenta" : "",
-						"comentario" : "",
 
-                        "listaReclamo" : [
-                        					{
-                        						"pNumeroReclamo":"",
-                        						"fechaI":"",
-                        						"fechaF":"",
-                        						"horaReclamoI":"",
-                        						"horaReclamoF":"",
-                        						"empresa":"",
-                        						"numeroPedido":"",
-                        						"comentario":"",
-                        						"material1":"",
-                        						"material2":"",
-                        						"material11":"",
-                        						"material12":"",
-                        						"material21":"",
-                        						"material22":"",
-                        						"cantRecla1":"",
-                        						"cantRecla2":"",
-                        						"montoRecla1":"",
-                        						"montoRecla2":"",
-                        						"reclamoRef":"",
-                        						"TextoTratemInicial":"",
-                        						"TextoNotaDireccion":"",
-                        						"TextoSeguimiento":"",
-                        						"TextoDiagnostico":"",
-                        						"TextoSolucion":"",
-                        						"TextoPersonaContacto":"",
-                        						"TextoDatosFacturacion":"",
-                        						"TextoPedidoReferencia":"",
-                        						"TextoMotivosOtros":"",
-                        						"mail":"",
-                        						"_nif":"",
-                        						"PersonaContacto":"",
-                        						"NomPContac":"",
-                        						"DirPContac":"",
-                        						"NIFCont":"",
-                        						"TelfCont":"",
-                        						"CodpPContac":"",
-                        						"NomCliente":"",
-                        						"EmpresaDet":"",
-                        						"NomEmpresa":"",
-                        						"DirEmpresa":"",
-                        						"TelfEmpre":"",
-                        						"CodpEmpresa":"",
-                        						"CodDestMerc":"",
-                        						"NomDestMerc":"",
-                        						"DirDestMerc":"",
-                        						"CodpDestMerc":"",
-                        						"CodECom":"",
-                        						"NomECom":"",
-                        						"codigoEmpResp":"",
-                        						"nombreEmpResp":"",
-                        						"CodResPago":"",
-                        						"NomResPago":"",
-                        						"OrgVenta":"",
-                        						"Canal":"",
-                        						"OfiVenta":"",
-                        						"Motivo":"",
-                        						"Resultado":"",
-                        						"JustificResul":"",
-                        						"Sector":"",
-                        						"Status":"",
-                        						"UsuarioStatus":"",
-                        						"Descripcion":"",
-                        						"fechaSts":""
-                        					}],
-                        
-                        "pIndiceResultado" : 4,
-                        
-                        "listaIntJson" : [
-                                            {
-                                                "id":1,
-                                                "PedidoId":0,
-                                                "Funcion":"",
-                                                "Codigo":"",
-                                                "Ruc":"",
-                                                "Descripcion":"",
-                                                "Titulo":"",
-                                                "Direccion":"",
-                                                "DireccionCompleta":"",
-                                                "Ciudad":"",
-                                                "Pais":"PE",
-                                                "CodigoPostal":"",
-                                                "Distrito":"",
-                                                "Telefono":"",
-                                                "Mail":"",
-                                                "PersonaFisica":true,
-                                                "Eventual":false,
-                                                "CodPersona":"",
-                                                "Nombre":"",
-                                                "ADRNR":"",
-                                                "DescripcionP":"",
-                                                "POSNR":"000000",
-                                                "PARVW":"",
-                                                "NOMBRE":"",
-                                                "Name1":"",
-                                                "Calle":"",
-                                                "KUNNR":"",
-                                                "NIF":"",
-                                                "CPOSTAL":"",
-                                                "CodPostal":"",
-                                                "DIRECCION":"",
-                                                "TELEFONO":"",
-                                                "PCONTACTO":""
-                                            },
-                                            {
-                                                "id":3,
-                                                "PedidoId":0,
-                                                "Funcion":"VE",
-                                                "Codigo":"",
-                                                "Ruc":"",
-                                                "Descripcion":"",
-                                                "Titulo":"",
-                                                "Direccion":"",
-                                                "DireccionCompleta":"",
-                                                "Ciudad":"",
-                                                "Pais":"",
-                                                "CodigoPostal":"",
-                                                "Distrito":"",
-                                                "Telefono":"",
-                                                "Mail":"",
-                                                "PersonaFisica":false,
-                                                "Eventual":false,
-                                                "CodPersona":"00001802",
-                                                "Nombre":"Julio Edgardo Pingo",
-                                                "ADRNR":"",
-                                                "DescripcionP":"",
-                                                "POSNR":"000000",
-                                                "PARVW":"VE",
-                                                "PERNR":"00001802"
-                                            },
-                                            {
-                                                "id":4,
-                                                "PedidoId":0,
-                                                "Funcion":"ZM",
-                                                "Codigo":"",
-                                                "Ruc":"",
-                                                "Descripcion":"",
-                                                "Titulo":"",
-                                                "Direccion":"",
-                                                "DireccionCompleta":"",
-                                                "Ciudad":"",
-                                                "Pais":"",
-                                                "CodigoPostal":"",
-                                                "Distrito":"",
-                                                "Telefono":"",
-                                                "Mail":"",
-                                                "PersonaFisica":false,
-                                                "Eventual":false,
-                                                "CodPersona":"00001802",
-                                                "Nombre":"Julio Edgardo Pingo",
-                                                "ADRNR":"",
-                                                "DescripcionP":"",
-                                                "POSNR":"000000",
-                                                "PARVW":"ZM",
-                                                "PERNR":"00001802"
-                                            },
-                                            {
-                                                "id":5,
-                                                "PedidoId":0,
-                                                "Funcion":"AP",
-                                                "Codigo":"",
-                                                "Ruc":"",
-                                                "Descripcion":"",
-                                                "Titulo":"",
-                                                "Direccion":"",
-                                                "DireccionCompleta":"",
-                                                "Ciudad":"",
-                                                "Pais":"PE",
-                                                "CodigoPostal":"",
-                                                "Distrito":"",
-                                                "Telefono":"",
-                                                "Mail":"",
-                                                "PersonaFisica":false,
-                                                "Eventual":false,
-                                                "CodPersona":"",
-                                                "Nombre":"",
-                                                "ADRNR":"",
-                                                "DescripcionP":"",
-                                                "POSNR":"",
-                                                "PARVW":"AP",
-                                                "NOMBRE":"",
-                                                "Name1":"",
-                                                "Calle":"",
-                                                "CPOSTAL":"",
-                                                "CodPostal":"",
-                                                "DIRECCION":"",
-                                                "TELEFONO":"",
-                                                "PCONTACTO":""
-                                            }
-                                        ]
+                "reclamo" :
+                {
+
+                    "materiales":[
+                        {
+                            "CodMaterialCorto" : "",
+                            "DescMaterial" : ""
+                        }
+                    ],
+                    "material1" : "",
+                    "material2" : "",
+                    "cantidad_material1" : "",
+                    "cantidad_material2" : "",
+                    "reclamo_referencia" : "",
+                    "numero_pedido" : "",
+                    "codigo_cliente" : "",
+                    "nombre_cliente" : "",
+                    "asesor" : "",
+                    "motivo" : "",
+                    "status" : "",
+                    "resultado" : "",
+                    "justificacion_resultado" : "",
+                    "lista_organizacion_ventas" : [
+                        {
+                            "Codigo": "",
+                            "Descripcion": ""
+                        }
+                    ],
+                    "organizacion_venta" : "",
+                    "lista_canal_distrito" : [
+                        {
+                            "Codigo": "",
+                            "Descripcion": ""
+                        }
+                    ],
+                    "canal" : "",
+                    "sector" : "",
+                    "oficina_ventas" : "",
+                    "comentario" : "",
+                    "datos_reclamo" : [
+                        {
+                            "TextoTratemInicial":"",
+                            "TextoNotaDireccion":"",
+                            "TextoSeguimiento":"",
+                            "TextoDiagnostico":"",
+                            "TextoSolucion":"",
+                            "TextoPersonaContacto":"",
+                            "TextoDatosFacturacion":"",
+                            "TextoPedidoReferencia":"",
+                            "TextoMotivosOtros":"",
+                        }
+                    ]
+                },
+                "Interlocutores" : {
+                    "AG" : {
+                        "Cliente": {
+                            "Ciudad":"ATE VITARTE - LIMA",
+                            "Codigo":"0000101317",
+                            "CodigoPostal":"LIMA 03",
+                            "Descripcion":"Cliente Eventual La Molina",
+                            "Direccion":"PRUEBA",
+                            "DireccionCompleta":"PRUEBA LIMA 03 ATE VITARTE - LIMA",
+                            "Eventual":false,
+                            "FECNAC":"0001-01-01T00:00:00",
+                            "Mail":"",
+                            "Pais":"PE",
+                            "PersonaFisica":true,
+                            "Ruc":"45454545",
+                            "Telefono":"",
+                            "Titulo":"Señor"
+                        },
+                        "Funcion": "AG",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    },
+                    "AP" : {
+                        "Cliente": {
+                            "Ciudad":"ATE VITARTE - LIMA",
+                            "Codigo":"0000101317",
+                            "CodigoPostal":"LIMA 03",
+                            "Descripcion":"Cliente Eventual La Molina",
+                            "Direccion":"PRUEBA",
+                            "DireccionCompleta":"PRUEBA LIMA 03 ATE VITARTE - LIMA",
+                            "Eventual":false,
+                            "FECNAC":"0001-01-01T00:00:00",
+                            "Mail":"",
+                            "Pais":"PE",
+                            "PersonaFisica":true,
+                            "Ruc":"45454545",
+                            "Telefono":"",
+                            "Titulo":"Señor"
+                        },
+                        "Funcion": "AP",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    },
+                    "ZM" : {
+                        "Cliente": {
+                            "Ciudad":"ATE VITARTE - LIMA",
+                            "Codigo":"0000101317",
+                            "CodigoPostal":"LIMA 03",
+                            "Descripcion":"Cliente Eventual La Molina",
+                            "Direccion":"PRUEBA",
+                            "DireccionCompleta":"PRUEBA LIMA 03 ATE VITARTE - LIMA",
+                            "Eventual":false,
+                            "FECNAC":"0001-01-01T00:00:00",
+                            "Mail":"",
+                            "Pais":"PE",
+                            "PersonaFisica":true,
+                            "Ruc":"45454545",
+                            "Telefono":"",
+                            "Titulo":"Señor"
+                        },
+                        "Funcion": "ZM",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    },
+                    "VE" : {
+                        "Cliente": {
+                            "Ciudad":"ATE VITARTE - LIMA",
+                            "Codigo":"0000101317",
+                            "CodigoPostal":"LIMA 03",
+                            "Descripcion":"Cliente Eventual La Molina",
+                            "Direccion":"PRUEBA",
+                            "DireccionCompleta":"PRUEBA LIMA 03 ATE VITARTE - LIMA",
+                            "Eventual":false,
+                            "FECNAC":"0001-01-01T00:00:00",
+                            "Mail":"",
+                            "Pais":"PE",
+                            "PersonaFisica":true,
+                            "Ruc":"45454545",
+                            "Telefono":"",
+                            "Titulo":"Señor"
+                        },
+                        "Funcion": "VE",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
                     }
+                }
+
                 };
 
             if (oEvent.getParameter("name") == "appRecNuevo") {
@@ -245,19 +196,15 @@ sap.ui.define([
 	            this.getView().byId("txt_Numero_Pedido").setEnabled(false);
 				this.getView().byId("txt_Codigo_Cliente").setEnabled(false);
 				this.getView().byId("txt_cliente_eventual").setEnabled(false);
-				this.getView().byId("txt_Asesor").setEnabled(false);
+				//this.getView().byId("txt_Asesor").setEnabled(false);
 				this.getView().byId("txt_funcion").setEnabled(false);
 				this.getView().byId("txt_codigo").setEnabled(false);
 				this.getView().byId("txt_nombre").setEnabled(false);
 				this.getView().byId("txt_direccion").setEnabled(false);
 				this.getView().byId("txt_telefono").setEnabled(false);
 				this.getView().byId("txt_nif").setEnabled(false);
-				//this.getView().byId("txt_correo").setEnabled(false);
 				this.getView().byId("dlg_filtros").open();
-
-
-
-					this.getView().byId("btn_guardar_reclamo").setText("Guardar");
+				//this.getView().byId("btn_guardar_reclamo").setText("Guardar");
                 };
 
 
@@ -295,100 +242,98 @@ sap.ui.define([
 		
 
 		onCrearDlgRecNuevo: function(oEvent){
-                
-                var num_pe = this.getView().byId("txt_pNumPedido").getValue();
+
+            var num_pe = this.getView().byId("txt_pNumPedido").getValue();
                 if(num_pe)
                 {
-                	var result = reclamoServices.documentoVentas(num_pe,"ver","reclamo");
+                    var result = reclamoServices.documentoVentas(num_pe,"ver","reclamo");
                     var resul = reclamoServices.crearReclamo(num_pe,"ver","reclamo");
-                	if(result.c === "s" && resul.c === "s")
-                	{
-						if(result.data.success && resul.data.success)
-						{
-							this.getView().getModel().setProperty("/Pedido",result.data);
-		                	this.getView().getModel().setProperty("/Reclamos",result.data.objPedido.Detalle);
-                            this.getView().getModel().setProperty("/Crear_reclamo",resul.data);
-							this.getView().getModel().refresh();
-							
-							//Llamar campos
-							var Numpedido =  this.getView().getModel().getProperty("/Pedido/objPedido/NumPedido");
-                            var num_pedido = parseInt(Numpedido,10);
-							var CodCliente =  this.getView().getModel().getProperty("/Pedido/objPedido/CodCliente");
-							var Descripcion = this.getView().getModel().getProperty("/Pedido/objCliente/Descripcion");
-							var Asesor = this.getView().getModel().getProperty("/Pedido/NomVendedor1");
+                    if(result.c === "s" && resul.c === "s")
+                    {
+                        if(result.data.success && resul.data.success)
+                        {
 
-							//Llenar campos
-							this.getView().byId("txt_Numero_Pedido").setValue(num_pedido);
-							this.getView().byId("txt_Codigo_Cliente").setValue(CodCliente);
-							this.getView().byId("txt_cliente_eventual").setValue(Descripcion);
-							this.getView().byId("txt_Asesor").setValue(Asesor);
-							console.log(Asesor);
-							//LLamar campos interlocutores
-							var Funcion = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Funcion");
-							var Codigo = this.getView().getModel().getProperty("/Pedido/objCliente/Codigo");
-							var Nombre = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Cliente/Descripcion");
-							var Direccion = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Cliente/Direccion");
-							var Telefono = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Cliente/Telefono");
-							var nif = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/0/Cliente/Ruc");
-							
-							var codigo_asesor = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/3/Persona/CodPersona");
-						 	var Descripcion_asesor = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/3/Persona/Descripcion");
+                            var interlocutores = result.data.objPedido.Interlocutores;
+                            this.onMostrarInterlocutores(interlocutores);
+                            var datos_reclamo = result.data.objPedido;
+                            this.getView().getModel().setProperty("/reclamo/materiales",result.data.objPedido.Detalle);
+                            this.getView().getModel().setProperty("/reclamo/numero_pedido",result.data.objPedido.NumPedido);
+                            this.getView().getModel().setProperty("/reclamo/codigo_cliente",result.data.codigoCliente);
+                            this.getView().getModel().setProperty("/reclamo/nombre_cliente",result.data.objCliente.Descripcion);
+                            this.getView().getModel().setProperty("/reclamo/asesor",result.data.NomVendedor1);
+                            this.getView().getModel().setProperty("/reclamo/motivo",dataIni.lstMotivoRecl.Codigo);
+                            this.getView().getModel().setProperty("/reclamo/status",result.data.pCondicionesPago);
+                            this.getView().getModel().setProperty("/reclamo/lista_organizacion_ventas",result.data.lstOrgVtas);
+                            this.getView().getModel().setProperty("/reclamo/lista_canal_distrito",result.data.lstCanalDist);
+                            this.getView().getModel().setProperty();
+                            this.getView().getModel().refresh();
+                            
+                            this.getView().getModel().setProperty("/reclamo/materiales",result.data.objPedido.Detalle);
+                            this.getView().getModel().setProperty("/reclamo/numero_pedido",result.data.objPedido.NumPedido);
+                            this.getView().getModel().setProperty("/reclamo/codigo_cliente",result.data.codigoCliente);
+                            this.getView().getModel().setProperty("/reclamo/nombre_cliente",result.data.objCliente.Descripcion);
+                            this.getView().getModel().setProperty("/reclamo/asesor",result.data.NomVendedor1);
+                            this.getView().getModel().setProperty("/reclamo/motivo",dataIni.lstMotivoRecl.Codigo);
+                            this.getView().getModel().setProperty("/reclamo/status",result.data.pCondicionesPago);
+                            this.getView().getModel().setProperty("/reclamo/lista_organizacion_ventas",result.data.lstOrgVtas);
+                            
+                            this.getView().getModel().setProperty("/array_interlocutor",result.data.objPedido.Interlocutores);
+                            var interlocutor_AG = this.getView().getModel().getProperty("/array_interlocutor/0");
 
-						 	var Funcion_Enmpresa_Comercial = this.getView().getModel().getProperty("/Pedido/objPedido/Interlocutores/3/Funcion");
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/0/Funcion",interlocutor_AG.Funcion);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/0/Codigo",interlocutor_AG.Cliente.Codigo);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/0/Nombre",interlocutor_AG.Cliente.Descripcion);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/0/Direccion",interlocutor_AG.Cliente.Direccion);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/0/Ubicacion",interlocutor_AG.Cliente.CodigoPostal);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/0/Telefono",interlocutor_AG.Cliente.Telefono);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/0/Nif",interlocutor_AG.Cliente.Ruc);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/0/Correo",interlocutor_AG.Cliente.Mail);
 
-							var fecha_realizacion = this.getView().getModel().getProperty("/Pedido/FechaValidez");
+                            var interlocutor_AP = this.getView().getModel().getProperty("/array_interlocutor/4");
 
-							//Llenar campos
-							this.getView().byId("txt_funcion").setValue(Funcion); 
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/1/Funcion", "AP");
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/1/Nombre",interlocutor_AP.Cliente.Descripcion);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/1/Direccion",interlocutor_AP.Cliente.Direccion);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/1/Ubicacion",interlocutor_AP.Cliente.CodigoPostal);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/1/Telefono",interlocutor_AP.Cliente.Telefono);
 
-							this.getView().byId("txt_codigo").setValue(Codigo); 
-							this.getView().byId("txt_nombre").setValue(Nombre);
-							this.getView().byId("txt_direccion").setValue(Direccion);
-							this.getView().byId("txt_telefono").setValue(Telefono);
-							this.getView().byId("txt_nif").setValue(nif);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/2/Funcion");
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/2/Nombre");
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/2/Direccion");
 
-							this.getView().byId("txt_codigo_asesor").setValue(codigo_asesor);
-							this.getView().byId("txt_nombre_codigo_asesor").setValue(Descripcion_asesor);
+                            var interlocutor_VE = this.getView().getModel().getProperty("/array_interlocutor/3")
 
-							this.getView().byId("txt_funcion_comercial").setValue(Funcion_Enmpresa_Comercial);
-							this.getView().byId("txt_codigo_empresa_comercial").setValue(codigo_asesor);
-							this.getView().byId("txt_nombre_empresa_comercial").setValue(Descripcion_asesor);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/3/Funcion",interlocutor_VE.Funcion);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/3/Codigo",interlocutor_VE.Persona.CodPersona);
+                            this.getView().getModel().setProperty("/reclamo/interlocutores/3/Nombre",interlocutor_VE.Persona.Descripcion);
 
-							this.getView().byId("txt_fecha_realizacion").setValue(fecha_realizacion);
-							
-
-							//Llenar campos Empresa comercial
-							var oficina = this.getView().getModel().getProperty("/Pedido/oficina");
-							//console.log(oficina);
-							this.getView().byId("cbo_OfiVenta").setSelectedKey(oficina);
-
-							this.getView().byId("dlg_filtros").close();
-						}
-						else
-						{
-							sap.m.MessageToast.show(result.data.errors.reason, {
-				                duration: 3000
-				            });
-						}
-					}
-					else
-					{
-						sap.m.MessageToast.show(result.m, {
-			                duration: 3000
-			            			});
-					}
-		                	console.log(result);	
+                            this.getView().byId("dlg_filtros").close();
+                        }
+                        else
+                        {
+                            sap.m.MessageToast.show(result.data.errors.reason, {
+                                duration: 3000
+                            });
+                        }
+                    }
+                    else
+                    {
+                        sap.m.MessageToast.show(result.m, {
+                            duration: 3000
+                                    });
+                    }
+                            console.log(result);    
                 }
                 else
                 {
-					sap.m.MessageToast.show('Número de reclamo incorrecto', {
-		                duration: 1000
-		            });
-					
-					return;
+                    sap.m.MessageToast.show('Número de reclamo incorrecto', {
+                        duration: 1000
+                    });
+                    
+                    return;
 
-				}
-            },
+                }
+        },
 
 		onOpenDlgBuscarRecNuevo:function(){
 			
@@ -407,7 +352,7 @@ sap.ui.define([
 
 
 		onBuscarRecNuvoInterlocutores:function(){
-			this.byId("SplitAppId").toMaster(this.createId("MasterRecNuevoInter"));
+			this.byId("SplitAppId").toMaster(this.createId("MasterRecNuevo"));
             this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
 			this.getView().byId("dlg_buscar_rec_nuevo").close();
 		},
@@ -543,66 +488,10 @@ sap.ui.define([
 
 
 				var reclamo = this.getView().getModel().getProperty("/reclamo");
-                reclamo.numeroPedido = this.getView().byId("txt_Numero_Pedido").getValue();
-				var listaReclamo = this.getView().getModel().getProperty("/reclamo/listaReclamo");
-                var crear_reclamo = this.getView().getModel().getProperty("/Crear_reclamo/reclamo");
-                listaReclamo[0].fechaI = crear_reclamo[0].fechaI;
-                listaReclamo[0].fechaF = crear_reclamo[0].fechaF;
-                listaReclamo[0].horaReclamoI = crear_reclamo[0].horaReclamoI;
-                listaReclamo[0].horaReclamoF = crear_reclamo[0].horaReclamoF;
-                listaReclamo[0].fechaSts = crear_reclamo[0].fechaSts; 
-				listaReclamo[0].material21 = reclamo.material21.substr(0,8);
-				listaReclamo[0].material22 = reclamo.material22.substr(0,8);
-				listaReclamo[0].cantRecla1 = reclamo.cantRecla1;
-				listaReclamo[0].cantRecla2 = reclamo.cantRecla2;
-				listaReclamo[0].reclamoRef = reclamo.reclamoRef;
-				listaReclamo[0].numeroPedido = reclamo.numeroPedido;
-				listaReclamo[0].empresa = reclamo.EmpresaDet
-				listaReclamo[0].EmpresaDet = reclamo.EmpresaDet;
-				listaReclamo[0].NomCliente = reclamo.NomCliente;
-				listaReclamo[0].codigoEmpResp = reclamo.codigoEmpResp;
-				listaReclamo[0].Motivo = reclamo.Motivo.substr(0,3);
-				listaReclamo[0].Status = reclamo.Status.substr(0,1);
-				listaReclamo[0].Resultado = reclamo.Resultado.substr(0,3);
-				listaReclamo[0].JustificResul = reclamo.JustificResul.substr(0,3);
-				listaReclamo[0].OrgVenta = reclamo.OrgVenta.substr(0,4);
-				listaReclamo[0].Canal = reclamo.Canal.substr(0,2);
-				listaReclamo[0].Sector = reclamo.Sector.substr(0,2);
-				listaReclamo[0].OfiVenta = reclamo.OfiVenta.substr(0,4);
-				listaReclamo[0].comentario = reclamo.comentario;
-                listaReclamo[0].Status = this.getView().byId("cbo_Status").getSelectedKey();
-				var reclamo1 = JSON.stringify(listaReclamo);
-				var listaIntJson = this.getView().getModel().getProperty("/reclamo/listaIntJson");
-                var codigo_postal = this.getView().byId("cbo_ubicacion").getSelectedKey();
-                listaIntJson[0].DireccionCompleta = listaIntJson[0].Direccion + " " + codigo_postal + " " + listaIntJson[0].Distrito;
-                listaIntJson[0].Ciudad = this.getView().byId("cbo_ubicacion").getSelectedKey();
-                listaIntJson[0].CodigoPostal = this.getView().byId("cbo_ubicacion").getSelectedKey();
-                listaIntJson[0].PARVW = this.getView().byId("txt_funcion").getValue();
-                listaIntJson[0].NOMBRE = this.getView().byId("txt_nombre").getValue();
-                listaIntJson[0].Name1 = this.getView().byId("txt_nombre").getValue();
-                listaIntJson[0].KUNNR = this.getView().byId("txt_codigo").getValue();
-                listaIntJson[0].NIF = this.getView().byId("txt_nif").getValue();
-                listaIntJson[0].Calle = this.getView().byId("txt_direccion").getValue();
-                listaIntJson[0].CPOSTAL = this.getView().byId("cbo_ubicacion").getSelectedKey();
-                listaIntJson[0].CodPostal = this.getView().byId("cbo_ubicacion").getSelectedKey();
-                listaIntJson[0].DIRECCION = this.getView().byId("txt_direccion").getValue();
-                listaIntJson[0].TELEFONO = this.getView().byId("txt_telefono").getValue();
-                listaIntJson[0].PCONTACTO = this.getView().byId("txt_nombre").getValue();
-                var nombre_persona_contacto = listaIntJson[3].Descripcion;
-                var ciudad_persona_contacto = this.getView().byId("cbo_ubicacion_persona_contacto").getSelectedKey();
-                listaIntJson[3].Ciudad = ciudad_persona_contacto;
-                listaIntJson[3].CodigoPostal = ciudad_persona_contacto;
-                listaIntJson[3].NOMBRE = nombre_persona_contacto;
-                listaIntJson[3].Name1 = nombre_persona_contacto;
-                var direccion_persona_contacto = listaIntJson[3].Direccion;
-                listaIntJson[3].Calle = direccion_persona_contacto;
-                listaIntJson[3].CPOSTAL = ciudad_persona_contacto;
-                listaIntJson[3].CodPostal = ciudad_persona_contacto;
-                listaIntJson[3].DIRECCION = direccion_persona_contacto;
-                listaIntJson[3].TELEFONO = listaIntJson[3].Telefono;
-                listaIntJson[3].PCONTACTO = listaIntJson[3].Descripcion;
-				var reclamo2 = JSON.stringify(listaIntJson);
-				var result = reclamoServices.guardarReclamo(reclamo, reclamo1, reclamo2);
+                var listaReclamo = [];
+            
+                
+				var result = reclamoServices.guardarReclamo(reclamo,reclamo1,reclamo2);
 		
 
 				if (result.c === "s") 
@@ -632,6 +521,17 @@ sap.ui.define([
 
         onCerraDialog : function(){
         	this.getView().byId("dlg_mostrar_reclamo").close();
+        },
+        onMostrarInterlocutores : function(interlocutores){
+            for (var indice in interlocutores) {
+                this.getView().getModel().setProperty("/Interlocutores/" + interlocutores[indice].Funcion, interlocutores[indice]); 
+            }
+
+        },
+        onDatosReclamo : function(datos_reclamo){
+            for (var indice in datos_reclamo) {
+                this.getView().getModel().setProperty("/Interlocutores/" + datos_reclamo[indice].CodMaterialCorto);
+            }
         }    
 	});
 

@@ -40,7 +40,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_reclamo" value="{/reclamo/listaReclamo/0/TextoTratemInicial}" rows="8" />
+                                                <TextArea id="txt_nota_reclamo" value="{/objReclamo/Texto/0001/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -76,7 +76,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_direccion" value="{/reclamo/listaReclamo/0/TextoNotaDireccion}" rows="8" />
+                                                <TextArea id="txt_nota_direccion" value="{/objReclamo/Texto/0004/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -111,7 +111,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_seguimiento" value="{/reclamo/listaReclamo/0/TextoSeguimiento}" rows="8" />
+                                                <TextArea id="txt_nota_seguimiento" value="{/objReclamo/Texto/Z006/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -146,7 +146,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_diagnostico" value="{/reclamo/listaReclamo/0/TextoDiagnostico}" rows="8" />
+                                                <TextArea id="txt_nota_diagnostico" value="{/objReclamo/Texto/Z007/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -181,7 +181,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_solucion" value="{/reclamo/listaReclamo/0/TextoSolucion}" rows="8" />
+                                                <TextArea id="txt_nota_solucion" value="{/objReclamo/Texto/Z008/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -216,7 +216,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_persona_contacto" value="{/reclamo/listaReclamo/0/TextoPersonaContacto}" rows="8" />
+                                                <TextArea id="txt_nota_persona_contacto" value="{/objReclamo/Texto/Z009/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -251,7 +251,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_datos_facturacion" value="{/reclamo/listaReclamo/0/TextoDatosFacturacion}" rows="8" />
+                                                <TextArea id="txt_nota_datos_facturacion" value="{/objReclamo/Texto/Z010/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -286,7 +286,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_pedidos_referencia" value="{/reclamo/listaReclamo/0/TextoPedidoReferencia}" rows="8" />
+                                                <TextArea id="txt_nota_pedidos_referencia" value="{/objReclamo/Texto/Z011/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -321,7 +321,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_informacion_servicio_interno" value="{/reclamo/listaReclamo/0/TextoMotivosOtros}" rows="8" />
+                                                <TextArea id="txt_nota_informacion_servicio_interno" value="{/objReclamo/Texto/Z012/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -333,12 +333,6 @@
                         </items>
                     </IconTabBar>
                 </s:content>
-                <s:pagingAction>
-                    <Button icon="sap-icon://save" tooltip="Guardar" />
-                </s:pagingAction>
-                <s:printAction>
-                    <s:PrintAction press="onSemanticButtonPress" />
-                </s:printAction>
             </s:DetailPage>
         
     </core:FragmentDefinition>

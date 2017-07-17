@@ -12,7 +12,7 @@
         
         <s:DetailPage title="Interlocutores" id="detail_rec_nuevo_interlocutores">
                 <s:content>
-                    <IconTabBar stretchContentHeight="false" expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
+                    <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
                         <items>
                             <IconTabFilter showAll="false" text="Cliente">
 
@@ -39,47 +39,60 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" id="txt_funcion" value="{/reclamo/listaIntJson/0/Funcion}" text="{/Pedido/objPedido/Interlocutores/0/Funcion}"></Input>
+                                                <Input width="100%" id="txt_funcion" 
+                                                    value="{/objReclamo/Interlocutor/AG/PARVW}" >
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" id="txt_codigo" value="{/reclamo/listaIntJson/0/Codigo}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Codigo}"></Input>
+                                                <Input width="100%" id="txt_codigo"
+                                                 value="{/objReclamo/Interlocutor/AG/KUNNR}">  
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>                   
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" id="txt_nombre" value="{/reclamo/listaIntJson/0/Descripcion}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Descripcion}">
+                                                <Input width="100%" id="txt_nombre" 
+                                                    value="{/objReclamo/Interlocutor/AG/NOMBRE}">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" id="txt_direccion" value="{/reclamo/listaIntJson/0/Direccion}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Direccion}"></Input>
+                                                <Input width="100%" id="txt_direccion" 
+                                                    value="{/objReclamo/Interlocutor/AG/Direccion}">
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Ubicación">
                                             <f:fields>
                                                 <ComboBox items="{ path : '/dataIni/lstZipCodes'}" 
-                                                    change="onSeleccionaSurtido" maxWidth="50%" required="true"
-                                                    id="cbo_ubicacion" value="{/reclamo/listaIntJson/0/Distrito}">
+                                                    change="onSeleccionaSurtido" maxWidth="100%" required="true"
+                                                    id="cbo_ubicacion" selectedKey="{/objReclamo/Interlocutor/AG/Ciudad}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono" value="{/reclamo/listaIntJson/0/Telefono}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Telefono}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono" 
+                                                    value="{/objReclamo/Interlocutor/AG/Telefono}">
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="NIF">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese NIF" id="txt_nif" value="{/reclamo/listaIntJson/0/Ruc}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Ruc}"></Input>
+                                                <Input width="100%" placeholder="Ingrese NIF" id="txt_nif" 
+                                                    value="{/objReclamo/Interlocutor/AG/NIF}">
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Correo">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Correo" id="txt_correo" value="{/reclamo/listaIntJson/0/Mail}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Correo" id="txt_correo" 
+                                                    value="{/objReclamo/Interlocutor/AG/Mail}">       
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -115,29 +128,32 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" id="txt_funcion_persona_contacto" value="{/reclamo/listaIntJson/3/Funcion}"></Input>
+                                                <Input width="100%" id="txt_funcion_persona_contacto" value="AP"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese nombre" id="txt_nombre_persona_contacto" value="{/reclamo/listaIntJson/3/Descripcion}"></Input>
+                                                <Input width="100%" placeholder="Ingrese nombre" id="txt_nombre_persona_contacto" value="{/objReclamo/Z_Reclamo/PCONTACTO}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Direccón" id="txt_direccion_persona_contacto" value="{/reclamo/listaIntJson/3/Direccion}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Direccón" id="txt_direccion_persona_contacto" value="{/objReclamo/Z_Reclamo/DIRECCION}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Ubicación">
                                             <f:fields>
-                                                <ComboBox items="{ path : '/dataIni/lstZipCodes' }" change="onSeleccionaSurtido" maxWidth="50%" required="true" id="cbo_ubicacion_persona_contacto" value="{/reclamo/listaIntJson/3/Ciudad}">
+                                                <ComboBox items="{ path : '/dataIni/lstZipCodes' }" change="onSeleccionaSurtido" maxWidth="50%" required="true" id="cbo_ubicacion_persona_contacto" selectedKey="{/objReclamo/Z_Reclamo/CPOSTAL}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese teléfono" id="txt_telefono_persona_contacto" value="{/reclamo/listaIntJson/3/Telefono}"></Input>
+                                                <Input width="100%" placeholder="Ingrese teléfono" 
+                                                    id="txt_telefono_persona_contacto" 
+                                                    value="{/objReclamo/Z_Reclamo/TELEFONO}">
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -172,17 +188,23 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" id="txt_funcion_codigo_asesor" value="{/reclamo/listaIntJson/2/Funcion}"></Input>
+                                                <Input width="100%" id="txt_funcion_codigo_asesor" 
+                                                    value="{/objReclamo/Interlocutor/ZM/PARVW}">
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" id="txt_codigo_asesor" value="{/reclamo/listaIntJson/2/CodPersona}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Ruc}"></Input>
+                                                <Input width="100%" id="txt_codigo_asesor" 
+                                                    value="{/objReclamo/Interlocutor/ZM/PERNR}">
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" id="txt_nombre_codigo_asesor" value="{/reclamo/listaIntJson/2/Nombre}" text="{/Pedido/objPedido/Interlocutores/0/Cliente/Ruc}"></Input>
+                                                <Input width="100%" id="txt_nombre_codigo_asesor" 
+                                                    value="{/objReclamo/Interlocutor/ZM/NOMBRE}">        
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -219,19 +241,23 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" id="txt_funcion_comercial" value="{/reclamo/listaIntJson/1/Funcion}"></Input>
+                                                <Input width="100%" id="txt_funcion_comercial" value="VE"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese código"
-                                                 id="txt_codigo_empresa_comercial" value="{/reclamo/listaIntJson/1/CodPersona}"></Input>
+                                                 id="txt_codigo_empresa_comercial" 
+                                                 value="{/objReclamo/Interlocutor/VE/KUNNR}">
+                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese Nombre" 
-                                                    id="txt_nombre_empresa_comercial" value="{/reclamo/listaIntJson/1/Nombre}"></Input>
+                                                    id="txt_nombre_empresa_comercial" 
+                                                    value="{/objReclamo/Interlocutor/VE/NOMBRE}">
+                                                </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -246,12 +272,6 @@
                         </items>
                     </IconTabBar>
                 </s:content>
-                <s:pagingAction>
-                    <Button icon="sap-icon://save" tooltip="Guardar" />
-                </s:pagingAction>
-                <s:printAction>
-                    <s:PrintAction press="onSemanticButtonPress" />
-                </s:printAction>
                 <s:customFooterContent>
                     <Button text="Copiar Datos"></Button>
                     <Button text="Buscar" icon="sap-icon://search" press="onOpenDlgBuscarRecNuevo"></Button>

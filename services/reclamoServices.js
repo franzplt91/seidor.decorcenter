@@ -6,18 +6,25 @@ sap.ui.define([
 
     return {
 
-        // Listar centros
-        buscarReclamos: function(v_pNumeroReclamo,v_pNumeroPedido,v_pCodigoCliente,v_pNombreCliente,v_pMaterial,
-            v_pFechaCreacionI,v_pFechaCreacionF,v_pEstado,v_pUsuario) {
+
+        buscarReclamos: function(buscarReclamos) {
 
             var contexto = {};
             contexto.servicio = "reclamoServices.buscarReclamos()";
-            contexto.url = "BuscarReclamos.aspx";
-            contexto.parametros = { pNumeroReclamo : v_pNumeroReclamo , pNumeroPedido: v_pNumeroPedido,
-                                    pCodigoCliente : v_pCodigoCliente, pNombreCliente : v_pNombreCliente, 
-                                    pMaterial : v_pMaterial, pFechaCreacionI : v_pFechaCreacionI, 
-                                    pFechaCreacionF : v_pFechaCreacionF, pEstado : v_pEstado, 
-                                    pUsuario: v_pUsuario};
+            contexto.url = "buscarReclamos.aspx";
+            contexto.parametros = {   pNumeroReclamo: buscarReclamos.pNumeroReclamo ,
+                                      pNumeroPedido: buscarReclamos.pNumeroPedido ,
+                                      pCodigoCliente: buscarReclamos.pCodigoCliente ,
+                                      pNombreCliente: buscarReclamos.pNombreCliente ,
+                                      pMaterial: buscarReclamos.pMaterial ,
+                                      pFechaCreacionI: buscarReclamos.pFechaCreacionI ,
+                                      pFechaCreacionF: buscarReclamos.pFechaCreacionF ,
+                                      pEstado: buscarReclamos.pEstado ,
+                                      pUsuario: buscarReclamos.pUsuario ,
+                                      
+                                      accion: "R001" ,
+                                      fecini: buscarReclamos.fecini ,
+                                      fecfin: buscarReclamos.fecfin};
 
             return utilService.exec(contexto);
 
@@ -33,6 +40,14 @@ sap.ui.define([
             return utilService.exec(contexto);
 
         },
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
         documentoVentas: function(v_pNumPedido, v_accion, v_modo){
             var contexto = {};
@@ -57,104 +72,63 @@ sap.ui.define([
             contexto.servicio = "reclamoServices.guardarReclamo()";
             contexto.url = "guardarReclamo.aspx";
             contexto.parametros = {
-                                   material11 : reclamo.material11, 
-                                   material12 : reclamo.material12, 
-                                   material21 : reclamo.material21, 
-                                   material22 : reclamo.material22,
-                                   cantRecla1 : reclamo.cantRecla1, 
-                                   cantRecla2 : reclamo.cantRecla2, 
-                                   reclamoRef : reclamo.reclamoRef, 
-                                   numeroPedido : reclamo.nummeroPedido,
-                                   EmpresaDet : reclamo.EmpresaDet, 
-                                   NomCliente : reclamo.NomCliente, 
-                                   codigoEmpResp : reclamo.codigoEmpResp, 
-                                   Motivo : reclamo.Motivo,
-                                   Status : reclamo.Status, 
-                                   Resultado : reclamo.Resultado, 
-                                   JustificResul : reclamo.JustificResul, 
-                                   OrgVenta : reclamo.OrgVenta,
-                                   Canal : reclamo.Canal, 
-                                   Sector : reclamo.Sector, 
-                                   OfiVenta : reclamo.OfiVenta, 
+                                   material11 : reclamo.material1, 
+                                   material12 : reclamo.material2,
+                                   cantRecla1 : reclamo.cantidad_material1, 
+                                   cantRecla2 : reclamo.cantidad_material2, 
+                                   reclamoRef : reclamo.reclamo_referencia, 
+                                   numeroPedido : reclamo.numero_pedido,
+                                   EmpresaDet : reclamo.codigo_cliente, 
+                                   NomCliente : reclamo.nombre_cliente, 
+                                   codigoEmpResp : reclamo.asesor, 
+                                   Motivo : reclamo.motivo,
+                                   Status : reclamo.status, 
+                                   Resultado : reclamo.resultado, 
+                                   JustificResul : reclamo.justificacion_resultado, 
+                                   OrgVenta : reclamo.organizacion_venta,
+                                   Canal : reclamo.canal, 
+                                   Sector : reclamo.sector, 
+                                   OfiVenta : reclamo.oficina_ventas, 
                                    comentario : reclamo.comentario, 
                                    listaReclamo : reclamo1,
-                                   pIndiceResultado : reclamo.pIndiceResultado, 
+                                   pIndiceResultado : 4, 
                                    listaIntJson : reclamo2
                                  }
 
             return utilService.exec(contexto);
         },
-        EditarReclamo: function(material11,
-                                 material12,
-                                 material21,
-                                 material22,
-                                 cantRecla1,
-                                 cantRecla2, 
-                                 reclamoRef, 
-                                 nummeroPedido,
-                                 EmpresaDet, 
-                                 NomCliente, 
-                                 codigoEmpResp, 
-                                 Motivo, 
-                                 Status, 
-                                 Resultado, 
-                                 JustificResul, 
-                                 OrgVenta,
-                                 Canal, 
-                                 Sector, 
-                                 OfiVenta, 
-                                 comentario,
-                                 pNumeroReclamo, 
-                                 listaReclamo, 
-                                 pIndiceResultado, 
-                                 listaIntJson,
-                                 UserId,
-                                PwdId,
-                                Id,
-                                GrpVend,
-                                Descripcion,
-                                CodigoVendedor,
-                                OrgVentas,
-                                CanalDist,
-                                OfVentas ){
+        EditarReclamo: function(reclamo1,reclamo2){
             var contexto= {};
             contexto.servicio = "reclamoServices.guardarReclamo()";
             contexto.url = "guardarReclamo.aspx";
-            contexto.parametros = {material11 : material11, 
-                                    material12 : material12, 
-                                    material21 : material21, 
-                                    material22 : material22,
-                                   cantRecla1 : cantRecla1, 
-                                   cantRecla2 : cantRecla2, 
-                                   reclamoRef : reclamoRef, 
-                                   numeroPedido : nummeroPedido,
-                                   EmpresaDet : EmpresaDet, 
-                                   NomCliente : NomCliente, 
-                                   codigoEmpResp : codigoEmpResp, 
-                                   Motivo : Motivo,
-                                   Status : Status, 
-                                   Resultado : Resultado, 
-                                   JustificResul : JustificResul, 
-                                   OrgVenta : OrgVenta,
-                                   Canal : Canal, 
-                                   Sector : Sector, 
-                                   OfiVenta : OfiVenta, 
-                                   comentario : comentario,
-                                   pNumeroReclamo : pNumeroReclamo, 
-                                   listaReclamo : listaReclamo,
-                                   pIndiceResultado : pIndiceResultado, 
-                                   listaIntJson : listaIntJson,
-                                UserId: UserId,
-                                PwdId: PwdId,
-                                Id: Id ,
-                                GrpVend: GrpVend,
-                                Descripcion: Descripcion,
-                                CodigoVendedor: CodigoVendedor,
-                                OrgVentas: OrgVentas,
-                                CanalDist: CanalDist,
-                                OfVentas: OfVentas }
+            contexto.parametros = {
+                                  material11:"11000004",
+                                  material12:"11000898",
+                                  material21:"",
+                                  material22:"",
+                                  cantRecla1:1,
+                                  cantRecla2:2,
+                                  reclamoRef:"",
+                                  numeroPedido:"0000238187",
+                                  EmpresaDet:"0000101317",
+                                  NomCliente:"Cliente Eventual La Molina",
+                                  codigoEmpResp:"00001802",
+                                  Motivo:"A01",
+                                  Status:0,
+                                  Resultado:"004",
+                                  JustificResul:"001",
+                                  OrgVenta:"1000",
+                                  Canal:10,
+                                  Sector:"00",
+                                  OfiVenta:"1010",
+                                  comentario:"",
+                                  pNumeroReclamo:"0100004422",
+                                  listaReclamo : reclamo1,
+                                  pIndiceResultado : 4, 
+                                  listaIntJson : reclamo2}
 
             return utilService.exec(contexto);
         },
+
     };
 });
