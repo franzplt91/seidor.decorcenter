@@ -13,25 +13,32 @@
 
     
     <!--Dialog Inicio Rec Nuevo-->
-    <Dialog title="Ingresar Reclamo" id="dlg_rec_nuevo_inicio" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
+    <Dialog title="Ingresar Reclamo" id="dlg_rec_modificar_inicio" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
         <content>
             <Page>
                 <customHeader>
                     <Toolbar>
                         <Label text="Número de Reclamo:"></Label>
-                        <Input width="55%" placeholder="Ingrese Nro. de Reclamo" id="txt_pNumeroReclamo"></Input>
+                        <Input width="55%" placeholder="Ingrese Nro. de Reclamo" id="txt_pNumeroReclamo" value="{/numReclamo}"></Input>
                     </Toolbar>
                 </customHeader>
                 <content></content>
             </Page>
         </content>
         <beginButton>
-            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCloseDlgRecNuevo" />
+            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onContinuarDlg_rec_modificar_inicio" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </endButton>
     </Dialog>
+
+
+<!--dlg_MensajeAvisoGeneralReclamo-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Reclamos.FragDialogs.dlg_MensajeAvisoGeneralReclamo" type="XML"></core:Fragment>
+            
+
+
     <!--Dialog Segundo Rec Nuevo-->
     <Dialog title="Stock Disponible" id="dlg_rec_nuevo_2" stretchOnPhone="true" contentWidth="20%" contentHeight="75%">
         <content>

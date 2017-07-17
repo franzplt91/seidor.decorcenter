@@ -41,17 +41,17 @@
                                     <f:formElements>
                                          <f:FormElement label="Material 1">
                                                 <f:fields>
-                                                    <ComboBox width="100%" items="{ path : '/reclamo/materiales' }" 
-                                                        change="onSeleccionaSurtido" required="true" id="cbo_material21" value="{/reclamo/material1}">
-                                                        <core:Item key="{0}" text="{/reclamo/material1}" />
+                                                    <ComboBox width="100%" items="{ path : '/docVentas/objPedido/Detalle' }" 
+                                                        change="onSeleccionaSurtido" required="true" id="cbo_material21" value="{/reclamo/material1}" selectedKey="{/reclamo/material1}">
+                                                        <core:Item key="{CodMaterialCorto}" text="{CodMaterialCorto} - {DescMaterial}" />
                                                     </ComboBox>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="Material 2">
                                                 <f:fields>
-                                                    <ComboBox width="100%" items="{ path : '/reclamo/materiales' }" 
-                                                        change="onSeleccionaSurtido" required="true" value="{/reclamo/material2}" id="cbo_material22">
-                                                        <core:Item  text="{/reclamo/material2}" />
+                                                    <ComboBox width="100%" items="{ path : '/docVentas/objPedido/Detalle' }" 
+                                                        change="onSeleccionaSurtido" required="true" value="{/reclamo/material2}" id="cbo_material22" selectedKey="{/reclamo/material2}">
+                                                        <core:Item key="{CodMaterialCorto}" text="{CodMaterialCorto} - {DescMaterial}" />
                                                     </ComboBox>
                                                 </f:fields>
                                             </f:FormElement>
@@ -67,7 +67,7 @@
                                             </f:FormElement>
                                             <f:FormElement label="reclamo Referencia">
                                                 <f:fields>
-                                                    <Input width="100%" id="txt_reclamoRef" value="{/objReclamo/Z_Reclamo/reclamoRef}"></Input>
+                                                    <Input width="100%" id="txt_reclamoRef" value="{/reclamo/reclamoRef}"></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                         
@@ -120,7 +120,7 @@
                                         <f:FormElement label="Asesor">
                                             <f:fields>
                                                 <ComboBox width="100%" items="{ path : '/dataIni/lstAsesores' }" 
-                                                        change="onSeleccionaSurtido" required="true" selectedKey="{/reclamo/codigoEmpResp}" id="cbo_asesor">
+                                                        change="onSeleccionaSurtido" required="true" selectedKey="{/objReclamo/Interlocutor/ZM/PERNR}" id="cbo_asesor">
                                                     <core:Item key="{Codigo}"  text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
@@ -246,7 +246,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Factura / Boleta">
                                             <f:fields>
-                                                <Input width="100%" id="txt_factura" value="{/reclamo/comentario}"></Input>
+                                                <Input width="100%" id="txt_factura" value="{/reclamo/comentario}" placeholder="Ingrese Factura / Boleta"></Input>
                                             </f:fields>
                                         </f:FormElement>                                        
                                         

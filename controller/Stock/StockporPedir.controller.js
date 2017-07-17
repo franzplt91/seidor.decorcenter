@@ -7,24 +7,18 @@ sap.ui.define([
 	"pe/com/seidor/sap/decor/ventas/services/stockServices"
 ], function (Controller, MessageToast, UIComponent,JSONModel,clienteServices,stockServices) {
 	"use strict";
-
 	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Stock.StockporPedir", {
-
 		onInit: function() {
 			
 			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
-
 			
-
 		},
 		onRouteMatched: function(oEvent) {
-
             if (oEvent.getParameter("name") == "appStockporPedir") {
             	this.getView().setModel(new JSONModel({}));
                     this.getView().getModel().setProperty("/dataIni",window.dataIni);
                     this.getView().getModel().refresh(true);
-
 					this.getView().byId("dlg_stockPorPedir").open();
                 };
 		},
@@ -32,56 +26,37 @@ sap.ui.define([
 		
 		onAfterRendering:function(){
 		},
-
-
-
 		//Boton Home
 		goHome:function(){
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("appHome");
         },
 		
-
-
 		//Cerrar Dialog Doc Nuevo Inicio
 		onContinuarStockPorPedir: function(oEvent) {
-
 				var CodJer = this.getView().byId("com_codJerarqui_stockPorPedir").getSelectedKey();
                 var CodMat = this.getView().byId("txt_codMaterial_stockPorPedir").getValue();
                 var	FecIni = this.getView().byId("date_fechaInicio_stockPorPedir").getValue();
                 var FecFin = this.getView().byId("date_fechaFin_stockPorPedir").getValue();
                 var OfVentas = window.dataIni.person.OfVentas;
-
                 var result = stockServices.stockporPedir(CodJer,CodMat,FecIni,FecFin,OfVentas);  
-
                 if (result.c === "s") {
-
                                 if (result.data.success) {
-
                                    this.getView().getModel().setProperty("/retornoStockPorPedir", result.data);
                                    this.getView().byId("dlg_stockPorPedir").close();
                                    
                                 } else {
-
                                     sap.m.MessageToast.show(result.data.errors.reason, {
                                         duration: 3000
                                     });
-
                                 }
-
-
                             } else {
                                 sap.m.MessageToast.show(result.m, {
                                     duration: 3000
                                 });
                             }
-
                             console.log(result.data);
 		},
-
-
-
             
 	});
-
 });

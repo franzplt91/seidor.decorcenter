@@ -91,7 +91,7 @@
                                         <f:FormElement label="Correo">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese Correo" id="txt_correo" 
-                                                    value="{/objReclamo/Interlocutor/AG/Mail}">       
+                                                    value="{/reclamo/mail}">       
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>

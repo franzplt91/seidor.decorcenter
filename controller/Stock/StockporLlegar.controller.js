@@ -7,91 +7,60 @@ sap.ui.define([
 	"pe/com/seidor/sap/decor/ventas/services/stockServices"
 ], function (Controller, MessageToast, UIComponent,JSONModel,clienteServices,stockServices) {
 	"use strict";
-
 	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Stock.StockporLlegar", {
-
 		onInit: function() {
 			
 			var oRouter = UIComponent.getRouterFor(this);
 			oRouter.attachRoutePatternMatched(this.onRouteMatched, this);			
-
 		},
 		onRouteMatched: function(oEvent) {
-
             if (oEvent.getParameter("name") == "appStockporLlegar") {
                     this.getView().setModel(new JSONModel({}));
                     this.getView().getModel().setProperty("/dataIni",window.dataIni);
                     this.getView().getModel().refresh(true);
-
 					this.getView().byId("dlg_stockPorLlegar").open();
                 };
 		},
 		
-
 		//Cerrar Dialog Doc Nuevo Inicio
 		onCloseDialog: function(oEvent) {
 			this.getView().byId("dlg_stockPorLlegar").close()
 		},
-
 		
 		onAfterRendering:function(){
 			
 		},
-
-
 		//Boton Home
 		goHome:function(){
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("appHome");
         },
 		
-
-
-
-
         onContinuarStockPorLlegar:function(){
-
                 var matnr = this.getView().byId("txt_cod_material_stockPorLlegar").getValue();
                 var lfdat_inicio = this.getView().byId("date_fec_inicio_stockPorLlegar").getValue();
                 var	lfdat_fin = this.getView().byId("date_fec_fin_stockPorLlegar").getValue();
                 var OfVentas = window.dataIni.person.OfVentas;
-
-
                 var result = stockServices.stockporLlegar(matnr,lfdat_inicio,lfdat_fin,OfVentas);  
-
                 if (result.c === "s") {
-
                                 if (result.data.success) {
-
                                    this.getView().getModel().setProperty("/retornoStockPorLlegar", result.data);
                                    this.getView().byId("dlg_stockPorLlegar").close();
                                    
                                 } else {
-
                                     sap.m.MessageToast.show(result.data.errors.reason, {
                                         duration: 3000
                                     });
-
                                 }
-
-
                             } else {
                                 sap.m.MessageToast.show(result.m, {
                                     duration: 3000
                                 });
                             }
-
                             console.log(result.data);
-
-
-
-
-
 		
         },
-
 		
-
 		//Boton Buscar Cliente
 		onDocNuevoBuscarCliente:function(){
 			this.getView().byId("dlg_DocNuevobuscarCliente").open()
@@ -99,11 +68,7 @@ sap.ui.define([
 		onDocNuevoCloseBuscarCliente : function () {
 				this.getView().byId("dlg_DocNuevobuscarCliente").close()
 		},
-
-
 		
-
-
 		//Buscar Producto
 		onDocNuevodlg_buscar: function() {
 			this.getView().byId("dlg_DocNuevobuscar").open();
@@ -111,28 +76,16 @@ sap.ui.define([
 		onDocNuevoClosedlg_buscar: function() {
 			this.getView().byId("dlg_DocNuevobuscar").close();
 		},
-
-
 		//Abrir Dialog para Agregar Producto
 		onDocNuevodlg_addProducto: function() {
 			this.getView().byId("dlg_DocNuevoaddProducto").open();
 		},
-
 		onDocNuevoClosedlg_addProducto: function() {
 			this.getView().byId("dlg_DocNuevoaddProducto").close();
 		},
-
-
-
 		onDocNuevoAddinBuscar: function() {
 			MessageToast.show("Producto Añadido");
 		},
-
-
-
-
-
             
 	});
-
 });

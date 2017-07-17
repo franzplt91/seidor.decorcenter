@@ -13,26 +13,36 @@
 
     
     <!--Dialog Inicio Rec Nuevo-->
-    <Dialog title="Ingresar Pedido" id="dlg_filtros" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
+    <Dialog title="Ingresar Pedido" id="dlg_rec_nuevo_inicio" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
         <content>
             <Page>
                 <customHeader>
                     <Toolbar>
                         <Label text="Número de Pedido:"></Label>
-                        <Input width="60%" placeholder="Ingrese Número de Pedido" id="txt_pNumPedido"></Input>
+                        <Input width="60%" placeholder="Ingrese Número de Pedido" id="txt_pNumPedido" value="{/crearReclamo/pNumPedido}"></Input>
                     </Toolbar>
                 </customHeader>
                 <content></content>
             </Page>
         </content>
         <beginButton>
-            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCrearDlgRecNuevo" />
+            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onContinuarDlg_rec_nuevo_inicio" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </endButton>
     </Dialog>
     <!--Dialog Segundo Rec Nuevo-->
+
+
+
+<!--dlg_MensajeAvisoGeneralReclamo-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Reclamos.FragDialogs.dlg_MensajeAvisoGeneralReclamo" type="XML"></core:Fragment>
+
+
+
+
+
     <Dialog title="Stock Disponible" id="dlg_rec_nuevo_2" stretchOnPhone="true" contentWidth="20%" contentHeight="75%">
         <content>
             <Panel>
@@ -46,6 +56,9 @@
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgRecNuevo2" />
         </endButton>
     </Dialog>
+
+
+    
     <!--Dialog Interlocutores Buscar Rec Nuevo-->
     <Dialog title="Buscar Cliente" id="dlg_buscar_rec_nuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="45%">
         <content>

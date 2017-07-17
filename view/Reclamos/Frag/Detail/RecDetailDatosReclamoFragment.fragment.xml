@@ -251,7 +251,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_datos_facturacion" value="{/objReclamo/Texto/Z010/Descripcion}" rows="8" />
+                                                <TextArea  value="{/objReclamo/Texto/Z010/Descripcion}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         

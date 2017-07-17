@@ -13,7 +13,7 @@
 
     
     <!--Dialog Buscar Rec Nuevo-->
-    <Dialog title="Buscar Reclamo" id="dlg_rec_nuevo_inicio" stretchOnPhone="true" contentWidth="30%" contentHeight="90%">
+    <Dialog title="Buscar Reclamo" id="dlg_recBuscar_inicio" stretchOnPhone="true" contentWidth="30%" contentHeight="90%">
         <content>
 
             <f:Form 
@@ -44,51 +44,51 @@
                     <f:formElements>
                         <f:FormElement label="Número de Reclamo">
                             <f:fields>
-                                <Input placeholder="Ingrese Nro. de Reclamo" id="txt_pNumeroReclamo"></Input>
+                                <Input placeholder="Ingrese Nro. de Reclamo" id="txt_pNumeroReclamo" value="{/datosRecBuscar/pNumeroReclamo}"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Pedido de Venta">
                             <f:fields>
-                                <Input placeholder="Ingrese Pedido de Venta" id="txt_pNumeroPedido"></Input>
+                                <Input placeholder="Ingrese Pedido de Venta" id="txt_pNumeroPedido" value="{/datosRecBuscar/pNumeroPedido}"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Cliente">
                             <f:fields>
-                               <Input placeholder="Ingrese Cliente" id="txt_pCodigoCliente"></Input>
+                               <Input placeholder="Ingrese Cliente" id="txt_pCodigoCliente" value="{/datosRecBuscar/pCodigoCliente}"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Nombre de Cliente">
                             <f:fields>
-                                <Input placeholder="Ingrese Nombre Cliente" id="txt_pNombreCliente"></Input>
+                                <Input placeholder="Ingrese Nombre Cliente" id="txt_pNombreCliente" value="{/datosRecBuscar/pNombreCliente}"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Material">
                             <f:fields>
-                                <Input placeholder="Ingrese Nro. de Material" id="txt_pMaterial"></Input>
+                                <Input placeholder="Ingrese Nro. de Material" id="txt_pMaterial" value="{/datosRecBuscar/pMaterial}"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Fecha Inicio">
                             <f:fields>
-                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" id="txt_pFechaCreacionI">
+                                <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" id="txt_pFechaCreacionI" value="{/datosRecBuscar/fecini}">
                                 </DatePicker>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Fecha Fin">
                             <f:fields>
-                               <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" id="txt_pFechaCreacionF">
+                               <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" id="txt_pFechaCreacionF" value="{/datosRecBuscar/fecfin}">
                             </DatePicker>
                             </f:fields>
                         </f:FormElement>
 
                          <f:FormElement label="Estado">
                             <f:fields>
-                                <Select items="{ path : '/dataIni/lstStatusRecl' }" maxwidth="100%" required="true">
+                                <Select items="{ path : '/dataIni/lstStatusRecl' }" maxwidth="100%" required="true" selectedKey="{/datosRecBuscar/pEstado}">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                 </Select>
                             </f:fields>              
@@ -96,7 +96,7 @@
 
                         <f:FormElement label="Usuario">
                             <f:fields>
-                                <Input placeholder="" id="txt_pUsuario"></Input>
+                                <Input placeholder="" id="txt_pUsuario" value="{/datosRecBuscar/pUsuario}"></Input>
                             </f:fields>
                         </f:FormElement>
 
@@ -104,27 +104,31 @@
                 </f:FormContainer>
             </f:formContainers>
         </f:Form>
-
-
-
-            
         </content>
         <beginButton>
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onBuscardlg_list_reclamos" />
+            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onBuscarDlg_recBuscar_inicio" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </endButton>
     </Dialog>
+
+
+
+
+
+
+
+
     <!--Dialog Lista de  Reclamos-->
-    <Dialog title="Lista de Reclamos" id="dlg_list_reclamos" stretchOnPhone="true" contentWidth="20%" contentHeight="75%">
+    <Dialog title="Lista de Reclamos" id="dlg_lista_recBuscar" stretchOnPhone="true" contentWidth="60%" contentHeight="75%">
         <content>
             <Panel>
                 <content>
                     
-                    <List mode="SingleSelectMaster" selectionChange="" items="{/ListaReclamos}" 
-                        growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
-                        enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="SeleccionaReclamo">
+                    <List mode="SingleSelectMaster"  items="{/listaReclamos}" 
+                        growing="false" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
+                        enableBusyIndicator="true"  noDataText="No hay Reclamos Disponibles" itemPress="onSeleccionarReclamo">
                         <items>
                             <!--StandardListItem selected="true" title="N°de Reclamo:{VBELN} - {KTABG}"  custom:to=""/-->
                             <ObjectListItem
@@ -137,11 +141,11 @@
                                 </firstStatus>
                                 <secondStatus>
                                         <ObjectStatus
-                                        title="Material" text="{MATNR}"/>
+                                        title="Material" text="{MATNR} - {MAKTX}"/>
                                 </secondStatus>
-                                <attributes>
-                                    <ObjectAttribute title="Material" text="{MATNR}" />
-                                </attributes>
+                                <!--attributes>
+                                    <ObjectAttribute title="Material" text="{MAKTX}" />
+                                </attributes-->
                             </ObjectListItem>
                         </items>
                     </List>
@@ -149,7 +153,7 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Ver" type="Accion" icon="sap-icon://view" press="onVerdlg_list_reclamos" />
+            <Button text="Ver" type="Accion" icon="sap-icon://view" press="onVerDlg_lista_recBuscar" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onOpendlg_list_reclamos" />

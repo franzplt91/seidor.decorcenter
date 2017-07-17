@@ -19,7 +19,7 @@
                 <customHeader>
                     <Toolbar>
                         <Label text="Ingresar Reclamo:"></Label>
-                        <Input width="55%" placeholder="Ingrese Nro. de Reclamo" id="txt_pNumeroReclamo"></Input>
+                        <Input width="55%" placeholder="Ingrese Nro. de Reclamo" id="txt_pNumeroReclamo" value="{/numReclamo}"></Input>
                     </Toolbar>
                 </customHeader>
                 <content></content>
@@ -28,7 +28,7 @@
             
         </content>
         <beginButton>
-            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onBuscardlg_list_reclamos" />
+            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onContinuarDlg_rec_nuevo_inicio" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />

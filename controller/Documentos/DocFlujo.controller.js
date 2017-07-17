@@ -26,8 +26,8 @@ sap.ui.define([
             this.getView().getModel().refresh(true);
                     this.getView().byId("dlg_DialogDocFlujo").open();
 
-                   this.getView().getModel().setProperty("/NumeroDocumento",window.numeroDocumeto); 
-                };
+                   this.getView().getModel().setProperty("/NumeroDocumento",window.numeroDocumento); 
+                }
                  
 
                 var tipoCabecera = [];

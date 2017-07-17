@@ -30,6 +30,7 @@
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Reclamos.Frag.Detail.RecDetailInterlocutoresFragment" type="XML"></core:Fragment>
 
 
+
             <!--Detail Datos de Reclamo-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Reclamos.Frag.Detail.RecDetailDatosReclamoFragment" type="XML"></core:Fragment>
 
