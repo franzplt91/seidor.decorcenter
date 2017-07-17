@@ -16,6 +16,7 @@ sap.ui.define([
             window.numeroDocumento = null;
         },
         onRouteMatched: function (oEvent) {
+            
             var oData = {
                 datosBuscarDoc: {
                     "tipoBusqueda": "1",

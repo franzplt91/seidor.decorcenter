@@ -17,11 +17,28 @@
     <!--dlg_DialogDocBuscar-->
     <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocBuscarInicio" type="XML"></core:Fragment>
         
+    <!--Aviso General-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAvisoGeneral" type="XML"></core:Fragment>
+    
 
+    <!--Conversion a Pedido-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAvisoConversionPedido" type="XML"></core:Fragment>
 
-<Dialog title="Lista de Documentos" id="dlg_DocBuscarLista" stretchOnPhone="true" contentWidth="80%" contentHeight="80%">
+<Dialog title="Lista de Documentos" id="dlg_DocBuscarLista" stretchOnPhone="true" contentWidth="80%" contentHeight="80%" >
+
+    <customHeader>
+            <Toolbar>
+                            <Bar>
+                    
+                                <contentLeft>
+                                <Button text="Volver" icon="sap-icon://navigation-left-arrow" press="onVolver"></Button>
+                                </contentLeft>
+                            </Bar>
+                        </Toolbar>
+                
+            </customHeader>
         <content>
-
+            
 
                      <List    mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                               enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Documentos" 
@@ -29,7 +46,7 @@
                               items="{
                         path : '/retornoBuscarDoc/lstPedidos',
                                 sorter : {
-                                    path : '',
+                                    path : 'NumeroPedido',
                                     group : false
                                 }
                         }"
@@ -67,11 +84,32 @@
 
                     </items>
                 </List>
+
         </content>
+
+        
     </Dialog>
- 
+
+
    <s:FullscreenPage title="Detalle Documento Nro. : {/datosBuscarDoc/NumeroPedido}"
                                      navButtonPress="">
+
+<Page>
+                        <customHeader>
+                <Toolbar>
+
+                <ToolbarSpacer width="4%" />
+                    
+                    <Button icon="sap-icon://add" text="Lista Documento" type="Transparent" press="onListaDocumento">
+                        <layoutData>
+                            <OverflowToolbarLayoutData priority="NeverOverflow" />
+                        </layoutData>
+                    </Button>
+            
+
+                </Toolbar>
+            
+            </customHeader>
                     
                     <List    mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                               enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Detalle de Documento" 
@@ -120,9 +158,12 @@
                     </items>
                 </List>
 
+                </Page>
+            
+
                 <s:customFooterContent>
                     <!--Text class="txt_Total_Dscto" text="Tot.Doc.: S/. {} (c/IGV) | Tot.Dcto. : S/. {}" ></Text-->
-                    <Button icon="sap-icon://decision" tooltip="" text="Conv. Pedido" press="onBtnRecalcular"></Button>
+                    <Button icon="sap-icon://decision" tooltip="" text="Conv. Pedido" press="onConversionPedido"></Button>
                     <ToolbarSpacer />
                     <Button icon="sap-icon://edit" tooltip="" text="Modificar" press="onBtnRecalcular"></Button>
                     <ToolbarSpacer />
@@ -130,12 +171,11 @@
                     <ToolbarSpacer />
                     <Button icon="sap-icon://table-view" tooltip="" text="Flujo" press="onBtnFlujo"></Button>
                     <ToolbarSpacer />
-                    <Button icon="sap-icon://print" tooltip="" text="Imprimir" press="onBtnRecalcular"></Button>
+                    <Button icon="sap-icon://print" tooltip="" text="Imprimir" press="onBtnImprimir"></Button>
                     <ToolbarSpacer />
                 </s:customFooterContent>
 
             </s:FullscreenPage>
-
 
  
 </mvc:View>
