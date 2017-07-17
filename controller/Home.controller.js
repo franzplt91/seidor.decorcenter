@@ -283,147 +283,440 @@ sap.ui.define([
                 self.getView().byId("loadingControl").close();
                 },100);
             },
-            
-            
-            
-            
+                        
             ///////////////Imprimir/////////////////////////////////////////////////////////
-
 
             //////////Imprimir Documento/////////////////////////////////////////
 
-            onImprimirDoc:function(){
-                var imprimirDoc = this.getView().getModel().getProperty("/imprimirDoc"); 
-                var result = imprimirServices.imprimirDocumento(imprimirDoc);
+        onImprimirDoc: function() 
+        {
+            var imprimirDoc = this.getView().getModel().getProperty("/imprimirDoc");
+            var result = imprimirServices.imprimirDocumento(imprimirDoc);
+            var opcion1 = this.getView().byId("opcion1").getSelected();
+            var opcion2 = this.getView().byId("opcion2").getSelected();
+            //var opcion3 = this.getView().byId("opcion3").getSelected();
+            var rutaImpresion = "http://ventas.decor-center.com/DecorQAs/";
 
-                var self = this;
-                self.getView().byId("loadingControl").open();
-                            setTimeout(function(){
+            var self = this;
+            self.getView().byId("loadingControl").open();
+            setTimeout(function() 
+            {
+                if (result.c === "s") 
+                {
 
-                            if (result.c === "s") {
+                    if (result.data.success) 
+                    {
 
-                                if (result.data.success) {
+                        if (opcion1 == true)
+                        {
+                            var tipoDoc = result.data.objPedido.CodTipoDoc;
+                            var fechap = result.data.objPedido.Fecha;
+                        }                                                                                
+                        var NoImpFac = "";
 
-                                    self.getView().getModel().setProperty("/retornoImprimirDoc",result.data);
-                                    self.getView().getModel().refresh();
+                        if (opcion1 == true)
+                        {
+                            NoImpFac = result.data.objPedido.NoImpFac;
+                        }
 
-
-                                } else {
-
-                                    sap.m.MessageToast.show(result.data.errors.reason, {
-                                        duration: 3000
-                                    });
-
-                                }
-
-
-                            }
-
-
-                             else {
-                                sap.m.MessageToast.show(result.m, {
-                                    duration: 3000
-                                });
-                            }
-
-                            console.log(result.data);
-
-
-                             self.getView().byId("loadingControl").close();
-                            },500);
-            },
-
-            ////////////////////////////////////////////////////////////////////
-
-            //////////Imprimir Reclamo/////////////////////////////////////////
-
-            onImprimirRec:function(){
-                var imprimirRec = this.getView().getModel().getProperty("/imprimirRec"); 
-                var result = imprimirServices.imprimirReclamo(imprimirRec);
-                var self = this;
-                self.getView().byId("loadingControl").open();
-                            setTimeout(function(){
-
-                            if (result.c === "s") {
-
-                                if (result.data.success) {
-                                    self.getView().getModel().setProperty("/retornoImprimirRec",result.data);
-                                    self.getView().getModel().refresh();
-
-
-                                } else {
-
-                                    sap.m.MessageToast.show(result.data.errors.reason, {
-                                        duration: 3000
-                                    });
-
-                                }
-
-
-                            }
-
-
-                             else {
-                                sap.m.MessageToast.show(result.m, {
-                                    duration: 3000
-                                });
-                            }
-
-                            console.log(result.data);
-
-
-                             self.getView().byId("loadingControl").close();
-                            },500);
-
-            },
-
-            ////////////////////////////////////////////////////////////////////
-
-            //////////Imprimir Queja/////////////////////////////////////////
-
-            onImprimirQue:function(){
-                var imprimirQue = this.getView().getModel().getProperty("/imprimirQue"); 
-                var result = imprimirServices.imprimirQueja(imprimirQue);
-                var self = this;
-                self.getView().byId("loadingControl").open();
-                            setTimeout(function(){
-
-                            if (result.c === "s") {
-
-                                if (result.data.success) {
-                                    self.getView().getModel().setProperty("/retornoImprimirRec",result.data);
-                                    self.getView().getModel().refresh();
-
-
-                                } else {
-
-                                    sap.m.MessageToast.show(result.data.errors.reason, {
-                                        duration: 3000
-                                    });
+                        if (NoImpFac == "X")
+                        {
+                            self.getView().getModel().setProperty("/MensajeCorrecto", "No se puede imprimir por bloqueo de factura");
+                            self.getView().byId("txt_aviso_general").bindProperty("text", {path: "/MensajeCorrecto"});
+                            self.getView().getModel().refresh();
+                            self.getView().byId("dlg_MensajeAvisoGeneral").open();
+                        }
+                        else
+                        {
+                            if (opcion1 == true)
+                            {
+                                if (tipoDoc == "Z036") 
+                                {
+                                    if ( result.data.objPedido.CanalDist == "30" )
+                                    {
+                                        if ( result.data.objPedido.CodOficina == "1140" ) 
+                                        {                                               
+                                            window.open(rutaImpresion + "DocImprVisDE.aspx?np=" + imprimirDoc.pNumPedido,"");
+                                        }
+                                        else
+                                        {
+                                            window.open(rutaImpresion + "DocImpVisitas.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                        }
+                                    }
+                                    else if ( result.data.objPedido.CanalDist == "20" )
+                                    {
+                                        if ( result.data.objPedido.CodOficina == "1130" ) 
+                                        {
+                                            
+                                            window.open(rutaImpresion + "DocImprVisUF.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                        }
+                                       
+                                        else
+                                        {
+                                            window.open(rutaImpresion + "DocImprVisFA.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if ( result.data.objPedido.CodOficina == "1110" ||
+                                             result.data.objPedido.CodOficina == "1040" ||
+                                             result.data.objPedido.CodOficina == "1070") 
+                                        {
+                                            
+                                            window.open(rutaImpresion + "DocImprVisCasa.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                        }
+                                        else
+                                        {
+                                            window.open(rutaImpresion + "DocImpVisitas.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                        }
+                                    }
 
                                 }
 
+                                else 
+                                {                                    
+                                    if ( result.data.objPedido.CanalDist == "30" )
+                                    {
+                                        if ( result.data.objPedido.CodOficina == "1140" ) 
+                                        {                                                                                        
+                                            var fechaz = window.dataIni.lstValambi[0].Descripcion;
+                                            
+                                            if ( fechaz <= fechap )
+                                            {
+                                                window.open(rutaImpresion + "DocImprGrpAmbDE.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                            }
+                                            else
+                                            {
+                                                window.open(rutaImpresion + "DocImprDE.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                            }
+                                            
+                                        }
+                                        else if (result.data.objPedido.CodOficina == "1110" ||
+                                                 result.data.objPedido.CodOficina == "1040")
+                                        {
+                                          window.open(rutaImpresion + "DocImprGrpAmbCasa.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                        }
+                                        else
+                                        {
+                                            if (tipoDoc == "ZO01" || tipoDoc == "Z001")
+                                            {
+                                                var fechaz = window.dataIni.lstValambi[0].Descripcion;
+                                                
+                                                if ( fechaz <= fechap )
+                                                {
+                                                    window.open(rutaImpresion + "DocImprGrpAmb.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                                }
+                                                else
+                                                {
+                                                    window.open(rutaImpresion + "DocImpr.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                                }
+                                            }
+                                            else{
+                                                window.open(rutaImpresion + "DocImpr.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                            }
+                                        }
 
+                                    }
+                                    
+                                    else if ( result.data.objPedido.CanalDist == "20" )
+                                    {
+                                        if ( result.data.objPedido.CodOficina == "1130" )
+                                        {
+                                            window.open(rutaImpresion + "DocImprUF.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                        }
+                                        
+                                        else
+                                        {
+                                            window.open(rutaImpresion + "DocImprFA.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                        }
+                                    }
+                                    else
+                                    {      
+
+                                        if (tipoDoc == "ZO01" || tipoDoc == "Z001")
+                                        {
+                                           var fechaz = window.dataIni.lstValambi[0].Descripcion;
+                                                                                       
+                                            if ( fechaz <= fechap )
+                                            {
+                                                if ( result.data.objPedido.CodOficina == "1110" ||
+                                                     result.data.objPedido.CodOficina == "1040" ||
+                                                     result.data.objPedido.CodOficina == "1070" )
+                                                {
+                                                    window.open(rutaImpresion + "DocImprGrpAmbCasa.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                                }
+                                                else
+                                                {
+                                                    window.open(rutaImpresion + "DocImprGrpAmb.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                                }
+                                                
+                                            }
+                                            else
+                                            {
+                                                if ( result.data.objPedido.CodOficina == "1110" ||
+                                                     result.data.objPedido.CodOficina == "1040" ||
+                                                     result.data.objPedido.CodOficina == "1070") 
+                                                {
+                                                    window.open(rutaImpresion + "DocImprCasa.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                                }
+                                                else{
+                                                    window.open(rutaImpresion + "DocImpr.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                                }
+                                            }    
+                                        }
+                                        else
+                                        {
+                                            if ( result.data.objPedido.CodOficina == "1110" ||
+                                                 result.data.objPedido.CodOficina == "1040" ||
+                                                 result.data.objPedido.CodOficina == "1070") 
+                                            {
+                                                window.open(rutaImpresion + "DocImprCasa.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                            }
+                                            else{
+                                                window.open(rutaImpresion + "DocImpr.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                            }
+                                        }                         
+                                                                           
+                                    }
+                                    
+                                }
+
+                            self.getView().getModel().setProperty("/MensajeCorrecto", "Se envio a imprimir el documento");
+                            self.getView().byId("txt_aviso_general").bindProperty("text", {path: "/MensajeCorrecto"});
+                            self.getView().getModel().refresh();
+                            self.getView().byId("dlg_MensajeAvisoGeneral").open();   
+
+                            }  
+
+                            else if(opcion2 == true)      
+                            {
+                                var tipoDoc = result.data.objPedido.CodTipoDoc;
+
+                                if (tipoDoc == "Z001" || tipoDoc == "Z034" || tipoDoc == "Z003" ||
+                                     tipoDoc == "Z004" || tipoDoc == "Z010")
+                                {
+                                    if ((result.data.objPedido.CanalDist == "10" ||
+                                         result.data.objPedido.CanalDist == "30") && 
+                                       (result.data.objPedido.CodOficina == "1110" ||
+                                        result.data.objPedido.CodOficina == "1040" ||
+                                        result.data.objPedido.CodOficina == "1070"))
+                                    {
+                                        window.open(rutaImpresion + "DocPedEntImprCasa.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                    }
+                                    else{    
+                                        window.open(rutaImpresion + "DocPedEntImpr.aspx?np=" + imprimirDoc.pNumPedido, "");
+                                    }
+
+                                    self.getView().getModel().setProperty("/MensajeCorrecto", "Se envio a imprimir el documento");
+                                    self.getView().byId("txt_aviso_general").bindProperty("text", {path: "/MensajeCorrecto"});
+                                    self.getView().getModel().refresh();
+                                    self.getView().byId("dlg_MensajeAvisoGeneral").open();   
+                                }
+                                else
+                                {
+                                    self.getView().getModel().setProperty("/MensajeCorrecto", "La impresión seleccionada solo es válida para pedidos Z001,Z034,Z003,Z004 y Z010");
+                                    self.getView().byId("txt_aviso_general").bindProperty("text", {path: "/MensajeCorrecto"});
+                                    self.getView().getModel().refresh();
+                                    self.getView().byId("dlg_MensajeAvisoGeneral").open();   
+                                }
+                                    
+                            }                      
+                        }
+
+                    } 
+                    else 
+                    {
+                        sap.m.MessageToast.show(result.data.errors.reason, {
+                            duration: 3000
+                        });
+
+                    }
+                } 
+                else 
+                {
+                    sap.m.MessageToast.show(result.m, {
+                        duration: 3000
+                    });
+                }
+
+                //console.log(result.data);
+
+                self.getView().byId("loadingControl").close();
+            }, 500);
+        },
+
+        ////////////////////////////////////////////////////////////////////
+
+        //////////Imprimir Reclamo/////////////////////////////////////////
+
+        onImprimirRec: function() {
+            var imprimirRec = this.getView().getModel().getProperty("/imprimirRec");
+            var result = imprimirServices.imprimirReclamo(imprimirRec);
+            var rutaImpresion = "http://ventas.decor-center.com/DecorQAs/";
+            var self = this;
+            self.getView().byId("loadingControl").open();
+            setTimeout(function() {
+
+                if (result.c === "s") {
+
+                    if (result.data.success) {
+                        
+                        if ( result.data.objReclamo.Contactos.VTWEG == "30" )
+                        {
+                            if ( result.data.objReclamo.Contactos.VKBUR == "1140" )
+                            {
+                                window.open(rutaImpresion + "ImprReclamoDE.aspx?np=" + imprimirRec.pNumeroReclamo, "");
                             }
-
-
-                             else {
-                                sap.m.MessageToast.show(result.m, {
-                                    duration: 3000
-                                });
+                            
+                            else
+                            {
+                                window.open(rutaImpresion + "ImprReclamo.aspx?np=" + imprimirRec.pNumeroReclamo, "");
+                                
                             }
+                        
+                        }
+                        
+                        else if ( result.data.objReclamo.Contactos.VTWEG == "20" )
+                        {
+                            if ( result.data.objReclamo.Contactos.VKBUR == "1130" )
+                            {
+                                window.open(rutaImpresion + "ImprReclamoUF.aspx?np=" + imprimirRec.pNumeroReclamo, "");                               
+                            }
+                            
+                            else
+                            {
+                                window.open(rutaImpresion + "ImprReclamoFA.aspx?np=" + imprimirRec.pNumeroReclamo, "");
+                            }
+                        
+                        }
+                        else
+                        {
+                            if ( result.data.objReclamo.Contactos.VKBUR == "1110" ||
+                                 result.data.objReclamo.Contactos.VKBUR == "1040" ||
+                                 result.data.objReclamo.Contactos.VKBUR == "1070" ) //..
+                            {
+                                window.open(rutaImpresion + "ImprReclamoCasa.aspx?np=" + imprimirRec.pNumeroReclamo, "");
+                                
+                            }
+                            else
+                            {
+                                window.open(rutaImpresion + "ImprReclamo.aspx?np=" + imprimirRec.pNumeroReclamo, "");
+                                
+                            }
+                        }
 
-                            console.log(result.data);
+                        self.getView().getModel().setProperty("/MensajeCorrecto", "Se envio a imprimir el reclamo");
+                        self.getView().byId("txt_aviso_general").bindProperty("text", {path: "/MensajeCorrecto"});
+                        self.getView().getModel().refresh();
+                        self.getView().byId("dlg_MensajeAvisoGeneral").open();  
 
 
-                             self.getView().byId("loadingControl").close();
-                            },500);
+                    } else {
 
-            },
+                        sap.m.MessageToast.show(result.data.errors.reason, {
+                            duration: 3000
+                        });
 
-            ////////////////////////////////////////////////////////////////////
+                    }
 
 
+                } else {
+                    sap.m.MessageToast.show(result.m, {
+                        duration: 3000
+                    });
+                }
+
+                console.log(result.data);
+
+
+                self.getView().byId("loadingControl").close();
+            }, 500);
+
+        },
+
+        ////////////////////////////////////////////////////////////////////
+
+        //////////Imprimir Queja/////////////////////////////////////////
+
+        onImprimirQue: function() {
+            var imprimirQue = this.getView().getModel().getProperty("/imprimirQue");
+            var result = imprimirServices.imprimirQueja(imprimirQue);
+            var rutaImpresion = "http://ventas.decor-center.com/DecorQAs/";
+            var self = this;
+            self.getView().byId("loadingControl").open();
+            setTimeout(function() {
+
+                if (result.c === "s") {
+
+                    if (result.data.success) {
+                        
+                        if ( result.data.objqueja.Contactos.VTWEG == "30" )
+                        {
+                            if ( result.data.objqueja.Contactos.VKBUR == "1140" )
+                            {
+                                window.open(rutaImpresion + "imprQuejaDE.aspx?np=" + imprimirQue.pNumeroQueja, "");
+                            }
+                            
+                            else
+                            {
+                                window.open(rutaImpresion + "imprQueja.aspx?np=" + imprimirQue.pNumeroQueja, "");   
+                            }
+                        }
+                        else if ( result.data.objqueja.Contactos.VTWEG == "20" )
+                        {
+                            if ( result.data.objqueja.Contactos.VKBUR == "1130" )
+                            {
+                                window.open(rutaImpresion + "imprQuejaUF.aspx?np=" + imprimirQue.pNumeroQueja, "");   
+                            }
+                            else
+                            {
+                                window.open(rutaImpresion + "imprQuejaFA.aspx?np=" + imprimirQue.pNumeroQueja, "");  
+                            }
+                        }
+                        else
+                        {
+                            if ( result.data.objqueja.Contactos.VKBUR == "1110" ||
+                                 result.data.objqueja.Contactos.VKBUR == "1040" ||
+                                 result.data.objqueja.Contactos.VKBUR == "1070") //..
+                            {
+                                window.open(rutaImpresion + "imprQuejaCasa.aspx?np=" + imprimirQue.pNumeroQueja, "");
+                               
+                            }
+                            else
+                            {
+                                window.open(rutaImpresion + "imprQueja.aspx?np=" + imprimirQue.pNumeroQueja, "");
+                               
+                            }
+                        
+                        }
+
+                    self.getView().getModel().setProperty("/MensajeCorrecto", "Se envio a imprimir la queja");
+                    self.getView().byId("txt_aviso_general").bindProperty("text", {path: "/MensajeCorrecto"});
+                    self.getView().getModel().refresh();
+                    self.getView().byId("dlg_MensajeAvisoGeneral").open(); 
+
+                    } else {
+
+                        sap.m.MessageToast.show(result.data.errors.reason, {
+                            duration: 3000
+                        });
+
+                    }
+
+
+                } else {
+                    sap.m.MessageToast.show(result.m, {
+                        duration: 3000
+                    });
+                }
+
+                console.log(result.data);
+
+
+                self.getView().byId("loadingControl").close();
+            }, 500);
+
+        },
             ////////////////////////////////////////////////////////////////////////////////
             
             
