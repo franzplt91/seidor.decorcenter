@@ -681,8 +681,97 @@ sap.ui.define([
                     this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
                 }
 		},
+        //Abrir Dialog Buscar Cliente
+        onDocNuevoBuscarCliente: function () {
+            this.getView().byId("dlg_buscar_rec_nuevo").open()
+        },
+        onDocReclamoBuscarClienteAccion: function (oEvent) {
+            var ruc = this.getView().byId("txt_ruc_cliente_busqueda").getValue();
+            var nombre = this.getView().byId("txt_nombre_cliente_busqueda").getValue();
 
+            if (ruc || nombre) {
+
+                var result = reclamoServices.buscarCliente(ruc, nombre);
+
+                if (result.c === "s") {
+
+                    if (result.data.success) {
+
+                        this.getView().byId("dlg_DocNuevobuscarCliente_resultado").open();
+                        this.getView().getModel().setProperty("/BusquedaClientes", result.data.lstClientes);
+                        this.getView().getModel().refresh();
+
+                    } else {
+
+                        sap.m.MessageToast.show(result.data.errors.reason, {
+                            duration: 3000
+                        });
+
+                    }
+
+
+                } else {
+                    sap.m.MessageToast.show(result.m, {
+                        duration: 3000
+                    });
+                }
+
+                console.log(result);
+            } else {
+                sap.m.MessageToast.show('Ingrese RUC ó Razón social', {
+                    duration: 1000
+                });
+                return;
+            }
             
+
+        },
+        SeleccionaCliente: function (evt) {
+            this.getView().byId("dlg_buscar_rec_nuevo").close()
+            var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
+            this.getView().getModel().setProperty("/clienteSeleccionado", obj);
+            var result = reclamoServices.reemplazarCiente(obj.codigo);
+             if(result.c === "s"){
+
+                        if(result.data.success){
+                            this.getView().getModel().refresh();
+                            for( var i=0;i<result.data.Interlocutores.length;i++){
+                                if(result.data.Interlocutores[i].Funcion="AG"){
+                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/KUNNR",result.data.Interlocutores[0].Cliente.Codigo) ;
+                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/NOMBRE",result.data.Interlocutores[0].Cliente.Descripcion);
+                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/Direccion",result.data.Interlocutores[0].Cliente.Direccion);
+                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/Ciudad",result.data.Interlocutores[0].Cliente.CodigoPostal);
+                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/Telefono",result.data.Interlocutores[0].Cliente.Telefono);
+                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/NIF",result.data.Interlocutores[0].Cliente.Ruc);
+                                    this.getView().getModel().setProperty("/reclamo/mail",result.data.Interlocutores[0].Cliente.Mail);
+                                    this.getView().getModel().refresh();
+                                }
+                            }
+                            this.getView().byId("dlg_DocNuevobuscarCliente_resultado").close();
+
+                        }else{
+
+                            sap.m.MessageToast.show(result.data.errors.reason, {
+                                duration: 3000
+                            });
+                        }
+
+                    }else{
+                        sap.m.MessageToast.show(result.m, {
+                    duration: 3000
+                });
+                    }
+        },
+        onCopiarCliente: function () {
+            var codigo = this.getView().byId("txt_codigo").getValue();
+            var result = reclamoServices.reemplazarCiente(codigo);
+            if(result){
+                this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/PCONTACTO",result.data.Interlocutores[0].Cliente.Descripcion);
+                this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/DIRECCION",result.data.Interlocutores[0].Cliente.Direccion);
+                this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/CPOSTAL",result.data.Interlocutores[0].Cliente.CodigoPostal);
+                this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/TELEFONO",result.data.Interlocutores[0].Cliente.Telefono);
+            }
+        }   
 	});
 
 });
