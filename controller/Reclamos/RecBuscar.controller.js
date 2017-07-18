@@ -333,133 +333,109 @@ sap.ui.define([
                 this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);
                 this.getView().getModel().refresh();
 		},
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		onBuscarDlg_recBuscar_inicio:function(){
-
+		onBuscarDlg_recBuscar_inicio:function()
+        {
 			var datosRecBuscar = this.getView().getModel().getProperty("/datosRecBuscar") ;
 			var result = reclamoServices.buscarReclamos(datosRecBuscar);
-					if(result.c === "s"){
-
-						if(result.data.success){
-
-							this.getView().getModel().setProperty("/listaReclamos",result.data.listaReclamos) ;
-
-							this.getView().byId("dlg_recBuscar_inicio").close();
-							this.getView().byId("dlg_lista_recBuscar").open();
-							
-
-						}else{
-
-							sap.m.MessageToast.show(result.data.errors.reason, {
-				                duration: 3000
-				            });
-
-						}
-
-
-					}else{
-						sap.m.MessageToast.show(result.m, {
-	                duration: 3000
-	            });
+				if(result.c === "s")
+                {
+					if(result.data.success)
+                    {
+                		this.getView().getModel().setProperty("/listaReclamos",result.data.listaReclamos) ;
+						this.getView().byId("dlg_recBuscar_inicio").close();
+						this.getView().byId("dlg_lista_recBuscar").open();		
 					}
-
-				 console.log(result);
-
+                    else
+                    {
+						sap.m.MessageToast.show(result.data.errors.reason, {
+			                duration: 3000
+			            });
+					}
+				}
+                else
+                {
+					sap.m.MessageToast.show(result.m, {
+                       duration: 3000
+                    });
+				}
 		},
-
-		onSeleccionarReclamo:function(oEvent){
-
+		onSeleccionarReclamo:function(oEvent)
+        {
 			var reclamoSeleccionado = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
 			this.getView().getModel().setProperty("/numReclamo", reclamoSeleccionado.VBELN);
-			console.log(reclamoSeleccionado);
 		},
-
-		
-
-		onVerDlg_lista_recBuscar:function(){
-
+		onVerDlg_lista_recBuscar:function()
+        {
 			var numReclamo = this.getView().getModel().getProperty("/numReclamo") ;
 			var result = reclamoServices.verReclamos(numReclamo);
-					if(result.c === "s"){
-
-						if(result.data.success){
-
-							this.getView().getModel().setProperty("/reclamo", result.data.reclamo[0] ) ;
-							this.getView().getModel().setProperty("/objReclamo", result.data.objReclamo ) ;
-							this.getView().getModel().refresh();
-
-
-							for( var i=0;i<result.data.objReclamo.Interlocutor.length;i++){
-								if(result.data.objReclamo.Interlocutor[i].PARVW){
-									this.getView().getModel().setProperty("/objReclamo/Interlocutor/"+result.data.objReclamo.Interlocutor[i].PARVW, result.data.objReclamo.Interlocutor[i]) ;
-									this.getView().getModel().refresh();
-
-									var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
-								}
+				if(result.c === "s")
+                {
+					if(result.data.success)
+                    {
+						this.getView().getModel().setProperty("/reclamo", result.data.reclamo[0] ) ;
+						this.getView().getModel().setProperty("/objReclamo", result.data.objReclamo ) ;
+						this.getView().getModel().refresh();
+						for( var i=0;i<result.data.objReclamo.Interlocutor.length;i++)
+                        {
+							if(result.data.objReclamo.Interlocutor[i].PARVW)
+                            {
+								this.getView().getModel().setProperty("/objReclamo/Interlocutor/"+result.data.objReclamo.Interlocutor[i].PARVW, result.data.objReclamo.Interlocutor[i]) ;
+								this.getView().getModel().refresh();
+								var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
 							}
-
-							for( var i=0;i<result.data.objReclamo.Texto.length;i++){
-								if(result.data.objReclamo.Texto[i].CodTexto){
-									this.getView().getModel().setProperty("/objReclamo/Texto/"+result.data.objReclamo.Texto[i].CodTexto, result.data.objReclamo.Texto[i]) ;
-									this.getView().getModel().refresh();
-
-									var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
-								}
-							}
-							console.log(this.getView().getModel().getProperty("/objReclamo/Interlocutor"));
-							this.getView().byId("dlg_lista_recBuscar").close();
-
-						}else{
-
-							sap.m.MessageToast.show(result.data.errors.reason, {
-				                duration: 3000
-				            });
-
 						}
-
-
-					}else{
-						sap.m.MessageToast.show(result.m, {
-	                duration: 3000
-	            });
+						for( var i=0;i<result.data.objReclamo.Texto.length;i++)
+                        {
+							if(result.data.objReclamo.Texto[i].CodTexto){
+								this.getView().getModel().setProperty("/objReclamo/Texto/"+result.data.objReclamo.Texto[i].CodTexto, result.data.objReclamo.Texto[i]) ;
+								this.getView().getModel().refresh();
+								var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
+							}
+						}
+						console.log(this.getView().getModel().getProperty("/objReclamo/Interlocutor"));
+						this.getView().byId("dlg_lista_recBuscar").close();
+					}
+                    else
+                    {
+						sap.m.MessageToast.show(result.data.errors.reason, {
+			                duration: 3000
+			            });
 					}
 
-				 console.log(result);
-
-
+				}
+                else
+                {
+					sap.m.MessageToast.show(result.m, {
+                       duration: 3000
+                    });
+				}
 		},
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		goHome:function(){
-		            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-		                oRouter.navTo("appHome");
+		goHome:function()
+        {
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("appHome");
 		},
-		
-
-		onListMasterDatos : function(oEvent) {
+		onListMasterDatos : function(oEvent) 
+        {
 			var obj = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
-
-            if(obj.codigo===1){
-                    this.byId("SplitAppId").to(this.createId("pag_rec_nuevo_reclamo"));
-                }
-
-                if(obj.codigo===2){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
-                }
-
-                if(obj.codigo===3){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_datos_reclamo"));
-                }
-
-                if(obj.codigo===4){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
-                }
+            if(obj.codigo===1)
+            {
+                this.byId("SplitAppId").to(this.createId("pag_rec_nuevo_reclamo"));
+            }
+            if(obj.codigo===2)
+            {
+                this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
+            }
+            if(obj.codigo===3)
+            {
+                this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_datos_reclamo"));
+            }
+            if(obj.codigo===4)
+            {
+                this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
+            }
 		},
 	});
 

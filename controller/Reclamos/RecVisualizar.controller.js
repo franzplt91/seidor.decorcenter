@@ -302,103 +302,92 @@ sap.ui.define([
                     codigo:4,
                     descripcion:'Cambiar Status'
                 });
-
             this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);    
             this.getView().getModel().setProperty("/nombre","Visualizar Reclamo");
             this.getView().getModel().refresh();    
 		},
-
-		onContinuarDlg_rec_nuevo_inicio:function(){
-
+		onContinuarDlg_rec_nuevo_inicio:function()
+        {
 			var numReclamo = this.getView().getModel().getProperty("/numReclamo") ;
 			var result = reclamoServices.verReclamos(numReclamo);
-					if(result.c === "s"){
-
-						if(result.data.success){
-
-							this.getView().getModel().setProperty("/reclamo", result.data.reclamo[0] ) ;
-							this.getView().getModel().setProperty("/objReclamo", result.data.objReclamo ) ;
-							this.getView().getModel().refresh();
-
-
-							for( var i=0;i<result.data.objReclamo.Interlocutor.length;i++){
-								if(result.data.objReclamo.Interlocutor[i].PARVW){
-									this.getView().getModel().setProperty("/objReclamo/Interlocutor/"+result.data.objReclamo.Interlocutor[i].PARVW, result.data.objReclamo.Interlocutor[i]) ;
-									this.getView().getModel().refresh();
-
-									var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
-								}
+				if(result.c === "s")
+                {
+					if(result.data.success)
+                    {
+						this.getView().getModel().setProperty("/reclamo", result.data.reclamo[0] ) ;
+						this.getView().getModel().setProperty("/objReclamo", result.data.objReclamo ) ;
+						this.getView().getModel().refresh();
+						for( var i=0;i<result.data.objReclamo.Interlocutor.length;i++)
+                        {
+							if(result.data.objReclamo.Interlocutor[i].PARVW)
+                            {
+								this.getView().getModel().setProperty("/objReclamo/Interlocutor/"+result.data.objReclamo.Interlocutor[i].PARVW, result.data.objReclamo.Interlocutor[i]) ;
+								this.getView().getModel().refresh();
+								var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
 							}
-
-							for( var i=0;i<result.data.objReclamo.Texto.length;i++){
-								if(result.data.objReclamo.Texto[i].CodTexto){
-									this.getView().getModel().setProperty("/objReclamo/Texto/"+result.data.objReclamo.Texto[i].CodTexto, result.data.objReclamo.Texto[i]) ;
-									this.getView().getModel().refresh();
-
-									var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
-								}
-							}
-							console.log(this.getView().getModel().getProperty("/objReclamo/Interlocutor"));
-							this.getView().byId("dlg_rec_nuevo_inicio").close();
-
-						}else{
-
-							sap.m.MessageToast.show(result.data.errors.reason, {
-				                duration: 3000
-				            });
-
 						}
-
-
-					}else{
-						sap.m.MessageToast.show(result.m, {
-	                duration: 3000
-	            });
+						for( var i=0;i<result.data.objReclamo.Texto.length;i++)
+                        {
+							if(result.data.objReclamo.Texto[i].CodTexto)
+                            {
+								this.getView().getModel().setProperty("/objReclamo/Texto/"+result.data.objReclamo.Texto[i].CodTexto, result.data.objReclamo.Texto[i]) ;
+								this.getView().getModel().refresh();
+								var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
+							}
+						}
+						console.log(this.getView().getModel().getProperty("/objReclamo/Interlocutor"));
+						this.getView().byId("dlg_rec_nuevo_inicio").close();
 					}
-
-				 console.log(result);
-
-
+                    else
+                    {
+						sap.m.MessageToast.show(result.data.errors.reason, {
+			                duration: 3000
+			            });
+					}
+				}
+                else
+                {
+					sap.m.MessageToast.show(result.m, {
+                       duration: 3000
+                    });
+				}
 		},
-
-		goHome:function(){
+		goHome:function()
+        {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("appHome");
         },
-		onCloseDlgRecNuevo: function(oEvent){
+		onCloseDlgRecNuevo: function(oEvent)
+        {
                 this.getView().byId("dlg_rec_nuevo_inicio").close()
-            },
-
-		onOpenDlgBuscarRecNuevo:function(){
+        },
+		onOpenDlgBuscarRecNuevo:function()
+        {
 			this.getView().byId("dlg_buscar_rec_nuevo").open();
 		},  
-
-
-		onCloseDlgBuscarRecNuevo:function(){
-
+		onCloseDlgBuscarRecNuevo:function()
+        {
 			this.getView().byId("dlg_buscar_rec_nuevo").close();
 		},    
-
-		onListMasterDatos : function(oEvent) {
+		onListMasterDatos : function(oEvent) 
+        {
 			var obj = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
-
-            if(obj.codigo===1){
-                    this.byId("SplitAppId").to(this.createId("pag_rec_nuevo_reclamo"));
-                }
-
-                if(obj.codigo===2){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
-                }
-
-                if(obj.codigo===3){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_datos_reclamo"));
-                }
-
-                if(obj.codigo===4){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
-                }
+            if(obj.codigo===1)
+            {
+                this.byId("SplitAppId").to(this.createId("pag_rec_nuevo_reclamo"));
+            }
+            if(obj.codigo===2)
+            {
+                this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
+            }
+            if(obj.codigo===3)
+            {
+                this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_datos_reclamo"));
+            }
+            if(obj.codigo===4)
+            {
+                this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
+            }
 		},
-
 	});
-
 });

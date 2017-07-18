@@ -276,7 +276,6 @@ sap.ui.define([
  			};
 
  			if (oEvent.getParameter("name") == "appRecModificar") {
-
 					this.getView().setModel(new JSONModel(oData));
 					this.getView().getModel().setProperty("/dataIni",window.dataIni);
 		            this.getView().getModel().refresh(true);
@@ -314,126 +313,130 @@ sap.ui.define([
 
 			var numReclamo = this.getView().getModel().getProperty("/numReclamo") ;
 			var result = reclamoServices.verReclamos(numReclamo);
-					if(result.c === "s"){
-
-						if(result.data.success){
-
-							this.getView().getModel().setProperty("/reclamo", result.data.reclamo[0] ) ;
-							this.getView().getModel().setProperty("/objReclamo", result.data.objReclamo ) ;
+			if(result.c === "s")
+            {
+				if(result.data.success)
+                {
+					this.getView().getModel().setProperty("/reclamo", result.data.reclamo[0] ) ;
+					this.getView().getModel().setProperty("/objReclamo", result.data.objReclamo ) ;
+					this.getView().getModel().refresh();
+					for( var i=0;i<result.data.objReclamo.Interlocutor.length;i++)
+                    {
+						if(result.data.objReclamo.Interlocutor[i].PARVW)
+                        {
+							this.getView().getModel().setProperty("/objReclamo/Interlocutor/"+result.data.objReclamo.Interlocutor[i].PARVW, result.data.objReclamo.Interlocutor[i]) ;
 							this.getView().getModel().refresh();
-
-
-							for( var i=0;i<result.data.objReclamo.Interlocutor.length;i++){
-								if(result.data.objReclamo.Interlocutor[i].PARVW){
-									this.getView().getModel().setProperty("/objReclamo/Interlocutor/"+result.data.objReclamo.Interlocutor[i].PARVW, result.data.objReclamo.Interlocutor[i]) ;
-									this.getView().getModel().refresh();
-
-									var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
-								}
-							}
-
-							for( var i=0;i<result.data.objReclamo.Texto.length;i++){
-								if(result.data.objReclamo.Texto[i].CodTexto){
-									this.getView().getModel().setProperty("/objReclamo/Texto/"+result.data.objReclamo.Texto[i].CodTexto, result.data.objReclamo.Texto[i]) ;
-									this.getView().getModel().refresh();
-
-									var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
-								}
-							}
-							console.log(this.getView().getModel().getProperty("/objReclamo/Interlocutor"));
-							this.getView().byId("dlg_rec_modificar_inicio").close();
-
-						}else{
-
-							sap.m.MessageToast.show(result.data.errors.reason, {
-				                duration: 3000
-				            });
-
+							var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
 						}
-
-
-					}else{
-						sap.m.MessageToast.show(result.m, {
-	                duration: 3000
-	            });
 					}
-
-				 console.log(result);
-
-
+					for( var i=0;i<result.data.objReclamo.Texto.length;i++)
+                    {
+						if(result.data.objReclamo.Texto[i].CodTexto)
+                        {
+							this.getView().getModel().setProperty("/objReclamo/Texto/"+result.data.objReclamo.Texto[i].CodTexto, result.data.objReclamo.Texto[i]) ;
+							this.getView().getModel().refresh();
+							var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
+						}
+					}
+					this.getView().byId("dlg_rec_modificar_inicio").close();
+				}
+                else
+                {
+					sap.m.MessageToast.show(result.data.errors.reason, {
+		                duration: 3000
+		            });
+				}
+			}
+            else
+            {
+				sap.m.MessageToast.show(result.m, {
+                   duration: 3000
+                });
+			}
 		},
-
         /////////////////////////////////////////////////////////////////
-
-		onGuardarReclamo:function(){
-
-
+		onGuardarReclamo:function()
+        {
+            var indice_resultado = this.getView().byId("cbo_Resultado").getSelectedItem();
+            var pIndiceResultado = indice_resultado.mProperties.key
 			var guardarReclamo = {
-
-							"material11": this.getView().getModel().getProperty("/reclamo/material1") ,
-							"material12": this.getView().getModel().getProperty("/reclamo/material2") ,
-							"material21": "" ,
-							"material22": "" ,
-							"cantRecla1": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CANTRECLA1") ,
-							"cantRecla2": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CANTRECLA2") ,
-							"reclamoRef": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/reclamoRef") ,
-							"numeroPedido": this.getView().getModel().getProperty("/objReclamo/Contactos/VGBEL") ,
-							"EmpresaDet": this.getView().getModel().getProperty("/objReclamo/Contactos/KUNNR") , //"0000101317" ,
-							"NomCliente": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") ,//"Cliente Eventual La Molina" ,
-							"codigoEmpResp": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/PERNR") , //"00001802" ,
-							"Motivo": this.getView().getModel().getProperty("/reclamo/Motivo") , //"A01" ,
-							"Status": this.getView().getModel().getProperty("/reclamo/Status") , //"0" ,
-							"Resultado": this.getView().getModel().getProperty("/reclamo/Resultado") , //"004" ,
-							"JustificResul": this.getView().getModel().getProperty("/reclamo/JustificResul") , //"001" ,
-							"OrgVenta": this.getView().getModel().getProperty("/objReclamo/Contactos/VKORG") , //"1000" ,
-							"Canal": this.getView().getModel().getProperty("/objReclamo/Contactos/VTWEG") , //"10" ,
-							"Sector": this.getView().getModel().getProperty("/objReclamo/Contactos/SPART") , //"00" ,
-							"OfiVenta": this.getView().getModel().getProperty("/objReclamo/Contactos/VKBUR") , //"1010" ,
-							"comentario": this.getView().getModel().getProperty("/reclamo/comentario") , //"" ,
-							"pNumeroReclamo": this.getView().getModel().getProperty("/numReclamo") , //"0100004422" ,
-							//enviar listaReclamo como array
-							
-
-
-							"pIndiceResultado": "5" ,
-
-
+				"material11": this.getView().getModel().getProperty("/reclamo/material1") ,
+				"material12": this.getView().getModel().getProperty("/reclamo/material2") ,
+				"material21": "" ,
+				"material22": "" ,
+				"cantRecla1": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CANTRECLA1") ,
+				"cantRecla2": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CANTRECLA2") ,
+				"reclamoRef": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/reclamoRef") ,
+				"numeroPedido": this.getView().getModel().getProperty("/objReclamo/Contactos/VGBEL") ,
+				"EmpresaDet": this.getView().getModel().getProperty("/objReclamo/Contactos/KUNNR") , 
+				"NomCliente": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") ,
+				"codigoEmpResp": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/PERNR") , 
+				"Motivo": this.getView().getModel().getProperty("/reclamo/Motivo") , 
+				"Status": this.getView().getModel().getProperty("/reclamo/Status") , 
+				"Resultado": this.getView().getModel().getProperty("/reclamo/Resultado") , 
+				"JustificResul": this.getView().getModel().getProperty("/reclamo/JustificResul") , 
+				"OrgVenta": this.getView().getModel().getProperty("/objReclamo/Contactos/VKORG") , 
+				"Canal": this.getView().getModel().getProperty("/objReclamo/Contactos/VTWEG") , 
+				"Sector": this.getView().getModel().getProperty("/objReclamo/Contactos/SPART") , 
+				"OfiVenta": this.getView().getModel().getProperty("/objReclamo/Contactos/VKBUR") ,
+				"comentario": this.getView().getModel().getProperty("/reclamo/comentario") ,
+                "pNumeroReclamo": this.getView().getModel().getProperty("/numReclamo") ,
+				"pIndiceResultado": pIndiceResultado.substr(2) ,
 			};
-
 			var modelo = "";
-			if(this.getView().getModel().getProperty("/objReclamo/Texto/0001/Descripcion")){
+			if(this.getView().getModel().getProperty("/objReclamo/Texto/0001/Descripcion"))
+            {
 				var modelo0001 = this.getView().getModel().getProperty("/objReclamo/Texto/0001/Descripcion");
-			}else{
+			}
+            else
+            {
 				var modelo0001 = "";
 			}
-			if(this.getView().getModel().getProperty("/objReclamo/Texto/0004/Descripcion")){
+			if(this.getView().getModel().getProperty("/objReclamo/Texto/0004/Descripcion"))
+            {
 				var modelo0004 = this.getView().getModel().getProperty("/objReclamo/Texto/0004/Descripcion");
-			}else{
+			}
+            else
+            {
 				var modelo0004 = "";
 			}
-			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z006/Descripcion")){
+			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z006/Descripcion"))
+            {
 				var modeloZ006 = this.getView().getModel().getProperty("/objReclamo/Texto/Z006/Descripcion");
-			}else{
+			}else
+            {
 				var modeloZ006 = "";
 			}
-			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z007/Descripcion")){
+			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z007/Descripcion"))
+            {
 				var modeloZ007 = this.getView().getModel().getProperty("/objReclamo/Texto/Z007/Descripcion");
-			}else{
+			}
+            else
+            {
 				var modeloZ007 = "";
 			}
-			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z008/Descripcion")){
+			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z008/Descripcion"))
+            {
 				var modeloZ008 = this.getView().getModel().getProperty("/objReclamo/Texto/Z008/Descripcion");
-			}else{
+			}
+            else
+            {
 				var modeloZ008 = "";
 			}
-			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z009/Descripcion")){
+			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z009/Descripcion"))
+            {
 				var modeloZ009 = this.getView().getModel().getProperty("/objReclamo/Texto/Z009/Descripcion");
-			}else{
+			}
+            else
+            {
 				var modeloZ009 = "";
 			}
-			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z010/Descripcion")){
+			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z010/Descripcion"))
+            {
 				var modeloZ010 = this.getView().getModel().getProperty("/objReclamo/Texto/Z010/Descripcion");
-			}else{
+			}
+            else
+            {
 				var modeloZ010 = "";
 			}
 			if(this.getView().getModel().getProperty("/objReclamo/Texto/Z011/Descripcion")){
@@ -448,238 +451,229 @@ sap.ui.define([
 			}
 			///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			var listaReclamo=[{
-											"pNumeroReclamo": this.getView().getModel().getProperty("/numReclamo") , //"0100004422",
-											"fechaI": "2017-07-07T05:00:00.000Z" , //"2017-07-07T05:00:00.000Z",
-											"fechaF": "2017-07-07T05:00:00.000Z" , //"2017-07-07T05:00:00.000Z",
-											"horaReclamoI": "16:59:29" , //"16:59:29",
-											"horaReclamoF": "16:59:29" , //"16:59:29",
-											"empresa": this.getView().getModel().getProperty("/objReclamo/Contactos/KUNNR") , //"0000101317",
-											"numeroPedido": this.getView().getModel().getProperty("/objReclamo/Contactos/VGBEL") , //"0000238187",
-											"comentario": this.getView().getModel().getProperty("/reclamo/comentario") , //"",
-											"material1": this.getView().getModel().getProperty("/reclamo/material1") , //"11000004",
-											"material2": this.getView().getModel().getProperty("/reclamo/material2") , //"11000898",
-											"material11": this.getView().getModel().getProperty("/reclamo/material1") , //"11000004",
-											"material12": this.getView().getModel().getProperty("/reclamo/material2") , //"11000898",
-											"material21": "" , //"",
-											"material22": "" , //"",
-											"cantRecla1": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CANTRECLA1") , //"1.000",
-											"cantRecla2": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CANTRECLA2") , //"2.000",
-											"montoRecla1": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/MONTORECLA1") , //"357.00",
-										    "montoRecla2": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/MONTORECLA2") ,
-										    "reclamoRef": this.getView().getModel().getProperty("/reclamo/reclamoRef") , //"",
-										    "TextoTratemInicial": modelo0001 , //"gggg",
-											"TextoNotaDireccion": modelo0004 , //"gggg",
-											"TextoSeguimiento": modeloZ006 , //"ggg",
-											"TextoDiagnostico": modeloZ007 , //"ggg",
-											"TextoSolucion": modeloZ008 , //"ggg",
-											"TextoPersonaContacto": modeloZ009 , //"ggg",
-											"TextoDatosFacturacion": modeloZ010 , //"",
-											"TextoPedidoReferencia": modeloZ011 , //"",
-											"TextoMotivosOtros": modeloZ012 , //"_",
-											"mail": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Mail") , //"",
-											"_nif": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NIF") , //"45454545",
-											"PersonaContacto": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , //"Cliente Eventual La Molina",
-											"NomPContac": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , //"Cliente Eventual La Molina",
-											"DirPContac": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/DIRECCION") , //"PRUEBA",
-											"NIFCont": "" , //"",
-											"TelfCont": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/TELEFONO") , //"123",
-											"CodpPContac": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CPOSTAL") , //"LIMA 03",
-											"NomCliente": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , //"Cliente Eventual La Molina",
-											"EmpresaDet": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/KUNNR") , //"0000101317",
-											"NomEmpresa": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , //"Cliente Eventual La Molina",
-											"DirEmpresa": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Direccion") , //"PRUEBA",
-											"TelfEmpre": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Telefono") , //"",
-											"CodpEmpresa": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Ciudad") , //"LIMA 03",
-											"CodDestMerc": this.getView().getModel().getProperty("/reclamo/CodDestMerc") , //"{36}",
-											"NomDestMerc": this.getView().getModel().getProperty("/reclamo/NomDestMerc") , //"",
-											"DirDestMerc": this.getView().getModel().getProperty("/reclamo/DirDestMerc") , //"{38}",
-											"CodpDestMerc": this.getView().getModel().getProperty("/reclamo/CodpDestMerc") , //"{39}",
-											"CodECom": this.getView().getModel().getProperty("/reclamo/CodECom") , //"{40}",
-											"NomECom": this.getView().getModel().getProperty("/reclamo/NomECom") , //"{41}",
-											"codigoEmpResp": this.getView().getModel().getProperty("/reclamo/codigoEmpResp") , //"00001802",
-											"nombreEmpResp": this.getView().byId("cbo_asesor").getSelectedItem().getText() , //"Pingo Moreno Julio Edgardo",
-											"CodResPago": this.getView().getModel().getProperty("/reclamo/codigoEmpResp") , //"00001802",
-											"NomResPago": this.getView().byId("cbo_asesor").getSelectedItem().getText() , //"Pingo Moreno Julio Edgardo",
-											"OrgVenta": this.getView().getModel().getProperty("/objReclamo/Contactos/VKORG") , //"1000",
-											"Canal": this.getView().getModel().getProperty("/objReclamo/Contactos/VTWEG") , //"10",
-											"OfiVenta": this.getView().getModel().getProperty("/objReclamo/Contactos/VKBUR") , //"1010",
-											"Motivo": this.getView().getModel().getProperty("/reclamo/Motivo") , //"A01",
-											"Resultado": this.getView().getModel().getProperty("/reclamo/Resultado") , //"004",
-											"JustificResul": this.getView().getModel().getProperty("/reclamo/JustificResul") , //"001",
-											"Sector": this.getView().getModel().getProperty("/objReclamo/Contactos/SPART") , //"00",
-											"Status": this.getView().getModel().getProperty("/reclamo/Status") , //"0",
-											"UsuarioStatus": this.getView().getModel().getProperty("/reclamo/UsuarioStatus") , //"{55}",
-											"Descripcion": this.getView().getModel().getProperty("/reclamo/Descripcion") , //"{56}",
-											"fechaSts": this.getView().getModel().getProperty("/reclamo/fechaI") , //"2017-07-07T05:00:00.000Z"
-
-
+			var listaReclamo=[
+            {
+				"pNumeroReclamo": this.getView().getModel().getProperty("/numReclamo") , 
+                "fechaI": "2017-07-07T05:00:00.000Z" ,
+                "fechaF": "2017-07-07T05:00:00.000Z" ,
+                "horaReclamoI": "16:59:29" , 
+                "horaReclamoF": "16:59:29" , 
+                "empresa": this.getView().getModel().getProperty("/objReclamo/Contactos/KUNNR") , 
+                "numeroPedido": this.getView().getModel().getProperty("/objReclamo/Contactos/VGBEL") , 
+                "comentario": this.getView().getModel().getProperty("/reclamo/comentario") , 
+                "material1": this.getView().getModel().getProperty("/reclamo/material1") , 
+                "material2": this.getView().getModel().getProperty("/reclamo/material2") , 
+                "material11": this.getView().getModel().getProperty("/reclamo/material1") , 
+                "material12": this.getView().getModel().getProperty("/reclamo/material2") , 
+                "material21": "" , 
+                "material22": "" , 
+                "cantRecla1": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CANTRECLA1") , 
+                "cantRecla2": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CANTRECLA2") , 
+                "montoRecla1": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/MONTORECLA1") , 
+                "montoRecla2": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/MONTORECLA2") ,
+                "reclamoRef": this.getView().getModel().getProperty("/reclamo/reclamoRef") , 
+                "TextoTratemInicial": modelo0001 , 
+                "TextoNotaDireccion": modelo0004 , 
+                "TextoSeguimiento": modeloZ006 , 
+                "TextoDiagnostico": modeloZ007 , 
+                "TextoSolucion": modeloZ008 , 
+                "TextoPersonaContacto": modeloZ009 , 
+                "TextoDatosFacturacion": modeloZ010 , 
+                "TextoPedidoReferencia": modeloZ011 , 
+                "TextoMotivosOtros": modeloZ012 , 
+                "mail": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Mail") , 
+                "_nif": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NIF") , 
+                "PersonaContacto": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , 
+                "NomPContac": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , 
+                "DirPContac": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/DIRECCION") , 
+                "NIFCont": "" , 
+                "TelfCont": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/TELEFONO") , 
+                "CodpPContac": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CPOSTAL") , 
+                "NomCliente": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , 
+                "EmpresaDet": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/KUNNR") , 
+                "NomEmpresa": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , 
+                "DirEmpresa": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Direccion") , 
+                "TelfEmpre": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Telefono") , 
+                "CodpEmpresa": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Ciudad") , 
+                "CodDestMerc": this.getView().getModel().getProperty("/reclamo/CodDestMerc") , 
+                "NomDestMerc": this.getView().getModel().getProperty("/reclamo/NomDestMerc") , 
+                "DirDestMerc": this.getView().getModel().getProperty("/reclamo/DirDestMerc") , 
+                "CodpDestMerc": this.getView().getModel().getProperty("/reclamo/CodpDestMerc") , 
+                "CodECom": this.getView().getModel().getProperty("/reclamo/CodECom") , 
+                "NomECom": this.getView().getModel().getProperty("/reclamo/NomECom") , 
+                "codigoEmpResp": this.getView().getModel().getProperty("/reclamo/codigoEmpResp") , 
+                "nombreEmpResp": this.getView().byId("cbo_asesor").getSelectedItem().getText() , 
+                "CodResPago": this.getView().getModel().getProperty("/reclamo/codigoEmpResp") , 
+                "NomResPago": this.getView().byId("cbo_asesor").getSelectedItem().getText() , 
+                "OrgVenta": this.getView().getModel().getProperty("/objReclamo/Contactos/VKORG") , 
+                "Canal": this.getView().getModel().getProperty("/objReclamo/Contactos/VTWEG") , 
+                "OfiVenta": this.getView().getModel().getProperty("/objReclamo/Contactos/VKBUR") , 
+                "Motivo": this.getView().getModel().getProperty("/reclamo/Motivo") , 
+                "Resultado": this.getView().getModel().getProperty("/reclamo/Resultado") , 
+                "JustificResul": this.getView().getModel().getProperty("/reclamo/JustificResul") , 
+                "Sector": this.getView().getModel().getProperty("/objReclamo/Contactos/SPART") , 
+                "Status": this.getView().getModel().getProperty("/reclamo/Status") , 
+                "UsuarioStatus": this.getView().getModel().getProperty("/reclamo/UsuarioStatus") , 
+                "Descripcion": this.getView().getModel().getProperty("/reclamo/Descripcion") , 
+                "fechaSts": this.getView().getModel().getProperty("/reclamo/fechaI") , 
 									}];
-
       		var listaIntJson=[
-
-      										{"id":1,
-											"PedidoId":0,
-											"Funcion":"AG",
-											"Codigo": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/KUNNR") , //"0000101317",
-											"Ruc": "" , //"",
-											"Descripcion": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , //"Cliente Eventual La Molina",
-											"Titulo": "" , //"",
-									/**/	"Direccion": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Direccion") , //"PRUEBA",
-											"DireccionCompleta": "" , //"",
-									/**/	"Ciudad": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Ciudad") , //"LIMA 03",
-											"Pais": "" , //"",
-							/*CodPostal*/	"CodigoPostal": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/CodPostal"),
-											"Distrito": "" , //"",
-									/**/	"Telefono": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Telefono") , //"",
-									/**/	"Mail": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Mail") , //"",
-											"PersonaFisica":false,
-							/*EsVentual*/	"Eventual": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/EsVentual"),
-											"CodPersona": "" , //"",
-											"Nombre": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , //"Cliente Eventual La Molina",
-									/**/	"ADRNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/ADRNR") , //"9001046443",
-											"DescripcionP": "" , //"",
-									/**/	"POSNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/POSNR") , //"000000",
-									/**/	"PARVW": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/PARVW"),
-									/**/	"NOMBRE": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , //"Cliente Eventual La Molina",
-											"Name1": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , //"Cliente Eventual La Molina",
-									/**/	"Calle": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Calle") , //"PRUEBA",
-									/**/	"KUNNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/KUNNR") , //"0000101317",
-											"CPOSTAL": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Ciudad") , //"LIMA 03",
-											"CodPostal": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Ciudad") , //"LIMA 03",
-											"DIRECCION": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Direccion") , //"PRUEBA",
-											"PCONTACTO": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , //"Cliente Eventual La Molina"},
-										},
-											{"id":2,
-											"PedidoId":0,
-											"Funcion":"ZM",
-											"Codigo": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/PERNR") ,
-											"Ruc": "",
-											"Descripcion": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/NOMBRE") , //"Pingo Moreno Julio Edgardo",
-											"Titulo": "",
-									/**/	"Direccion": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/Direccion") , //"",
-											"DireccionCompleta": "",
-											"Ciudad": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/Ciudad") , //"",
-											"Pais": "",
-							/*CodPostal*/	"CodigoPostal": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/CodPostal") , //"",
-											"Distrito": "",
-									/**/	"Telefono": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/Telefono") , //"",
-									/**/	"Mail": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/Mail") , //"",
-											"PersonaFisica":false,
-							/*EsVentual*/	"Eventual": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/EsVentual") ,
-											"CodPersona": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/PERNR") , //"00001802",
-											"Nombre": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/NOMBRE") , //"Pingo Moreno Julio Edgardo",
-									/**/	"ADRNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/ADRNR") , //"",
-											"DescripcionP": "",
-									/**/	"POSNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/POSNR") , //"000000",
-									/**/	"PARVW": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/PARVW") , //"ZM",
-									/**/	"NOMBRE": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/NOMBRE") , //"Pingo Moreno Julio Edgardo",
-									/**/	"Name1": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/Name1") , //"Pingo Moreno Julio Edgardo",
-									/**/	"PERNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/PERNR") , //"00001802",
-											"PCONTACTO": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/NOMBRE") , //"Pingo Moreno Julio Edgardo"},
-										},
-											{"id":3,
-											"PedidoId":0,
-											"Funcion":"AP",
-											"Codigo": this.getView().getModel().getProperty("/objReclamo/Contactos/KUNNR") , //"0000101317",
-											"Ruc": "",
-											"Descripcion": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , //"Cliente Eventual La Molina",
-											"Titulo": "",
-											"Direccion": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/Direccion") , //"PRUEBA", //error array
-											"DireccionCompleta": "",
-											"Ciudad": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CPOSTAL") , //"LIMA 03",
-											"Pais": "PE",
-											"CodigoPostal": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CPOSTAL") , //"LIMA 03",
-											"Distrito": "",
-											"Telefono": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/TELEFONO") , //"123",
-											"Mail": "",
-											"PersonaFisica":false,
-											"Eventual": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/EsVentual"),
-											"CodPersona": "",
-											"Nombre": "",
-											"ADRNR": "",
-											"DescripcionP": "",
-											"POSNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/KUNNR") , //"000000",
-											"PARVW": "AP",
-											"NOMBRE": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , //"Cliente Eventual La Molina",
-											"Name1": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , //"Cliente Eventual La Molina",
-											"Calle": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/DIRECCION") , //"PRUEBA", //error array
-											"KUNNR": this.getView().getModel().getProperty("/objReclamo/Contactos/KUNNR") , //"0000101317",
-											"CPOSTAL": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CPOSTAL") , //"LIMA 03",
-											"CodPostal": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CPOSTAL") , //"LIMA 03",
-											"DIRECCION": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/DIRECCION") , //"PRUEBA", //error array
-											"TELEFONO": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/TELEFONO") , //"123",
-											"PCONTACTO": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , //"Cliente Eventual La Molina"
-										}
-
-
+      		{
+                "id":1,
+			    "PedidoId":0,
+			    "Funcion":"AG",
+			    "Codigo": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/KUNNR") , 
+			    "Ruc": "" , 
+			    "Descripcion": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , 
+			    "Titulo": "" , 
+	       	    "Direccion": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Direccion") , 
+			    "DireccionCompleta": "" , 
+	       	    "Ciudad": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Ciudad") , 
+			    "Pais": "" , 
+         	    "CodigoPostal": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/CodPostal"),
+			    "Distrito": "" , 
+	       	    "Telefono": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Telefono") , 									       	    
+                "Mail": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Mail") , 
+			    "PersonaFisica":false,
+         	    "Eventual": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/EsVentual"),
+			    "CodPersona": "" , 
+			    "Nombre": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , 
+	       	    "ADRNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/ADRNR") , 
+			    "DescripcionP": "" ,
+	       	    "POSNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/POSNR") , 
+	       	    "PARVW": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/PARVW"),
+	       	    "NOMBRE": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , 
+			    "Name1": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") ,
+	       	    "Calle": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Calle") , 
+	       	    "KUNNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/KUNNR") , 
+			    "CPOSTAL": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Ciudad") , 
+			    "CodPostal": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Ciudad") , 
+			    "DIRECCION": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Direccion") , 
+			    "PCONTACTO": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , 
+		    },
+			{
+                "id":2,
+			    "PedidoId":0,
+			    "Funcion":"ZM",
+			    "Codigo": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/PERNR") ,
+			    "Ruc": "",
+			    "Descripcion": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/NOMBRE") , 
+		  	    "Titulo": "",
+	       	    "Direccion": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/Direccion") , 
+			    "DireccionCompleta": "",
+			    "Ciudad": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/Ciudad") , 
+			    "Pais": "",
+        	    "CodigoPostal": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/CodPostal") , 
+			    "Distrito": "",
+	       	    "Telefono": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/Telefono") , 
+	       	    "Mail": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/Mail") ,
+			    "PersonaFisica":false,
+                "Eventual": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/EsVentual") ,
+			    "CodPersona": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/PERNR") , 
+			    "Nombre": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/NOMBRE") , 
+	       	    "ADRNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/ADRNR") , 
+			    "DescripcionP": "",
+	       	    "POSNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/POSNR") , 
+	       	    "PARVW": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/PARVW") , 
+	       	    "NOMBRE": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/NOMBRE") , 
+	       	    "Name1": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/Name1") , 
+	       	    "PERNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/PERNR") , 
+			    "PCONTACTO": this.getView().getModel().getProperty("/objReclamo/Interlocutor/ZM/NOMBRE") , 
+		    },
+			{
+                "id":3,
+    			"PedidoId":0,
+    			"Funcion":"AP",
+    			"Codigo": this.getView().getModel().getProperty("/objReclamo/Contactos/KUNNR") , 
+    			"Ruc": "",
+    			"Descripcion": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , 
+    			"Titulo": "",
+    			"Direccion": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/Direccion") , 
+    			"DireccionCompleta": "",
+    			"Ciudad": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CPOSTAL") , 
+    			"Pais": "PE",
+    			"CodigoPostal": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CPOSTAL") , 
+    			"Distrito": "",
+    			"Telefono": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/TELEFONO") , 
+    			"Mail": "",
+    			"PersonaFisica":false,
+    			"Eventual": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/EsVentual"),
+    			"CodPersona": "",
+    			"Nombre": "",
+    			"ADRNR": "",
+    			"DescripcionP": "",
+    			"POSNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/KUNNR") , 
+    			"PARVW": "AP",
+    			"NOMBRE": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , 
+    			"Name1": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , 
+    			"Calle": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/DIRECCION") , 
+    			"KUNNR": this.getView().getModel().getProperty("/objReclamo/Contactos/KUNNR") , 
+    			"CPOSTAL": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CPOSTAL") , 
+    			"CodPostal": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/CPOSTAL") , 
+    			"DIRECCION": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/DIRECCION") , 
+    			"TELEFONO": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/TELEFONO") , 
+    			"PCONTACTO": this.getView().getModel().getProperty("/objReclamo/Z_Reclamo/PCONTACTO") , 
+		    }
       ];
-
-
 			var listaIntJsonLleno = JSON.stringify(listaIntJson);
 			var listaReclamoLleno = JSON.stringify(listaReclamo);
-
-					 	console.log(guardarReclamo) ;
-
-					 	var result = reclamoServices.guardarReclamo(guardarReclamo, listaReclamoLleno, listaIntJsonLleno);
-                                    if(result.c === "s"){
-
-                                        if(result.data.success){
-
-                                            //////////////////////////////////////////////////
-                                            this.getView().byId("dlg_MensajeAvisoGeneralReclamo").open();
-                                            this.getView().byId("txt_aviso_general_reclamo").setText("Se modificó el reclamo con el número: "+result.data.nroRec);
-                                            //////////////////////////////////////////////////////
-
-
-                                        }else{
-
-                                            sap.m.MessageToast.show(result.data.errors.reason, {
-                                                duration: 3000
-                                            });
-
-                                        }
-
-
-                                    }else{
-                                        sap.m.MessageToast.show(result.m, {
-                                    duration: 3000
-                                });
-                                    }
-
-                                 console.log(result);
-
+		 	var result = reclamoServices.guardarReclamo(guardarReclamo, listaReclamoLleno, listaIntJsonLleno);
+                if(result.c === "s")
+                {
+                    if(result.data.success)
+                    {
+                        //////////////////////////////////////////////////
+                        this.getView().byId("dlg_MensajeAvisoGeneralReclamo").open();
+                        this.getView().byId("txt_aviso_general_reclamo").setText("Se modificó el reclamo con el número: "+result.data.nroRec);
+                        //////////////////////////////////////////////////////
+                    }
+                    else
+                    {
+                        sap.m.MessageToast.show(result.data.errors.reason, {
+                            duration: 3000
+                        });
+                    }
+                }
+                else
+                {
+                    sap.m.MessageToast.show(result.m, {
+                    duration: 3000
+                    });
+                }
 		},
 
-        onOkDlg_MensajeAvisoGeneralReclamo:function(){
+        onOkDlg_MensajeAvisoGeneralReclamo:function()
+        {
             this.getView().byId("dlg_MensajeAvisoGeneralReclamo").close();
         },
 
 
         ///////////////////////////////////////////////////////////////////////77
-		goHome:function(){
+		goHome:function()
+        {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("appHome");
         },
 
-        onListMasterDatos : function(oEvent) {
+        onListMasterDatos : function(oEvent) 
+        {
 			var obj = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
-
-            if(obj.codigo===1){
-                    this.byId("SplitAppId").to(this.createId("pag_rec_nuevo_reclamo"));
-                }
-
-                if(obj.codigo===2){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
-                }
-
-                if(obj.codigo===3){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_datos_reclamo"));
-                }
-
-                if(obj.codigo===4){
-                    this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
-                }
+            if(obj.codigo===1)
+            {
+                this.byId("SplitAppId").to(this.createId("pag_rec_nuevo_reclamo"));
+            }
+            if(obj.codigo===2)
+            {
+                this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_interlocutores"));
+            }
+            if(obj.codigo===3)
+            {
+                this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_datos_reclamo"));
+            }
+            if(obj.codigo===4)
+            {
+                this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
+            }
 		},
         //Abrir Dialog Buscar Cliente
         onDocNuevoBuscarCliente: function () {
@@ -688,84 +682,88 @@ sap.ui.define([
         onDocReclamoBuscarClienteAccion: function (oEvent) {
             var ruc = this.getView().byId("txt_ruc_cliente_busqueda").getValue();
             var nombre = this.getView().byId("txt_nombre_cliente_busqueda").getValue();
-
-            if (ruc || nombre) {
-
+            if (ruc || nombre) 
+            {
                 var result = reclamoServices.buscarCliente(ruc, nombre);
-
-                if (result.c === "s") {
-
-                    if (result.data.success) {
-
+                if (result.c === "s") 
+                {
+                    if (result.data.success) 
+                    {
                         this.getView().byId("dlg_DocNuevobuscarCliente_resultado").open();
                         this.getView().getModel().setProperty("/BusquedaClientes", result.data.lstClientes);
                         this.getView().getModel().refresh();
-
-                    } else {
-
+                    } 
+                    else 
+                    {
                         sap.m.MessageToast.show(result.data.errors.reason, {
                             duration: 3000
                         });
-
                     }
-
-
-                } else {
+                } 
+                else 
+                {
                     sap.m.MessageToast.show(result.m, {
                         duration: 3000
                     });
                 }
-
-                console.log(result);
-            } else {
+            } 
+            else 
+            {
                 sap.m.MessageToast.show('Ingrese RUC ó Razón social', {
                     duration: 1000
                 });
                 return;
             }
-            
-
         },
         SeleccionaCliente: function (evt) {
             this.getView().byId("dlg_buscar_rec_nuevo").close()
             var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
             this.getView().getModel().setProperty("/clienteSeleccionado", obj);
             var result = reclamoServices.reemplazarCiente(obj.codigo);
-             if(result.c === "s"){
-
-                        if(result.data.success){
+            if(result.c === "s")
+            {
+                if(result.data.success)
+                {
+                    this.getView().getModel().refresh();
+                    for( var i=0;i<result.data.Interlocutores.length;i++)
+                    {
+                        if(result.data.Interlocutores[i].Funcion="AG")
+                        {
+                            this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/KUNNR",result.data.Interlocutores[0].Cliente.Codigo) ;
+                            this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/NOMBRE",result.data.Interlocutores[0].Cliente.Descripcion);
+                            this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/Direccion",result.data.Interlocutores[0].Cliente.Direccion);
+                            this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/Ciudad",result.data.Interlocutores[0].Cliente.CodigoPostal);
+                            this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/Telefono",result.data.Interlocutores[0].Cliente.Telefono);
+                            this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/NIF",result.data.Interlocutores[0].Cliente.Ruc);
+                            this.getView().getModel().setProperty("/reclamo/mail",result.data.Interlocutores[0].Cliente.Mail);
                             this.getView().getModel().refresh();
-                            for( var i=0;i<result.data.Interlocutores.length;i++){
-                                if(result.data.Interlocutores[i].Funcion="AG"){
-                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/KUNNR",result.data.Interlocutores[0].Cliente.Codigo) ;
-                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/NOMBRE",result.data.Interlocutores[0].Cliente.Descripcion);
-                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/Direccion",result.data.Interlocutores[0].Cliente.Direccion);
-                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/Ciudad",result.data.Interlocutores[0].Cliente.CodigoPostal);
-                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/Telefono",result.data.Interlocutores[0].Cliente.Telefono);
-                                    this.getView().getModel().setProperty("/objReclamo/Interlocutor/AG/NIF",result.data.Interlocutores[0].Cliente.Ruc);
-                                    this.getView().getModel().setProperty("/reclamo/mail",result.data.Interlocutores[0].Cliente.Mail);
-                                    this.getView().getModel().refresh();
-                                }
-                            }
-                            this.getView().byId("dlg_DocNuevobuscarCliente_resultado").close();
-
-                        }else{
-
-                            sap.m.MessageToast.show(result.data.errors.reason, {
-                                duration: 3000
-                            });
                         }
+                    }
+                    this.getView().byId("dlg_DocNuevobuscarCliente_resultado").close();
 
-                    }else{
-                        sap.m.MessageToast.show(result.m, {
+                }
+                else
+                {
+
+                    sap.m.MessageToast.show(result.data.errors.reason, {
+                        duration: 3000
+                    });
+                }
+
+            }
+            else
+            {
+                sap.m.MessageToast.show(result.m, {
                     duration: 3000
                 });
-                    }
+            }
         },
-        onCopiarCliente: function () {
+        onCopiarCliente: function () 
+        {
             var codigo = this.getView().byId("txt_codigo").getValue();
             var result = reclamoServices.reemplazarCiente(codigo);
-            if(result){
+            if(result)
+            {
                 this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/PCONTACTO",result.data.Interlocutores[0].Cliente.Descripcion);
                 this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/DIRECCION",result.data.Interlocutores[0].Cliente.Direccion);
                 this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/CPOSTAL",result.data.Interlocutores[0].Cliente.CodigoPostal);
