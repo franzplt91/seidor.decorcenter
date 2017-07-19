@@ -1,56 +1,62 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/m/MessageToast",
-	"sap/ui/core/UIComponent",
-	"sap/ui/model/json/JSONModel",
-	"pe/com/seidor/sap/decor/ventas/services/reclamoServices"
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageToast",
+    "sap/ui/core/UIComponent",
+    "sap/ui/model/json/JSONModel",
+    "pe/com/seidor/sap/decor/ventas/services/reclamoServices"
 ], function (Controller, MessageToast, UIComponent, JSONModel, reclamoServices) {
-	"use strict";
+    "use strict";
 
-	return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Reclamos.RecBuscar", {
+    return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Reclamos.RecBuscar", {
 
-		onInit: function() {
-			
-			var oRouter = UIComponent.getRouterFor(this);
-			oRouter.attachRoutePatternMatched(this.onRouteMatched, this);			
+        onInit: function() {
+            
+            var oRouter = UIComponent.getRouterFor(this);
+            oRouter.attachRoutePatternMatched(this.onRouteMatched, this);           
 
-		},
-		onRouteMatched: function(oEvent) {
-			
-			var oData =		{
-					numReclamo: "" ,
-					///Inicio Buscar Reclamo
-					datosRecBuscar:{
-						"pNumeroReclamo": "0100004476" ,
-						"pNumeroPedido": "" ,
-						"pCodigoCliente": "" ,
-						"pNombreCliente": "" ,
-						"pMaterial": "" ,
-						"pFechaCreacionI": "2012-07-14T05:00:00.000Z" ,
-						"pFechaCreacionF": "2017-07-15T14:32:12.204Z" ,
-						"pEstado": "" ,
-						"pUsuario": "" ,
-						
-						"fecini": "2012-07-14" ,
-						"fecfin": "2017-07-15"
-					},
+        },
+        onRouteMatched: function(oEvent) {
+                //////Inicio Fecha Actual/////////////////////////////////////////////////////////////////////////
+                var date = new Date();
+                var yyyy = date.getFullYear().toString();
+                var mm = (date.getMonth() + 1).toString(); // getMonth() is zero-based
+                var dd  = date.getDate().toString();
+                var fechaActual = yyyy +"-"+ (mm[1] ? mm : "0" + mm[0]) +"-"+ (dd[1] ? dd : "0" + dd[0]); // padding 
+                ///////Fin Fecha Actual///////////////////////////////////////////////////////////////////////////
+            var oData =     {
+                    numReclamo: "" ,
+                    ///Inicio Buscar Reclamo
+                    datosRecBuscar:{
+                        "pNumeroReclamo": "" ,
+                        "pNumeroPedido": "" ,
+                        "pCodigoCliente": "" ,
+                        "pNombreCliente": "" ,
+                        "pMaterial": "" ,
+                        "pFechaCreacionI": "" ,
+                        "pFechaCreacionF": "" ,
+                        "pEstado": "" ,
+                        "pUsuario": "" ,
+                        
+                        "fecini": fechaActual ,
+                        "fecfin": fechaActual
+                    },
 
 
-					listaReclamos: {
+                    listaReclamos: {
 
-										"KTABG": "07/07/2017" ,
-										"KUNNR": "0000101317" ,
-										"MAKTX": "NVA ASIA D-TEL BIDET TUB/MET 1.2MT C/SOP" ,
-										"MATNR": "11000004" ,
-										"NAME1": "Cliente Eventual La Molina" ,
-										"STAT": "Pendiente" ,
-										"VBELN": "0100004422" ,
-										"VGBEL": "0000238187"
-					},
+                                        "KTABG": "07/07/2017" ,
+                                        "KUNNR": "0000101317" ,
+                                        "MAKTX": "NVA ASIA D-TEL BIDET TUB/MET 1.2MT C/SOP" ,
+                                        "MATNR": "11000004" ,
+                                        "NAME1": "Cliente Eventual La Molina" ,
+                                        "STAT": "Pendiente" ,
+                                        "VBELN": "0100004422" ,
+                                        "VGBEL": "0000238187"
+                    },
 
-					///Fin Buscar Reclamo
+                    ///Fin Buscar Reclamo
 
-					///////Inicio Visualizar Reclamo///////////
+                    ///////Inicio Visualizar Reclamo///////////
                     objReclamo: {
 
                             "Contactos": {
@@ -299,14 +305,14 @@ sap.ui.define([
                         }],
 
                         ///Fin Visualizar Reclamo
- 			};
+            };
 
             if (oEvent.getParameter("name") == "appRecBuscar") {
-	            	this.getView().byId("SplitAppId").setMode("HideMode");
-	            	this.getView().setModel(new JSONModel(oData));
-					this.getView().getModel().setProperty("/dataIni",window.dataIni);
-		            this.getView().getModel().refresh(true);
-					this.getView().byId("dlg_recBuscar_inicio").open();
+                    this.getView().byId("SplitAppId").setMode("HideMode");
+                    this.getView().setModel(new JSONModel(oData));
+                    this.getView().getModel().setProperty("/dataIni",window.dataIni);
+                    this.getView().getModel().refresh(true);
+                    this.getView().byId("dlg_recBuscar_inicio").open();
                 };
 
                 var tipoCabecera = [];
@@ -332,94 +338,96 @@ sap.ui.define([
 
                 this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);
                 this.getView().getModel().refresh();
-		},
+        },
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-		onBuscarDlg_recBuscar_inicio:function()
+        onBuscarDlg_recBuscar_inicio:function()
         {
-			var datosRecBuscar = this.getView().getModel().getProperty("/datosRecBuscar") ;
-			var result = reclamoServices.buscarReclamos(datosRecBuscar);
-				if(result.c === "s")
+            var datosRecBuscar = this.getView().getModel().getProperty("/datosRecBuscar") ;
+            this.getView().getModel().setProperty("/datosRecBuscar/pFechaCreacionI",datosRecBuscar.fecini) ;
+            this.getView().getModel().setProperty("/datosRecBuscar/pFechaCreacionF",datosRecBuscar.fecfin) ;
+            var result = reclamoServices.buscarReclamos(datosRecBuscar);
+                if(result.c === "s")
                 {
-					if(result.data.success)
+                    if(result.data.success)
                     {
-                		this.getView().getModel().setProperty("/listaReclamos",result.data.listaReclamos) ;
-						this.getView().byId("dlg_recBuscar_inicio").close();
-						this.getView().byId("dlg_lista_recBuscar").open();		
-					}
+                        this.getView().getModel().setProperty("/listaReclamos",result.data.listaReclamos) ;
+                        this.getView().byId("dlg_recBuscar_inicio").close();
+                        this.getView().byId("dlg_lista_recBuscar").open();      
+                    }
                     else
                     {
-						sap.m.MessageToast.show(result.data.errors.reason, {
-			                duration: 3000
-			            });
-					}
-				}
+                        sap.m.MessageToast.show(result.data.errors.reason, {
+                            duration: 3000
+                        });
+                    }
+                }
                 else
                 {
-					sap.m.MessageToast.show(result.m, {
+                    sap.m.MessageToast.show(result.m, {
                        duration: 3000
                     });
-				}
-		},
-		onSeleccionarReclamo:function(oEvent)
+                }
+        },
+        onSeleccionarReclamo:function(oEvent)
         {
-			var reclamoSeleccionado = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
-			this.getView().getModel().setProperty("/numReclamo", reclamoSeleccionado.VBELN);
-		},
-		onVerDlg_lista_recBuscar:function()
+            var reclamoSeleccionado = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
+            this.getView().getModel().setProperty("/numReclamo", reclamoSeleccionado.VBELN);
+        },
+        onVerDlg_lista_recBuscar:function()
         {
-			var numReclamo = this.getView().getModel().getProperty("/numReclamo") ;
-			var result = reclamoServices.verReclamos(numReclamo);
-				if(result.c === "s")
+            var numReclamo = this.getView().getModel().getProperty("/numReclamo") ;
+            var result = reclamoServices.verReclamos(numReclamo);
+                if(result.c === "s")
                 {
-					if(result.data.success)
+                    if(result.data.success)
                     {
-						this.getView().getModel().setProperty("/reclamo", result.data.reclamo[0] ) ;
-						this.getView().getModel().setProperty("/objReclamo", result.data.objReclamo ) ;
-						this.getView().getModel().refresh();
-						for( var i=0;i<result.data.objReclamo.Interlocutor.length;i++)
+                        this.getView().getModel().setProperty("/reclamo", result.data.reclamo[0] ) ;
+                        this.getView().getModel().setProperty("/objReclamo", result.data.objReclamo ) ;
+                        this.getView().getModel().refresh();
+                        for( var i=0;i<result.data.objReclamo.Interlocutor.length;i++)
                         {
-							if(result.data.objReclamo.Interlocutor[i].PARVW)
+                            if(result.data.objReclamo.Interlocutor[i].PARVW)
                             {
-								this.getView().getModel().setProperty("/objReclamo/Interlocutor/"+result.data.objReclamo.Interlocutor[i].PARVW, result.data.objReclamo.Interlocutor[i]) ;
-								this.getView().getModel().refresh();
-								var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
-							}
-						}
-						for( var i=0;i<result.data.objReclamo.Texto.length;i++)
+                                this.getView().getModel().setProperty("/objReclamo/Interlocutor/"+result.data.objReclamo.Interlocutor[i].PARVW, result.data.objReclamo.Interlocutor[i]) ;
+                                this.getView().getModel().refresh();
+                                var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
+                            }
+                        }
+                        for( var i=0;i<result.data.objReclamo.Texto.length;i++)
                         {
-							if(result.data.objReclamo.Texto[i].CodTexto){
-								this.getView().getModel().setProperty("/objReclamo/Texto/"+result.data.objReclamo.Texto[i].CodTexto, result.data.objReclamo.Texto[i]) ;
-								this.getView().getModel().refresh();
-								var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
-							}
-						}
-						console.log(this.getView().getModel().getProperty("/objReclamo/Interlocutor"));
-						this.getView().byId("dlg_lista_recBuscar").close();
-					}
+                            if(result.data.objReclamo.Texto[i].CodTexto){
+                                this.getView().getModel().setProperty("/objReclamo/Texto/"+result.data.objReclamo.Texto[i].CodTexto, result.data.objReclamo.Texto[i]) ;
+                                this.getView().getModel().refresh();
+                                var ag = this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG");
+                            }
+                        }
+                        console.log(this.getView().getModel().getProperty("/objReclamo/Interlocutor"));
+                        this.getView().byId("dlg_lista_recBuscar").close();
+                    }
                     else
                     {
-						sap.m.MessageToast.show(result.data.errors.reason, {
-			                duration: 3000
-			            });
-					}
+                        sap.m.MessageToast.show(result.data.errors.reason, {
+                            duration: 3000
+                        });
+                    }
 
-				}
+                }
                 else
                 {
-					sap.m.MessageToast.show(result.m, {
+                    sap.m.MessageToast.show(result.m, {
                        duration: 3000
                     });
-				}
-		},
+                }
+        },
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		goHome:function()
+        goHome:function()
         {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("appHome");
-		},
-		onListMasterDatos : function(oEvent) 
+        },
+        onListMasterDatos : function(oEvent) 
         {
-			var obj = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
+            var obj = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
             if(obj.codigo===1)
             {
                 this.byId("SplitAppId").to(this.createId("pag_rec_nuevo_reclamo"));
@@ -436,7 +444,7 @@ sap.ui.define([
             {
                 this.byId("SplitAppId").to(this.createId("detail_rec_nuevo_cambiar_status"));
             }
-		},
-	});
+        },
+    });
 
 });
