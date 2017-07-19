@@ -16,7 +16,13 @@ sap.ui.define([
             window.numeroDocumento = null;
         },
         onRouteMatched: function (oEvent) {
-            
+            //////Inicio Fecha Actual/////////////////////////////////////////////////////////////////////////
+                var date = new Date();
+                var yyyy = date.getFullYear().toString();
+                var mm = (date.getMonth() + 1).toString(); // getMonth() is zero-based
+                var dd  = date.getDate().toString();
+                var fechaActual = yyyy +"-"+ (mm[1] ? mm : "0" + mm[0]) +"-"+ (dd[1] ? dd : "0" + dd[0]); // padding 
+                ///////Fin Fecha Actual///////////////////////////////////////////////////////////////////////////
             var oData = {
                 datosBuscarDoc: {
                     "tipoBusqueda": "1",
@@ -26,8 +32,8 @@ sap.ui.define([
                     "fechaInicio": "", //2017-07-10T20:57:43.311Z
                     "fechaFin": "", //2017-07-10T20:57:43.311Z
                     "codAsesor": window.dataIni.person.PerNr, //00001802
-                    "fecInicio1": "", //2017-07-10
-                    "fecFin1": "", //2017-07-10
+                    "fecInicio1": fechaActual, //2017-07-10
+                    "fecFin1": fechaActual, //2017-07-10
                     "Detalle": [],
                     "ClaseDocumento": "", //String si es Cotizacion
                     "NumeroPedido": "",
@@ -85,6 +91,11 @@ sap.ui.define([
             this.getView().getModel().setProperty("/dataIni", window.dataIni);
             this.getView().getModel().setProperty("/modelTipoBusq", listaTipoDoc);
             this.getView().getModel().refresh();
+        },
+        //Boton Home
+        goHome: function () {
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("appHome");
         },
         //Buscar en Dialgo Buscar
         onBuscarDlg_DialogDocBuscar: function (oEvent) {
