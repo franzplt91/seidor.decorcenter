@@ -6,29 +6,75 @@ sap.ui.define([
 
     return {
 
-        /////Documento Nuevo/////////////////////////////
-
-        // Crear Cotizacion
-        crearDoc: function(crearDoc) {
-
-            var contexto = {};
-            contexto.servicio = "documentosServices.crearDoc()";
-            contexto.url = "crearDocumento.aspx";
-            contexto.parametros = { tipoDocumento: crearDoc.tipoDocumento, pNumPedido: crearDoc.referencia};
-
-            return utilService.exec(contexto);
-            
-        },
-
-
-
-        ///////Fin Documento Nuevo//////////////////////////////////////////
-
         //INICIO EDELACRUZ: 
         //Valores Dialog "Buscar Documento"(dlg_DialogDocBuscarInicio.xml)
         //Combo campo: "tipo de busqueda"
         // Listar busqueda de documentos
-        buscarDocumento: function (buscarDoc){
+        buscarDocumento: function (tipoBusq, datoBusq, nMat, claseD, fecIni, fecfin, asesor)
+        {
+            var contexto = {};
+            contexto.servicio = "documentosServices.buscarDocumento()";
+            contexto.url = "buscarDocumento.aspx";
+            contexto.parametros = {tipoBusqueda: tipoBusq,
+                datoBusqueda: datoBusq,
+                nMaterial: nMat,
+                claseDoc: claseD,
+                fecInicio1: fecIni,
+                fecFin1: fecfin,
+                asesor: asesor
+            };
+            var resultado = utilService.exec(contexto);
+            return resultado;
+        },
+        //FIN EDELACRUZ
+
+        visualizarDocumento: function (accion, numPedido)
+        {
+            var contexto = {};
+            contexto.servicio = "documentosServices.visualizarDocumento()";
+            contexto.url = "documentoVentas.aspx";
+            contexto.parametros = {                
+                accion: accion,
+                pNumPedido: numPedido
+            };         
+            var resultado = utilService.exec(contexto);
+            return resultado;
+        },
+
+        anadirMaterialMasterDoc: function(material){
+            var materialPedido = material;
+            var contexto = {};
+            contexto.servicio = "materialServices.anadirMaterialMasterDoc()";
+            contexto.url = "material.aspx";
+            contexto.parametros = materialPedido;
+
+            return utilService.exec(contexto);
+        },
+
+
+        //INICIO EDELACRUZ
+        crearInstalacion: function (venta1, venta2, venta3, venta4, visita1, visita2, visita3,visita4)
+        {
+            var contexto = {};
+            contexto.servicio = "documentosServices.crearInstalacion()";
+            contexto.url = "documentoVentas.aspx";
+            contexto.parametros = {venta1: venta1,
+                                   venta2: venta2,
+                                   venta3: venta3,
+                                   venta4: venta4,
+                                   visita1: visita1,
+                                   visita2: visita2,
+                                   visita3: visita3,
+                                   visita4: visita4,
+                                   instalacion: "instalacion"
+            };
+            var resultado = utilService.exec(contexto);
+            return resultado;
+        },
+        //FIN EDELACRUZ
+
+        // Listar busqueda de documentos
+         buscarDocumento: function (buscarDoc){
             var contexto = {};
             contexto.servicio = "documentosServices.buscarDocumento()";
             contexto.url = "buscarDocumento.aspx";
@@ -62,25 +108,7 @@ sap.ui.define([
             var resultado = utilService.exec(contexto);
             return resultado;
         },
-        
-        
-        crearInstalacion: function (venta1, venta2, venta3, venta4, visita1, visita2, visita3,visita4)
-        {
-            var contexto = {};
-            contexto.servicio = "documentosServices.crearInstalacion()";
-            contexto.url = "documentoVentas.aspx";
-            contexto.parametros = {venta1: venta1,
-                                   venta2: venta2,
-                                   venta3: venta3,
-                                   venta4: venta4,
-                                   visita1: visita1,
-                                   visita2: visita2,
-                                   visita3: visita3,
-                                   visita4: visita4,
-                                   instalacion: "instalacion"
-            };
-            var resultado = utilService.exec(contexto);
-            return resultado;
-        }
+
+
     };
 });

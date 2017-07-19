@@ -10,16 +10,11 @@
     	
 
 
-
-
-
-    	<Dialog title="Ingresar la Cantidad" id="dlg_DocNuevoaddProductoonDialog" stretchOnPhone="true" contentWidth="20%" contentHeight="65%">
+<Dialog title="Stock por Llegar" id="dlg_stockPorLlegar" stretchOnPhone="true" contentWidth="35%"
+                    contentHeight="32%">
         <content>
-            <Panel>
-                <content>
 
-
-                    <f:Form editable="true">
+            <f:Form editable="true">
                            <!-- <f:title>
                                 <core:Title text="Address" />
                             </f:title> -->
@@ -28,7 +23,7 @@
                                     labelSpanXL="3"
                                     labelSpanL="3"
                                     labelSpanM="3"
-                                    labelSpanS="5"
+                                    labelSpanS="4"
                                     adjustLabelSpan="false"
                                     emptySpanXL="4"
                                     emptySpanL="4"
@@ -42,28 +37,29 @@
                             <f:formContainers>
                                 <f:FormContainer>
                                     <f:formElements>
-                                        <f:FormElement label="Cantidad">
+                                        <f:FormElement label="Código de Material">
                                             <f:fields>
-                                                <Input value="1" id="txt_cantidad_material"></Input>
+                                                <Input placeholder="Ingrese Código de Material"  id="txt_cod_material_stockPorLlegar" value="{/codMaterial}"></Input>
                                             </f:fields>
                                         </f:FormElement>
-                                        <f:FormElement label="Ambiente">
+                                        <f:FormElement label="Fecha de Inicio">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" required="true" id="com_ambiente_material">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
-                            </Select>
+                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}" id="date_fec_inicio_stockPorLlegar">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
                                             </f:fields>
                                         </f:FormElement>
-                                        <f:FormElement label="Opción">
+                                        <f:FormElement label="Fecha de Fin">
                                             <f:fields>
-                                                <Select  required="true" id="com_opcion_material">
-                                                <core:Item key="01" text="01"/>
-                                                <core:Item key="02" text="02"/>
-                                                <core:Item key="03" text="03"/>
-                                                <core:Item key="04" text="04"/>
-                                                <core:Item key="05" text="05"/>
-                                                <core:Item key="06" text="06"/>
-                                            </Select>
+                                                <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short" 
+                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}" id="date_fec_fin_stockPorLlegar">
+                                            <layoutData>
+                                                <l:GridData span="L4 M4 S6"/>
+                                            </layoutData>
+                                    </DatePicker>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -71,18 +67,20 @@
                                 </f:FormContainer>
                             </f:formContainers>
                         </f:Form>
-                </content>
-            </Panel>
+            
         </content>
+
+       
+
+
         <beginButton>
-            <Button text="Añadir" type="Accept" icon="sap-icon://add" press="onDocNuevoMasterProductosAddonDialog"></Button>
+            <Button text="Continuar" type="Accept" icon="sap-icon://accept" press="onContinuarStockPorLlegar" value="{/codMaterial}" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoClosedlg_addProductoonDialog"/>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </endButton>
     </Dialog>
 
 
-
-    
+    	
     </core:FragmentDefinition>

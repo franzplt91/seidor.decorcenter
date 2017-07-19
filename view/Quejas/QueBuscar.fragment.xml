@@ -47,21 +47,21 @@
                     <f:formElements>
                         <f:FormElement label="Número de Queja">
                             <f:fields>
-                                    <Input  width="" value="{/datosQueja/pNumeroReclamo}"></Input>
+                                    <Input  width="" value="{/datosQueja/pNumeroReclamo}" placeholder="Ingrese Nro. de Queja"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Cliente">
                             <f:fields>
-                                    <Input value="{/datosQueja/pCodigoCliente}"></Input>
+                                    <Input value="{/datosQueja/pCodigoCliente}" placeholder="Ingrese Código / DNI"></Input>
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="Fecha Inicio">
                             <f:fields>
-                                    <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" value="{/datosQueja/pFechaCreacionI}">
+                                    <DatePicker id="date_fechaInicio_recBuscar" valueFormat="YYYY-MM-dd" displayFormat="short" value="{/datosQueja/pFechaCreacionI}" >
                                             <layoutData>
-                                                <l:GridData span="L4 M4 S6"/>
+                                                <l:GridData span="L6 M6 S6"/>
                                             </layoutData>
                                     </DatePicker>
                             </f:fields>
@@ -72,7 +72,7 @@
                                     <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
                                          value="{/datosQueja/pFechaCreacionF}">
                                             <layoutData>
-                                                <l:GridData span="L4 M4 S6"/>
+                                                <l:GridData span="L6 M6 S6"/>
                                             </layoutData>
                                     </DatePicker>
                             </f:fields>

@@ -38,7 +38,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Número de Documento">
                                             <f:fields>
-                                                <Input ></Input>
+                                                <Input id="txt_numeroDocumento_DocModificar"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                     </f:formElements>

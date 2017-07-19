@@ -5,8 +5,9 @@ sap.ui.define([
     "pe/com/seidor/sap/decor/ventas/services/QuejaServices",
     "sap/ui/model/json/JSONModel",
     "pe/com/seidor/sap/decor/ventas/services/imprimirServices",
-    "sap/m/MessageToast"
-], function (Controller,  UIComponent, utilString, QuejaServices, JSONModel,imprimirServices,MessageToast) {
+    "sap/m/MessageToast",
+    "pe/com/seidor/sap/decor/ventas/services/documentosServices",
+], function (Controller,  UIComponent, utilString, QuejaServices, JSONModel,imprimirServices,MessageToast,documentosServices) {
 
         "use strict";
 
@@ -18,10 +19,27 @@ sap.ui.define([
             },
 
             onRouteMatched: function (oEvent) {
-
-              utilString.prepareDataIni();
-
+                //////Inicio Fecha Actual/////////////////////////////////////////////////////////////////////////
+                var date = new Date();
+                var yyyy = date.getFullYear().toString();
+                var mm = (date.getMonth() + 1).toString(); // getMonth() is zero-based
+                var dd  = date.getDate().toString();
+                var fechaActual = yyyy +"-"+ (mm[1] ? mm : "0" + mm[0]) +"-"+ (dd[1] ? dd : "0" + dd[0]); // padding 
+                ///////Fin Fecha Actual///////////////////////////////////////////////////////////////////////////
+                utilString.prepareDataIni();
                 var oData = {
+                        modelInstala : {
+                            "pedido1": "",
+                            "pedido2": "",
+                            "pedido3": "",
+                            "pedido4": "",
+                            "cotiza1": "",
+                            "cotiza2": "",
+                            "cotiza3": "",
+                            "pedvisi": ""
+                            
+                        },
+
 
                         datosQueja: {
                             "NumQueja": "" ,
@@ -35,8 +53,8 @@ sap.ui.define([
                             "ADRNR": "",
                             "pNumeroReclamo": "" ,
                             "pCodigoCliente": "" ,
-                            "pFechaCreacionI": "" ,
-                            "pFechaCreacionF": "" 
+                            "pFechaCreacionI": fechaActual ,
+                            "pFechaCreacionF": fechaActual 
                         },
 
                         imprimirDoc:{
@@ -110,13 +128,7 @@ sap.ui.define([
                 },100);
             },
             goDocInstalacion: function(oEvent){
-                var self = this;
-                self.getView().byId("loadingControl").open();
-                setTimeout(function(){
-                var oRouter = sap.ui.core.UIComponent.getRouterFor(self);
-                oRouter.navTo("appDocInstalacion");
-                self.getView().byId("loadingControl").close();
-                },100);
+                this.getView().byId("dlg_DialogDocInstalacion").open();
             },
             goDocFlujo: function(oEvent){
                 var self = this;
@@ -272,6 +284,73 @@ sap.ui.define([
             },
 
 
+            /////////Inicio Instalacion////////////////////////        
+            onContinuarDlg_DialogDocInstalacion:function(){
+
+                var pedido1 = this.getView().getModel().getProperty("/modelInstala/pedido1");
+                var pedido2 = this.getView().getModel().getProperty("/modelInstala/pedido2");
+                var pedido3 = this.getView().getModel().getProperty("/modelInstala/pedido3");
+                var pedido4 = this.getView().getModel().getProperty("/modelInstala/pedido4");
+                var cotiza1 = this.getView().getModel().getProperty("/modelInstala/cotiza1");
+                var cotiza2 = this.getView().getModel().getProperty("/modelInstala/cotiza2");
+                var cotiza3 = this.getView().getModel().getProperty("/modelInstala/cotiza3");
+                var pedvisi = this.getView().getModel().getProperty("/modelInstala/pedvisi");
+
+                var result = documentosServices.crearInstalacion(pedido1,pedido2,pedido3,pedido4,cotiza1,cotiza2,cotiza3,pedvisi);
+                if (result.c === "s") {
+
+                                if (result.data.success) {
+
+
+                                    this.getView().getModel().setProperty("/resultIntala", result.data.result);
+                                    this.getView().getModel().refresh();
+                                    window.pedidoInstalacion = result.data.numPedido;
+                                    this.getView().getModel().refresh();
+                                    this.getView().byId("dlg_DialogDocInstalacion").close();
+                                    this.getView().byId("dlg_MensajeAvisoInstalacion").open();
+
+
+                                } else {
+
+                                    sap.m.MessageToast.show(result.data.result, {
+                                        duration: 3000
+                                    });
+
+                                }
+
+
+                            }
+
+
+                             else {
+                                sap.m.MessageToast.show(result.m, {
+                                    duration: 3000
+                                });
+                            }
+
+                            console.log(result.data);
+
+               
+                
+            },
+
+            onOkMensajeInstalacion:function(){
+                this.getView().byId("dlg_MensajeAvisoInstalacion").close();
+                if(window.pedidoInstalacion){
+                    var self = this;
+                self.getView().byId("loadingControl").open();
+                setTimeout(function(){
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(self);
+                oRouter.navTo("appDocModificar");
+                self.getView().byId("loadingControl").close();
+                },100);
+                }
+                
+            },
+            onCancelDlg_DialogDocInstalacion:function(){
+                this.getView().byId("dlg_DialogDocInstalacion").close();
+            },
+            ////////Fin Instalacion////////////////////////////
             //Usuario-----------------------------
 
             goUsuInformacion: function(oEvent){
@@ -731,27 +810,110 @@ sap.ui.define([
                 var self = this;
 
 
-                            self.getView().byId("loadingControl").open();
+                            
+
+                        if(buscarCliQueja.CodCli!==""){
+                                self.getView().byId("loadingControl").open();
                             setTimeout(function(){
-
-
 
                             if (result.c === "s") {
 
                                 if (result.data.success) {
+                                                if(result.data.objCliente.Mail == "X")
+                                            {
+                                                MessageToast.show("No se encontró información") ;
+                                            }else{
+                                                var apellidoPat = result.data.objCliente.APPAT ;
+                                                var apellidoMat = result.data.objCliente.APMAT ;
+                                                var nombre = result.data.objCliente.NOMBRE ;
+                                                var descripcion = result.data.objCliente.Descripcion ;
+                                                
 
-                                    var apellidoPat = result.data.objCliente.APPAT ;
-                                    var apellidoMat = result.data.objCliente.APMAT ;
-                                    var nombre = result.data.objCliente.NOMBRE ;
+                                                                    //NOMBRES
+                                                        if (result.data.objCliente.APPAT == null)
+                                                        {
+                                                            apellidoPat = "";
+                                                        }
+                                                        else
+                                                        {
+                                                            apellidoPat = result.data.objCliente.APPAT;
+                                                        }
+                                                        
+                                                        if (result.data.objCliente.APMAT == null)
+                                                        {
+                                                            apellidoMat = "";
+                                                        }
+                                                        else
+                                                        {
+                                                            apellidoMat = result.data.objCliente.APMAT;
+                                                        }
+                                                        
+                                                        if (result.data.objCliente.NOMBRE == null)
+                                                        {
+                                                            nombre = "";
+                                                        }
+                                                        else
+                                                        {
+                                                            nombre = result.data.objCliente.NOMBRE;
+                                                        }
 
-                                    buscarCliQueja.NomCliente = apellidoPat+" "+apellidoMat+" "+nombre ;
-                                    buscarCliQueja.Calles = result.data.objCliente.DIREC ;
-                                    buscarCliQueja.Ubicacion = result.data.objCliente.Ciudad ;
-                                    buscarCliQueja.Telefono = result.data.objCliente.Telefono ;
-                                    //buscarCliQueja.OfiVenta = self.getView().getModel().getProperty("/RetornoBuscarCliQueja");
-                                    //buscarCliQueja.TextoQueja = self.getView().getModel().getProperty("/RetornoBuscarCliQueja");
+                                                        if (result.data.objCliente.Descripcion == null)
+                                                        {
+                                                            descripcion = "";
+                                                        }
+                                                        else
+                                                        {
+                                                            descripcion = result.data.objCliente.Descripcion;
+                                                        }       
+                                                        buscarCliQueja.NomCliente = apellidoPat+" "+apellidoMat+" "+nombre+" "+descripcion ;
 
-                                    self.getView().getModel().refresh();
+
+                                                         //DIRECCION      
+                                                        if (buscarCliQueja.CodCli.length == 10)
+                                                        {
+                                                            buscarCliQueja.Calles = result.data.objCliente.Direccion;
+                                                        }
+                                                        if (buscarCliQueja.CodCli.length == 8)
+                                                        {
+                                                            buscarCliQueja.Calles = result.data.objCliente.DIREC;
+                                                        }                                
+                                                        if (buscarCliQueja.CodCli.length == 11)
+                                                        {
+                                                            buscarCliQueja.Calles = result.data.objCliente.DIREC;
+                                                            
+                                                            if(buscarCliQueja.Calles == null || buscarCliQueja.Calles == undefined || buscarCliQueja.Calles == "")
+                                                            {
+                                                                buscarCliQueja.Calles = result.data.objCliente.Direccion;
+                                                            }
+                                                        }  
+
+                                                        //Ubicacion
+                                                        if(result.data.objCliente.Ciudad == null || result.data.objCliente.Ciudad == "" || result.data.objCliente.Ciudad == " " || result.data.objCliente.Ciudad == undefined)
+                                                        {
+                                                            if (buscarCliQueja.CodCli.length == 11)
+                                                            {                                       
+                                                                buscarCliQueja.Ubicacion = result.data.objCliente.Distrito ; 
+                                                                
+                                                                if(result.data.objCliente.Distrito == null || result.data.objCliente.Distrito == "" || result.data.objCliente.Distrito == undefined)
+                                                                {
+                                                                    buscarCliQueja.Ubicacion = result.data.objCliente.Ciudad ; 
+                                                                }
+                                                            }
+                                                            else{
+                                                                buscarCliQueja.Ubicacion = result.data.objCliente.Ciudad ;
+                                                            }
+                                                        }
+                                                        else{
+                                                            buscarCliQueja.Ubicacion = result.data.objCliente.Ciudad ;  
+                                                        }
+
+                                                            buscarCliQueja.Telefono = result.data.objCliente.Telefono ;
+                                                            //buscarCliQueja.OfiVenta = self.getView().getModel().getProperty("/RetornoBuscarCliQueja");
+                                                            //buscarCliQueja.TextoQueja = self.getView().getModel().getProperty("/RetornoBuscarCliQueja");
+
+                                                            self.getView().getModel().refresh();
+                                            
+                                             }
 
                                 } else {
 
@@ -772,11 +934,13 @@ sap.ui.define([
                             }
 
                             console.log(result.data);
-
-
                             self.getView().byId("loadingControl").close();
                             },500);
 
+                        }else{
+                            MessageToast.show("Ingresar DNI o RUC");
+                        }
+                            
             },
             
             
@@ -786,39 +950,42 @@ sap.ui.define([
                 var self = this;
 
 
+                        
+                if(self.getView().byId("txt_ruc_nuevaQueja").getValue()=="") 
+                {
+                    MessageToast.show("Ingrese RUC o DNI");
+                }
+                else if(self.getView().byId("txt_descripcion_nuevaQueja").getValue()=="") 
+                {
+                   MessageToast.show("Ingrese Nombre o Descripción");
+                }
+                else if(self.getView().byId("txt_calle_nuevaQueja").getValue()=="") 
+                {
+                   MessageToast.show("Ingresar Calle");
+                }
+                else if(self.getView().byId("txt_ubicacion_nuevaQueja").getValue()=="") 
+                {
+                   MessageToast.show("Ingresar Ubicación o Distrito");
+                }
+                else if(self.getView().byId("txt_telefono_nuevaQueja").getValue()=="") 
+                {
+                   MessageToast.show("Ingresar Teléfono");
+                }
+                else if(self.getView().byId("com_ofVentas_nuevaQueja").getSelectedKey()=="") 
+                {
+                   MessageToast.show("Ingresar Oficina de Ventas");
+                }
+                else if(self.getView().byId("txtArea_motivo_nuevaQueja").getValue()=="") 
+                {
+                  MessageToast.show("Ingresar Motivo de Queja");
+                }
+                else
+                {
+                
                         self.getView().byId("loadingControl").open();
                         setTimeout(function(){
-                
-                if(self.getView().byId("txt_ruc_nuevaQueja").getValue()==""){
-                    MessageToast.show("Ingrese RUC o DNI");
-                }else{
-
-                    if(self.getView().byId("txt_descripcion_nuevaQueja").getValue()==""){
-                    MessageToast.show("Ingrese Nombre o Descripción");
-                    }else{
-
-                        if(self.getView().byId("txt_calle_nuevaQueja").getValue()==""){
-                    MessageToast.show("Ingresar Calle");
-                    }else{
-
-                            if(self.getView().byId("txt_ubicacion_nuevaQueja").getValue()==""){
-                    MessageToast.show("Ingresar Ubicación o Distrito");
-                    }else{
-
-                            if(self.getView().byId("txt_telefono_nuevaQueja").getValue()==""){
-                    MessageToast.show("Ingresar Teléfono");
-                    }else{
-
-                            if(self.getView().byId("com_ofVentas_nuevaQueja").getSelectedKey()==""){
-                    MessageToast.show("Ingresar Oficina de Ventas");
-                    }else{
-
-                        if(self.getView().byId("txtArea_motivo_nuevaQueja").getValue()==""){
-                    MessageToast.show("Ingresar Motivo de Queja");
-                    }else{
-
-                    var nuevoQueja = self.getView().getModel().getProperty("/datosQueja");
-                var result = QuejaServices.guardarQueja(nuevoQueja);
+                        var nuevoQueja = self.getView().getModel().getProperty("/datosQueja");
+                        var result = QuejaServices.guardarQueja(nuevoQueja);
 
 
                                                     if (result.c === "s") {
@@ -853,73 +1020,36 @@ sap.ui.define([
                                                     }
 
                                                     console.log(result.data);
-
-                                                   
-
-
-                    }
-
-                    }
-                    }
-                    }
-                    }
-
-                    }
-
-
-                }
-
-                
-                 self.getView().byId("loadingControl").close();
+                        self.getView().byId("loadingControl").close();
                         },500);
+                           
+
+                    }
+                 
 
                 
             },
 
             onBuscarQueja:function(){
-                
-                
-
                 var buscarQueja = this.getView().getModel().getProperty("/datosQueja");
                 var result = QuejaServices.buscarQueja(buscarQueja);
-
                 var self = this;
-
-
                 self.getView().byId("loadingControl").open();
                 setTimeout(function(){
-
-
-
-
-
                             if (result.c === "s") {
-
                                 if (result.data.success) {
-
-
                                     buscarQueja.CodCli = result.data.objqueja.Contactos.KUNNR ;
                                     buscarQueja.NomCliente = result.data.objqueja.Interlocutor[0].NOMBRE ;
                                     buscarQueja.Calles = result.data.objqueja.Interlocutor[0].Calle ;
                                     buscarQueja.Ubicacion = result.data.objqueja.Interlocutor[0].Ciudad ;
                                     buscarQueja.Telefono = result.data.objqueja.Interlocutor[0].Telefono ;
                                     buscarQueja.OfiVenta  = result.data.objqueja.Contactos.VKBUR ;
-
                                     var texto = result.data.objqueja.Texto ;  
-
                                     buscarQueja.TextoQueja  = texto[1].Descripcion ;
-
-
-
                                     ///////////////////////////////////////
                                     buscarQueja.ADRNR = result.data.objqueja.Interlocutor[0].ADRNR ;
                                     ////////////////////////////////////////
                                     self.getView().getModel().refresh();
-
-                                            
-
-
-
                                 } else {
 
                                     sap.m.MessageToast.show(result.data.errors.reason, {
@@ -960,12 +1090,13 @@ sap.ui.define([
                 var self = this;
 
 
-                    self.getView().byId("loadingControl").open();
+                    
+
+
+    if ( self.getView().byId("txtArea_motivo_nuevaQueja").getValue()!="" )
+                    {
+                            self.getView().byId("loadingControl").open();
                     setTimeout(function(){
-
-
-
-
 
                             if (result.c === "s") {
 
@@ -1002,9 +1133,13 @@ sap.ui.define([
                             }
 
                             console.log(result.data);
-
                             self.getView().byId("loadingControl").close();
-},500);
+                            
+                                },500);
+                }else{
+                    MessageToast.show("Ingresar texto de la queja");
+                }
+                            
 
             },
 
@@ -1111,11 +1246,15 @@ sap.ui.define([
                                     verQuejaSeleccionado.Ubicacion = result.data.objqueja.Interlocutor[0].Ciudad ; //CodPostal
                                     verQuejaSeleccionado.Telefono = result.data.objqueja.Interlocutor[0].Telefono ;
                                     verQuejaSeleccionado.OfiVenta = result.data.objqueja.Contactos.VKBUR ;
-
-                                    var tamanoListTexto = result.data.objqueja.Texto.length - 1 ;
-                                    
-                                    var Texto = result.data.objqueja.Texto ;
-                                    verQuejaSeleccionado.TextoQueja = Texto[tamanoListTexto].Descripcion ;
+                                    for(var i=0; i < result.data.objqueja.Texto.length; i++ )
+                                    {
+                                        if ( result.data.objqueja.Texto[i].CodTexto == 'Z013' )
+                                        {
+                                            verQuejaSeleccionado.TextoQueja = result.data.objqueja.Texto[i].Descripcion;
+                                             
+                                            break;  
+                                        }
+                                    } 
 
                                     self.getView().getModel().refresh();
                                     self.getView().byId("dlg_QueVisualizar").open();
@@ -1160,18 +1299,13 @@ sap.ui.define([
             onVerBuscarQueja:function(){
 
                 var verBuscarQueja = this.getView().getModel().getProperty("/datosQueja");
-
-                var result = QuejaServices.verBuscarQueja(verBuscarQueja);
-
+                
                 var self = this;
-
-
-                self.getView().byId("loadingControl").open();
+                if(verBuscarQueja.NumQueja != "") 
+                {
+                        self.getView().byId("loadingControl").open();
                 setTimeout(function(){
-
-
-
-
+                    var result = QuejaServices.verBuscarQueja(verBuscarQueja);
                             if (result.c === "s") {
 
                                 if (result.data.success) {
@@ -1185,13 +1319,16 @@ sap.ui.define([
                                     verBuscarQueja.Telefono = result.data.objqueja.Interlocutor[0].Telefono ;
                                     verBuscarQueja.OfiVenta = result.data.objqueja.Contactos.VKBUR ;
                                     
-                                    var tamanoListTexto = result.data.objqueja.Texto.length - 1 ;
-                                    
-                                    verBuscarQueja.TextoQueja = result.data.objqueja.Texto[tamanoListTexto].Descripcion ;
-                                    console.log(verBuscarQueja.TextoQueja);             
-                                    self.getView().getModel().refresh();          
-
-
+                                    for(var i=0; i < result.data.objqueja.Texto.length; i++ )
+                                    {
+                                        if ( result.data.objqueja.Texto[i].CodTexto == 'Z013' )
+                                        {
+                                            verBuscarQueja.TextoQueja = result.data.objqueja.Texto[i].Descripcion;
+                                             
+                                            break;  
+                                        }
+                                    } 
+                                    self.getView().getModel().refresh();  
                                 } else {
 
                                     sap.m.MessageToast.show(result.data.errors.reason, {
@@ -1211,9 +1348,12 @@ sap.ui.define([
                             }
 
                             console.log(result.data);
-
                             self.getView().byId("loadingControl").close();
                             },500);
+}else{
+    MessageToast.show("Ingresar Número de Queja")
+}
+                            
 
 
 

@@ -119,7 +119,7 @@
         <buttons>
 
             <Button text="Continuar" type="Accion" press="onContinuarDlg_DialogDocInstalacion" />
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCancelDlg_DialogDocInstalacion" />
         </buttons>
         
     </Dialog>

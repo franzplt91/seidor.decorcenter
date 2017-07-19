@@ -19,8 +19,11 @@ sap.ui.define([
             if (oEvent.getParameter("name") == "appStockDisponible") {
             	this.getView().setModel(new JSONModel({}));
 			this.getView().getModel().setProperty("/dataIni",window.dataIni);
+			this.getView().getModel().setProperty("/codMaterial",window.codMaterial);
             this.getView().getModel().refresh(true);
 					this.getView().byId("dlg_buscar").open();
+
+					
                 };
 		},
 		

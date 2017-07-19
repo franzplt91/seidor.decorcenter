@@ -18,8 +18,10 @@ sap.ui.define([
             if (oEvent.getParameter("name") == "appStockporPedir") {
             	this.getView().setModel(new JSONModel({}));
                     this.getView().getModel().setProperty("/dataIni",window.dataIni);
+                    this.getView().getModel().setProperty("/codMaterial",window.codMaterial);
                     this.getView().getModel().refresh(true);
 					this.getView().byId("dlg_stockPorPedir").open();
+					
                 };
 		},
 		
@@ -34,7 +36,11 @@ sap.ui.define([
 		
 		//Cerrar Dialog Doc Nuevo Inicio
 		onContinuarStockPorPedir: function(oEvent) {
+
 				var CodJer = this.getView().byId("com_codJerarqui_stockPorPedir").getSelectedKey();
+				if(CodJer==" "){
+					CodJer="";
+				}
                 var CodMat = this.getView().byId("txt_codMaterial_stockPorPedir").getValue();
                 var	FecIni = this.getView().byId("date_fechaInicio_stockPorPedir").getValue();
                 var FecFin = this.getView().byId("date_fechaFin_stockPorPedir").getValue();

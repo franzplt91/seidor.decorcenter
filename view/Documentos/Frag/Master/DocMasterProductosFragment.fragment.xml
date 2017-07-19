@@ -7,76 +7,64 @@
     xmlns:l="sap.ui.layout" 
     xmlns:f="sap.ui.layout.form"
     xmlns:t="sap.ui.table" 
-    xmlns:s="sap.m.semantic"
-    xmlns:tnt="sap.tnt" 
+    xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     displayBlock="true">
     	
-
 
     <s:MasterPage title="Productos" id="MasterDocNuevoProductos" >
         <!--s:customHeaderContent>
                     <OverflowToolbarButton icon="sap-icon://home" text="Menu" press="goHome"/>
                 </s:customHeaderContent-->
                 <s:subHeader>
-                    <Toolbar>
-                        
+                    <Toolbar>                    
                                 <SegmentedButton id="buttonMasterProductos" selectedKey="productos" width="100%">
                                         <items>
                                                 <SegmentedButtonItem text="Datos" press="onDocNuevoMasterDatos"/>
                                                 <SegmentedButtonItem key="productos" text="Productos" press="onDocNuevoMasterProductos"/>
                                         </items>
                                 </SegmentedButton>
-
                     </Toolbar>
-                </s:subHeader>
+                </s:subHeader>                
         <Page >
 
-            <customHeader>
+           <customHeader>
                 <Toolbar>
-
-                <ToolbarSpacer width="8%" />
-                    
+                <ToolbarSpacer width="8%" />                
                     <Button icon="sap-icon://add" type="Transparent" press="onDocNuevodlg_addProducto">
                         <layoutData>
                             <OverflowToolbarLayoutData priority="NeverOverflow" />
                         </layoutData>
                     </Button>
-            <ToolbarSpacer width="18%" />
-                    <Button icon="sap-icon://search" type="Transparent" press="onDocNuevodlg_buscar">
+                    <ToolbarSpacer width="18%" />
+                            <Button icon="sap-icon://search" type="Transparent" press="onDocNuevodlg_buscar">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="Low" />
+                                </layoutData>
+                            </Button>
+                    <!--ToolbarSpacer width="8%" />
+                    <Button icon="sap-icon://survey" type="Transparent" press="onEditMaterial">
+                        <layoutData>
+                            <OverflowToolbarLayoutData priority="Low" />
+                        </layoutData>
+                    </Button-->
+                    <ToolbarSpacer width="18%" />
+                    <Button icon="sap-icon://delete" type="Transparent" press="onEliminarMaterial">
                         <layoutData>
                             <OverflowToolbarLayoutData priority="Low" />
                         </layoutData>
                     </Button>
-            <!--ToolbarSpacer width="8%" />
-            <Button icon="sap-icon://survey" type="Transparent" press="onEditMaterial">
-                <layoutData>
-                    <OverflowToolbarLayoutData priority="Low" />
-                </layoutData>
-            </Button-->
-            <ToolbarSpacer width="18%" />
-            <Button icon="sap-icon://delete" type="Transparent" press="onEliminarMaterial">
-                <layoutData>
-                    <OverflowToolbarLayoutData priority="Low" />
-                </layoutData>
-            </Button>
-
                 </Toolbar>
-            
             </customHeader>
 
-
-                
-
-            
             <content>
-                <List id="list_listaMasterMateriales"   mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                <List id="listaMasterMateriales"  mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                               enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos" 
                               itemPress="onMasterProductoSeleccionarMaterial"  
                               items="{
-                        path : '/listaMatAnadido',
+                        path : '/listaMaterial',
                                 sorter : {
-                                    path : '',
+                                    path : 'DescMaterial',
                                     group : false
                                 }
                         }"
@@ -85,17 +73,16 @@
 
 
                         <ObjectListItem
-                            id="objectListProductos"
                             title="{CodMaterial}"
-                            number="Precio: {PrecioUnit} "
-                            numberUnit="peso: {Peso} Stock: {Stock}{CodUMedida}"
+                            number="Peso: {Peso}"
+                            numberUnit="Precio: {PrecioUnit} Stock: {Stock}{CodUMedida}"
                             numberState=""
                             type="Navigation"
-                            press="onMasterProductoSeleccionarMaterial"
+                            press=""
                             custom:to=""
-                            ><!--type="Navigation"-->
+                            >
                             <firstStatus>
-                                <ObjectStatus text="{DescMaterial}"/>
+                                <ObjectStatus text="Descontinuado: {Descontinuado}"/>
                             </firstStatus>
                         </ObjectListItem>
 
@@ -104,19 +91,15 @@
                 </List>
             </content>
         </Page>
-        <!--s:customFooterContent>
-            <OverflowToolbarButton icon="sap-icon://add" press="onDocNuevodlg_addProducto"/>
+        <s:customFooterContent>
+            <!--OverflowToolbarButton icon="sap-icon://add" press="onDocNuevodlg_addProducto"/>
             <OverflowToolbarButton icon="sap-icon://search" press="onDocNuevodlg_buscar"/>
-            <Button text="Stock Disponible" press="goStockDisponible"></Button>
+            <Button text="Stock Disponible" press="goStockDisponible"></Button-->
+            <ToolbarSpacer width="3%" />
             <Button text="Stock por Llegar" press="goStockporLlegar"></Button>
             <Button text="Stock por Pedir" press="goStockporPedir"></Button>
-
-        </s:customFooterContent-->
-
-
-        <s:multiSelectAction>
-                    <s:MultiSelectAction press="onMultiSelectPress"/>
-                </s:multiSelectAction>
+            <ToolbarSpacer width="10%" />
+        </s:customFooterContent>
     </s:MasterPage>
 
 

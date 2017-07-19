@@ -46,7 +46,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input placeholder="Ingresar Código" id="txt_codigo_material_busqueda"></Input>
+                                                <Input placeholder="Ingresar Código" id="txt_codigo_material_busqueda" ></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código Antiguo">

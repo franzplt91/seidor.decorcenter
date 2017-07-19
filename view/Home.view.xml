@@ -8,6 +8,13 @@
     <BusyDialog id="loadingControl" size="30px" />
 
 
+<!--dlg_DialogDocInstalacion-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocInstalacionInicio" type="XML"></core:Fragment>  
+
+<!--dlg_MensajeAvisoInstalacion-->
+    <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAvisoInstalacion" type="XML"></core:Fragment>  
+    
+
 <!--Nueva Queja-->
 <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Quejas.QueNuevo" type="XML"></core:Fragment>
 

@@ -13,96 +13,10 @@
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		displayBlock="true">
 
+<!--dlg_stockPorPedir-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Stock.FragDialogs.dlg_stockPorPedir" type="XML"></core:Fragment>
 
 
-        <Dialog title="Stock por Pedir" id="dlg_stockPorPedir" stretchOnPhone="true" contentWidth="30%"
-                    contentHeight="40%">
-        <content>
-
-
-            <f:Form editable="true">
-                           <!-- <f:title>
-                                <core:Title text="Address" />
-                            </f:title> -->
-                            <f:layout>
-                                <f:ResponsiveGridLayout
-                                    labelSpanXL="3"
-                                    labelSpanL="3"
-                                    labelSpanM="3"
-                                    labelSpanS="5"
-                                    adjustLabelSpan="false"
-                                    emptySpanXL="4"
-                                    emptySpanL="4"
-                                    emptySpanM="4"
-                                    emptySpanS="0"
-                                    columnsXL="1"
-                                    columnsL="1"
-                                    columnsM="1"
-                                    singleContainerFullSize="false" />
-                            </f:layout>
-                            <f:formContainers>
-                                <f:FormContainer>
-                                    <f:formElements>
-                                        <f:FormElement label="Código de Jerarquía">
-                                            <f:fields>
-                                                <Select items="{ path : '/dataIni/lstCategoria' }" change="onSeleccionaSurtido" required="true" id="com_codJerarqui_stockPorPedir">
-                                                <core:Item key="{Codigo}" text="{= ${Codigo} === ' '? 'Seleccione' : ${Descripcion} }"/>
-                                            </Select>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Código de Material">
-                                            <f:fields>
-                                                <Input placeholder="Ingrese Código de Material" id="txt_codMaterial_stockPorPedir"></Input>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Fecha de Inicio">
-                                            <f:fields>
-                                                <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}" id="date_fechaInicio_stockPorPedir">
-                                            <layoutData>
-                                                <l:GridData span="L4 M4 S6"/>
-                                            </layoutData>
-                                    </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        <f:FormElement label="Fecha de Fin">
-                                            <f:fields>
-                                               <DatePicker  valueFormat="YYYY-MM-dd" displayFormat="short" 
-                                        value="{parts: [{path: 'date>/'}, {path: 'formatdate>/short'}, {path: 'formatdate>/equal'}], formatter: '.formatter.date'}" id="date_fechaFin_stockPorPedir">
-                                            <layoutData>
-                                                <l:GridData span="L4 M4 S6"/>
-                                            </layoutData>
-                                    </DatePicker>
-                                            </f:fields>
-                                        </f:FormElement>
-                                        
-                                    </f:formElements>
-                                </f:FormContainer>
-                            </f:formContainers>
-                        </f:Form>
-
-        </content>
-
-       
-
-
-        <beginButton>
-            <Button text="Continuar" type="Accept" icon="sap-icon://accept" press="onContinuarStockPorPedir" />
-        </beginButton>
-        <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
-        </endButton>
-    </Dialog>
-
-
-
-
-
-
-
-
-
- 
 	<s:FullscreenPage title="Stock Por Pedir">
                     <!--Detail Stock por Pedir-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocStockporPedirDetalleFragment" type="XML"></core:Fragment>

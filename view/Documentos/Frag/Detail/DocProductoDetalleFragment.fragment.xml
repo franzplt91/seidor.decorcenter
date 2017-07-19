@@ -1,55 +1,18 @@
-<core:FragmentDefinition 
+﻿<core:FragmentDefinition 
     xmlns:core="sap.ui.core" 
     xmlns:mvc="sap.ui.core.mvc" 
     xmlns="sap.m"
-     xmlns:l="sap.ui.layout" 
-     xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form"
     xmlns:t="sap.ui.table" 
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     
     <s:DetailPage title="Detalle Producto" id="pagDocNuevo_productos_lista1">
-    
-        
-
         <s:content>
-
-
-            <ObjectHeader
-         responsive="true"
-        fullScreenOptimized="true"
-        binding=""
-        intro="Código: {/listaTotalMateriales/CodMaterialCorto}"
-        title="{/listaTotalMateriales/DescMaterial}"
-        number="{
-            parts:[{path:'/listaTotalMateriales/Material/PrecioUnit'},{path:'Currency'}],
-            type: 'sap.ui.model.type.Currency',
-            formatOptions: {showMeasure: false}
-        }"
-        numberUnit="S/."
-        showMarkers="true"
-        markFlagged="true"
-        markFavorite="true"
-        numberState="Success"
-        backgroundDesign="Translucent">
-        <attributes>
-                <ObjectAttribute
-                title="Peso"
-                text="{/listaTotalMateriales/Peso}"/>
-
-
-                <ObjectAttribute
-                text="{/CodCentroStockMayor} {/DescCentroStockMayor} / {/CodAlmacenStockMayor} / {/CodLoteStockMayor}"/>
-        </attributes>
-        <statuses>
-            <ObjectStatus
-                title="Approval"
-                text="Pending"
-                state="Warning"/>
-        </statuses>
-        <headerContainer>
             
-                <IconTabBar expandable="false" stretchContentHeight="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
+
+            <IconTabBar id="tabDetalleProducto" expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
                 <items>
                     <IconTabFilter text="Detalle Material 1">
 
@@ -75,7 +38,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Posición">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaTotalMateriales/Posicion}">
+                                                <Input width="100%" value="{/material/Posicion}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -88,10 +51,10 @@
                                 <f:FormContainer>
                                     <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaTotalMateriales/CodMaterialCorto}">
+                                                <Input width="100%" value="{/material/CodMaterialCorto}" enabled="{/pedido/enabled}">
                                                     <layoutData>
-                                                        <l:GridData span="L12 M12 S12"/>
-                                                    </layoutData>
+                                        <l:GridData span="L12 M12 S12"/>
+                                    </layoutData>
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
@@ -122,7 +85,7 @@
                                     <f:formElements>
                                          <f:FormElement label="Descripción">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaTotalMateriales/DescMaterial}">
+                                                <Input width="100%" value="{/material/DescMaterial}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -131,7 +94,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Cantidad">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaTotalMateriales/Cantidad}">
+                                                <Input width="100%" value="{/material/Cantidad}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -145,7 +108,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Unidad de Medida">
                                             <f:fields>
-                                                <Input width="100%" id="txt_unidadMedida_detalleMaterial1" value="{/listaTotalMateriales/CodUMedida}">
+                                                <Input width="100%" value="{/material/CodUMedida}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -154,7 +117,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Unidad de Rendimiento">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaTotalMateriales/Rendimiento}">
+                                                <Input width="100%" value="{/material/Rendimiento}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -166,9 +129,9 @@
 
                                 <f:FormContainer>
                                     <f:formElements>
-                                            <f:FormElement label="Centro/Almacen/Lote">
+                                        <f:FormElement label="Centro/Almacen/Lote">
                                             <f:fields>
-                                                <Input width="100%" id="txt_centro_almacen_lote" value="">
+                                                <Input width="100%" value="{/material/CodCentro} / {/material/CodAlmacen} /"  enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -177,7 +140,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Flete">
                                             <f:fields>
-                                                <CheckBox selected="true">
+                                                <CheckBox selected="{/material/Zservicio}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -188,8 +151,6 @@
                                 </f:FormContainer>
                             </f:formContainers>
                         </f:Form>
-
-
                     </IconTabFilter>
 
                     <IconTabFilter text="Detalle Material 2">
@@ -216,7 +177,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Peso">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaTotalMateriales/Peso}">
+                                                <Input width="100%" value="{/material/Peso}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -230,54 +191,45 @@
                                     <f:formElements>
                                         <f:FormElement label="Peso Total">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaTotalMateriales/PesoNeto}">
+                                                <Input width="100%" value="{/material/PesoNeto}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
                                                 </Input>
                                             </f:fields>
-                                        </f:FormElement>
-                                        
-                                    </f:formElements>
-                                    
+                                        </f:FormElement>                                        
+                                    </f:formElements>                                    
                                 </f:FormContainer>
 
                                 <f:FormContainer>
                                     <f:formElements>
                                         <f:FormElement label="Precio Unitario">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaTotalMateriales/Material/PrecioUnit}" >
+                                                <Input width="100%" value="{/material/PrecioUnitario}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
                                                 </Input>
                                             </f:fields>
-                                        </f:FormElement>
-                                        
-                                    </f:formElements>
-                                    
+                                        </f:FormElement>                                        
+                                    </f:formElements>                                    
                                 </f:FormContainer>
-
 
                                 <f:FormContainer>
                                     <f:formElements>
                                             <f:FormElement label="Descuentos">
                                             <f:fields>
-                                                <Input width="100%" value="{/listaTotalMateriales/lskkl}">
+                                                <Input width="100%" value="{/material/DesGrupoMat}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
-                                    </f:formElements>
-                                    
+                                    </f:formElements>                                
                                 </f:FormContainer>
-
                             </f:formContainers>
                         </f:Form>
-
-
 
                         <f:Form editable="true">
                             <f:layout>
@@ -298,12 +250,10 @@
                             </f:layout>
                             <f:formContainers>
                                 <f:FormContainer>
-                                    <f:formElements>
-
-                        
+                                    <f:formElements>                        
                                         <f:FormElement label="Sub Total">
                                             <f:fields>
-                                                <Input width="100%" placeholder="" value="{/listaTotalMateriales/SubTotal}">
+                                                <Input width="100%" placeholder="" value="{/material/SubTotal}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -313,16 +263,14 @@
                                         <f:FormElement label="Repartos">
                                             <f:fields>
                                                 <DatePicker valueFormat="YYYY-MM-dd" displayFormat="short"
-                                                    value="{/listaTotalMateriales/Reparto}">
+                                                    value="{/material/Reparto}" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
                                                 </DatePicker>
                                             </f:fields>
                                         </f:FormElement>
-                                        
-                                        
-
+                                                                            
                                     </f:formElements>
                                 </f:FormContainer>
 
@@ -330,8 +278,8 @@
                                     <f:formElements>
                                         <f:FormElement label="Ambiente">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" maxwidth="100%" required="true" selectedKey="{/listaTotalMateriales/CodGrupoMat}">
-                                                        <core:Item key="{Codigo}" text="{= ${Codigo} === ' '? 'Seleccione' : ${Descripcion} }"/>
+                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" selectedKey="{/material/Ambiente}" maxwidth="100%" required="true" enabled="{/pedido/enabled}">
+                                                        <core:Item key="{Codigo}" text="{Descripcion}"/>
                                                         <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
@@ -340,7 +288,7 @@
                                         </f:FormElement>
                                         <f:FormElement label="Opción Ambiente">
                                             <f:fields>
-                                                <Select maxwidth="100%" required="true" selectedKey="{/listaTotalMateriales/Opcion}">
+                                                <Select maxwidth="100%" required="true" selectedKey="{/material/Opcion}" enabled="{/pedido/enabled}">
                                                     <core:Item key="01" text="01"/>
                                                     <core:Item key="02" text="02"/>
                                                     <core:Item key="03" text="03"/>
@@ -352,17 +300,15 @@
                                     </layoutData>
                                                 </Select>
                                             </f:fields>
-                                        </f:FormElement>
-                                        
+                                        </f:FormElement>                                        
                                     </f:formElements>
-
                                 </f:FormContainer>
 
                                 <f:FormContainer>
                                     <f:formElements>
                                         <f:FormElement label="Motivo de Rechazo">
                                             <f:fields>
-                                                <Select  items="{ path : '/dataIni/lstMotivosRechazo' }" change="onSeleccionaSurtido" maxwidth="100%" required="true">
+                                                <Select  items="{ path : '/dataIni/lstMotivosRechazo' }" change="onSeleccionaSurtido" maxwidth="100%" required="true" selectedKey="{/material/MotivoRechazo}" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}" text="{= ${Codigo} === ' '? 'Seleccione' : ${Descripcion} }"/>
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
@@ -372,15 +318,14 @@
                                         </f:FormElement>
                                         <f:FormElement label="Prioridad">
                                             <f:fields>
-                                                <Select  items="{ path : '/dataIni/lstCondExp' }" change="onSeleccionaSurtido" maxwidth="100%" required="true" selectedKey="{/listaTotalMateriales/PrioridadEntrega}">
+                                                <Select  items="{ path : '/dataIni/lstCondExp' }" change="onSeleccionaSurtido" maxwidth="100%" required="true" selectedKey="{/material/PrioridadEntrega}" enabled="{/pedido/enabled}">
                                                 <core:Item key="{Codigo}" text="{= ${Codigo} === ''? 'Seleccione' : ${Descripcion} }"/>
                                                 <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>
                                             </Select>
                                             </f:fields>
-                                        </f:FormElement>
-                                        
+                                        </f:FormElement>                                        
                                     </f:formElements>
 
                                 </f:FormContainer>
@@ -390,41 +335,120 @@
 
                     <IconTabFilter text="Descuento">
                        
+                        <Table id="idDescuentoPrincipal"
+                            inset="false"
+                            items="{
+                                path: '/material/DescuentoPrincipal',
+                                sorter: {
+                                    path: 'Condicion'
+                                }
+                            }">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Title text="Descuentos Principales" level="H2"/>
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column
+                                    width="40%"
+                                    hAlign="left">
+                                    <Text text="Condicion - Denominacion" />
+                                </Column>                                
+                                <Column
+                                    hAlign="Center">
+                                    <Text text="Maximo" />
+                                </Column>
+                                <Column
+                                    hAlign="Center">
+                                    <Text text="Porcentaje" />
+                                </Column>
+                                <Column
+                                    hAlign="Center">
+                                    <Text text="Valor de Descuento" />
+                                </Column>
+                                <Column
+                                    hAlign="Center">
+                                    <Text text="Posicion" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text
+                                            text="{Condicion} - {Denominacion}" />
+                                        <Text
+                                            text="{LimiteInferior} %" />
+                                        <Text
+                                            text="{Importe} %" />                                            
+                                        <Text
+                                            text="{Valor}" />
+                                        <Text
+                                            text="{/material/PosicionCorto}" />                                            
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                        
+                        <VBox class="sapUiSmallMargin">
+                        <Table id="idDescuentoOtros"
+                            inset="false"
+                            items="{
+                                path: '/material/DescuentoOtros',
+                                sorter: {
+                                    path: 'Condicion'
+                                }
+                            }">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Title text="Otros Descuentos" level="H2"/>
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column
+                                    width="40%"
+                                    hAlign="left">
+                                    <Text text="Condicion - Denominacion" />
+                                </Column>                                
+                                <Column
+                                    hAlign="Center">
+                                    <Text text="Maximo" />
+                                </Column>
+                                <Column
+                                    hAlign="Center">
+                                    <Text text="Porcentaje" />
+                                </Column>
+                                <Column
+                                    hAlign="Center">
+                                    <Text text="Valor de Descuento" />
+                                </Column>
+                                <Column
+                                    hAlign="Center">
+                                    <Text text="Posicion" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text
+                                            text="{Condicion} - {Denominacion}" />
+                                        <Text
+                                            text="{LimiteInferior} %" />
+                                        <Text
+                                            text="{Importe} %" />                                            
+                                        <Text
+                                            text="{Valor}" />
+                                        <Text
+                                            text="{/material/PosicionCorto}" />                                            
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>   
+                        </VBox>    
                     </IconTabFilter>
 
                     <IconTabFilter text="Centro/Almacen/Lote">
-                        <List  id="lista_centro_almacen_lote" mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
-                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Centro/Almacen/Lote" 
-                              itemPress="onSeleccionarCentroAlmacenLote"  
-                              items="{
-                        path : '/RetornoStockDetallado/lstLoteTotal',
-                                sorter : {
-                                    path : 'DescCentro',
-                                    group : true
-                                }
-                        }"
-                >
-                    <items>
-
-
-                        <ObjectListItem
-                            title="{CodCentro} {DescCentro} / {DescAlmacen} / {CodLote}"
-                            number="Stock: {StockDisponible}"
-                            type="Navigation"
-                            press=""
-                            custom:to="">
-                                
-                        </ObjectListItem>
-
-
-                    </items>
-                </List>
-                    </IconTabFilter>
-
-
-                    <IconTabFilter text="Reparto">
                         <List  mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
-                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos" 
+                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Centro/Almacen/Lote" 
                               itemPress=""  
                               items="{
                         path : '/listaMatAnadido',
@@ -435,8 +459,6 @@
                         }"
                 >
                     <items>
-
-
                         <ObjectListItem
                             title="{CodMaterial}"
                             number="Peso: {Peso}"
@@ -449,40 +471,233 @@
                                 <ObjectStatus text="Descontinuado: {Descontinuado}"/>
                             </firstStatus>
                         </ObjectListItem>
-
-
                     </items>
                 </List>
                     </IconTabFilter>
 
 
-                    <IconTabFilter text="Catálogo">
-
+                    <IconTabFilter text="Reparto">
+                        <List  mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                              enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos"  
+                              itemPress="onOpenRepartoDetail"  
+                              items="{
+                                path : '/material/Repartos',
+                                        sorter : {
+                                            path : 'FechaEntrega',
+                                            group : false
+                                                }
+                                        }">
+                            <items>
+                                <ObjectListItem
+                                    title="Fecha Entrega: { 
+                                        path: 'FechaEntrega',
+                                        formatter: '.formatter.dateFormater' }"  
+                                    type="Navigation"
+                                    press=""
+                                    custom:to="">
+                                <attributes>                            
+                                    <ObjectAttribute text="Cantidad: {CantPed}" />
+                                </attributes>
+                                </ObjectListItem>
+                            </items>
+                        </List>
                     </IconTabFilter>
+
+                    <IconTabFilter text="Catálogo">
+                        <Panel>
+                            <FlexBox
+                                height="100%"
+                                alignItems="Start"
+                                justifyContent="Center">
+                                <!--    
+                                  <Image
+                                        src="{/material/link}"
+                                        densityAware="false"
+                                        description="{/material/DescMaterial}"
+                                        alt="{/material/DescMaterial}"
+                                        width="480px" >
+                                    </Image>                     
+                                     -->
+                                    <Image
+                                        src="https://http2.mlstatic.com/ceramica-piso-rustica-primera-simil-laja-interior-exterior-D_NQ_NP_955701-MLA20380982757_082015-F.jpg"
+                                        densityAware="false"                                        
+                                        alt="{/material/DescMaterial}"
+                                        width="580px" >
+                                    </Image>
+                            </FlexBox>
+                        </Panel>                        
+                    </IconTabFilter>
+
+                    <IconTabFilter text="Stock Por Llegar" key="filterStockPorLlegar">
+                        <Panel>
+                            <FlexBox
+                                height="100%"
+                                alignItems="Start"
+                                justifyContent="Center">
+
+                                <Table 
+                        inset="false"
+                        items="{
+                            path: '/retornoStockPorLlegar/lstStockCurso'  }">
+                        <columns>
+                            <Column
+                                width="12em">
+                                <Text text="Fecha" />
+                            </Column>
+                            <Column
+                                width="12em">
+                                <Text text="Material" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true">
+                                <Text text="Descripción" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Right">
+                                <Text text="UM" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Disponibilidad" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <ObjectIdentifier
+                                        title="{LFDAT}"
+                                        text="{ProductId}"/>
+                                    <Text
+                                        text="{MATNR}" />
+                                    <Text
+                                        text="{MAKTX}" />
+                                        <Text
+                                        text="{MEINS}" />
+                                        <Text
+                                        text="{MENGE}" />
+                                    
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+                            </FlexBox>
+                        </Panel>                        
+                    </IconTabFilter>
+
+                    <IconTabFilter text="Stock Por Pedir" key="filterStockPorPedir">
+                        <Panel>
+                            <FlexBox
+                                height="100%"
+                                alignItems="Start"
+                                justifyContent="Center">
+
+                                <Table 
+                        inset="false"
+                        items="{
+                            path: '/retornoStockPorPedir/lstReporteMercaderia'  }">
+                        <columns>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Fecha" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Material" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Marca" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Jerarquia 1" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Jerarquia 2" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Jerarquia 3" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Jerarquia 4" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Cantidad y UM" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Tipo Stock" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <ObjectIdentifier
+                                        title="{EINDT}"
+                                        text="{MES}"/>
+                                        <Text
+                                        text="{MATNR} - {TXZ01}" />
+                                        <Text
+                                        text="{MARCA}" />
+                                        <Text
+                                        text="{VTEXT1}" />
+                                        <Text
+                                        text="{VTEXT2}" />
+                                        <Text
+                                        text="{VTEXT3}" />
+                                        <Text
+                                        text="{VTEXT4}" />
+                                        <Text
+                                        text="{MENGE} {MEINS}" />
+                                        <ObjectIdentifier
+                                        title="{TEXTO_INSMK}"
+                                        text="{STOCK}"/>
+                                        
+                                    
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+                            </FlexBox>
+                        </Panel>                        
+                    </IconTabFilter>
+
                 </items>
             </IconTabBar>
-
-
-
-        </headerContainer>
-    </ObjectHeader>
-            
-
-            
         </s:content>
         
-                <s:customFooterContent>
-                    <!--Text class="txt_Total_Dscto" text="Tot.Doc.: S/. {} (c/IGV) | Tot.Dcto. : S/. {}" ></Text-->
-                    <Text class="txt_Total_Dscto" text="Total: S/. " ></Text>
-                    <Text class="monto_Total_Dscto" text="{/RetornoRecalcular/objPedido/Total}"></Text>
-                    <Text class="txt_Total_Dscto" text="Dscto.: S/. "></Text>
-                    <Text class="monto_Total_Dscto" text="{/RetornoRecalcular/objPedido/TotalDcto}"></Text>
-                    <ToolbarSpacer />
-                    <Button icon="sap-icon://refresh" tooltip="" text="" press="onBtnRecalcular"></Button>
+        <s:customFooterContent>
+                    <Button icon="sap-icon://refresh" tooltip="" text="" press="onBtnRefresh" visible="{/pedido/enabledBtn}"></Button>
                 </s:customFooterContent>
-                
-
-
     </s:DetailPage>
 
 </core:FragmentDefinition>

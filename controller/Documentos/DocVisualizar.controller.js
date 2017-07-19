@@ -1,587 +1,561 @@
-﻿sap.ui.define([
+sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
     "pe/com/seidor/sap/decor/ventas/services/clienteServices",
     "pe/com/seidor/sap/decor/ventas/services/materialServices",
+    "pe/com/seidor/sap/decor/ventas/services/documentosServices",
+    "pe/com/seidor/sap/decor/ventas/model/formatter",
     'jquery.sap.global'
-], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, jQuery) {
+], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, documentosServices, formatter, jQuery) {
     "use strict";
-
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocVisualizar", {
-
+        formatter: formatter,
         onInit: function () {
-
             var oRouter = UIComponent.getRouterFor(this);
             oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
         },
         onRouteMatched: function (oEvent) {
-
-                if (oEvent.getParameter("name") == "appDocVisualizar") {
-                    this.getView().byId("SplitAppId").setMode("HideMode");
-                    this.getView().setModel(new JSONModel({}));
-            this.getView().getModel().setProperty("/dataIni",window.dataIni);
-            this.getView().getModel().refresh(true);
-                    this.getView().byId("dlg_DialogDocVisualizar").open();
-                };
-
-                var tipoCabecera = [];
-                tipoCabecera.push({
-                    codigo:1,
-                    descripcion:'Datos de Clientes'
-                });
-
-                tipoCabecera.push({
-                    codigo:2,
-                    descripcion:'Interlocutores'
-                });
-
-                tipoCabecera.push({
-                    codigo:3,
-                    descripcion:'Observaciones'
-                });
-
-                this.getView().getModel().setProperty("/tipoCabeceraModel",tipoCabecera);
-                this.getView().getModel().refresh();
-                
+            var oData = {
+                "pedido": {
+                    "enabled": true,
+                    "enabledBtnGuardar": true,
+                    "enabledBtnCopiar": true,
+                    "enabledBtnBuscar": true,
+                    "OrgVentas": "",
+                    "CanalDist": "",
+                    "CodOficina": "",
+                    "CondPago": "",
+                    "Moneda": "",
+                    "TipoCambio": 3.282,
+                    "PesoTotal": 90,
+                    "FechaFacturacion": "",
+                    "NombreBanco": "",
+                    "BloqueoEntrega": "",
+                    "BloqueoFactura": "",
+                    "Motivo": "",
+                    "OrdenCompra": "",
+                    "CondExp": "",
+                    "Fecha": "",
+                    "FechaValidez": "",
+                    "FechaEntrega": "",
+                    "nomProyecto": "",
+                    "codProyecto": "",
+                    "codVersion": "",
+                    "TipoVisita": "",
+                    "Reenbolsable": false,
+                    "GrupoForecast": "",
+                    "TipoForecast": "",
+                    "Certificado": "",
+                    "FechaVisita": ""
+                },
+                "observaciones": {
+                    "ZP01": {
+                        "CodTexto": "ZP01",
+                        "Descripcion": ""
+                    },
+                    "ZP05": {
+                        "CodTexto": "ZP05",
+                        "Descripcion": ""
+                    },
+                    "ZP06": {
+                        "CodTexto": "ZP06",
+                        "Descripcion": ""
+                    },
+                    "ZP07": {
+                        "CodTexto": "ZP07",
+                        "Descripcion": ""
+                    }
+                },
+                "interlocutores": {
+                    "AG": {
+                        "Cliente": {
+                            "Ciudad": "",
+                            "Codigo": "",
+                            "CodigoPostal": "LIMA 31",
+                            "Descripcion": "",
+                            "Direccion": "Pinar del Rio",
+                            "DireccionCompleta": "Pinar del Rio LIMA 31",
+                            "Mail": "",
+                            "Pais": "PE",
+                            "Ruc": "",
+                            "Telefono": "998109779",
+                            "TelefonoMovil": ""
+                        },
+                        "Funcion": "AG",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    },
+                    "RE": {
+                        "Cliente": {
+                            "Ciudad": "",
+                            "Codigo": "",
+                            "CodigoPostal": "LIMA 31",
+                            "Descripcion": "",
+                            "Direccion": "Pinar del Rio",
+                            "DireccionCompleta": "Pinar del Rio LIMA 31",
+                            "Mail": "",
+                            "Pais": "PE",
+                            "Ruc": "",
+                            "Telefono": "998109779",
+                            "TelefonoMovil": ""
+                        },
+                        "Funcion": "RE",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    },
+                    "RG": {
+                        "Cliente": {
+                            "Ciudad": "",
+                            "Codigo": "",
+                            "CodigoPostal": "LIMA 31",
+                            "Descripcion": "",
+                            "Direccion": "Pinar del Rio",
+                            "DireccionCompleta": "Pinar del Rio LIMA 31",
+                            "Mail": "",
+                            "Pais": "PE",
+                            "Ruc": "",
+                            "Telefono": "998109779",
+                            "TelefonoMovil": ""
+                        },
+                        "Funcion": "RG",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    },
+                    "VE": {
+                        "Cliente": {
+                            "Ciudad": "",
+                            "Codigo": "",
+                            "CodigoPostal": "LIMA 31",
+                            "Descripcion": "",
+                            "Direccion": "Pinar del Rio",
+                            "DireccionCompleta": "Pinar del Rio LIMA 31",
+                            "Mail": "",
+                            "Pais": "PE",
+                            "Ruc": "",
+                            "Telefono": "998109779",
+                            "TelefonoMovil": ""
+                        },
+                        "Funcion": "VE",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    },
+                    "V2": {
+                        "Cliente": {
+                            "Ciudad": "",
+                            "Codigo": "",
+                            "CodigoPostal": "LIMA 31",
+                            "Descripcion": "",
+                            "Direccion": "Pinar del Rio",
+                            "DireccionCompleta": "Pinar del Rio LIMA 31",
+                            "Mail": "",
+                            "Pais": "PE",
+                            "Ruc": "",
+                            "Telefono": "998109779",
+                            "TelefonoMovil": ""
+                        },
+                        "Funcion": "V2",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    },
+                    "V3": {
+                        "Cliente": {
+                            "Ciudad": "",
+                            "Codigo": "",
+                            "CodigoPostal": "LIMA 31",
+                            "Descripcion": "",
+                            "Direccion": "Pinar del Rio",
+                            "DireccionCompleta": "Pinar del Rio LIMA 31",
+                            "Mail": "",
+                            "Pais": "PE",
+                            "Ruc": "",
+                            "Telefono": "998109779",
+                            "TelefonoMovil": ""
+                        },
+                        "Funcion": "V3",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    },
+                    "WE": {
+                        "Cliente": {
+                            "Ciudad": "",
+                            "Codigo": "",
+                            "CodigoPostal": "LIMA 31",
+                            "Descripcion": "",
+                            "Direccion": "Pinar del Rio",
+                            "DireccionCompleta": "Pinar del Rio LIMA 31",
+                            "Mail": "",
+                            "Pais": "PE",
+                            "Ruc": "",
+                            "Telefono": "998109779",
+                            "TelefonoMovil": ""
+                        },
+                        "Funcion": "WE",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    },
+                    "AT": {
+                        "Cliente": {
+                            "Ciudad": "",
+                            "Codigo": "",
+                            "CodigoPostal": "LIMA 31",
+                            "Descripcion": "",
+                            "Direccion": "Pinar del Rio",
+                            "DireccionCompleta": "Pinar del Rio LIMA 31",
+                            "Mail": "",
+                            "NOMBRE": "",
+                            "Pais": "PE",
+                            "Ruc": "",
+                            "Telefono": "998109779",
+                            "TelefonoMovil": ""
+                        },
+                        "Funcion": "AT",
+                        "Persona": {
+                            "ApeSoltero": "",
+                            "Apellido": "",
+                            "CodPersona": "",
+                            "Descripcion": "",
+                            "Dni": "",
+                            "Nombre": ""
+                        }
+                    }
+                },
+                "profesionales": {
+                    "CodProfesional": "",
+                    "NomProfesional": "",
+                    "CodProfesional2": "",
+                    "NomProfesional2": ""
+                },
+                "cliente": {
+                    "APMAT": "soto",
+                    "APPAT": "malca",
+                    "CODIG": "10200517976",
+                    "Ciudad": "Lima",
+                    "CodigoPostal": "LIMA 09",
+                    "DIREC": "las mucas",
+                    "EDAD": "0",
+                    "RANGOED": "",
+                    "FECNAC": "2017-07-05T00:00:00",
+                    "GRAINS": "10",
+                    "Mail": "jose@gmail.com",
+                    "NOMBRE": "jose",
+                    "Pais": "PE",
+                    "Ruc": null,
+                    "SEXO": "1",
+                    "Telefono": "11223",
+                    "TelefonoMovil": null
+                },
+                "preguntas": {
+                    "1": {
+                        "CODP": "1",
+                        "CODR": "1"
+                    },
+                    "10": {
+                        "CODP": "1",
+                        "CODR": "1"
+                    },
+                    "15": {
+                        "CODP": "15",
+                        "CODR": "1"
+                    },
+                    "20": {
+                        "CODP": "1",
+                        "CODR": "1"
+                    },
+                    "25": {
+                        "CODP": "1",
+                        "CODR": "1"
+                    },
+                    "35": {
+                        "CODP": "1",
+                        "CODR": "1"
+                    }
+                },
+                "listaMaterial": [{
+                        "Posicion": "000010",
+                        "CodMaterial": "000000000011011862",
+                        "CodMaterialCorto": "11011862",
+                        "DescMaterial": "PLACAS ELECT SOLE COCINA VITROCERAMICA-PE75AVE2",
+                        "Cantidad": 1,
+                        "CantConfirmada": 1,
+                        "CodUMedida": "UN",
+                        "Rendimiento": "1.000 M2",
+                        "UMedidaRendimiendo": "M2",
+                        "ValorRendimiento": 1,
+                        "CodAlmacen": "0001",
+                        "CodCentro": "9110",
+                        "Zservicio": false,
+                        "Peso": 11,
+                        "PesoNeto": 11,
+                        "PrecioUnitario": 1567.71,
+                        "DesGrupoMat": "",
+                        "SubTotal": 1567.71,
+                        "Reparto": "03 04/07/17",
+                        "Ambiente": "",
+                        "Opcion": "02",
+                        "MotivoRechazo": "",
+                        "PrioridadEntrega": "03",
+                        "Descontinuado": "",
+                        "StockPos": "",
+                        "JerarquiaPrincipalDesc": "COCINAS NACIONAL",
+                        "link": null,
+                        "Repartos": [{
+                                "CantConf": 1,
+                                "CantPed": 1,
+                                "FechaEntrega": "2017-07-04T00:00:00",
+                                "PosCorto": "1",
+                                "TipoReparto": "BN"
+                            }],
+                        "DescuentoPrincipal": [{
+                                "Condicion": "ZDCT",
+                                "Denominacion": "Dcto. Certificados %",
+                                "Importe": 0,
+                                "ImporteAnterior": 0,
+                                "LimiteInferior": 0,
+                                "Moneda": null,
+                                "Posicion": "",
+                                "Recalcular": "",
+                                "Valor": 0,
+                                "esPorcentaje": true,
+                                "matPosicion": ""
+                            }],
+                        "DescuentoOtros": [{
+                                "Condicion": "ZDCT",
+                                "Denominacion": "Dcto. Certificados %",
+                                "Importe": 0,
+                                "ImporteAnterior": 0,
+                                "LimiteInferior": 0,
+                                "Moneda": null,
+                                "Posicion": "",
+                                "Recalcular": "",
+                                "Valor": 0,
+                                "esPorcentaje": true,
+                                "matPosicion": ""
+                            }]
+                    }]
+            };
+            if (oEvent.getParameter("name") == "appDocVisualizar") {
+                this.getView().byId("SplitAppId").setMode("HideMode");
+                this.getView().setModel(new JSONModel(oData));
+                this.getView().getModel().setProperty("/dataIni", window.dataIni);
+                this.getView().getModel().refresh(true);
+                this.getView().byId("dlg_DialogDocVisualizar").open();
+            }
+            ;
+            var tipoCabecera = [];
+            tipoCabecera.push({
+                codigo: 1,
+                descripcion: 'Datos de Clientes'
+            });
+            tipoCabecera.push({
+                codigo: 2,
+                descripcion: 'Interlocutores'
+            });
+            tipoCabecera.push({
+                codigo: 3,
+                descripcion: 'Observaciones'
+            });
+            this.getView().getModel().setProperty("/tipoCabeceraModel", tipoCabecera);
+            this.getView().getModel().refresh();
+            this.setDataInit();
         },
-
-       //Continuar Dialog Visualizar
-        onContinuarDlg_DialogDocVisualizar: function(oEvent) {
-            this.getView().byId("dlg_DialogDocVisualizar").close()
+        setDataInit: function () {
+            //Lista Respuestas de Lista Preguntas
+            //Tipo de cliente
+            this.getView().getModel().setProperty("/listaRespuestas", dataIni.lstPreguntas[0].listaResp);
+            //Tipo de construcción
+            this.getView().getModel().setProperty("/listaRespuestas1", dataIni.lstPreguntas[1].listaResp);
+            //Tipo de proyecto - Residencial
+            this.getView().getModel().setProperty("/listaRespuestas2", dataIni.lstPreguntas[2].listaResp);
+            //Tipo de proyecto - Institucional
+            this.getView().getModel().setProperty("/listaRespuestas3", dataIni.lstPreguntas[3].listaResp);
+            //Presupuesto para el proyecto
+            this.getView().getModel().setProperty("/listaRespuestas4", dataIni.lstPreguntas[4].listaResp);
+            //Ambiente 1
+            this.getView().getModel().setProperty("/listaRespuestas5", dataIni.lstPreguntas[5].listaResp);
+            //Estilo 1
+            this.getView().getModel().setProperty("/listaRespuestas6", dataIni.lstPreguntas[6].listaResp);
+            //Ambiente 2
+            this.getView().getModel().setProperty("/listaRespuestas7", dataIni.lstPreguntas[7].listaResp);
+            //Estilo 2
+            this.getView().getModel().setProperty("/listaRespuestas8", dataIni.lstPreguntas[8].listaResp);
+            //Ambiente 3
+            this.getView().getModel().setProperty("/listaRespuestas9", dataIni.lstPreguntas[9].listaResp);
+            //Estilo 3
+            this.getView().getModel().setProperty("/listaRespuestas10", dataIni.lstPreguntas[10].listaResp);
         },
-
-
+        //Continuar Dialog Visualizar
+        onContinuarDlg_DialogDocVisualizar: function (oEvent) {
+            var numDocumento = this.getView().byId("txt_numero_documento").getValue();
+            var result = documentosServices.visualizarDocumento("ver", numDocumento);
+            if (result.data.success) {
+                var data = result.data;
+                this.setDataProyecto(data.lstGrupoFor, data.lstTipoFor);
+                this.obtenerPedido(data.objPedido);
+                this.obtenerObservaciones(data.objPedido.Textos);
+                this.obtenerInterlocutores(data);
+                this.obtenerMateriales(data.objPedido);
+                this.getView().getModel().setProperty("/pedido/enabled", false);
+                this.getView().getModel().setProperty("/pedido/enabledBtnCopiar", false);
+                this.getView().getModel().setProperty("/pedido/enabledBtnBuscar", false);
+                this.getView().getModel().setProperty("/pedido/enabledBtnGuardar", false);
+            } else {
+                sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
+            }
+            this.getView().byId("dlg_DialogDocVisualizar").close();
+        },
+        setDataProyecto: function (lstGrupoFor, lstTipoFor) {
+            this.getView().getModel().setProperty("/lstGrupoFor", lstGrupoFor);
+            this.getView().getModel().setProperty("/lstTipoFor", lstTipoFor);
+            this.getView().getModel().refresh();
+        },
+        obtenerPedido: function (pedido) {
+            var fechFactura = moment(pedido.FechaFacturacion).format('DD/MM/YYYY');
+            var fechPedido = moment(pedido.Fecha).format('DD/MM/YYYY');
+            var fechValidez = moment(pedido.FechaValidez).format('DD/MM/YYYY');
+            var fechEntrega = moment(pedido.FechaEntrega).format('DD/MM/YYYY');
+            var fechVisita = moment(pedido.FechaVisita).format('DD/MM/YYYY');
+            this.getView().getModel().setProperty("/pedido", pedido);
+            this.getView().getModel().setProperty("/pedido/FechaFacturacion", fechFactura);
+            this.getView().getModel().setProperty("/pedido/Fecha", fechPedido);
+            this.getView().getModel().setProperty("/pedido/FechaValidez", fechValidez);
+            this.getView().getModel().setProperty("/pedido/FechaEntrega", fechEntrega);
+            this.getView().getModel().setProperty("/pedido/FechaVisita", fechVisita);
+        },
+        obtenerObservaciones: function (observaciones) {
+            for (var indice in observaciones) {
+                this.getView().getModel().setProperty("/observaciones/" + observaciones[indice].CodTexto, observaciones[indice]);
+            }
+        },
+        obtenerInterlocutores: function (data) {
+            var clienteSer = data.datoReniec[0];
+            var fechNacimiento = moment(clienteSer.FECNAC).format('DD/MM/YYYY');
+            this.getView().getModel().setProperty("/cliente", clienteSer);
+            this.getView().getModel().setProperty("/cliente/FECNAC", fechNacimiento);
+            var interlocutores = data.objPedido.Interlocutores;
+            for (var indice in interlocutores) {
+                this.getView().getModel().setProperty("/interlocutores/" + interlocutores[indice].Funcion, interlocutores[indice]);
+            }
+            this.getView().getModel().setProperty("/profesionales/CodProfesional", data.CodProfesional);
+            this.getView().getModel().setProperty("/profesionales/NomProfesional", data.NomProfesional);
+            this.getView().getModel().setProperty("/profesionales/CodProfesional2", data.CodProfesional2);
+            this.getView().getModel().setProperty("/profesionales/NomProfesional2", data.NomProfesional2);
+            var clienDatosAdic = data.listCliPregResp;
+            for (var indice in clienDatosAdic) {
+                this.getView().getModel().setProperty("/preguntas/" + clienDatosAdic[indice].CODP, clienDatosAdic[indice]);
+            }
+        },
+        obtenerMateriales: function (pedido) {
+            this.getView().getModel().setProperty("/listaMaterial", pedido.Detalle);
+        },
+        onMasterProductoSeleccionarMaterial: function (oEvent) {
+            var material = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
+            var listaPrincipal = [{"codigoSer": "DctoDecorPorc"}, {"codigoSer": "DctoGenerico"}, {"codigoSer": "DctoZD11"}, {"codigoSer": "DctoGerenciaPorc"},
+                {"codigoSer": "DsctoAdicionalZD12"}, {"codigoSer": "Diferencia"}, {"codigoSer": "PreZP08"}, {"codigoSer": "ZP02"}, {"codigoSer": "DctoCT"}];
+            var descPrincipal = this.obtonerDescuento(material, listaPrincipal);
+            var listaOtros = [{"codigoSer": "DctoDecorMonto"}, {"codigoSer": "DctoAdicionalPorc"}, {"codigoSer": "DctoEstadisticoPorc"}, {"codigoSer": "DctoGerenciaMonto"},
+                {"codigoSer": "DctoZD06"}, {"codigoSer": "DctoZD07"}, {"codigoSer": "DctoGenericoZD08"}];
+            var descOtros = this.obtonerDescuento(material, listaOtros);
+            this.getView().getModel().setProperty("/material", material);
+            this.getView().getModel().setProperty("/material/DescuentoPrincipal", descPrincipal);
+            this.getView().getModel().setProperty("/material/DescuentoOtros", descOtros);
+            this.getView().getModel().refresh();
+        },
+        obtonerDescuento: function (material, descuentos) {
+            var listaDescuento = [];
+            for (var indice in descuentos) {
+                listaDescuento.push(material[descuentos[indice].codigoSer]);
+            }
+            return listaDescuento;
+        },
+        onOpenRepartoDetail: function (oEvent) {
+            this.getView().byId("dlg_DialogDocReparto").open();
+            var material = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
+            var fechaEntrega = moment(material.FechaEntrega).format('DD/MM/YYYY');
+            this.getView().getModel().setProperty("/materialDetail", material);
+            this.getView().getModel().setProperty("/materialDetail/FechaEntrega", fechaEntrega);
+        },
+        onCloseRepartoDetail: function (oEvent) {
+            this.getView().byId("dlg_DialogDocReparto").close();
+        },
         onShowHello: function () {
-
             // read msg from i18n model
             var oBundle = this.getView().getModel("i18n").getResourceBundle();
             var sRecipient = this.getView().getModel().getProperty("/recipient/name");
             var sMsg = oBundle.getText("helloMsg", [sRecipient]);
-
             // show message
             MessageToast.show(sMsg);
         },
-
         //Boton Home
         goHome: function () {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("appHome");
         },
-
-        //Boton Buscar Cliente
-        onDocNuevoBuscarCliente: function () {
-            this.getView().byId("dlg_DocNuevobuscarCliente").open()
-        },
-        onDocNuevoCloseBuscarCliente: function () {
-            this.getView().byId("dlg_DocNuevobuscarCliente").close()
-        },
-
-        //Navegacion Master
-        onDocNuevoPressMasterBack: function () {
-        },
-
-        //Buscar Producto
-        onDocNuevodlg_buscar: function () {
-
-            this.getView().byId("dlg_DocNuevobuscar").open();
-        },
-        onDocNuevoClosedlg_buscar: function () {
-            this.getView().byId("dlg_DocNuevobuscar").close();
-        },
-
-        //Abrir Dialog para Agregar Producto
-        onDocNuevodlg_addProducto: function () {
-            this.getView().byId("dlg_DocNuevoaddProducto").open();
-        },
-
-        onDocNuevoClosedlg_addProducto: function () {
-            this.getView().byId("dlg_DocNuevoaddProducto").close();
-        },
-
-        //Boton Añadir Producto desde el Dialog
-        onDocNuevoMasterProductosAdd: function () {
-
-            this.getView().byId("dlg_DocNuevoaddProducto").close();
-
-        },
-
-        //Boton Buscar Producto desde el Dialog
-        onDocNuevoMasterProductosBuscar: function () {
-
-
-
-            this.getView().byId("dlg_DocNuevobuscar").close();
-
-        },
-
-        //Editar Lista de Reparto
-        /*
-         onDocNuevodlg_editListaReparto: function() {
-         this.getView().byId("dlg_DocNuevoeditListaReparto").open();
-         },
-         
-         onDocNuevoClosedlg_editListaReparto: function() {
-         this.getView().byId("dlg_DocNuevoeditListaReparto").close();
-         }, 
-         */
-
-
-        //Boton Agregar producto desde el Master BuscarProducto
-        onDocNuevoAddinBuscar: function () {
-            MessageToast.show("Producto Añadido");
-        },
-
-        /*
-         onDocNuevoSemanticButtonPress: function(evt) {
-         MessageToast.show(evt.getSource().getText() + " Pressed");
-         
-         },
-         */
-
         //Boton Master Datos
         onDocNuevoMasterDatos: function (oEvent) {
             this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoDatos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"));
-
-
         },
-
         //Boton Master Producto
         onDocNuevoMasterProductos: function (oEvent) {
             this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoProductos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
-
         },
-
         //Lista de Master Datos
-        onListaMasterDatos:function(evt){
+        onListaMasterDatos: function (evt) {
             var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
-
-            if(obj.codigo===1){
-                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"))
-                }
-
-                if(obj.codigo===2){
-                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail2"))
-                }
-
-                if(obj.codigo===3){
-                    this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail3"))
-                }
-
-
-        },
-
-        //Lista de Master Productos
-        onDocNuevoListMasterProductos: function (oEvent) {
-        },
-
-        //Abrir Dialog Buscar Cliente
-        onDocNuevoBuscarCliente: function () {
-            this.getView().byId("dlg_DocNuevobuscarCliente").open()
-        },
-
-        //Cerrar Dialog Seleccionar Cliente
-        onDocNuevoCloseSeleccionarCliente: function () {
-            this.getView().byId("dlg_DocNuevobuscarCliente_resultado").close()
-        },
-
-        //Al Seleccionar un Cliente desde la Lista del Dialog
-        SeleccionaCliente: function (evt) {
-            var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
-            this.getView().getModel().setProperty("/clienteSeleccionado", obj);
-            this.getView().getModel().refresh();
-
-
-
-            this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoProductosBuscarCliente"));
-            this.byId("SplitAppId").to(this.createId("pagDocNuevo_cliente_buscado"));
-
-            console.log(obj.codigo);
-        },
-
-        //Al presionar en la Lista de los Clientes Buscados
-        onDocNuevoListBuscarCliente: function () {
-        },
-
-        //Al Presionar Boton Buscar Cliente desde el Dialog
-        onDocNuevoBuscarClienteAccion: function () {
-            var ruc = this.getView().byId("txt_ruc_cliente_busqueda").getValue();
-            var nombre = this.getView().byId("txt_nombre_cliente_busqueda").getValue();
-
-            if (ruc || nombre) {
-
-                var result = clienteServices.buscarCliente(ruc, nombre);
-
-                if (result.c === "s") {
-
-                    if (result.data.success) {
-
-                        this.getView().byId("dlg_DocNuevobuscarCliente_resultado").open();
-                        this.getView().getModel().setProperty("/BusquedaClientes", result.data.lstClientes);
-                        this.getView().getModel().refresh();
-
-                    } else {
-
-                        sap.m.MessageToast.show(result.data.errors.reason, {
-                            duration: 3000
-                        });
-
-                    }
-
-
-                } else {
-                    sap.m.MessageToast.show(result.m, {
-                        duration: 3000
-                    });
-                }
-
-                console.log(result);
-            } else {
-                sap.m.MessageToast.show('Ingrese RUC ó Razón social', {
-                    duration: 1000
-                });
-                return;
+            if (obj.codigo === 1) {
+                this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"));
             }
-
-
-        },
-
-        goStockDisponible: function (oEvent) {
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.navTo("appStockDisponible");
-        },
-        goStockporLlegar: function (oEvent) {
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.navTo("appStockporLlegar");
-        },
-        goStockporPedir: function (oEvent) {
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.navTo("appStockporPedir");
-        },
-
-        //Seleccionar Categoria
-        /*onSeleccionarCategoria: function(){
-         var categoria = this.getView().byId("comboCategoria").getSelectedKey();
-         var linea[] = window.dataIni.lstLinea;
-         var listaL[];
-         
-         for (var i = 0; i < (linea[].lenght); i++) {
-         
-         
-         
-         if(linea[]{Codigo} == categoria ){
-         listaL[].push(linea[]{Descripcion});
-         
-         }
-         
-         
-         }
-         this.getView().getModel().setProperty("/ListaLinea",listaL[]);
-         
-         },*/
-
-
-
-        //Stock Buscar
-
-
-        onDocNuevoCloseSeleccionarMaterial: function () {
-            this.getView().byId("dlg_BuscarMateriales").close();
-        },
-
-        onDocNuevoBuscarMateriales: function (oEvent) {
-            //this.showBusyIndicator(4000, 0);
-
-            //Busy Dialog
-            /*if (!this._dialog) {
-             this._dialog = sap.ui.xmlfragment("pe.com.seidor.sap.decor.ventas.view.BusyDialog", this);
-             this.getView().addDependent(this._dialog);
-             }
-             
-             // open dialog
-             jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._dialog);
-             this._dialog.open();
-             
-             // simulate end of operation
-             _timeout = jQuery.sap.delayedCall(20000, this, function () {
-             this._dialog.close();
-             });*/
-
-            //
-
-            var codigo = this.getView().byId("txt_codigo_material_busqueda").getValue();
-            var codigoAntiguo = this.getView().byId("txt_codigoAntiguo_material_busqueda").getValue();
-            var descripcionMaterial = this.getView().byId("txt_descripcionMaterial_material_busqueda").getValue();
-            var categoria = this.getView().byId("comboCategoria").getSelectedKey();
-            var linea = this.getView().byId("comboLinea").getSelectedKey();
-            var marca = this.getView().byId("comboMarca").getSelectedKey();
-
-            var orgVentas = window.dataIni.person.OrgVentas;
-            var canalDist = window.dataIni.person.CanalDist;
-            var ofVentas = window.dataIni.person.OfVentas;
-
-            this.getView().byId("loadingControl").open(); // INDICADOR
-            var result = materialServices.buscarmaterial(codigo, codigoAntiguo, descripcionMaterial, categoria, linea, marca, orgVentas, canalDist, ofVentas);
-             
-            if (result.c === "s") {
-                 this.getView().byId("dlg_DocNuevobuscar").close();
-                if (result.data.success) {
-
-                    this.getView().getModel().setProperty("/BusquedaMateriales", result.data.materiales);
-                    this.getView().getModel().setProperty("/RetornolstCentros", result.data.lstCentros);
-                    this.getView().byId("dlg_BuscarMateriales").open();
-                    this.getView().getModel().refresh();
-                    this.getView().byId("loadingControl").close();
-                } else {
-
-                    sap.m.MessageToast.show(result.data.errors.reason, {
-                        duration: 3000
-                    });
-
-                }
-
-
-            } else {
-                sap.m.MessageToast.show(result.m, {
-                    duration: 3000
-                });
+            if (obj.codigo === 2) {
+                this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail2"));
             }
-        },
-
-        onDocNuevoAnadirMaterial: function () {
-            this.getView().byId("dlg_DocNuevoaddProductoonDialog").open();
-        },
-
-        //Seleccionar Categoria
-        onSeleccionarCategoria: function () {
-            var categoria = this.getView().byId("comboCategoria").getSelectedKey();
-            var linea = window.dataIni.lstLinea;
-            var itemLleno = [];
-
-            console.log(categoria);
-
-            for (var i = 0; i < linea.length; i++) {
-                var item = linea[i];
-                var itemcod = item.Codigo;
-
-
-                if (itemcod.substring(0, 2) == categoria) {
-
-                    itemLleno.push(item);
-
-
-                }
+            if (obj.codigo === 3) {
+                this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail3"));
             }
-            ;
-            this.getView().getModel().setProperty("/listaLinea", itemLleno);
-            this.getView().getModel().refresh();
-            console.log(itemLleno.Codigo);
-
-        },
-
-        onSeleccionarLinea: function () {
-            var linea = this.getView().byId("comboLinea").getSelectedKey();
-            var marca = window.dataIni.lstMarca;
-            var itemLleno = [];
-
-            for (var i = 0; i < marca.length; i++) {
-                var item = marca[i];
-                var itemcod = item.Codigo;
-
-
-                if (itemcod.substring(0, 5) == linea) {
-
-                    itemLleno.push(item);
-                    console.log(item);
-
-                }
-
-
-
-
-
-
-
-            }
-            ;
-            this.getView().getModel().setProperty("/listaMarca", itemLleno);
-            this.getView().getModel().refresh();
-        },
-
-        onDocNuevoClosedlg_addProductoonDialog: function () {
-            this.getView().byId("dlg_DocNuevoaddProductoonDialog").close();
-
-        },
-
-//Busy Indicador------------
-
-        hideBusyIndicator: function () {
-            sap.ui.core.BusyIndicator.hide();
-        },
-
-        showBusyIndicator: function (iDuration, iDelay) {
-            sap.ui.core.BusyIndicator.show(iDelay);
-
-            if (iDuration && iDuration > 0) {
-                if (this._sTimeoutId) {
-                    jQuery.sap.clearDelayedCall(this._sTimeoutId);
-                    this._sTimeoutId = null;
-                }
-
-                this._sTimeoutId = jQuery.sap.delayedCall(iDuration, this, function () {
-                    this.hideBusyIndicator();
-                });
-            }
-        },
-
-// this.showBusyIndicator(4000, 0);
-//--------------------------
-
-        onSiMensajeAviso1: function () {
-            
-            var objSeleccionado = this.getView().getModel().getProperty("/materialSelec");
-            var listaDisplay = this.getView().getModel().getProperty("/listaMatAnadido");
-            
-            if(listaDisplay){
-                listaDisplay.push(objSeleccionado);
-            }else{
-                
-                listaDisplay = [];
-                listaDisplay.push(objSeleccionado);
-                
-            }
-            
-            this.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
-            this.getView().getModel().refresh();
-            this.getView().byId("dlg_MensajeAviso1").close();
-            this.getView().byId("dlg_DocNuevoaddProductoonDialog").close();
-
-
-        },
-
-        onNoMensajeAviso1: function () {
-
-            var objSeleccionado = this.getView().getModel().getProperty("/materialSelec");
-            var listaDisplay = this.getView().getModel().getProperty("/listaMatAnadido");
-            
-            if(listaDisplay){
-                listaDisplay.push(objSeleccionado);
-            }else{
-                
-                listaDisplay = [];
-                listaDisplay.push(objSeleccionado);
-                
-            }
-            
-            this.getView().getModel().setProperty("/listaMatAnadido",listaDisplay);
-            this.getView().getModel().refresh();
-            this.getView().byId("dlg_MensajeAviso1").close();
-            this.getView().byId("dlg_DocNuevobuscar").close();
-            this.getView().byId("dlg_BuscarMateriales").close();
-            this.getView().byId("dlg_DocNuevoaddProductoonDialog").close();
-
-
-        },
-
-        onDocNuevoMasterProductosAddonDialog: function (evt) {
-            
-            this.getView().byId("dlg_MensajeAviso1").open();
-        },
-
-        SeleccionarMaterial: function (evt) {
-            var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
-
-            //var item=[];
-            //var item = { CodMaterial: "{/materialSelec/CodMaterial}" , DescMaterial: "{/materialSelec/DescMaterial}" };
-
-
-            
-            this.getView().getModel().setProperty("/materialSelec", obj);
-            this.getView().getModel().refresh();
-            this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
-        },
-
-        onMasterProductoSeleccionarMaterial: function (oEvent) {
-            var obj = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
-            this.getView().getModel().setProperty("/materialSeleccionado", obj);
-            this.getView().getModel().refresh();
-        },
-
-        onSeleccionarCaracteristicas: function (oEvent) {
-            var caracteristicas = this.getView().byId("comboCategoria").getSelectedKey();
-            var dlg = "dlg_categoria_";
-            var dlgtotal = dlg.concat(caracteristicas);
-
-
-
-            if (caracteristicas !== " ") {
-
-                if (caracteristicas == "08" | caracteristicas == "10" | caracteristicas == "12" | caracteristicas == "13" | caracteristicas == "16" | caracteristicas == "99") {
-                    MessageToast.show("No se encontraron Características");
-                } else {
-                    this.getView().byId(dlgtotal).open();
-                }
-
-            } else {
-
-                console.log(caracteristicas);
-                MessageToast.show("Seleccione una Categoría", {
-                    horizontally: 'center',
-                    vertically: 'center'
-                });
-
-
-            }
-
-
-
-
-
-
-
-        },
-
-        onVolverCate01: function () {
-            this.getView().byId("dlg_categoria_01").close();
-        },
-        onVolverCate02: function () {
-            this.getView().byId("dlg_categoria_02").close();
-        },
-        onVolverCate03: function () {
-            this.getView().byId("dlg_categoria_03").close();
-        },
-        onVolverCate04: function () {
-            this.getView().byId("dlg_categoria_04").close();
-        },
-        onVolverCate05: function () {
-            this.getView().byId("dlg_categoria_05").close();
-        },
-        onVolverCate06: function () {
-            this.getView().byId("dlg_categoria_06").close();
-        },
-        onVolverCate07: function () {
-            this.getView().byId("dlg_categoria_07").close();
-        },
-        onVolverCate09: function () {
-            this.getView().byId("dlg_categoria_09").close();
-        },
-        onVolverCate11: function () {
-            this.getView().byId("dlg_categoria_11").close();
-        },
-        onVolverCate14: function () {
-            this.getView().byId("dlg_categoria_14").close();
-        },
-        onVolverCate15: function () {
-            this.getView().byId("dlg_categoria_15").close();
-        },
-
-        show4000_0: function () {
-            this.showBusyIndicator(4000, 0);
-        },
-
+        }
     });
-
 });
