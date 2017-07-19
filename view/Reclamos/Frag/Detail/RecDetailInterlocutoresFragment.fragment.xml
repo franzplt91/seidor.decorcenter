@@ -273,8 +273,8 @@
                     </IconTabBar>
                 </s:content>
                 <s:customFooterContent>
-                    <Button text="Copiar Datos"></Button>
-                    <Button text="Buscar" icon="sap-icon://search" press="onOpenDlgBuscarRecNuevo"></Button>
+                    <Button text="Copiar Datos" press="onCopiarCliente"></Button>
+                    <Button text="Buscar" icon="sap-icon://search" press="onDocNuevoBuscarCliente"></Button>
                 </s:customFooterContent>
             </s:DetailPage>
         

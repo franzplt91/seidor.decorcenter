@@ -263,9 +263,9 @@
                 <s:pagingAction>
                     <Button icon="sap-icon://save" tooltip="Guardar" press="onGuardarReclamo"/>
                 </s:pagingAction>
-                <s:customFooterContent>
+                <!--s:customFooterContent>
                     <Button text="Buscar" icon="sap-icon://search" press="onOpenDlgBuscarRecNuevo"></Button>
-                </s:customFooterContent>
+                </s:customFooterContent-->
             </s:DetailPage>
         
     </core:FragmentDefinition>

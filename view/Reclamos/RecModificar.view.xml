@@ -87,12 +87,12 @@
                     <f:formElements>
                         <f:FormElement label="RUC / DNI">
                             <f:fields>
-                                <Input placeholder="Ingrese RUC o Nro. de DNI"></Input>
+                                <Input placeholder="Ingrese RUC o Nro. de DNI" id="txt_ruc_cliente_busqueda"></Input>
                             </f:fields>
                         </f:FormElement>
                         <f:FormElement label="Razón Social">
                             <f:fields>
-                                <Input placeholder="Ingrese Razón Social"></Input>
+                                <Input placeholder="Ingrese Razón Social" id="txt_nombre_cliente_busqueda"></Input>
                             </f:fields>
                         </f:FormElement>
                     </f:formElements>
@@ -103,7 +103,7 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onBuscarRecNuvoInterlocutores"></Button>
+            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onDocReclamoBuscarClienteAccion"></Button>
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgBuscarRecNuevo" />
@@ -125,6 +125,26 @@
         <beginButton>
             <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCrearDlgRecNuevo" />
         </beginButton>
+    </Dialog>
+     <Dialog title="Seleccionar Cliente" id="dlg_DocNuevobuscarCliente_resultado" contentWidth="auto" contentHeight="auto">
+                <content>
+                    <List selectionChange="SeleccionaCliente" mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                        enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" itemPress=""  items="{
+                                        path : '/BusquedaClientes',
+                                        sorter : {
+                                            path : 'nombrecliente',
+                                            group: false
+                                        }
+                                    }">
+                        <items>
+                            <StandardListItem selected="true" title="{codigo} {nombrecliente}" type="Active" custom:to=""/>
+                        </items>
+                    </List>
+                </content>
+        <endButton>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarCliente"/>
+        </endButton>
+
     </Dialog>
     <!--Split Container-->
     <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Reclamos.Frag.RecContenedorFragment" type="XML"></core:Fragment>
