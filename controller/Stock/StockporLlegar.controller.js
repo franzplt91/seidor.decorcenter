@@ -14,13 +14,19 @@ sap.ui.define([
 			oRouter.attachRoutePatternMatched(this.onRouteMatched, this);			
 		},
 		onRouteMatched: function(oEvent) {
+			var date = new Date();
+            var yyyy = date.getFullYear().toString();
+            var mm = (date.getMonth() + 1).toString(); // getMonth() is zero-based
+            var dd  = date.getDate().toString();
+            var fechaActual = yyyy +"-"+ (mm[1] ? mm : "0" + mm[0]) +"-"+ (dd[1] ? dd : "0" + dd[0]);
             if (oEvent.getParameter("name") == "appStockporLlegar") {
                     this.getView().setModel(new JSONModel({}));
                     this.getView().getModel().setProperty("/dataIni",window.dataIni);
                     this.getView().getModel().setProperty("/codMaterial",window.codMaterial);
                     this.getView().getModel().refresh(true);
 					this.getView().byId("dlg_stockPorLlegar").open();
-					
+					this.getView().byId("date_fec_inicio_stockPorLlegar").setValue(fechaActual);
+                	this.getView().byId("date_fec_fin_stockPorLlegar").setValue(fechaActual);
                 };
 		},
 		
