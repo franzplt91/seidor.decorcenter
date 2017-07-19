@@ -69,7 +69,7 @@
                                             <f:fields>
                                                 <ComboBox items="{ path : '/dataIni/lstZipCodes'}" 
                                                     change="onSeleccionaSurtido" maxWidth="100%" required="true"
-                                                    id="cbo_ubicacion" selectedKey="{/objReclamo/Interlocutor/AG/Ciudad}">
+                                                    id="cbo_ubicacion" selectedKey="{/objReclamo/Interlocutor/AG/CodPostal}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>

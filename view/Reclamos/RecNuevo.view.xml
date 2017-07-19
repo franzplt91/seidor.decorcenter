@@ -147,7 +147,7 @@
                     </List>
                 </content>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarCliente"/>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCerrarListado"/>
         </endButton>
 
     </Dialog>

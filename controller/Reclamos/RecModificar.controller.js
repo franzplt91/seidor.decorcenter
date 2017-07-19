@@ -546,8 +546,8 @@ sap.ui.define([
 			    "Name1": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") ,
 	       	    "Calle": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Calle") , 
 	       	    "KUNNR": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/KUNNR") , 
-			    "CPOSTAL": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Ciudad") , 
-			    "CodPostal": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Ciudad") , 
+			    "CPOSTAL": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/CodPostal") , 
+			    "CodPostal": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/CodPostal") , 
 			    "DIRECCION": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/Direccion") , 
 			    "PCONTACTO": this.getView().getModel().getProperty("/objReclamo/Interlocutor/AG/NOMBRE") , 
 		    },
@@ -691,6 +691,7 @@ sap.ui.define([
                     {
                         this.getView().byId("dlg_DocNuevobuscarCliente_resultado").open();
                         this.getView().getModel().setProperty("/BusquedaClientes", result.data.lstClientes);
+                        this.getView().byId("dlg_buscar_rec_nuevo").close();
                         this.getView().getModel().refresh();
                     } 
                     else 
@@ -760,16 +761,20 @@ sap.ui.define([
         },
         onCopiarCliente: function () 
         {
-            var codigo = this.getView().byId("txt_codigo").getValue();
-            var result = reclamoServices.reemplazarCiente(codigo);
-            if(result)
-            {
-                this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/PCONTACTO",result.data.Interlocutores[0].Cliente.Descripcion);
-                this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/DIRECCION",result.data.Interlocutores[0].Cliente.Direccion);
-                this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/CPOSTAL",result.data.Interlocutores[0].Cliente.CodigoPostal);
-                this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/TELEFONO",result.data.Interlocutores[0].Cliente.Telefono);
-            }
-        }   
+            var nombre = this.getView().byId("txt_nombre").getValue();
+            var direccion = this.getView().byId("txt_direccion").getValue();
+            var ubicacion = this.getView().byId("cbo_ubicacion").getSelectedKey();
+            //this.getView().getModel().getProperty("/objReclamo") ;
+            var telefono = this.getView().byId("txt_telefono").getValue();
+            this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/PCONTACTO",nombre);
+            this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/DIRECCION",direccion);
+            this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/CPOSTAL",ubicacion);
+            this.getView().getModel().setProperty("/objReclamo/Z_Reclamo/TELEFONO",telefono);
+        },
+        onCerrarListado: function () 
+        {
+            this.getView().byId("dlg_DocNuevobuscarCliente_resultado").close();
+        }       
 	});
 
 });

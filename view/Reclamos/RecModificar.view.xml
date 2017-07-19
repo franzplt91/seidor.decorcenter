@@ -129,7 +129,7 @@
      <Dialog title="Seleccionar Cliente" id="dlg_DocNuevobuscarCliente_resultado" contentWidth="auto" contentHeight="auto">
                 <content>
                     <List selectionChange="SeleccionaCliente" mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
-                        enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" itemPress=""  items="{
+                        enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" itemPress="SeleccionaCliente"  items="{
                                         path : '/BusquedaClientes',
                                         sorter : {
                                             path : 'nombrecliente',
@@ -142,7 +142,7 @@
                     </List>
                 </content>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarCliente"/>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCerrarListado"/>
         </endButton>
 
     </Dialog>
