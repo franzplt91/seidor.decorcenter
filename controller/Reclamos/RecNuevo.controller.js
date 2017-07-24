@@ -429,6 +429,14 @@ sap.ui.define([
             //////////////////////////////////////////////////////////////////////////////////////////////////
            var indice_resultado = this.getView().byId("cbo_Resultado").getSelectedItem();
            var pIndiceResultado = indice_resultado.mProperties.key
+            if(this.getView().getModel().getProperty("/reclamo/material1"))
+            {
+                var material1Model = this.getView().getModel().getProperty("/reclamo/material1");
+            }
+            else
+            {
+                var material1Model = "";
+            }
             if(this.getView().getModel().getProperty("/reclamo/material2"))
             {
                 var material2Model = this.getView().getModel().getProperty("/reclamo/material2");
@@ -464,7 +472,7 @@ sap.ui.define([
             ////////////////////////////////////////////////////////////////////////////////////////////////////////
             var guardarReclamo = 
             {
-                "material11": this.getView().getModel().getProperty("/reclamo/material1") ,
+                "material11": material1Model ,
                 "material12": material2Model ,
                 "material21": "" ,
                 "material22": "" ,
@@ -584,9 +592,9 @@ sap.ui.define([
                 "empresa": this.getView().getModel().getProperty("/objReclamo/Contactos/KUNNR") , //"0000101317",
                 "numeroPedido": this.getView().getModel().getProperty("/objReclamo/Contactos/VGBEL") , //"0000238187",
                 "comentario": this.getView().getModel().getProperty("/reclamo/comentario") , //"",
-                "material1": this.getView().getModel().getProperty("/reclamo/material1") , //"11000004",
+                "material1": material1Model , //"11000004",
                 "material2": material2Model , //"11000898",
-                "material11": this.getView().getModel().getProperty("/reclamo/material1") , //"11000004",
+                "material11": material1Model , //"11000004",
                 "material12": material2Model , //"11000898",
                 "material21": "" , //"",
                 "material22": "" , //"",

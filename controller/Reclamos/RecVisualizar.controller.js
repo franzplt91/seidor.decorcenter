@@ -347,9 +347,18 @@ sap.ui.define([
 				}
                 else
                 {
-					sap.m.MessageToast.show(result.m, {
-                       duration: 3000
-                    });
+					if(result.m == "error : Not Found")
+                    {
+                        sap.m.MessageToast.show("Reclamo no encontrado", {
+                           duration: 3000
+                        });
+                    }
+                    else
+                    {
+                        sap.m.MessageToast.show("Ingrese número de reclamo correcto", {
+                           duration: 3000
+                        });   
+                    }
 				}
 		},
 		goHome:function()
