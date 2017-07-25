@@ -237,7 +237,7 @@ sap.ui.define([
                             "Nombre": ""
                         }
                     },
-                    "AT": {
+                    "Z3": {
                         "Cliente": {
                             "Ciudad": "",
                             "Codigo": "",
@@ -252,7 +252,7 @@ sap.ui.define([
                             "Telefono": "998109779",
                             "TelefonoMovil": ""
                         },
-                        "Funcion": "AT",
+                        "Funcion": "Z3",
                         "Persona": {
                             "ApeSoltero": "",
                             "Apellido": "",
@@ -278,6 +278,7 @@ sap.ui.define([
                     "DIREC": "las mucas",
                     "EDAD": "0",
                     "RANGOED": "",
+                    "NIVELSE" : "",
                     "FECNAC": "2017-07-05T00:00:00",
                     "GRAINS": "10",
                     "Mail": "jose@gmail.com",
@@ -342,6 +343,18 @@ sap.ui.define([
                         "StockPos": "",
                         "JerarquiaPrincipalDesc": "COCINAS NACIONAL",
                         "link": null,
+                    "DescMovil": "",
+                    "Descripcion": "",
+                    "EsEstiba": false,
+                    "EsFlete": false,
+                    "EspecialServ": false,
+                    "jerarquia": "",
+                    "MSTAE": "",
+                    "PrecioUnit": null,
+                    "Stock": null,
+                    "TieneServ": false,
+                    "Tipo": "",
+                    "TipoMaterial": "",                        
                         "Repartos": [{
                                 "CantConf": 1,
                                 "CantPed": 1,
@@ -515,8 +528,8 @@ sap.ui.define([
             this.getView().byId("dlg_DialogDocReparto").open();
             var material = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
             var fechaEntrega = moment(material.FechaEntrega).format('DD/MM/YYYY');
-            this.getView().getModel().setProperty("/materialDetail", material);
-            this.getView().getModel().setProperty("/materialDetail/FechaEntrega", fechaEntrega);
+            this.getView().getModel().setProperty("/repartoDetail", material);
+            this.getView().getModel().setProperty("/repartoDetail/FechaEntrega", fechaEntrega);
         },
         onCloseRepartoDetail: function (oEvent) {
             this.getView().byId("dlg_DialogDocReparto").close();

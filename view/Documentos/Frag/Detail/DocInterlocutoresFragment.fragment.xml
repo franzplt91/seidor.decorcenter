@@ -706,7 +706,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Código">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Código" value="{/interlocutores/AT/Cliente/Codigo}" id="txt_codigo_agenciaTransporte" enabled="{/pedido/enabled}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Código" value="{/interlocutores/Z3/Cliente/Codigo}" id="txt_codigo_agenciaTransporte" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -717,7 +717,7 @@
                                     <f:formElements>
                                         <f:FormElement label="DNI/RUC">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese DNI/RUC" value="{/interlocutores/AT/Cliente/Ruc}" id="txt_dni_ruc_agenciaTransporte" enabled="{/pedido/enabled}"></Input>
+                                                <Input width="100%" placeholder="Ingrese DNI/RUC" value="{/interlocutores/Z3/Cliente/Ruc}" id="txt_dni_ruc_agenciaTransporte" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -730,7 +730,7 @@
                                         
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Nombre" value="{/interlocutores/AT/Cliente/Descripcion}" id="txt_nombre_agenciaTransporte" enabled="{/pedido/enabled}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Nombre" value="{/interlocutores/Z3/Cliente/Descripcion}" id="txt_nombre_agenciaTransporte" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>                                                                            
                                     </f:formElements>
@@ -763,10 +763,10 @@
                                     <f:formElements>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Dirección" value="{/interlocutores/AT/Cliente/Direccion}" id="txt_direccion_agenciaTransporte" enabled="{/pedido/enabled}"><layoutData>
+                                                <Input width="100%" placeholder="Ingrese Dirección" value="{/interlocutores/Z3/Cliente/Direccion}" id="txt_direccion_agenciaTransporte" enabled="{/pedido/enabled}"><layoutData>
                                         <l:GridData span="L8 M8 S6"/>
                                     </layoutData></Input>
-                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true" selectedKey="{/interlocutores/AT/Cliente/CodigoPostal}" id="com_distrito_agenciaTransporte" enabled="{/pedido/enabled}">
+                                                <ComboBox placeholder="Seleccione Distrito" items="{ path : '/dataIni/lstZipCodes' }" maxwidth="100%" required="true" selectedKey="{/interlocutores/Z3/Cliente/CodigoPostal}" id="com_distrito_agenciaTransporte" enabled="{/pedido/enabled}">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                                     <layoutData>
                                         <l:GridData span="L4 M4 S6"/>
@@ -804,7 +804,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Teléfono" value="{/interlocutores/AT/Cliente/Telefono}" id="txt_telefono_agenciaTransporte" enabled="{/pedido/enabled}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Teléfono" value="{/interlocutores/Z3/Cliente/Telefono}" id="txt_telefono_agenciaTransporte" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>                                                                            
                                     </f:formElements>

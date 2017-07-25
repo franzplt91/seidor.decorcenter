@@ -8,28 +8,24 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     	
-
-
-    <Dialog title="Seleccionar Cliente" id="dlg_DocNuevobuscarCliente_resultado" contentWidth="auto" contentHeight="auto">
+    <Dialog title="Lista Cliente" id="dlg_DocNuevobuscarClienteLista_resultado" contentWidth="auto" contentHeight="auto">
                 <content>
-                    <List selectionChange="SeleccionaCliente" mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                    <List selectionChange="SeleccionaClienteLista" mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                         enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" itemPress=""  items="{
-                                        path : '/BusquedaClientes',
+                                        path : '/BusquedaClientesLista',
                                         sorter : {
-                                            path : 'Descripcion',
+                                            path : 'nombrecliente',
                                             group: false
                                         }
                                     }">
-                        <items>  
-                            <StandardListItem selected="true" title="{codigo} {nombrecliente}" type="Active" custom:to=""/>
+                        <items>                                                
+                            <StandardListItem selected="true" title="{CodPersona} {Descripcion}" type="Active" custom:to=""/>                            
                         </items>
                     </List>
                 </content>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarCliente"/>
+            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarClienteLista"/>
         </endButton>
 
-    </Dialog>
-
-    	
+    </Dialog>    	
     </core:FragmentDefinition>

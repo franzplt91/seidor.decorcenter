@@ -34,25 +34,27 @@
                                     <f:formElements>
                                         <f:FormElement label="Fecha de Entrega">
                                             <f:fields>
-                                                <Input value="{/materialDetail/FechaEntrega}" enabled="{/pedido/enabled}"></Input>
+                                                 <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
+                                                    value="{/repartoDetail/FechaEntrega}" enabled="{/pedido/enabled}" />
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Cantidad">
                                             <f:fields>
-                                                <Input value="{/materialDetail/CantPed}" enabled="{/pedido/enabled}"></Input>
+                                                <Input value="{/repartoDetail/CantPed}" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>
-                                        <f:FormElement label="Cantidad Confirmada">
+                                        <!--
+                                        <f:FormElement label="Cant Confirmada">
                                             <f:fields>
-                                                <Input value="{/materialDetail/CantConf}" enabled="{/pedido/enabled}"></Input>
+                                                <Input value="{/repartoDetail/CantConf}" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Tipo">
                                             <f:fields>
-                                                <Input value="{/materialDetail/TipoReparto}" enabled="{/pedido/enabled}"></Input>
+                                                <Input value="{/repartoDetail/TipoReparto}" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>                                        
-
+                                            -->
                                     </f:formElements>
                                 </f:FormContainer>
                             </f:formContainers>
@@ -61,7 +63,7 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Añadir" type="Accept" icon="sap-icon://add" press="" visible="{/pedido/enabledBtn}"></Button>
+           <Button text="Añadir" type="Accept" icon="sap-icon://add" press="onAgregarReparto" visible="{/pedido/enabledBtn}"></Button> 
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseRepartoDetail"/>

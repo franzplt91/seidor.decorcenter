@@ -8,14 +8,8 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     	
-
-<Dialog title="Buscar Cliente" id="dlg_DocNuevobuscarCliente" contentWidth="20%" contentHeight="25%">
-         
-
-
+<Dialog title="Buscar Cliente" id="dlg_DocNuevobuscarCliente" contentWidth="20%" contentHeight="25%">        
                 <content>
-
-
                     <f:Form editable="true">
                            <!-- <f:title>
                                 <core:Title text="Address" />
@@ -41,22 +35,19 @@
                                     <f:formElements>
                                         <f:FormElement label="RUC / DNI">
                                             <f:fields>
-                                                <Input value="" id="txt_ruc_cliente_busqueda"/>
+                                                <Input value="{/busquedaCliente/dniRuc}" id="txt_ruc_cliente_busqueda"/>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Razón Social">
                                             <f:fields>
-                                                <Input value="" id="txt_nombre_cliente_busqueda" />
+                                                <Input value="{/busquedaCliente/razonSocial}" id="txt_nombre_cliente_busqueda" />
                                             </f:fields>
-                                        </f:FormElement>
+                                        </f:FormElement>                                        
                                     </f:formElements>
                                 </f:FormContainer>
                             </f:formContainers>
-                        </f:Form>
-
-                   
-                </content>
-            
+                        </f:Form>                   
+                </content>            
         <beginButton>
             <Button text="Buscar" type="Accion" press="onDocNuevoBuscarClienteAccion" icon="sap-icon://search" />
         </beginButton>
@@ -64,6 +55,4 @@
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseBuscarCliente"/>
         </endButton>
     </Dialog>
-
-
     </core:FragmentDefinition>

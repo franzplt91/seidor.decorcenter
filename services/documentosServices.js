@@ -41,74 +41,53 @@ sap.ui.define([
             return resultado;
         },
 
-        anadirMaterialMasterDoc: function(material){
-            var materialPedido = material;
-            var contexto = {};
-            contexto.servicio = "materialServices.anadirMaterialMasterDoc()";
-            contexto.url = "material.aspx";
-            contexto.parametros = materialPedido;
-
-            return utilService.exec(contexto);
-        },
-
-
-        //INICIO EDELACRUZ
-        crearInstalacion: function (venta1, venta2, venta3, venta4, visita1, visita2, visita3,visita4)
+        
+        guardarDocumento: function (nuevoDocumento,listaMatJson,listaDsctoJson,listaRepJson,listaIntJson,listaPedJson,listadatosCliente)
         {
             var contexto = {};
-            contexto.servicio = "documentosServices.crearInstalacion()";
-            contexto.url = "documentoVentas.aspx";
-            contexto.parametros = {venta1: venta1,
-                                   venta2: venta2,
-                                   venta3: venta3,
-                                   venta4: venta4,
-                                   visita1: visita1,
-                                   visita2: visita2,
-                                   visita3: visita3,
-                                   visita4: visita4,
-                                   instalacion: "instalacion"
-            };
-            var resultado = utilService.exec(contexto);
-            return resultado;
-        },
-        //FIN EDELACRUZ
-
-        // Listar busqueda de documentos
-         buscarDocumento: function (buscarDoc){
-            var contexto = {};
-            contexto.servicio = "documentosServices.buscarDocumento()";
-            contexto.url = "buscarDocumento.aspx";
-            contexto.parametros = {tipoBusqueda: buscarDoc.tipoBusqueda ,
-                                    datoBusqueda: buscarDoc.datoBusqueda ,
-                                    nMaterial: buscarDoc.nMaterial ,
-                                    fechaInicio: buscarDoc.fechaInicio ,
-                                    fechaFin: buscarDoc.fechaFin ,
-                                    claseDoc: buscarDoc.claseDoc ,
-                                    codAsesor: buscarDoc.codAsesor ,
-                                    fecInicio1: buscarDoc.fecInicio1 ,
-                                    fecFin1: buscarDoc.fecFin1 ,
-                                    
-
-            };
-            var resultado = utilService.exec(contexto);
-            return resultado;
-        },
-        //FIN EDELACRUZ
-        
-
-        conversionPedido:function(convPedido){
-            var contexto = {};
-            contexto.servicio = "documentosServices.conversionPedido()";
-            contexto.url = "flujoDocumento.aspx";
-            contexto.parametros = {pNumPedido: convPedido.NumeroPedido ,
-                                    tipoDocumento: "Z001" 
+            contexto.servicio = "documentosServices.guardarDocumento()";
+            contexto.url = "guardarDocumento.aspx";
+            contexto.parametros = {codigoCliente: nuevoDocumento.codigoCliente,
+                                    nombreCliente: nuevoDocumento.nombreCliente,
+                                    OrgVentas: nuevoDocumento.OrgVentas,
+                                    CanalDist: nuevoDocumento.CanalDist,
+                                    CodOficina: nuevoDocumento.CodOficina,
+                                    CondPago: nuevoDocumento.CondPago,
+                                    Moneda: nuevoDocumento.Moneda,
+                                    TipoCambio: nuevoDocumento.TipoCambio,
+                                    dsctoAdicionalZD12: nuevoDocumento.dsctoAdicionalZD12,
+                                    pesoTotal: nuevoDocumento.pesoTotal,
+                                    FechaFacturacion: nuevoDocumento.FechaFacturacion,
+                                    GrupoCond: nuevoDocumento.GrupoCond,
+                                    Motivo: nuevoDocumento.Motivo,
+                                    BloqueoFactura: nuevoDocumento.BloqueoFactura,
+                                    BloqueoEntrega: nuevoDocumento.BloqueoEntrega,
+                                    OrdenCompra: nuevoDocumento.OrdenCompra,
+                                    FechaPedido: nuevoDocumento.FechaPedido,
+                                    FechaValidez: nuevoDocumento.FechaValidez,
+                                    FechaEntrega: nuevoDocumento.FechaEntrega,
+                                    CondExp: nuevoDocumento.CondExp,
+                                    FechaReparto: nuevoDocumento.FechaReparto,
+                                    nomProyecto: nuevoDocumento.nomProyecto,
+                                    codProyecto: nuevoDocumento.codProyecto,
+                                    codVersion: nuevoDocumento.codVersion,
+                                    TipoVisita: nuevoDocumento.TipoVisita,
+                                    cbxReembolsable: nuevoDocumento.cbxReembolsable,
+                                    GrupoForecast: nuevoDocumento.GrupoForecast,
+                                    TipoForecast: nuevoDocumento.TipoForecast,
+                                    Certificado: nuevoDocumento.Certificado,
+                                    FechaVisita: nuevoDocumento.FechaVisita,
+                                    listaMatJson: listaMatJson,
+                                    listaDsctoJson: listaDsctoJson,
+                                    listaRepJson: listaRepJson,
+                                    listaIntJson: listaIntJson,
+                                    listaPedJson: listaPedJson,
+                                    listadatosCliente: listadatosCliente,
+                                    numPedido: nuevoDocumento.numPedido,
+                                    op: nuevoDocumento.op
                                     };
-
-                                    
             var resultado = utilService.exec(contexto);
             return resultado;
         },
-
-
     };
 });
