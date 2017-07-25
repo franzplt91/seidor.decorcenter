@@ -20,6 +20,15 @@ sap.ui.define([
             
         },
 
+        anadirMaterialMasterDoc: function(material){
+            var materialPedido = material;
+            var contexto = {};
+            contexto.servicio = "materialServices.anadirMaterialMasterDoc()";
+            contexto.url = "material.aspx";
+            contexto.parametros = materialPedido;
+
+            return utilService.exec(contexto);
+        },
 
         anadirMaterialMaster: function(codigo,
                                         cantidad,
@@ -73,11 +82,11 @@ sap.ui.define([
         },
 
 
-        //Añadir Material desde el Dialog Buscar Materiales
+
         anadirMaterialBuscar:function(objetoDetalle,objetoMaterial,objetoPedido,anadirMat){
 
             var contexto = {};
-            contexto.servicio = "materialServices.anadirMaterialBuscar()";
+            contexto.servicio = "materialServices.buscarmaterial()";
             contexto.url = "material.aspx";
             contexto.parametros = { objDetalle: objetoDetalle, objMaterial:objetoMaterial, objPedido:objetoPedido, añadirMat:anadirMat};
 
@@ -128,161 +137,21 @@ sap.ui.define([
 
 
         },
-
-
-
-        stockDetallado:function(Posicion,
-                                CodMaterialCorto,
-                                DescMaterial,
-                                Cantidad,
-                                CodUMedida,
-                                Rendimiento,
-                                fullName,
-                                ext1153,
-                                Peso,
-                                PesoNeto,
-                                PrecioUnitario, 
-                                TotalDctos,
-                                SubTotal,
-                                ext1159,
-                                CodGrupoMat,
-                                Opcion,
-                                MotivoRechazo,  
-                                PrioridadEntrega,
-                                UserId,
-                                PwdId,
-                                Id,
-                                GrpVend,
-                                Descripcion,
-                                CodigoVendedor,
-                                OrgVentas,
-                                CanalDist,
-                                OfVentas,
-                                valorRe,
-                                codigoMaterial,
-                                pPosicion,
-                                pCentro,
-                                dsctoLotes,
-                                auart,
-                                verStock){
+        recalcularDoc: function(dsctoLotes, listaInterJson, listaDsctoJson,
+                                listaRepartosJson, listaMatJson,listaPedJson ){
 
             var contexto = {};
-            contexto.servicio = "materialServices.stockDetallado()";
+            contexto.servicio = "materialServices.recalcularDoc()";
             contexto.url = "material.aspx";
-            contexto.parametros = { Posicion: Posicion,
-                                    CodMaterialCorto: CodMaterialCorto,
-                                    DescMaterial: DescMaterial,
-                                    Cantidad: Cantidad,
-                                    CodUMedida: CodUMedida,
-                                    Rendimiento: Rendimiento,
-                                    fullName: fullName,
-                                    "ext-1153": ext1153,
-                                    Peso: Peso,
-                                    PesoNeto: PesoNeto,
-                                    PrecioUnitario: PrecioUnitario, 
-                                    TotalDctos: TotalDctos,
-                                    SubTotal: SubTotal,
-                                    ext1159: ext1159,
-                                    CodGrupoMat: CodGrupoMat,
-                                    Opcion: Opcion,
-                                    MotivoRechazo: MotivoRechazo,  
-                                    PrioridadEntrega: PrioridadEntrega,
-                                    UserId: UserId,
-                                    PwdId: PwdId,
-                                    Id: Id,
-                                    GrpVend: GrpVend,
-                                    Descripcion: Descripcion,
-                                    CodigoVendedor: CodigoVendedor,
-                                    OrgVentas: OrgVentas,
-                                    CanalDist: CanalDist,
-                                    OfVentas: OfVentas,
-                                    valorRe: valorRe,
-                                    codigoMaterial: codigoMaterial,
-                                    pPosicion: pPosicion,
-                                    pCentro: pCentro,
-                                    dsctoLotes: dsctoLotes,
-                                    auart: auart,
-                                    verStock: verStock};
+            contexto.parametros = { dsctoLotes: dsctoLotes,
+                                    listaInterJson: listaInterJson,
+                                    listaDsctoJson: listaDsctoJson,
+                                    listaRepartosJson: listaRepartosJson,
+                                    listaMatJson: listaMatJson,
+                                    listaPedJson: listaPedJson};
 
             return utilService.exec(contexto);
 
-        },
-
-
-        catalogo:function(Posicion,
-                           CodMaterialCorto,
-                           DescMaterial,
-                           Cantidad,
-                           CodUMedida,
-                           Rendimiento,
-                           fullName,
-                           ext1153,
-                           Peso,
-                           PesoNeto,
-                           PrecioUnitario,
-                           TotalDctos,
-                           SubTotal,
-                           ext1159,
-                           CodGrupoMat,
-                           Opcion,
-                           MotivoRechazo, 
-                           PrioridadEntrega,
-                           UserId,
-                           PwdId,
-                           Id,
-                           GrpVend,
-                           Descripcion,
-                           CodigoVendedor,
-                           OrgVentas,
-                           CanalDist,
-                           OfVentas,
-                           valorRe,
-                           pPosicion,
-                           pCentro,
-                           dsctoLotes,
-                           auart,
-                           verStock,
-                           codigoMaterial){
-
-            var contexto = {};
-            contexto.servicio = "materialServices.catalogo()";
-            contexto.url = "catalogo.aspx";
-            contexto.parametros = { Posicion: Posicion,
-                                    CodMaterialCorto: CodMaterialCorto,
-                                    DescMaterial: DescMaterial,
-                                    Cantidad: Cantidad,
-                                    CodUMedida: CodUMedida,
-                                    Rendimiento: Rendimiento,
-                                    fullName: fullName,
-                                    "ext-comp-1153": ext1153,
-                                    Peso: Peso,
-                                    PesoNeto: PesoNeto,
-                                    PrecioUnitario: PrecioUnitario, 
-                                    TotalDctos: TotalDctos,
-                                    SubTotal: SubTotal,
-                                    "ext-comp-1159": ext1159,
-                                    CodGrupoMat: CodGrupoMat,
-                                    Opcion: Opcion,
-                                    MotivoRechazo: MotivoRechazo,  
-                                    PrioridadEntrega: PrioridadEntrega,
-                                    UserId: UserId,
-                                    PwdId: PwdId,
-                                    Id: Id,
-                                    GrpVend: GrpVend,
-                                    Descripcion: Descripcion,
-                                    CodigoVendedor: CodigoVendedor,
-                                    OrgVentas: OrgVentas,
-                                    CanalDist: CanalDist,
-                                    OfVentas: OfVentas,
-                                    valorRe: valorRe,
-                                    codigoMaterial: codigoMaterial,
-                                    pPosicion: pPosicion,
-                                    pCentro: pCentro,
-                                    dsctoLotes: dsctoLotes,
-                                    auart: auart,
-                                    verStock: verStock};
-
-            return utilService.exec(contexto);
 
         }
 
