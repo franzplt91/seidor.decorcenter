@@ -309,8 +309,13 @@ font-weight: bold !important;
     color: white !important;
 }
 
-
-
+.cellBorderRight {
+    border-right: 1px solid lightgray;
+}
+ 
+.cellBorderLeft {
+    border-left: 1px solid lightgray;
+}
 
 
 /*********************************---------***************************************************/

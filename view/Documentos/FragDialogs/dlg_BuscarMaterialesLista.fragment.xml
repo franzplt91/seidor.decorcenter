@@ -7,18 +7,18 @@
     xmlns:t="sap.ui.table" 
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-    	
+        
 
 
 
-    <Dialog title="Stock Disponible" id="dlg_BuscarMateriales" contentWidth="100%" contentHeight="100%" stretch="false">
+    <Dialog title="Stock Disponible" id="dlg_listaBuscarMateriales" contentWidth="100%" contentHeight="100%" stretch="false">
         <content>
             <List id="lista_BuscarMaterial" selectionChange="" mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                         enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" 
-                        itemPress="SeleccionarMaterial"  
+                        itemPress=""  
 
                         items="{
-                        path : '/BusquedaMateriales/materiales',
+                        path : '/listaBuscarMateriales',
                                 sorter : {
                                     path : 'DescMaterial',
                                     group : false
@@ -54,5 +54,5 @@
     </Dialog>
 
 
-    	
+        
     </core:FragmentDefinition>

@@ -46,6 +46,8 @@
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAviso1AddMaterial" type="XML"></core:Fragment>
 
 
+            <!--dlg_DialogDocReparto-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocReparto" type="XML"></core:Fragment>  
 
     <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange" >
         <masterPages>

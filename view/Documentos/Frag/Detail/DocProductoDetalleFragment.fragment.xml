@@ -12,7 +12,7 @@
         <s:content>
             
 
-            <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding">
+            <IconTabBar expandable="false" headerMode="Inline" upperCase="false" expanded="{device&gt;/isNoPhone}" class="sapUiResponsiveContentPadding" id="tabDetalleProducto">
                 <items>
                     <IconTabFilter text="Detalle Material 1">
 
@@ -689,20 +689,187 @@
                                         width="480px" >
                                     </Image>                     
                                      -->
-                                    <Image
-                                        src="https://http2.mlstatic.com/ceramica-piso-rustica-primera-simil-laja-interior-exterior-D_NQ_NP_955701-MLA20380982757_082015-F.jpg"
-                                        densityAware="false"                                        
-                                        alt="{/material/DescMaterial}"
-                                        width="580px" >
-                                    </Image>
+                                    <Carousel class="sapUiContentPadding" loop="true" id="carouselCatalogo" >
+                                    </Carousel>
                             </FlexBox>
                         </Panel>                        
                     </IconTabFilter>
+
+                    <IconTabFilter text="Stock Por Llegar" key="filterStockPorLlegar">
+                        <Panel>
+                            <FlexBox
+                                height="100%"
+                                alignItems="Start"
+                                justifyContent="Center">
+
+                                <Table 
+                        inset="false"
+                        items="{
+                            path: '/retornoStockPorLlegar/lstStockCurso'  }">
+                        <columns>
+                            <Column
+                                width="12em">
+                                <Text text="Fecha" />
+                            </Column>
+                            <Column
+                                width="12em">
+                                <Text text="Material" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true">
+                                <Text text="Descripción" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Right">
+                                <Text text="UM" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Disponibilidad" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <ObjectIdentifier
+                                        title="{LFDAT}"
+                                        text="{ProductId}"/>
+                                    <Text
+                                        text="{MATNR}" />
+                                    <Text
+                                        text="{MAKTX}" />
+                                        <Text
+                                        text="{MEINS}" />
+                                        <Text
+                                        text="{MENGE}" />
+                                    
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+                            </FlexBox>
+                        </Panel>                        
+                    </IconTabFilter>
+
+                    <IconTabFilter text="Stock Por Pedir" key="filterStockPorPedir">
+                        <Panel>
+                            <FlexBox
+                                height="100%"
+                                alignItems="Start"
+                                justifyContent="Center">
+
+                                <Table 
+                        inset="false"
+                        items="{
+                            path: '/retornoStockPorPedir/lstReporteMercaderia'  }">
+                        <columns>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Fecha" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Material" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Marca" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Jerarquia 1" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Jerarquia 2" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Jerarquia 3" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Jerarquia 4" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Cantidad y UM" />
+                            </Column>
+                            <Column
+                                minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Tipo Stock" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <ObjectIdentifier
+                                        title="{EINDT}"
+                                        text="{MES}"/>
+                                        <Text
+                                        text="{MATNR} - {TXZ01}" />
+                                        <Text
+                                        text="{MARCA}" />
+                                        <Text
+                                        text="{VTEXT1}" />
+                                        <Text
+                                        text="{VTEXT2}" />
+                                        <Text
+                                        text="{VTEXT3}" />
+                                        <Text
+                                        text="{VTEXT4}" />
+                                        <Text
+                                        text="{MENGE} {MEINS}" />
+                                        <ObjectIdentifier
+                                        title="{TEXTO_INSMK}"
+                                        text="{STOCK}"/>
+                                        
+                                    
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+                            </FlexBox>
+                        </Panel>                        
+                    </IconTabFilter>
+
+                    
                 </items>
             </IconTabBar>
         </s:content>
         
         <s:customFooterContent>
+                    <!--Text class="txt_Total_Dscto" text="Tot.Doc.: S/. {} (c/IGV) | Tot.Dcto. : S/. {}" ></Text-->
+                    <Text class="txt_Total_Dscto" text="Total: S/. " ></Text>
+                    <Text class="monto_Total_Dscto" text="{/pedido/Total}"></Text>
+                    <Text class="txt_Total_Dscto" text="Dscto.: S/. "></Text>
+                    <Text class="monto_Total_Dscto" text="{/pedido/TotalDcto}"></Text>
+                    <ToolbarSpacer />
                     <Button icon="sap-icon://refresh" tooltip="" text="" press="onBtnRecalcular" visible="{/pedido/enabledBtn}"></Button>
         </s:customFooterContent>
     </s:DetailPage>

@@ -10,7 +10,7 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     displayBlock="true">
-    	
+        
 
     <s:MasterPage title="Productos" id="MasterDocNuevoProductos" >
         <!--s:customHeaderContent>
@@ -58,7 +58,7 @@
             </customHeader>
 
             <content>
-                <List id="listaMasterMateriales"  mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
+                <List id="listaMasterMateriales"   mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                               enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos" 
                               itemPress="onMasterProductoSeleccionarMaterial"  
                               items="{
@@ -73,16 +73,16 @@
 
 
                         <ObjectListItem
-                            title="{CodMaterial}"
-                            number="Peso: {Peso}"
-                            numberUnit="Precio: {PrecioUnit} Stock: {Stock}{CodUMedida}"
+                            title="{CodMaterialCorto}"
+                            number="Precio: {PrecioUnit} "
+                            numberUnit="peso: {Peso} Stock: {Stock}{CodUMedida}"
                             numberState=""
-                            type="Navigation"
+                            type="Active"
                             press=""
                             custom:to=""
-                            >
+                            ><!--type="Navigation"-->
                             <firstStatus>
-                                <ObjectStatus text="Descontinuado: {Descontinuado}"/>
+                                <ObjectStatus text="{DescMaterial}"/>
                             </firstStatus>
                         </ObjectListItem>
 
@@ -92,9 +92,9 @@
             </content>
         </Page>
         <s:customFooterContent>
-            <OverflowToolbarButton icon="sap-icon://add" press="onDocNuevodlg_addProducto"/>
+            <!--OverflowToolbarButton icon="sap-icon://add" press="onDocNuevodlg_addProducto"/>
             <OverflowToolbarButton icon="sap-icon://search" press="onDocNuevodlg_buscar"/>
-            <Button text="Stock Disponible" press="goStockDisponible"></Button>
+            <Button text="Stock Disponible" press="goStockDisponible"></Button-->
             <Button text="Stock por Llegar" press="goStockporLlegar"></Button>
             <Button text="Stock por Pedir" press="goStockporPedir"></Button>
 
@@ -102,7 +102,7 @@
     </s:MasterPage>
 
 
-    	
+        
 </core:FragmentDefinition>
 
 

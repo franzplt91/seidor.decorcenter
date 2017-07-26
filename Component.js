@@ -4,17 +4,11 @@ sap.ui.define([
     "sap/m/routing/Router",
 ], function(UIComponent, Device, Router) {
     "use strict";
-
     return UIComponent.extend("pe.com.seidor.sap.decor.ventas.Component", {
-
         metadata: {
-
-            name: "CAMPOSOL SEAFOOD APP",
-
+            name: "DECOR VENTAS APP",
             rootView: "pe.com.seidor.sap.decor.ventas.view.App",
-
             routing: {
-
                 config: {
                     routerClass: Router,
                     viewType: "XML",
@@ -23,17 +17,14 @@ sap.ui.define([
                     controlAggregation: "pages",
                     transition: "slide"
                 },
-
                 routes: [
                 
-
                 //Home
                 {
                     pattern: "",
                     name: "appHome",
                     target: "home"
                 },
-
                 //Documentos---------------
                 {
                     pattern: "doc_nuevo",
@@ -70,7 +61,6 @@ sap.ui.define([
                     name: "appDocFlujo",
                     target: "doc_flujo"
                 },
-
                 //Stock--------------------------
                 {
                     pattern: "stock_disponible",
@@ -87,8 +77,6 @@ sap.ui.define([
                     name: "appStockporPedir",
                     target: "stock_porpedir"
                 },
-
-
                 //Reclamos-----------------------
                 {
                     pattern: "rec_nuevo",
@@ -115,8 +103,6 @@ sap.ui.define([
                     name: "appRecImprimir",
                     target: "rec_imprimir"
                 },
-
-
                 //Quejas-------------------------
                 {
                     pattern: "que_nuevo",
@@ -143,25 +129,18 @@ sap.ui.define([
                     name: "appQueImprimir",
                     target: "que_imprimir"
                 },
-
-
                 //Usuario------------------------
                 {
                     pattern: "usu_informacion",
                     name: "appUsuInformacion",
                     target: "usu_informacion"
                 },
-
-
                 ],
-
                 targets: {
-
                     home: {
                         viewName: "Home",
                         viewLevel: 0
                     },
-
                     //Documentos-------------------------------------------------
                     doc_nuevo: {
                         viewPath: "pe.com.seidor.sap.decor.ventas.view.Documentos",
@@ -198,7 +177,6 @@ sap.ui.define([
                         viewName: "DocFlujo",
                         viewLevel: 1
                     },
-
                     //Stock--------------------------
                     stock_disponible: {
                         viewPath: "pe.com.seidor.sap.decor.ventas.view.Stock",
@@ -215,8 +193,6 @@ sap.ui.define([
                         viewName: "StockporPedir",
                         viewLevel: 1
                     },
-
-
                     //Reclamos-----------------------
                     rec_nuevo: {
                         viewPath: "pe.com.seidor.sap.decor.ventas.view.Reclamos",
@@ -243,8 +219,6 @@ sap.ui.define([
                         viewName: "RecImprimir",
                         viewLevel: 1
                     },
-
-
                     //Quejas-------------------------
                     que_nuevo: {
                         viewPath: "pe.com.seidor.sap.decor.ventas.view.Quejas",
@@ -271,20 +245,15 @@ sap.ui.define([
                         viewName: "QueImprimir",
                         viewLevel: 1
                     },
-
-
                     //Usuario------------------------
                     usu_informacion: {
                         viewPath: "pe.com.seidor.sap.decor.ventas.view.Usuario",
                         viewName: "UsuInformacion",
                         viewLevel: 1
                     },
-
                 }
-
             }
         },
-
         /**
          * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
          * @public
@@ -293,7 +262,6 @@ sap.ui.define([
         init: function() {
             // call the init function of the parent
             UIComponent.prototype.init.apply(this, arguments);
-
             // create the views based on the url/hash
             this.getRouter().initialize();
         }

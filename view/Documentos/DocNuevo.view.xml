@@ -28,6 +28,10 @@
 
 
 <!--Dialgs-->
+            <!--Stock por Llegar-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Stock.FragDialogs.dlg_stockPorLlegar" type="XML"></core:Fragment>
+            <!--Stock por Pedir-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Stock.FragDialogs.dlg_stockPorPedir" type="XML"></core:Fragment>
         
              <!--dlg_DialogDocNuevo-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocNuevoInicio" type="XML"></core:Fragment>
@@ -47,6 +51,12 @@
             <!--dlg_DocNuevobuscarCliente_resultado-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevobuscarCliente_resultado" type="XML"></core:Fragment>
 
+            <!--dlg_DocNuevobuscarClienteLista_resultado-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevobuscarClienteLista_resultado" type="XML"></core:Fragment>     
+
+            <!--dlg_DocNuevobuscarProfesional_resultado-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevobuscarProfesional_resultado" type="XML"></core:Fragment>                       
+
             <!--dlg_DocNuevobuscarProducto-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevobuscarProducto" type="XML"></core:Fragment>
 
@@ -56,8 +66,12 @@
 
             <!--Lista de Clientes-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DocNuevolistaClientes_resultado" type="XML"></core:Fragment>
-            
+             
+            <!--dlg_DialogDocReparto-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_DialogDocReparto" type="XML"></core:Fragment>  
 
+            <!--dlg_MensajeAvisoAddCenAlmLot-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAvisoAddCenAlmLot" type="XML"></core:Fragment>  
 
     <SplitContainer id="SplitAppId" initialMaster="MasterDocNuevoDatos" initialDetail="pagDocNuevo_datos_detail1" orientationChange="onOrientationChange">
         <masterPages>

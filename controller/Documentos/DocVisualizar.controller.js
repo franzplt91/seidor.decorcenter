@@ -6,12 +6,10 @@ sap.ui.define([
     "pe/com/seidor/sap/decor/ventas/services/clienteServices",
     "pe/com/seidor/sap/decor/ventas/services/materialServices",
     "pe/com/seidor/sap/decor/ventas/services/documentosServices",
-    "pe/com/seidor/sap/decor/ventas/model/formatter",
     'jquery.sap.global'
-], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, documentosServices, formatter, jQuery) {
+], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, documentosServices, jQuery) {
     "use strict";
-    return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocVisualizar", {
-        formatter: formatter,
+    return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocVisualizar", {        
         onInit: function () {
             var oRouter = UIComponent.getRouterFor(this);
             oRouter.attachRoutePatternMatched(this.onRouteMatched, this);

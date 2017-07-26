@@ -7,13 +7,13 @@
     xmlns:t="sap.ui.table" 
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-    	
+        
 
 
 
 
 
-    	<Dialog title="Ingresar la Cantidad" id="dlg_DocNuevoaddProductoonDialog" stretchOnPhone="true" contentWidth="20%" contentHeight="65%">
+        <Dialog title="Ingresar la Cantidad" id="dlg_DocNuevoaddProductoonDialog" stretchOnPhone="true" contentWidth="20%" contentHeight="65%">
         <content>
             <Panel>
                 <content>
@@ -44,19 +44,19 @@
                                     <f:formElements>
                                         <f:FormElement label="Cantidad">
                                             <f:fields>
-                                                <Input value="1" id="txt_cantidad_material"></Input>
+                                                <Input value="1" id="txt_cantidad_dlgBuscarMaterial"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Ambiente">
                                             <f:fields>
-                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" required="true" id="com_ambiente_material">
+                                                <Select items="{ path : '/dataIni/lstPreguntas/5/listaResp' }" required="true" id="com_ambiente_dlgBuscarMaterial">
                                     <core:Item key="{Codigo}" text="{Descripcion}"/>
                             </Select>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Opción">
                                             <f:fields>
-                                                <Select  required="true" id="com_opcion_material">
+                                                <Select  required="true" id="com_opcion_dlgBuscarMaterial">
                                                 <core:Item key="01" text="01"/>
                                                 <core:Item key="02" text="02"/>
                                                 <core:Item key="03" text="03"/>

@@ -534,7 +534,7 @@ sap.ui.define([
 
         self.getView().byId("loadingControl").open();
         setTimeout(function(){
-            var result = documentosServices.anadirMaterialMasterDoc(nuevoMaterial);
+            var result = documentosServices.anadirMaterialMaster(nuevoMaterial);
             if (result.c === "s") {
                 if (result.data.success) {
                     var materialSer = result.data.lstTotal[0];
