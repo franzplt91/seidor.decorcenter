@@ -72,5 +72,9 @@ sap.ui.define([
             }
             console.log(result.data);
         },
+        onCancelarStockPorPedir:function(){
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("appHome");
+        },
     });
 });

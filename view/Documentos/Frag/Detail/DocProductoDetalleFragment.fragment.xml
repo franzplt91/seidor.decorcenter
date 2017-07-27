@@ -131,7 +131,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Centro/Almacen/Lote">
                                             <f:fields>
-                                                <Input width="100%" value="{/material/CodCentro} / {/material/CodAlmacen} / {/material/CodLote} "  enabled="{/pedido/enabled}">
+                                                <Input width="100%" value="{/material/CodCentro} {/material/DescCentro} / {/material/CodAlmacen} / {/material/CodLote} "  enabled="{/pedido/enabled}">
                                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>

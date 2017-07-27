@@ -28,6 +28,9 @@
 
 
 <!--Dialgs-->
+            <!--Caracteristicas-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Caracteristicas.DocCaracteristicaCategoria" type="XML"></core:Fragment>
+
             <!--Stock por Llegar-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Stock.FragDialogs.dlg_stockPorLlegar" type="XML"></core:Fragment>
             <!--Stock por Pedir-->

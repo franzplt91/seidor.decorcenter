@@ -62,6 +62,10 @@ sap.ui.define([
             }
             console.log(result.data);
         },
+        onCancelarStockPorLlegar:function(){
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("appHome");
+        },
         //Boton Buscar Cliente
         onDocNuevoBuscarCliente: function () {
             this.getView().byId("dlg_DocNuevobuscarCliente").open()
