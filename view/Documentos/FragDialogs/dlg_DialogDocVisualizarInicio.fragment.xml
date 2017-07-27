@@ -8,7 +8,7 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     	
-    	<Dialog title="Elegir Documento" id="dlg_DialogDocVisualizar" stretchOnPhone="true" contentWidth="25%"
+    	<Dialog title="Elegir Documento" class="cabecera_dialogo" id="dlg_DialogDocVisualizar" stretchOnPhone="true" contentWidth="25%"
                     contentHeight="18%">
             <content>
                         <f:Form editable="true">
@@ -50,8 +50,8 @@
                 <Button enabled="false"></Button>
                 <Button enabled="false"></Button> -->
                 
-                <Button text="Continuar" type="Accept" icon="sap-icon://accept" press="onContinuarDlg_DialogDocVisualizar" />
-                <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+                <Button text="Continuar" class="btn_aceptar" type="Accept" icon="sap-icon://accept" press="onContinuarDlg_DialogDocVisualizar" />
+                <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
             </buttons>        
     </Dialog>
     </core:FragmentDefinition>

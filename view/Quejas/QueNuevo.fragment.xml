@@ -1,6 +1,6 @@
 <core:FragmentDefinition height="100%" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="pe.com.seidor.sap.decor.ventas.controller.Quejas.QueNuevo" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:s="sap.m.semantic" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" displayBlock="true">
 
-    <Dialog title="Nueva Queja" id="dlg_QueNuevo" stretchOnPhone="true" contentWidth="22%" contentHeight="69%">
+    <Dialog title="Nueva Queja" class="cabecera_dialogo" id="dlg_QueNuevo" stretchOnPhone="true" contentWidth="22%" contentHeight="69%">
         <content>
 
             <f:Form minWidth="1024" maxContainerCols="4" editable="true">
@@ -68,9 +68,9 @@
         </content>
 
         <buttons>
-            <Button text="Buscar Cliente" type="Accion" icon="sap-icon://search" press="onBuscarCliQueja"></Button>
-            <Button text="Guardar" type="Accion" icon="sap-icon://save" press="onGuardarQueja"></Button>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueNuevo"></Button>
+            <Button text="Buscar Cliente" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onBuscarCliQueja"></Button>
+            <Button text="Guardar" class="btn_aceptar" type="Accion" icon="sap-icon://save" press="onGuardarQueja"></Button>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueNuevo"></Button>
         </buttons>
     </Dialog>
 

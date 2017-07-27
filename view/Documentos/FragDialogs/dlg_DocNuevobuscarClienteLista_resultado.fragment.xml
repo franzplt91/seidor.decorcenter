@@ -8,7 +8,7 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     	
-    <Dialog title="Lista Cliente" id="dlg_DocNuevobuscarClienteLista_resultado" contentWidth="auto" contentHeight="auto">
+    <Dialog title="Lista Cliente" class="cabecera_dialogo" id="dlg_DocNuevobuscarClienteLista_resultado" contentWidth="auto" contentHeight="auto">
                 <content>
                     <List selectionChange="SeleccionaClienteLista" mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                         enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" itemPress=""  items="{
@@ -24,7 +24,7 @@
                     </List>
                 </content>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarClienteLista"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarClienteLista"/>
         </endButton>
 
     </Dialog>    	

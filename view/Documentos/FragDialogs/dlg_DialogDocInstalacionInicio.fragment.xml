@@ -8,7 +8,7 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 
-<Dialog title="Servicio de Instalación" id="dlg_DialogDocInstalacion" stretchOnPhone="true" contentWidth="30%"
+<Dialog title="Servicio de Instalación" class="cabecera_dialogo" id="dlg_DialogDocInstalacion" stretchOnPhone="true" contentWidth="30%"
                     contentHeight="70%">
         <content>
 
@@ -118,8 +118,8 @@
 
         <buttons>
 
-            <Button text="Continuar" type="Accion" press="onContinuarDlg_DialogDocInstalacion" />
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCancelDlg_DialogDocInstalacion" />
+            <Button text="Continuar" class="btn_aceptar" type="Accion" press="onContinuarDlg_DialogDocInstalacion" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCancelDlg_DialogDocInstalacion" />
         </buttons>
         
     </Dialog>

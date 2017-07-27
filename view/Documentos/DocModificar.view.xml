@@ -13,6 +13,8 @@
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     displayBlock="true">
 <BusyDialog id="loadingControl" />
+<!--Caracteristicas-->
+            <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Caracteristicas.DocCaracteristicaCategoria" type="XML"></core:Fragment>
 
 <!--dlg_stockPorLlegar-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Stock.FragDialogs.dlg_stockPorLlegar" type="XML"></core:Fragment>

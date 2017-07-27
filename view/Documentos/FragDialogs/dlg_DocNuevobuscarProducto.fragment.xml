@@ -10,7 +10,7 @@
     	
 
 
-<Dialog title="Stock Disponible" id="dlg_DocNuevobuscar" stretchOnPhone="true" contentWidth="30%" contentHeight="65%">
+<Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_DocNuevobuscar" stretchOnPhone="true" contentWidth="30%" contentHeight="65%">
         <content>
             <Panel>
                 <content>
@@ -103,9 +103,9 @@
             </Panel>
         </content>
          <buttons>
-            <Button text="Selec. Carac." type="Accion"  press="onSeleccionarCaracteristicas" />
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onDocNuevoBuscarMateriales" />
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoClosedlg_buscar" />
+            <Button text="Selec. Carac." class="btn_aceptar" type="Accion"  press="onSeleccionarCaracteristicas" />
+            <Button text="Buscar" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onDocNuevoBuscarMateriales" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoClosedlg_buscar" />
         </buttons>
     </Dialog>
 

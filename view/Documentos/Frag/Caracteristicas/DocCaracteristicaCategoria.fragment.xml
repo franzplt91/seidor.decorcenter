@@ -15,7 +15,7 @@
         <!--Seleccionar Caracteristicas-->
 
 
-<Dialog title="Stock Disponible" id="dlg_categoria_01" stretchOnPhone="true" contentWidth="10%"
+<Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_01" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="100%"><!--Banos_Importados-->
         <content>
 
@@ -148,7 +148,7 @@
     </Dialog>
 
 
-    <Dialog title="Stock Disponible" id="dlg_categoria_02" stretchOnPhone="true" contentWidth="10%"
+    <Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_02" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="100%"><!--Banos_Nacionales-->
         <content>
 
@@ -282,7 +282,7 @@
 
 
 
-<Dialog title="Stock Disponible" id="dlg_categoria_03" stretchOnPhone="true" contentWidth="10%"
+<Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_03" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="100%"><!--Cocinas_Importadas-->
         <content>
 
@@ -388,7 +388,7 @@
     </Dialog>
 
 
-<Dialog title="Stock Disponible" id="dlg_categoria_04" stretchOnPhone="true" contentWidth="10%"
+<Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_04" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="43%"><!--Cocinas_Nacionales-->
         <content>
 
@@ -462,7 +462,7 @@
 
 
 
-<Dialog title="Stock Disponible" id="dlg_categoria_05" stretchOnPhone="true" contentWidth="10%"
+<Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_05" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="43%"><!--Ferreteria-->
         <content>
 
@@ -535,7 +535,7 @@
 
 
 
-<Dialog title="Stock Disponible" id="dlg_categoria_06" stretchOnPhone="true" contentWidth="10%"
+<Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_06" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="70%"><!--Ilumincacion_Importado-->
         <content>
 
@@ -635,7 +635,7 @@
     </Dialog>
 
 
-<Dialog title="Stock Disponible" id="dlg_categoria_07" stretchOnPhone="true" contentWidth="10%"
+<Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_07" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="50%"><!--Ilumincacion_Nacional-->
         <content>
 
@@ -716,7 +716,7 @@
 
 
 
-    <Dialog title="Stock Disponible" id="dlg_categoria_09" stretchOnPhone="true" contentWidth="10%"
+    <Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_09" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="50%"><!--Menaje-->
         <content>
 
@@ -796,7 +796,7 @@
     </Dialog>
 
 
-    <Dialog title="Stock Disponible" id="dlg_categoria_11" stretchOnPhone="true" contentWidth="10%"
+    <Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_11" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="100%"><!--Piedras_Naturales-->
         <content>
 
@@ -912,7 +912,7 @@
 
 
 
-    <Dialog title="Stock Disponible" id="dlg_categoria_14" stretchOnPhone="true" contentWidth="10%"
+    <Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_14" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="70%"><!--Revestimientos_Blandos-->
         <content>
 
@@ -1012,7 +1012,7 @@
 
 
 
-    <Dialog title="Stock Disponible" id="dlg_categoria_15" stretchOnPhone="true" contentWidth="10%"
+    <Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_categoria_15" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="100%"><!--Revestimientos_Ceramicos-->
         <content>
 

@@ -24,7 +24,7 @@
     <!--Conversion a Pedido-->
     <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.FragDialogs.dlg_MensajeAvisoConversionPedido" type="XML"></core:Fragment>
 
-<Dialog title="Lista de Documentos" id="dlg_DocBuscarLista" stretchOnPhone="true" contentWidth="80%" contentHeight="80%" >
+<Dialog title="Lista de Documentos" class="cabecera_dialogo" id="dlg_DocBuscarLista" stretchOnPhone="true" contentWidth="80%" contentHeight="80%" >
 
     <customHeader>
             <Toolbar>
@@ -163,15 +163,15 @@
 
                 <s:customFooterContent>
                     <!--Text class="txt_Total_Dscto" text="Tot.Doc.: S/. {} (c/IGV) | Tot.Dcto. : S/. {}" ></Text-->
-                    <Button icon="sap-icon://decision" tooltip="" text="Conv. Pedido" press="onConversionPedido"></Button>
+                    <Button icon="sap-icon://decision" class="btn_boton" tooltip="" text="Conv. Pedido" press="onConversionPedido"></Button>
                     <ToolbarSpacer />
-                    <Button icon="sap-icon://edit" tooltip="" text="Modificar" press="onBtnRecalcular"></Button>
+                    <Button icon="sap-icon://edit" class="btn_boton" tooltip="" text="Modificar" press="onBtnRecalcular"></Button>
                     <ToolbarSpacer />
-                    <Button icon="sap-icon://sys-find" tooltip="" text="Visualizar" press="onBtnRecalcular"></Button>
+                    <Button icon="sap-icon://sys-find" class="btn_boton" tooltip="" text="Visualizar" press="onBtnRecalcular"></Button>
                     <ToolbarSpacer />
-                    <Button icon="sap-icon://table-view" tooltip="" text="Flujo" press="onBtnFlujo"></Button>
+                    <Button icon="sap-icon://table-view" class="btn_boton" tooltip="" text="Flujo" press="onBtnFlujo"></Button>
                     <ToolbarSpacer />
-                    <Button icon="sap-icon://print" tooltip="" text="Imprimir" press="onBtnImprimir"></Button>
+                    <Button icon="sap-icon://print" class="btn_boton" tooltip="" text="Imprimir" press="onBtnImprimir"></Button>
                     <ToolbarSpacer />
                 </s:customFooterContent>
 

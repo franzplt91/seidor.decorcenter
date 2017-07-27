@@ -14,7 +14,7 @@
 
 
 
-        <Dialog title="Modificar Queja" id="dlg_QueModificar" stretchOnPhone="true" contentWidth="30%"
+        <Dialog title="Modificar Queja" class="cabecera_dialogo" id="dlg_QueModificar" stretchOnPhone="true" contentWidth="30%"
                     contentHeight="77%">
         <content>
                             
@@ -116,8 +116,8 @@
        
 
         <buttons>
-            <Button text="Buscar Queja" type="Accion" icon="sap-icon://search" press="onBuscarQueja"></Button>
-            <Button text="Guardar" type="Accion" icon="sap-icon://save" press="onModificarQueja"></Button>
+            <Button text="Buscar Queja" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onBuscarQueja"></Button>
+            <Button text="Guardar" class="btn_cancelar" type="Accion" icon="sap-icon://save" press="onModificarQueja"></Button>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueModificar"></Button>
         </buttons>
     </Dialog>

@@ -14,7 +14,7 @@
 
 
 
-        <Dialog title="Ver Queja" id="dlg_QueVisualizar" stretchOnPhone="true" contentWidth="30%"
+        <Dialog title="Ver Queja" class="cabecera_dialogo" id="dlg_QueVisualizar" stretchOnPhone="true" contentWidth="30%"
                     contentHeight="77%">
         <content>
                             
@@ -111,8 +111,8 @@
        
 
         <buttons>
-            <Button text="Buscar Queja" type="Accion" icon="sap-icon://search" press="onVerBuscarQueja"></Button>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueVisualizar"></Button>
+            <Button text="Buscar Queja" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onVerBuscarQueja"></Button>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueVisualizar"></Button>
         </buttons>
     </Dialog>
 

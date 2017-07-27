@@ -13,7 +13,7 @@
 
 
 
-        <Dialog title="Ingresar la Cantidad" id="dlg_DocNuevoaddProductoonDialog" stretchOnPhone="true" contentWidth="20%" contentHeight="65%">
+        <Dialog title="Ingresar la Cantidad" class="cabecera_dialogo" id="dlg_DocNuevoaddProductoonDialog" stretchOnPhone="true" contentWidth="20%" contentHeight="65%">
         <content>
             <Panel>
                 <content>
@@ -75,10 +75,10 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Añadir" type="Accept" icon="sap-icon://add" press="onDocNuevoMasterProductosAddonDialog"></Button>
+            <Button text="Añadir" class="btn_aceptar" type="Accept" icon="sap-icon://add" press="onDocNuevoMasterProductosAddonDialog"></Button>
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoClosedlg_addProductoonDialog"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoClosedlg_addProductoonDialog"/>
         </endButton>
     </Dialog>
 

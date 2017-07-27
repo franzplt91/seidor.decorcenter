@@ -11,7 +11,7 @@
 
 
 
-    <Dialog title="Stock Disponible" id="dlg_listaBuscarMateriales" contentWidth="100%" contentHeight="100%" stretch="false">
+    <Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_listaBuscarMateriales" contentWidth="100%" contentHeight="100%" stretch="false">
         <content>
             <List id="lista_BuscarMaterial" selectionChange="" mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                         enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" 
@@ -47,8 +47,8 @@
          <buttons>
             <Button text="Catálogo"></Button>
             <Button text="Buscar Stock"></Button>
-            <Button text="Añadir" type="Accept" icon="sap-icon://sys-cancel" press="onDocNuevoAnadirMaterial"></Button>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarMaterial"/>
+            <Button text="Añadir" class="btn_aceptar" type="Accept" icon="sap-icon://sys-cancel" press="onDocNuevoAnadirMaterial"></Button>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarMaterial"/>
         </buttons>
 
     </Dialog>

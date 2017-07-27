@@ -10,7 +10,7 @@
     	
 
 
-    	<Dialog title="Material 1" id="dlg_DocNuevoaddProducto" stretchOnPhone="true" contentWidth="20%" contentHeight="65%">
+    	<Dialog title="Material 1" class="cabecera_dialogo" id="dlg_DocNuevoaddProducto" stretchOnPhone="true" contentWidth="20%" contentHeight="65%">
         <content>
             <Panel>
                 <content>
@@ -77,10 +77,10 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Añadir" type="Accept" icon="sap-icon://add" press="onDocNuevoMasterProductosAdd"></Button>
+            <Button text="Añadir" class="btn_aceptar" type="Accept" icon="sap-icon://add" press="onDocNuevoMasterProductosAdd"></Button>
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoClosedlg_addProducto"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoClosedlg_addProducto"/>
         </endButton>
     </Dialog>
 

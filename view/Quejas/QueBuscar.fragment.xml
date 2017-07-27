@@ -14,7 +14,7 @@
 
 
 
-        <Dialog title="Buscar Queja" id="dlg_QueBuscar" stretchOnPhone="true" contentWidth="25%"
+        <Dialog title="Buscar Queja" class="cabecera_dialogo" id="dlg_QueBuscar" stretchOnPhone="true" contentWidth="25%"
                     contentHeight="43%">
         <content>
                             
@@ -95,14 +95,14 @@
        
 
         <buttons>
-            <Button text="Ver Queja" type="Accion" icon="sap-icon://search" press="onBuscarListaQueja"></Button>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueBuscar"></Button>
+            <Button text="Ver Queja" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onBuscarListaQueja"></Button>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueBuscar"></Button>
         </buttons>
     </Dialog>
 
 
 
-<Dialog title="Lista de Quejas" id="dlg_QueBuscarLista" stretchOnPhone="true" contentWidth="20%" contentHeight="70%">
+<Dialog title="Lista de Quejas" class="cabecera_dialogo" id="dlg_QueBuscarLista" stretchOnPhone="true" contentWidth="20%" contentHeight="70%">
         <content>
 
 
@@ -139,10 +139,10 @@
                 </List>
         </content>
         <beginButton>
-            <Button text="Ver" type="Accion" icon="sap-icon://accept" press="verQuejaSeleccionado"/>
+            <Button text="Ver" class="btn_aceptar" type="Accion" icon="sap-icon://accept" press="verQuejaSeleccionado"/>
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueBuscarLista"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlg_QueBuscarLista"/>
         </endButton>
     </Dialog>
 

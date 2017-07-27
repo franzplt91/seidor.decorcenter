@@ -10,7 +10,7 @@
     	
 
 
-    <Dialog title="Seleccionar Cliente" id="dlg_DocNuevobuscarCliente_resultado" contentWidth="auto" contentHeight="auto">
+    <Dialog title="Seleccionar Cliente" class="cabecera_dialogo" id="dlg_DocNuevobuscarCliente_resultado" contentWidth="auto" contentHeight="auto">
                 <content>
                     <List selectionChange="SeleccionaCliente" mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                         enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" itemPress=""  items="{
@@ -26,7 +26,7 @@
                     </List>
                 </content>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarCliente"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarCliente"/>
         </endButton>
 
     </Dialog>

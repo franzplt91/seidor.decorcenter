@@ -33,7 +33,7 @@
 
 
    <!--Dialog Imprimir Documento-->
-    <Dialog title="Impresión de Documento" id="dlg_doc_impresion" stretchOnPhone="true" contentWidth="35%" contentHeight="47%">
+    <Dialog title="Impresión de Documento" class="cabecera_dialogo" id="dlg_doc_impresion" stretchOnPhone="true" contentWidth="35%" contentHeight="47%">
         <content>
            
             <f:Form 
@@ -126,7 +126,7 @@
 
 
      <!--Dialog Imprimir Reclamo-->
-    <Dialog title="Impresión de Reclamo" id="dlg_rec_impresion" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
+    <Dialog title="Impresión de Reclamo" class="cabecera_dialogo" id="dlg_rec_impresion" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
         <content>
             <Page>
                 <customHeader>
@@ -147,7 +147,7 @@
 
 
     <!--Dialog Imprimir Queja-->
-    <Dialog title="Impresión de Quejas" id="dlg_que_impresion" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
+    <Dialog title="Impresión de Quejas" class="cabecera_dialogo" id="dlg_que_impresion" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
         <content>
             <Page>
                 <customHeader>

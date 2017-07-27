@@ -9,7 +9,7 @@
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     	
 
-    	<Dialog title="Clase Documento" id="dlg_DialogDocNuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="70%">
+    	<Dialog title="Clase Documento" class="cabecera_dialogo" id="dlg_DialogDocNuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="70%">
         <content>
             <Page>
                 <customHeader>
@@ -39,10 +39,10 @@
             </Page>
         </content>
         <beginButton>
-            <Button text="OK" type="Accept" icon="sap-icon://accept" press="onOkDlg_DialogDocNuevo"/>
+            <Button text="OK" class="btn_aceptar" type="Accept" icon="sap-icon://accept" press="onOkDlg_DialogDocNuevo"/>
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="goHome"/>
         </endButton>
     </Dialog>
 

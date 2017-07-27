@@ -8,7 +8,7 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     	
-<Dialog title="Buscar Cliente" id="dlg_DocNuevobuscarCliente" contentWidth="20%" contentHeight="25%">        
+<Dialog title="Buscar Cliente" class="cabecera_dialogo" id="dlg_DocNuevobuscarCliente" contentWidth="20%" contentHeight="25%">        
                 <content>
                     <f:Form editable="true">
                            <!-- <f:title>
@@ -49,10 +49,10 @@
                         </f:Form>                   
                 </content>            
         <beginButton>
-            <Button text="Buscar" type="Accion" press="onDocNuevoBuscarClienteAccion" icon="sap-icon://search" />
+            <Button text="Buscar" class="btn_aceptar" type="Accion" press="onDocNuevoBuscarClienteAccion" icon="sap-icon://search" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseBuscarCliente"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseBuscarCliente"/>
         </endButton>
     </Dialog>
     </core:FragmentDefinition>

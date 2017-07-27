@@ -9,7 +9,7 @@
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     	
 
-    	<Dialog title="Clase Documento" id="dlg_DialogDocFlujo" stretchOnPhone="true" contentWidth="25%"
+    	<Dialog title="Clase Documento" class="cabecera_dialogo" id="dlg_DialogDocFlujo" stretchOnPhone="true" contentWidth="25%"
                     contentHeight="18%">
         <content>
 
@@ -56,10 +56,10 @@
 
 
         <beginButton>
-            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onContinuarDlg_DialogDocFlujo" />
+            <Button text="Continuar" class="btn_aceptar" type="Accion" icon="sap-icon://accept" press="onContinuarDlg_DialogDocFlujo" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </endButton>
     </Dialog>
 

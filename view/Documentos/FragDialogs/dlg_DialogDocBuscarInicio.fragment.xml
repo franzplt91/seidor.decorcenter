@@ -8,7 +8,7 @@
     xmlns:s="sap.m.semantic" 
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     	
-    <Dialog title="Buscar Documento" id="dlg_DialogDocBuscar" stretchOnPhone="true" contentWidth="40%"
+    <Dialog title="Buscar Documento" class="cabecera_dialogo" id="dlg_DialogDocBuscar" stretchOnPhone="true" contentWidth="40%"
             contentHeight="65%">
         <content>
 
@@ -20,7 +20,7 @@
                     <f:ResponsiveGridLayout
                         labelSpanXL="3"
                         labelSpanL="3"
-                        labelSpanM="3"
+                        labelSpanM="3" 
                         labelSpanS="5"
                         adjustLabelSpan="false"
                         emptySpanXL="4"
@@ -81,8 +81,8 @@
         </content>
         <buttons>
 
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onBuscarDlg_DialogDocBuscar" />
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+            <Button text="Buscar" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onBuscarDlg_DialogDocBuscar" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </buttons>
         
     </Dialog>
