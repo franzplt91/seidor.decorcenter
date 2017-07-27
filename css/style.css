@@ -317,5 +317,54 @@ font-weight: bold !important;
     border-left: 1px solid lightgray;
 }
 
+/*Popas documentos*/
+.btn_aceptar .sapMBtnAccept{
+    background-color: #145214 !important;
+}
+
+/*Disquete*/
+.btn_aceptar .sapMBtnDefault{
+    background-color: #145214 !important; 
+}
+
+.btn_aceptar .sapMBtnBase{
+    background-color: #145214 !important;    
+}
+
+.btn_imprimir .sapMBtnDefault{
+    background-color: #145214 !important; 
+}
+
+.btn_boton .sapMBtnDefault{
+    background-color: gray !important;
+}
+
+.btn_boton .sapMBtnContent{
+    color : white !important;
+}
+
+.btn_boton .sapUiIconMirrorInRTL{
+    color : black !important;
+}
+
+.sapMBtnReject{
+    background-color: gray !important;
+}
+
+.sapMBtnContent{
+    color : white !important;
+}
+.btn_cancelar .sapUiIconMirrorInRTL{
+    color : white !important;
+}
+
+.cabecera_dialogo .sapMBarContainer{
+    background-color: #2f3c48 !important;
+}
+
+.cabecera_dialogo .sapMDialogTitle{
+    color : white !important;   
+}
+
 
 /*********************************---------***************************************************/
