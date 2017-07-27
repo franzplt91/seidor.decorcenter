@@ -574,9 +574,25 @@
                 this.getView().setModel(new JSONModel(oData));
                 this.getView().getModel().setProperty("/dataIni", window.dataIni);
                 this.getView().getModel().refresh(true);
-                var firstItem = this.getView().byId("ListaDocNuevo").getItems()[19]; //ponerlo en la posicion ZO01
+
+                //////Redireccion Documento Nuevo - Stock Disponible////
+                    if(window.IsDocNuevo == true){
+                        //////////////Número referencia (Doc Buscar) //////
+                    this.getView().getModel().setProperty("/NumeroDocumentoReferencia", window.numeroDocumento);
+                    ///////////////////////////////////////////////////
+                    
+                            if(window.crearPedido == true){
+                                var firstItem = this.getView().byId("ListaDocNuevo").getItems()[1]; //ponerlo en la posicion ZO01
                             this.getView().byId("ListaDocNuevo").setSelectedItem(firstItem,true);
-                this.getView().byId("dlg_DialogDocNuevo").open();
+                            }else{
+                                var firstItem = this.getView().byId("ListaDocNuevo").getItems()[19]; //ponerlo en la posicion ZO01
+                            this.getView().byId("ListaDocNuevo").setSelectedItem(firstItem,true);
+                            }
+                            this.getView().byId("dlg_DialogDocNuevo").open();
+                    }else{
+                        this.getView().byId("dlg_DocNuevobuscar").open();
+                    }
+                    ////////////////////////////////////////////////////////
                 this.initView();
             }
             var tipoCabecera = [];
@@ -1109,19 +1125,20 @@
 
 
         /** metodos de funcionalidad **/
-        onAgregarCentroAlmacenLote: function (evt) {
+        onAgregarCentroAlmacenLote: function (evt) {//Modificado (Roy) 27-07-17 Agregue DescCentro
             var obj = evt.getSource().getSelectedItem().getBindingContext().getObject();
-            this.getView().byId("lb_datos").setProperty("text", obj.CodCentro +"/"+ obj.CodAlmacen  +"/"+ obj.CodLote);  
+            this.getView().byId("lb_datos").setProperty("text", obj.CodCentro +"/"+ obj.DescCentro +"/"+ obj.CodAlmacen  +"/"+ obj.CodLote);  
             this.getView().byId("dlg_MensajeAvisoAddCenAlmLot").open();            
         }, 
-        onSiMensajeAvisoAddCenAlmLot: function () {
+        onSiMensajeAvisoAddCenAlmLot: function () {//Modificado (Roy) 27-07-17 Falta arreglar el slash
             var material = this.getView().getModel().getProperty("/material");
             var datos = this.getView().byId("lb_datos").getProperty("text");
             if(datos != "") {
                var data =  datos.split("/");
                material.CodCentro = data[0];
-               material.CodAlmacen = data[1];
-               material.CodLote = data[2];
+               material.DescCentro = data[1];//Modificado (Roy) 27-07-17
+               material.CodAlmacen = data[2];
+               material.CodLote = data[3];
                this.getView().getModel().refresh();
             }        
             this.getView().byId("dlg_MensajeAvisoAddCenAlmLot").close(); 
@@ -2037,50 +2054,57 @@
         },
 
         onDocNuevoMasterProductosAddonDialog: function () {
-    var codMaterial = this.getView().byId("lista_BuscarMaterial").getSelectedItem().getBindingContext().getObject(); 
+            var documentoCreado = this.getView().getModel().getProperty("/pedido/CodTipoDoc");
 
-    var codigoMaterial = codMaterial.CodMaterial ;
-    var opcionMaterial =  this.getView().byId("com_ambiente_dlgBuscarMaterial").getSelectedKey();
-    var codigoAmbiente = this.getView().byId("com_opcion_dlgBuscarMaterial").getSelectedKey();
-    var cantidad1 = this.getView().byId("txt_cantidad_dlgBuscarMaterial").getValue() ;
-    var cantidad = parseInt(cantidad1);//
-    if(codigoMaterial !="" && opcionMaterial !="" && codigoAmbiente !="" ) {
-        var tamanoList = this.obtenerTamaniolLista();
-        var nuevoMaterial = this.crearNuevoMaterial(codigoMaterial, opcionMaterial, codigoAmbiente, cantidad, tamanoList);
-        var self = this;
+            if(!documentoCreado){
+                this.getView().byId("dlg_MensajeAvisoCrearCotizacion").open();
+            }else{
+                var codMaterial = this.getView().byId("lista_BuscarMaterial").getSelectedItem().getBindingContext().getObject(); 
 
-        self.getView().byId("loadingControl").open();
-        setTimeout(function(){
-            var result = materialServices.anadirMaterialMaster(nuevoMaterial);
-            if (result.c === "s") {
-                if (result.data.success) {
-                    var materialSer = result.data.lstTotal;
-                    var stockSer = result.data.lstStock;
+                var codigoMaterial = codMaterial.CodMaterial ;
+                var opcionMaterial =  this.getView().byId("com_ambiente_dlgBuscarMaterial").getSelectedKey();
+                var codigoAmbiente = this.getView().byId("com_opcion_dlgBuscarMaterial").getSelectedKey();
+                var cantidad1 = this.getView().byId("txt_cantidad_dlgBuscarMaterial").getValue() ;
+                var cantidad = parseInt(cantidad1);//
+                if(codigoMaterial !="" && opcionMaterial !="" && codigoAmbiente !="" ) {
+                    var tamanoList = this.obtenerTamaniolLista();
+                    var nuevoMaterial = this.crearNuevoMaterial(codigoMaterial, opcionMaterial, codigoAmbiente, cantidad, tamanoList);
+                    var self = this;
 
-                    if(materialSer != null) {
-                        var materialesStock = self.agregarMaterialNuevo(materialSer,stockSer,cantidad);
-                        var materiales = self.getView().getModel().getProperty("/listaMaterial");
-                        if(materiales == null) {materiales = new Array();}
-                        for(var indice in materialesStock) {
-                            materiales.push(materialesStock[indice]);
-                        }                        
-                        self.getView().getModel().setProperty("/listaMaterial/", materiales);                        
-                    }
+                    self.getView().byId("loadingControl").open();
+                    setTimeout(function(){
+                        var result = materialServices.anadirMaterialMaster(nuevoMaterial);
+                        if (result.c === "s") {
+                            if (result.data.success) {
+                                var materialSer = result.data.lstTotal;
+                                var stockSer = result.data.lstStock;
 
-                    self.getView().getModel().refresh();
-                    self.getView().byId("dlg_MensajeAviso1").open();//Mensaje de aviso
-                    self.getView().byId("loadingControl").close(); 
+                                if(materialSer != null) {
+                                    var materialesStock = self.agregarMaterialNuevo(materialSer,stockSer,cantidad);
+                                    var materiales = self.getView().getModel().getProperty("/listaMaterial");
+                                    if(materiales == null) {materiales = new Array();}
+                                    for(var indice in materialesStock) {
+                                        materiales.push(materialesStock[indice]);
+                                    }                        
+                                    self.getView().getModel().setProperty("/listaMaterial/", materiales);                        
+                                }
+
+                                self.getView().getModel().refresh();
+                                self.getView().byId("lb_mensajeAviso1").setText("Material Añadido. Desea seguir añadiendo materiales?");//Menssaje Aviso
+                                    self.getView().byId("dlg_MensajeAviso1").open();
+                                self.getView().byId("loadingControl").close(); 
+                            } else {
+                                sap.m.MessageToast.show(result.data.errors.reason, { duration: 3000 });
+                            }
+                        } else {
+                            sap.m.MessageToast.show(result.m, { duration: 3000 });
+                        } 
+                        self.getView().byId("loadingControl").close();
+                    },1000);
                 } else {
-                    sap.m.MessageToast.show(result.data.errors.reason, { duration: 3000 });
+                    MessageToast.show("No ha ingresado Ambiente y/o Opcion de Ambiente"); 
                 }
-            } else {
-                sap.m.MessageToast.show(result.m, { duration: 3000 });
-            } 
-            self.getView().byId("loadingControl").close();
-        },1000);
-    } else {
-        MessageToast.show("No ha ingresado Ambiente y/o Opcion de Ambiente"); 
-    }
+        }
 },
 
 onDocNuevoClosedlg_addProductoonDialog: function () {
@@ -2194,10 +2218,12 @@ onDocNuevoClosedlg_addProductoonDialog: function () {
         
         },
         //Boton Home para Stock Por Llegar
-        goHome: function () {
-            this.getView().byId("dlg_stockPorLlegar").close();
-            this.getView().byId("dlg_stockPorPedir").close();
+        onCancelarStockPorLlegar: function () {
+            this.getView().byId("dlg_stockPorLlegar").close();            
         },
+        onCancelarStockPorPedir:function(){
+            this.getView().byId("dlg_stockPorPedir").close();
+        },        
         /////////Fin Stock Por Llegar///////////////////////////////////////////////////////////////////////////////////
         
         mostrarCatalogo:function(){
@@ -2278,6 +2304,30 @@ onDocNuevoClosedlg_addProductoonDialog: function () {
         },  
         ////////Inicio Seleccionar Material desde el Master//////////////////////////
 
+        ////////Inicio Stock Disponible/////////////////////////////////////////////
+        onNOCrearCotizacion:function(){
+            this.getView().byId("dlg_MensajeAvisoCrearCotizacion").close();
+        },
+        onCrearCotizacion: function (oEvent) {
+            var tipoDocumento ={
+                                Codigo: "ZO01",
+                                }; 
+            var numPedido = this.getView().byId("txt_refDocNuevo").getValue();
+            var result = documentosServices.crearDocumento(tipoDocumento.Codigo, numPedido);
+            if (result.c === "s") {
+                if (result.data.success) {
+                    this.initDataDefault(result.data, tipoDocumento.Codigo);
+                    this.getView().byId("dlg_MensajeAvisoCrearCotizacion").close();
+                    this.onDocNuevoMasterProductosAddonDialog();
+                        this.getView().byId("dlg_MensajeAviso1").open();
+                } else {
+                    sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
+                }
+            } else {
+                sap.m.MessageToast.show(result.m, {duration: 3000});
+            }
+        },
+        ///////End Stock Disponible////////////////////////////////////////////////
             
 
         ///////End Roy/////////////////////////////////////////////////////////////////
@@ -2304,7 +2354,11 @@ onDocNuevoClosedlg_addProductoonDialog: function () {
 
 
         
-        
+        //Boton Home
+        goHome: function () {
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("appHome");
+        },
         
         
         
@@ -2321,7 +2375,15 @@ onDocNuevoClosedlg_addProductoonDialog: function () {
             this.getView().byId("dlg_DocNuevobuscar").open();
         },
         onDocNuevoClosedlg_buscar: function () {
-            this.getView().byId("dlg_DocNuevobuscar").close();
+
+            if(window.IsDocNuevo == true){
+                this.getView().byId("dlg_DocNuevobuscar").close();
+            }else{
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("appHome");
+            }
+            
+            
         },
         //Boton Buscar Producto desde el Dialog
         onDocNuevoMasterProductosBuscar: function () {
