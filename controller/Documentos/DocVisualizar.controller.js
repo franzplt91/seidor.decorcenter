@@ -21,6 +21,9 @@ sap.ui.define([
                     "enabledBtnGuardar": true,
                     "enabledBtnCopiar": true,
                     "enabledBtnBuscar": true,
+                    "enabledIconoAdd": true,
+                    "enabledIconoBuscar": true,
+                    "enabledIconoBorrar": true,
                     "OrgVentas": "",
                     "CanalDist": "",
                     "CodOficina": "",
@@ -453,6 +456,9 @@ sap.ui.define([
                 this.getView().getModel().setProperty("/pedido/enabledBtnCopiar", false);
                 this.getView().getModel().setProperty("/pedido/enabledBtnBuscar", false);
                 this.getView().getModel().setProperty("/pedido/enabledBtnGuardar", false);
+                this.getView().getModel().setProperty("/pedido/enabledIconoAdd", false);
+                this.getView().getModel().setProperty("/pedido/enabledIconoBuscar", false);
+                this.getView().getModel().setProperty("/pedido/enabledIconoBorrar", false);
             } else {
                 sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
             }

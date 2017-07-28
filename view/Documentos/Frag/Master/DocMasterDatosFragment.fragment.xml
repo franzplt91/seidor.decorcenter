@@ -37,7 +37,7 @@
                     
                 </Page>
                 <s:customFooterContent>
-                    <Button icon="sap-icon://search" tooltip="buscar" text="Buscar Cliente" press="onDocNuevoBuscarCliente"></Button>
+                    <Button icon="sap-icon://search" tooltip="buscar" text="Buscar Cliente" press="onDocNuevoBuscarCliente" visible="{/pedido/enabledBtnBuscar}"></Button>
                 </s:customFooterContent>
                 
             </s:MasterPage>
