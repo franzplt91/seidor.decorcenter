@@ -42,6 +42,15 @@ sap.ui.define([
                     "flujo": [],
                     "numeroPedidos": {}
                 },
+                pedido: {
+                    "enabled": true,
+                    "enabledBtnGuardar": true,
+                    "enabledBtnCopiar": true,
+                    "enabledBtnBuscar": true,
+                    "enabledIconoAdd": true,
+                    "enabledIconoBuscar": true,
+                    "enabledIconoBorrar": true
+                }
             };
             if (oEvent.getParameter("name") == "appDocBuscar") {
                 this.getView().setModel(new JSONModel(oData));
@@ -108,6 +117,13 @@ sap.ui.define([
                 if (result.c === "s") {
                     if (result.data.success) {
                         self.getView().getModel().setProperty("/retornoBuscarDoc", result.data);
+                        self.getView().getModel().setProperty("/pedido/enabled", false);
+                        self.getView().getModel().setProperty("/pedido/enabledBtnCopiar", false);
+                        self.getView().getModel().setProperty("/pedido/enabledBtnBuscar", false);
+                        self.getView().getModel().setProperty("/pedido/enabledBtnGuardar", false);
+                        self.getView().getModel().setProperty("/pedido/enabledIconoAdd", false);
+                        self.getView().getModel().setProperty("/pedido/enabledIconoBuscar", false);
+                        self.getView().getModel().setProperty("/pedido/enabledIconoBorrar", false);
                         self.getView().getModel().refresh();
                         self.getView().byId("dlg_DialogDocBuscar").close();
                         self.getView().byId("dlg_DocBuscarLista").open();
