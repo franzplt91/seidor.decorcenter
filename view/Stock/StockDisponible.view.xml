@@ -17,7 +17,7 @@
 
         
 
-<Dialog title="Stock Disponible" id="dlg_buscar" stretchOnPhone="true" contentWidth="10%"
+<Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_buscar" stretchOnPhone="true" contentWidth="10%"
                     contentHeight="55%">
         <content>
 
@@ -90,14 +90,14 @@
 
 
         <buttons>
-            <Button text="Selec. Carac." type="Accion"  press="onClosedlg_buscar" />
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onDocNuevoBuscarMateriales" />
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+            <Button text="Selec. Carac." class="btn_aceptar" type="Accion"  press="onClosedlg_buscar" />
+            <Button text="Buscar" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onDocNuevoBuscarMateriales" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </buttons>
     </Dialog>
 
 
-<Dialog title="Seleccionar Material" id="dlg_DocNuevobuscarMaterial_resultado" contentWidth="auto" contentHeight="auto">
+<Dialog title="Seleccionar Material" class="cabecera_dialogo" id="dlg_DocNuevobuscarMaterial_resultado" contentWidth="auto" contentHeight="auto">
                 <content>
                     <List selectionChange="SeleccionaCliente" mode="SingleSelectMaster" growing="false" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                         enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" itemPress="onDocNuevoListMasterProductos"  items="{/BusquedaMateriales}">
@@ -107,7 +107,7 @@
                     </List>
                 </content>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarMaterial"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarMaterial"/>
         </endButton>
 
     </Dialog>
@@ -115,7 +115,7 @@
 
 
 
-    <Dialog title="Material" id="dlg_addProducto" stretchOnPhone="true" contentWidth="20%"
+    <Dialog title="Material" class="cabecera_dialogo" id="dlg_addProducto" stretchOnPhone="true" contentWidth="20%"
                     contentHeight="65%">
         <content>
 
@@ -190,16 +190,16 @@
 
         
         <beginButton>
-            <Button text="Añadir" type="Accept" icon="sap-icon://add" press="onMasterProductosAdd" ></Button>
+            <Button text="Añadir" class="btn_aceptar" type="Accept" icon="sap-icon://add" press="onMasterProductosAdd" ></Button>
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_addProducto" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onClosedlg_addProducto" />
         </endButton>
     </Dialog>
 
 
 
-     <Dialog title="Lista Buscar Profesional" id="dlg_DocNuevointerlocutoresBuscarProfesional" contentWidth="20%" contentHeight="70%">
+     <Dialog title="Lista Buscar Profesional" class="cabecera_dialogo" id="dlg_DocNuevointerlocutoresBuscarProfesional" contentWidth="20%" contentHeight="70%">
         <content>
             <List mode="SingleSelectMaster" growing="true" growingThreshold="10" growingDirection="Upwards" busyIndicatorDelay="200"
                             enableBusyIndicator="true" growingTriggerText="Previous Products" noDataText="No products available" itemPress="onDocNuevoListMasterProductos">
@@ -213,7 +213,7 @@
     </Dialog>
 
 
-    <Dialog title="Buscar Cliente" id="dlg_DocNuevobuscarCliente" contentWidth="20%" contentHeight="25%">
+    <Dialog title="Buscar Cliente" class="cabecera_dialogo" id="dlg_DocNuevobuscarCliente" contentWidth="20%" contentHeight="25%">
          
 
 
@@ -262,10 +262,10 @@
                 </content>
             
         <beginButton>
-            <Button text="Buscar" type="Accion" press="onDocNuevoBuscarClienteAccion" icon="sap-icon://search" />
+            <Button text="Buscar" class="btn_aceptar" type="Accion" press="onDocNuevoBuscarClienteAccion" icon="sap-icon://search" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseBuscarCliente"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseBuscarCliente"/>
         </endButton>
     </Dialog>
 
@@ -286,7 +286,7 @@
                     </List>
                 </content>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarCliente"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onDocNuevoCloseSeleccionarCliente"/>
         </endButton>
 
     </Dialog>

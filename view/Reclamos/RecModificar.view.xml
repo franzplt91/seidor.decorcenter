@@ -13,7 +13,7 @@
 
     
     <!--Dialog Inicio Rec Nuevo-->
-    <Dialog title="Ingresar Reclamo" id="dlg_rec_modificar_inicio" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
+    <Dialog title="Ingresar Reclamo" class="cabecera_dialogo" id="dlg_rec_modificar_inicio" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
         <content>
             <Page>
                 <customHeader>
@@ -26,10 +26,10 @@
             </Page>
         </content>
         <beginButton>
-            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onContinuarDlg_rec_modificar_inicio" />
+            <Button text="Continuar" class="btn_aceptar" type="Accion" icon="sap-icon://accept" press="onContinuarDlg_rec_modificar_inicio" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </endButton>
     </Dialog>
 
@@ -40,21 +40,21 @@
 
 
     <!--Dialog Segundo Rec Nuevo-->
-    <Dialog title="Stock Disponible" id="dlg_rec_nuevo_2" stretchOnPhone="true" contentWidth="20%" contentHeight="75%">
+    <Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_rec_nuevo_2" stretchOnPhone="true" contentWidth="20%" contentHeight="75%">
         <content>
             <Panel>
                 <content></content>
             </Panel>
         </content>
         <beginButton>
-            <Button text="Guardar" type="Accion" icon="sap-icon://save" press="onMasterProductosBuscar" />
+            <Button text="Guardar" class="btn_aceptar" type="Accion" icon="sap-icon://save" press="onMasterProductosBuscar" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgRecNuevo2" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgRecNuevo2" />
         </endButton>
     </Dialog>
     <!--Dialog Interlocutores Buscar Rec Nuevo-->
-    <Dialog title="Buscar Cliente" id="dlg_buscar_rec_nuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="45%">
+    <Dialog title="Buscar Cliente" class="cabecera_dialogo" id="dlg_buscar_rec_nuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="45%">
         <content>
             <Panel>
                 <content>
@@ -103,14 +103,14 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onDocReclamoBuscarClienteAccion"></Button>
+            <Button text="Buscar" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onDocReclamoBuscarClienteAccion"></Button>
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgBuscarRecNuevo" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgBuscarRecNuevo" />
         </endButton>
     </Dialog>
       <!--Dialog Inicio Mostrar Revlamos-->
-    <Dialog title="" id="dlg_mostrar_reclamo" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
+    <Dialog title="" class="cabecera_dialogo" id="dlg_mostrar_reclamo" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
         <content>
             <Page>
                 <customHeader>
@@ -123,10 +123,10 @@
             </Page>
         </content>
         <beginButton>
-            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onCrearDlgRecNuevo" />
+            <Button text="Continuar" class="btn_aceptar" type="Accion" icon="sap-icon://accept" press="onCrearDlgRecNuevo" />
         </beginButton>
     </Dialog>
-     <Dialog title="Seleccionar Cliente" id="dlg_DocNuevobuscarCliente_resultado" contentWidth="auto" contentHeight="auto">
+     <Dialog title="Seleccionar Cliente" class="cabecera_dialogo" id="dlg_DocNuevobuscarCliente_resultado" contentWidth="auto" contentHeight="auto">
                 <content>
                     <List selectionChange="SeleccionaCliente" mode="SingleSelectMaster" growing="true" growingThreshold="30" growingDirection="Upwards" busyIndicatorDelay="200"
                         enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay clientes" itemPress="SeleccionaCliente"  items="{
@@ -142,7 +142,7 @@
                     </List>
                 </content>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCerrarListado"/>
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCerrarListado"/>
         </endButton>
 
     </Dialog>

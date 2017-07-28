@@ -42,14 +42,14 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Guardar" type="Accion" icon="sap-icon://save" press="onMasterProductosBuscar" />
+            <Button text="Guardar" class="btn_aceptar" type="Accion" icon="sap-icon://save" press="onMasterProductosBuscar" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgRecNuevo2" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgRecNuevo2" />
         </endButton>
     </Dialog>
     <!--Dialog Interlocutores Buscar Rec Nuevo-->
-    <Dialog title="Buscar Cliente" id="dlg_buscar_rec_nuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="45%">
+    <Dialog title="Buscar Cliente" class="cabecera_dialogo" id="dlg_buscar_rec_nuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="45%">
         <content>
             <Panel>
                 <content>
@@ -101,10 +101,10 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onBuscarRecNuvoInterlocutores"></Button>
+            <Button text="Buscar" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onBuscarRecNuvoInterlocutores"></Button>
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgBuscarRecNuevo" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDlgBuscarRecNuevo" />
         </endButton>
     </Dialog>
     

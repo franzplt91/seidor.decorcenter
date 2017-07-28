@@ -18,7 +18,7 @@
 
 
 
-<s:FullscreenPage title="Stock Por Llegar">
+<s:FullscreenPage title="Stock Por Llegar" class="cabecera_dialogo">
                     <!--Detail Stock por LLegar-->
             <core:Fragment fragmentName="pe.com.seidor.sap.decor.ventas.view.Documentos.Frag.Detail.DocStockporLlegarDetalleFragment" type="XML"></core:Fragment>
  
