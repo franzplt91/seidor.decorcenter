@@ -13,7 +13,7 @@
 
     
     <!--Dialog Buscar Rec Nuevo-->
-    <Dialog title="Buscar Reclamo" id="dlg_recBuscar_inicio" stretchOnPhone="true" contentWidth="30%" contentHeight="90%">
+    <Dialog title="Buscar Reclamo" class="cabecera_dialogo" id="dlg_recBuscar_inicio" stretchOnPhone="true" contentWidth="30%" contentHeight="90%">
         <content>
 
             <f:Form 
@@ -106,10 +106,10 @@
         </f:Form>
         </content>
         <beginButton>
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onBuscarDlg_recBuscar_inicio" />
+            <Button text="Buscar" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onBuscarDlg_recBuscar_inicio" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </endButton>
     </Dialog>
 
@@ -121,7 +121,7 @@
 
 
     <!--Dialog Lista de  Reclamos-->
-    <Dialog title="Lista de Reclamos" id="dlg_lista_recBuscar" stretchOnPhone="true" contentWidth="60%" contentHeight="75%">
+    <Dialog title="Lista de Reclamos" class="cabecera_dialogo" id="dlg_lista_recBuscar" stretchOnPhone="true" contentWidth="60%" contentHeight="75%">
         <content>
             <Panel>
                 <content>
@@ -153,14 +153,14 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Ver" type="Accion" icon="sap-icon://view" press="onVerDlg_lista_recBuscar" />
+            <Button text="Ver" class="btn_aceptar" type="Accion" icon="sap-icon://view" press="onVerDlg_lista_recBuscar" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onOpendlg_list_reclamos" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onOpendlg_list_reclamos" />
         </endButton>
     </Dialog>
     <!--Dialog Interlocutores Buscar Rec Nuevo-->
-    <Dialog title="Buscar Cliente" id="dlg_buscar_rec_nuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="45%">
+    <Dialog title="Buscar Cliente" class="cabecera_dialogo" id="dlg_buscar_rec_nuevo" stretchOnPhone="true" contentWidth="20%" contentHeight="45%">
         <content>
             <Panel>
                 <content>
@@ -209,10 +209,10 @@
             </Panel>
         </content>
         <beginButton>
-            <Button text="Buscar" type="Accion" icon="sap-icon://search" press="onCarga"></Button>
+            <Button text="Buscar" class="btn_aceptar" type="Accion" icon="sap-icon://search" press="onCarga"></Button>
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCarga" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCarga" />
         </endButton>
     </Dialog>
     
