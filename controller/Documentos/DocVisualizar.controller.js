@@ -24,6 +24,8 @@ sap.ui.define([
                     "enabledIconoAdd": true,
                     "enabledIconoBuscar": true,
                     "enabledIconoBorrar": true,
+                    "enabledStockPorLlegar": true,
+                    "enabledStockPorPedir": true,
                     "OrgVentas": "",
                     "CanalDist": "",
                     "CodOficina": "",
@@ -459,6 +461,8 @@ sap.ui.define([
                 this.getView().getModel().setProperty("/pedido/enabledIconoAdd", false);
                 this.getView().getModel().setProperty("/pedido/enabledIconoBuscar", false);
                 this.getView().getModel().setProperty("/pedido/enabledIconoBorrar", false);
+                this.getView().getModel().setProperty("/pedido/enabledStockPorLlegar",false);
+                this.getView().getModel().setProperty("/pedido/enabledStockPorPedir",false);
             } else {
                 sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
             }

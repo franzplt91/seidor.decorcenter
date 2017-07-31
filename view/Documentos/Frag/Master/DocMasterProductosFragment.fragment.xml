@@ -97,8 +97,8 @@
             <OverflowToolbarButton icon="sap-icon://search" press="onDocNuevodlg_buscar"/>
             <Button text="Stock Disponible" press="goStockDisponible"></Button-->
             <ToolbarSpacer width="3%" />
-            <Button text="Stock por Llegar" press="goStockporLlegar"></Button>
-            <Button text="Stock por Pedir" press="goStockporPedir"></Button>
+            <Button text="Stock por Llegar" press="goStockporLlegar" visible="{/pedido/enabledStockPorLlegar}"></Button>
+            <Button text="Stock por Pedir" press="goStockporPedir" visible="{/pedido/enabledStockPorPedir}"></Button>
             <ToolbarSpacer width="10%" />
         </s:customFooterContent>
     </s:MasterPage>
