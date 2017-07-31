@@ -49,7 +49,9 @@ sap.ui.define([
                     "enabledBtnBuscar": true,
                     "enabledIconoAdd": true,
                     "enabledIconoBuscar": true,
-                    "enabledIconoBorrar": true
+                    "enabledIconoBorrar": true,
+                    "enabledStockPorLlegar": true,
+                    "enabledStockPorPedir": true
                 }
             };
             if (oEvent.getParameter("name") == "appDocBuscar") {
@@ -124,6 +126,8 @@ sap.ui.define([
                         self.getView().getModel().setProperty("/pedido/enabledIconoAdd", false);
                         self.getView().getModel().setProperty("/pedido/enabledIconoBuscar", false);
                         self.getView().getModel().setProperty("/pedido/enabledIconoBorrar", false);
+                        self.getView().getModel().setProperty("/pedido/enabledStockPorLlegar",false);
+                        self.getView().getModel().setProperty("/pedido/enabledStockPorPedir",false);
                         self.getView().getModel().refresh();
                         self.getView().byId("dlg_DialogDocBuscar").close();
                         self.getView().byId("dlg_DocBuscarLista").open();
