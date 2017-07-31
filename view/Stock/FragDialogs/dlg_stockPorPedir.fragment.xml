@@ -82,10 +82,10 @@
 
 
         <beginButton>
-            <Button text="Continuar" type="Accept" icon="sap-icon://accept" press="onContinuarStockPorPedir" />
+            <Button text="Continuar" class="btn_aceptar" type="Accept" icon="sap-icon://accept" press="onContinuarStockPorPedir" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCancelarStockPorPedir" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="onCancelarStockPorPedir" />
         </endButton>
     </Dialog>
 

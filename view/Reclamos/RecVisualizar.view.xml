@@ -13,7 +13,7 @@
 
     
     <!--Dialog Inicio Rec Nuevo-->
-    <Dialog title="Ingresar Reclamo" id="dlg_rec_nuevo_inicio" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
+    <Dialog title="Ingresar Reclamo" class="cabecera_dialogo" id="dlg_rec_nuevo_inicio" stretchOnPhone="true" contentWidth="20%" contentHeight="12%">
         <content>
             <Page>
                 <customHeader>
@@ -28,14 +28,14 @@
             
         </content>
         <beginButton>
-            <Button text="Continuar" type="Accion" icon="sap-icon://accept" press="onContinuarDlg_rec_nuevo_inicio" />
+            <Button text="Continuar" class="btn_aceptar" type="Accion" icon="sap-icon://accept" press="onContinuarDlg_rec_nuevo_inicio" />
         </beginButton>
         <endButton>
-            <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
+            <Button text="Cancel" class="btn_cancelar" type="Reject" icon="sap-icon://sys-cancel" press="goHome" />
         </endButton>
     </Dialog>
     <!--Dialog Segundo Rec Nuevo-->
-    <Dialog title="Stock Disponible" id="dlg_rec_nuevo_2" stretchOnPhone="true" contentWidth="20%" contentHeight="75%">
+    <Dialog title="Stock Disponible" class="cabecera_dialogo" id="dlg_rec_nuevo_2" stretchOnPhone="true" contentWidth="20%" contentHeight="75%">
         <content>
             <Panel>
                 <content></content>

@@ -40,28 +40,28 @@
                                         <f:FormElement label="Función">
                                             <f:fields>
                                                 <Input width="100%" id="txt_funcion" 
-                                                    value="{/objReclamo/Interlocutor/AG/PARVW}" >
+                                                    value="{/objReclamo/Interlocutor/AG/PARVW}" enabled="false">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
                                                 <Input width="100%" id="txt_codigo"
-                                                 value="{/objReclamo/Interlocutor/AG/KUNNR}">  
+                                                 value="{/objReclamo/Interlocutor/AG/KUNNR}" enabled="{/pedido/enabled}">  
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>                   
                                         <f:FormElement label="Nombre">
                                             <f:fields>
                                                 <Input width="100%" id="txt_nombre" 
-                                                    value="{/objReclamo/Interlocutor/AG/NOMBRE}">
+                                                    value="{/objReclamo/Interlocutor/AG/NOMBRE}" enabled="{/pedido/enabled}">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
                                                 <Input width="100%" id="txt_direccion" 
-                                                    value="{/objReclamo/Interlocutor/AG/Direccion}">
+                                                    value="{/objReclamo/Interlocutor/AG/Direccion}" enabled="{/pedido/enabled}">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
@@ -69,7 +69,7 @@
                                             <f:fields>
                                                 <ComboBox items="{ path : '/dataIni/lstZipCodes'}" 
                                                     change="onSeleccionaSurtido" maxWidth="100%" required="true"
-                                                    id="cbo_ubicacion" selectedKey="{/objReclamo/Interlocutor/AG/CodPostal}">
+                                                    id="cbo_ubicacion" selectedKey="{/objReclamo/Interlocutor/AG/CodPostal}" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
@@ -77,21 +77,21 @@
                                         <f:FormElement label="Teléfono">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese Teléfono" id="txt_telefono" 
-                                                    value="{/objReclamo/Interlocutor/AG/Telefono}">
+                                                    value="{/objReclamo/Interlocutor/AG/Telefono}" enabled="{/pedido/enabled}">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="NIF">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese NIF" id="txt_nif" 
-                                                    value="{/objReclamo/Interlocutor/AG/NIF}">
+                                                <Input width="100%" placeholder="Ingrese NIF" id="txt_nif"
+                                                    value="{/objReclamo/Interlocutor/AG/NIF}" enabled="{/pedido/enabled}">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Correo">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese Correo" id="txt_correo" 
-                                                    value="{/reclamo/mail}">       
+                                                    value="{/reclamo/mail}" enabled="{/pedido/enabled}">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
@@ -128,22 +128,22 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" id="txt_funcion_persona_contacto" value="AP"></Input>
+                                                <Input width="100%" id="txt_funcion_persona_contacto" value="AP" enabled="false"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese nombre" id="txt_nombre_persona_contacto" value="{/objReclamo/Z_Reclamo/PCONTACTO}"></Input>
+                                                <Input width="100%" placeholder="Ingrese nombre" id="txt_nombre_persona_contacto" value="{/objReclamo/Z_Reclamo/PCONTACTO}" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Dirección">
                                             <f:fields>
-                                                <Input width="100%" placeholder="Ingrese Direccón" id="txt_direccion_persona_contacto" value="{/objReclamo/Z_Reclamo/DIRECCION}"></Input>
+                                                <Input width="100%" placeholder="Ingrese Direccón" id="txt_direccion_persona_contacto" value="{/objReclamo/Z_Reclamo/DIRECCION}" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Ubicación">
                                             <f:fields>
-                                                <ComboBox items="{ path : '/dataIni/lstZipCodes' }" change="onSeleccionaSurtido" maxWidth="50%" required="true" id="cbo_ubicacion_persona_contacto" selectedKey="{/objReclamo/Z_Reclamo/CPOSTAL}">
+                                                <ComboBox items="{ path : '/dataIni/lstZipCodes' }" change="onSeleccionaSurtido" maxWidth="50%" required="true" id="cbo_ubicacion_persona_contacto" selectedKey="{/objReclamo/Z_Reclamo/CPOSTAL}" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
@@ -152,7 +152,7 @@
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese teléfono" 
                                                     id="txt_telefono_persona_contacto" 
-                                                    value="{/objReclamo/Z_Reclamo/TELEFONO}">
+                                                    value="{/objReclamo/Z_Reclamo/TELEFONO}" enabled="{/pedido/enabled}">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
@@ -189,21 +189,21 @@
                                         <f:FormElement label="Función">
                                             <f:fields>
                                                 <Input width="100%" id="txt_funcion_codigo_asesor" 
-                                                    value="{/objReclamo/Interlocutor/ZM/PARVW}">
+                                                    value="{/objReclamo/Interlocutor/ZM/PARVW}" enabled="false">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
                                                 <Input width="100%" id="txt_codigo_asesor" 
-                                                    value="{/objReclamo/Interlocutor/ZM/PERNR}">
+                                                    value="{/objReclamo/Interlocutor/ZM/PERNR}" enabled="{/pedido/enabled}">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Nombre">
                                             <f:fields>
                                                 <Input width="100%" id="txt_nombre_codigo_asesor" 
-                                                    value="{/objReclamo/Interlocutor/ZM/NOMBRE}">        
+                                                    value="{/objReclamo/Interlocutor/ZM/NOMBRE}" enabled="{/pedido/enabled}">        
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
@@ -241,14 +241,14 @@
                                     <f:formElements>
                                         <f:FormElement label="Función">
                                             <f:fields>
-                                                <Input width="100%" id="txt_funcion_comercial" value="VE"></Input>
+                                                <Input width="100%" id="txt_funcion_comercial" value="VE" enabled="false" ></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Código">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese código"
                                                  id="txt_codigo_empresa_comercial" 
-                                                 value="{/objReclamo/Interlocutor/VE/KUNNR}">
+                                                 value="{/objReclamo/Interlocutor/VE/KUNNR}" enabled="{/pedido/enabled}">
                                                  </Input>
                                             </f:fields>
                                         </f:FormElement>
@@ -256,7 +256,7 @@
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese Nombre" 
                                                     id="txt_nombre_empresa_comercial" 
-                                                    value="{/objReclamo/Interlocutor/VE/NOMBRE}">
+                                                    value="{/objReclamo/Interlocutor/VE/NOMBRE}" enabled="{/pedido/enabled}">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
@@ -273,8 +273,9 @@
                     </IconTabBar>
                 </s:content>
                 <s:customFooterContent>
-                    <Button text="Copiar Datos" press="onCopiarCliente"></Button>
-                    <Button text="Buscar" icon="sap-icon://search" press="onDocNuevoBuscarCliente"></Button>
+                    <Button text="Copiar Datos" press="onCopiarCliente" visible="{/pedido/visible}"></Button>
+                    <Button text="Buscar" icon="sap-icon://search" press="onDocNuevoBuscarCliente" 
+                        visible="{/pedido/visible}"></Button>
                 </s:customFooterContent>
             </s:DetailPage>
         

@@ -40,7 +40,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_reclamo" value="{/objReclamo/Texto/0001/Descripcion}" rows="8" />
+                                                <TextArea id="txt_nota_reclamo" value="{/objReclamo/Texto/0001/Descripcion}" enabled="{/pedido/enabled}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -76,7 +76,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_direccion" value="{/objReclamo/Texto/0004/Descripcion}" rows="8" />
+                                                <TextArea id="txt_nota_direccion" value="{/objReclamo/Texto/0004/Descripcion}" enabled="{/pedido/enabled}" rows="8"/>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -86,7 +86,7 @@
                         </f:Form>
                             </IconTabFilter>
                             <IconTabFilter showAll="false" text="Seguimiento">
-                                <f:Form editable="true">
+                                <f:Form editable="true" >
                            <!--<f:title>
                                 <core:Title text=" " />
                             </f:title>-->
@@ -111,7 +111,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_seguimiento" value="{/objReclamo/Texto/Z006/Descripcion}" rows="8" />
+                                                <TextArea id="txt_nota_seguimiento" value="{/objReclamo/Texto/Z006/Descripcion}" enabled="{/pedido/enabled}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -146,7 +146,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_diagnostico" value="{/objReclamo/Texto/Z007/Descripcion}" rows="8" />
+                                                <TextArea id="txt_nota_diagnostico" value="{/objReclamo/Texto/Z007/Descripcion}" enabled="{/pedido/enabled}" rows="8"/>
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -181,7 +181,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_solucion" value="{/objReclamo/Texto/Z008/Descripcion}" rows="8" />
+                                                <TextArea id="txt_nota_solucion" value="{/objReclamo/Texto/Z008/Descripcion}" enabled="{/pedido/enabled}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -216,7 +216,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_persona_contacto" value="{/objReclamo/Texto/Z009/Descripcion}" rows="8" />
+                                                <TextArea id="txt_nota_persona_contacto" value="{/objReclamo/Texto/Z009/Descripcion}" enabled="{/pedido/enabled}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -251,7 +251,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea  value="{/objReclamo/Texto/Z010/Descripcion}" rows="8" />
+                                                <TextArea  value="{/objReclamo/Texto/Z010/Descripcion}" enabled="{/pedido/enabled}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -286,7 +286,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_pedidos_referencia" value="{/objReclamo/Texto/Z011/Descripcion}" rows="8" />
+                                                <TextArea id="txt_nota_pedidos_referencia" value="{/objReclamo/Texto/Z011/Descripcion}" enabled="{/pedido/enabled}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         
@@ -321,7 +321,7 @@
                                     <f:formElements>
                                         <f:FormElement label="Nota">
                                             <f:fields>
-                                                <TextArea id="txt_nota_informacion_servicio_interno" value="{/objReclamo/Texto/Z012/Descripcion}" rows="8" />
+                                                <TextArea id="txt_nota_informacion_servicio_interno" value="{/objReclamo/Texto/Z012/Descripcion}" enabled="{/pedido/enabled}" rows="8" />
                                             </f:fields>
                                         </f:FormElement>
                                         

@@ -195,6 +195,8 @@ sap.ui.define([
                     "Z_ReclamoVisita": [],
                 }, //Fin objReclamo
                 reclamo: [{
+                        "enabled": true,
+                        "visible": true,
                         "Canal": "", //"20",
                         "CodDestMerc": "", //"{36}",
                         "CodECom": "", //"{40}",

@@ -39,7 +39,7 @@
                                         <f:FormElement label="Status">
                                             <f:fields>
                                                 <Select placeholder="Seleccione Status" items="{ path : '/dataIni/lstStatusRecl' }" change="onSeleccionaSurtido" maxWidth="100%" required="true" selectedKey="{/reclamo/Status}"
-                                                id="cbo_Status" >
+                                                id="cbo_Status" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </Select>
                                             </f:fields>
@@ -47,14 +47,14 @@
                                         <f:FormElement label="Persona">
                                             <f:fields>
                                                 <Input width="100%" placeholder="Ingrese Nombre Persona" value="{/reclamo/UsuarioStatus}"
-                                                     id="txt_persona_status" >
+                                                     id="txt_persona_status" enabled="{/pedido/enabled}">
                                                 </Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Fecha Realización">
                                             <f:fields>
                                                 <DatePicker valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY" value="{/reclamo/fechaI}"
-                                                 id="txt_fecha_realizacion">
+                                                 id="txt_fecha_realizacion" enabled="{/pedido/enabled}">
                                                     <layoutData>
                                                         <l:GridData span="L6 M6 S6" />
                                                     </layoutData>
@@ -64,7 +64,7 @@
                                         <f:FormElement label="Descripción">
                                             <f:fields>
                                                 <TextArea  
-                                                    id="txt_Descripcion_Status" value="{/reclamo/Descripcion}">
+                                                    id="txt_Descripcion_Status" value="{/reclamo/Descripcion}" enabled="{/pedido/enabled}">
                                                 </TextArea>
                                             </f:fields>
                                         </f:FormElement>

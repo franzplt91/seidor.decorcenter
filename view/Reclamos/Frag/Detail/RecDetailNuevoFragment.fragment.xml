@@ -42,7 +42,7 @@
                                          <f:FormElement label="Material 1">
                                                 <f:fields>
                                                     <ComboBox width="100%" items="{ path : '/docVentas/objPedido/Detalle' }" 
-                                                        change="onSeleccionaSurtido" required="true" id="cbo_material21" value="{/reclamo/material1}" selectedKey="{/reclamo/material1}">
+                                                        change="onSeleccionaSurtido" required="true" id="cbo_material21" value="{/reclamo/material1}" selectedKey="{/reclamo/material1}" enabled="{/pedido/enabled}">
                                                         <core:Item key="{CodMaterialCorto}" text="{CodMaterialCorto} - {DescMaterial}" />
                                                     </ComboBox>
                                                 </f:fields>
@@ -50,24 +50,24 @@
                                             <f:FormElement label="Material 2">
                                                 <f:fields>
                                                     <ComboBox width="100%" items="{ path : '/docVentas/objPedido/Detalle' }" 
-                                                        change="onSeleccionaSurtido" required="true" value="{/reclamo/material2}" id="cbo_material22" selectedKey="{/reclamo/material2}">
+                                                        change="onSeleccionaSurtido" required="true" value="{/reclamo/material2}" id="cbo_material22" selectedKey="{/reclamo/material2}" enabled="{/pedido/enabled}">
                                                         <core:Item key="{CodMaterialCorto}" text="{CodMaterialCorto} - {DescMaterial}" />
                                                     </ComboBox>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="Cantidad Material 1">
                                                 <f:fields>
-                                                    <Input width="100%" id="txt_cantRecla1" value="{/objReclamo/Z_Reclamo/CANTRECLA1}" ></Input>
+                                                    <Input width="100%" id="txt_cantRecla1" value="{/objReclamo/Z_Reclamo/CANTRECLA1}" enabled="{/pedido/enabled}"></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="Cantidad Material 2">
                                                 <f:fields>
-                                                    <Input width="100%" id="txt_cantRecla2" value="{/objReclamo/Z_Reclamo/CANTRECLA2}" ></Input>
+                                                    <Input width="100%" id="txt_cantRecla2" value="{/objReclamo/Z_Reclamo/CANTRECLA2}" enabled="{/pedido/enabled}"></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                             <f:FormElement label="reclamo Referencia">
                                                 <f:fields>
-                                                    <Input width="100%" id="txt_reclamoRef" value="{/reclamo/reclamoRef}"></Input>
+                                                    <Input width="100%" id="txt_reclamoRef" value="{/reclamo/reclamoRef}" enabled="{/pedido/enabled}"></Input>
                                                 </f:fields>
                                             </f:FormElement>
                                         
@@ -104,23 +104,23 @@
                                         
                                          <f:FormElement label="Nro. de Pedido">
                                             <f:fields>
-                                                <Input width="100%" id="txt_Numero_Pedido" value="{/objReclamo/Contactos/VGBEL}" ></Input>
+                                                <Input width="100%" id="txt_Numero_Pedido" value="{/objReclamo/Contactos/VGBEL}" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Cliente">
                                             <f:fields>
-                                               <Input width="100%" id="txt_Codigo_Cliente" value="{/objReclamo/Contactos/KUNNR}"></Input>
+                                               <Input width="100%" id="txt_Codigo_Cliente" value="{/objReclamo/Contactos/KUNNR}" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="CLIENTE EVENTUAL">
                                             <f:fields>
-                                                <Input width="100%" id="txt_cliente_eventual" value="{/objReclamo/Interlocutor/AG/NOMBRE}"></Input>
+                                                <Input width="100%" id="txt_cliente_eventual" value="{/objReclamo/Interlocutor/AG/NOMBRE}" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Asesor">
                                             <f:fields>
                                                 <ComboBox width="100%" items="{ path : '/dataIni/lstAsesores' }" 
-                                                        change="onSeleccionaSurtido" required="true" selectedKey="{/objReclamo/Interlocutor/ZM/PERNR}" id="cbo_asesor">
+                                                        change="onSeleccionaSurtido" required="true" selectedKey="{/objReclamo/Interlocutor/ZM/PERNR}" id="cbo_asesor" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}"  text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
@@ -157,28 +157,28 @@
                                     <f:formElements>
                                         <f:FormElement label="Motivo de Reclamo">
                                             <f:fields>
-                                                <ComboBox width="100%" items="{ path : '/dataIni/lstMotivoRecl' }" change="onSeleccionaSurtido" required="true" id="cbo_Motivo" selectedKey="{/reclamo/Motivo}">
+                                                <ComboBox width="100%" items="{ path : '/dataIni/lstMotivoRecl' }" change="onSeleccionaSurtido" required="true" id="cbo_Motivo" selectedKey="{/reclamo/Motivo}" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Status">
                                             <f:fields>
-                                               <ComboBox width="100%" items="{ path : '/dataIni/lstStatusRecl' }" change="onSeleccionaSurtido" required="true" id="cbo_status" selectedKey="{/reclamo/Status}">
+                                               <ComboBox width="100%" items="{ path : '/dataIni/lstStatusRecl' }" change="onSeleccionaSurtido" required="true" id="cbo_status" selectedKey="{/reclamo/Status}" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Resultado">
                                             <f:fields>
-                                                <ComboBox width="100%" items="{ path : '/dataIni/lstResultRecl' }" change="onSeleccionaSurtido" required="true" id="cbo_Resultado" selectedKey="{/reclamo/Resultado}">
+                                                <ComboBox width="100%" items="{ path : '/dataIni/lstResultRecl' }" change="onSeleccionaSurtido" required="true" id="cbo_Resultado" selectedKey="{/reclamo/Resultado}" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Justificación de Resultado">
                                             <f:fields>
-                                                <ComboBox width="100%" items="{ path : '/dataIni/lstJustiResul' }" change="onSeleccionaSurtido" required="true" id="cbo_JustificResul" selectedKey="{/reclamo/JustificResul}">
+                                                <ComboBox width="100%" items="{ path : '/dataIni/lstJustiResul' }" change="onSeleccionaSurtido" required="true" id="cbo_JustificResul" selectedKey="{/reclamo/JustificResul}" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
@@ -217,21 +217,21 @@
                                     <f:formElements>
                                         <f:FormElement label="Organización de Ventas">
                                             <f:fields>
-                                                <ComboBox width="100%"  change="onSeleccionaSurtido" required="true" id="cbo_OrgVenta" selectedKey="{/objReclamo/Contactos/VKORG}">
+                                                <ComboBox width="100%"  change="onSeleccionaSurtido" required="true" id="cbo_OrgVenta" selectedKey="{/objReclamo/Contactos/VKORG}" enabled="{/pedido/enabled}">
                                                     <core:Item key="{/dataIni/person/OrgVentas}" text="{/dataIni/person/OrgVentas} :: DECOR CENTER" />
                                                 </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Canal">
                                             <f:fields>
-                                               <ComboBox width="100%" items="{ path : '/dataIni/lstCanales' }" change="onSeleccionaSurtido" required="true" id="cbo_Canal" selectedKey="{/objReclamo/Contactos/VTWEG}">
+                                               <ComboBox width="100%" items="{ path : '/dataIni/lstCanales' }" change="onSeleccionaSurtido" required="true" id="cbo_Canal" selectedKey="{/objReclamo/Contactos/VTWEG}"  enabled="{/pedido/enabled}">
                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
                                                </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Sector">
                                             <f:fields>
-                                                <ComboBox width="100%" items="{ path : '/dataIni/lstSectores' }" change="onSeleccionaSurtido" required="true" id="cbo_Sector" selectedKey="{/objReclamo/Contactos/SPART}">
+                                                <ComboBox width="100%" items="{ path : '/dataIni/lstSectores' }" change="onSeleccionaSurtido" required="true" id="cbo_Sector" selectedKey="{/objReclamo/Contactos/SPART}" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
@@ -239,14 +239,14 @@
                                         <f:FormElement label="Oficina Ventas">
                                             <f:fields>
                                                 <ComboBox width="100%" items="{ path : '/dataIni/lstOfVtas' }" change="onSeleccionaSurtido" required="true" id="cbo_OfiVenta" 
-                                                    selectedKey="{/objReclamo/Contactos/VKBUR}">
+                                                    selectedKey="{/objReclamo/Contactos/VKBUR}" enabled="{/pedido/enabled}">
                                                     <core:Item key="{Codigo}" text="{Descripcion}" />
                                                 </ComboBox>
                                             </f:fields>
                                         </f:FormElement>
                                         <f:FormElement label="Factura / Boleta">
                                             <f:fields>
-                                                <Input width="100%" id="txt_factura" value="{/reclamo/comentario}" placeholder="Ingrese Factura / Boleta"></Input>
+                                                <Input width="100%" id="txt_factura" value="{/reclamo/comentario}" placeholder="Ingrese Factura / Boleta" enabled="{/pedido/enabled}"></Input>
                                             </f:fields>
                                         </f:FormElement>                                        
                                         

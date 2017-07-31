@@ -287,6 +287,11 @@ sap.ui.define([
                         "reclamoRef": "", //"Reclamo Referencia",
                         "_nif": "", //"45454545"
                     }],
+                pedido: 
+                {
+                    "enabled":true,
+                    "visible":true
+                }
                 ///Fin Visualizar Reclamo
             };
             if (oEvent.getParameter("name") == "appRecBuscar") {
@@ -329,6 +334,8 @@ sap.ui.define([
                 if (result.data.success)
                 {
                     this.getView().getModel().setProperty("/listaReclamos", result.data.listaReclamos);
+                    this.getView().getModel().setProperty("/pedido/enabled", false);
+                    this.getView().getModel().setProperty("/pedido/visible", false);
                     this.getView().byId("dlg_recBuscar_inicio").close();
                     this.getView().byId("dlg_lista_recBuscar").open();
                 } else
