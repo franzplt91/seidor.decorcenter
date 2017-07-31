@@ -117,7 +117,7 @@
 
         </content>
         <beginButton>
-            <Button text="Imprimir" type="Accion" icon="sap-icon://print" press="onImprimirDoc"/>
+            <Button text="Imprimir" class="btn_imprimir" type="Accion" icon="sap-icon://print" press="onImprimirDoc"/>
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseDocImprimir"/>
@@ -138,7 +138,7 @@
             </Page>
         </content>
         <beginButton>
-            <Button text="Imprimir" type="Accion" icon="sap-icon://print" press="onImprimirRec" />
+            <Button text="Imprimir" class="btn_imprimir" type="Accion" icon="sap-icon://print" press="onImprimirRec" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseRecImprimir" />
@@ -159,7 +159,7 @@
             </Page>
         </content>
         <beginButton>
-            <Button text="Imprimir" type="Accion" icon="sap-icon://print" press="onImprimirQue" />
+            <Button text="Imprimir" class="btn_imprimir" type="Accion" icon="sap-icon://print" press="onImprimirQue" />
         </beginButton>
         <endButton>
             <Button text="Cancel" type="Reject" icon="sap-icon://sys-cancel" press="onCloseQueImprimir" />
