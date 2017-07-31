@@ -909,8 +909,8 @@ sap.ui.define([
         },
         //Boton Home para Stock Por Llegar
         goHome: function () {
-            this.getView().byId("dlg_stockPorLlegar").close();
-            this.getView().byId("dlg_stockPorPedir").close();
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("appHome");
         },
         /////////Fin Stock Por Llegar///////////////////////////////////////////////////////////////////////////////////
         
