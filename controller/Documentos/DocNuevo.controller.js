@@ -1875,7 +1875,7 @@
             pedido.Igv= 0;
             pedido.Total= 0;
             pedido.TotalImp= 0;
-            pedido.PesoTotal= (pedidoMod.PesoTotal!= null) ? pedidoMod.PesoTotal : 0;
+            pedido.PesoTotal= (pedidoMod.PesoTotal!= "") ? pedidoMod.PesoTotal : 0;
             pedido.GrupoCond= "";
             pedido.Tratado= false;
             pedido.ClasePedidoCliente= "";
