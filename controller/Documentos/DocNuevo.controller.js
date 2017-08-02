@@ -573,16 +573,14 @@
                 this.getView().byId("SplitAppId").setMode("HideMode");
                 this.getView().setModel(new JSONModel(oData));
                 this.getView().getModel().setProperty("/dataIni", window.dataIni);
+                //////////////Número referencia (Doc Buscar) //////
+                this.getView().getModel().setProperty("/NumeroDocumentoReferencia", window.numeroDocumento);
+                ///////////////////////////////////////////////////
                 this.getView().getModel().refresh(true);
-
-                //////Redireccion Documento Nuevo - Stock Disponible////
+                    //////Redireccion Documento Nuevo - Stock Disponible////
                     if(window.IsDocNuevo == true){
-                        //////////////Número referencia (Doc Buscar) //////
-                    this.getView().getModel().setProperty("/NumeroDocumentoReferencia", window.numeroDocumento);
-                    ///////////////////////////////////////////////////
-                    
-                            if(window.crearPedido == true){
-                                var firstItem = this.getView().byId("ListaDocNuevo").getItems()[1]; //ponerlo en la posicion ZO01
+                            if(window.converPedido == true){                                
+                            var firstItem = this.getView().byId("ListaDocNuevo").getItems()[1]; //ponerlo en la posicion Z001
                             this.getView().byId("ListaDocNuevo").setSelectedItem(firstItem,true);
                             }else{
                                 var firstItem = this.getView().byId("ListaDocNuevo").getItems()[19]; //ponerlo en la posicion ZO01
@@ -1973,6 +1971,10 @@
             var listaPedJson = JSON.stringify([this.crearPedido()]);  //Sin Hard Code 
             var listadatosCliente = JSON.stringify(this.crearCliente()); //Sin Hard Code 
 
+            //Inicio Validaciones Sencha/////////////////////////////////////////////////////////////////
+            
+            //Fin Validaciones Sencha/////////////////////////////////////////////////////////
+
 
             var result = documentosServices.guardarDocumento(nuevoDocumento,listaMatJson,listaDsctoJson,listaRepJson,listaIntJson,listaPedJson,listadatosCliente);
             if (result.c === "s") {
@@ -2411,11 +2413,15 @@ onDocNuevoClosedlg_addProductoonDialog: function () {
          */
         //Boton Master Datos
         onDocNuevoMasterDatos: function (oEvent) {
+            this.getView().byId("buttonMasterDatos").setSelectedKey("datos");/////
+            this.getView().byId("buttonMasterProductos").setSelectedKey("productos");/////
             this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoDatos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"));
         },
         //Boton Master Producto
         onDocNuevoMasterProductos: function (oEvent) {
+            this.getView().byId("buttonMasterDatos").setSelectedKey("datos");/////
+            this.getView().byId("buttonMasterProductos").setSelectedKey("productos");/////
             this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoProductos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
         },

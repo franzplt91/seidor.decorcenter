@@ -8,18 +8,18 @@ sap.ui.define([
         //Valores Dialog "Buscar Documento"(dlg_DialogDocBuscarInicio.xml)
         //Combo campo: "tipo de busqueda"
         // Listar busqueda de documentos
-        buscarDocumento: function (tipoBusq, datoBusq, nMat, claseD, fecIni, fecfin, asesor)
+        buscarDocumento: function (buscarDocumento)
         {
             var contexto = {};
             contexto.servicio = "documentosServices.buscarDocumento()";
             contexto.url = "buscarDocumento.aspx";
-            contexto.parametros = {tipoBusqueda: tipoBusq,
-                datoBusqueda: datoBusq,
-                nMaterial: nMat,
-                claseDoc: claseD,
-                fecInicio1: fecIni,
-                fecFin1: fecfin,
-                asesor: asesor
+            contexto.parametros = {tipoBusqueda: buscarDocumento.tipoBusqueda,
+                                    datoBusqueda: buscarDocumento.datoBusqueda,
+                                    nMaterial: buscarDocumento.nMaterial,
+                                    claseDoc: buscarDocumento.claseDoc,
+                                    fecInicio1: buscarDocumento.fecInicio1,
+                                    fecFin1: buscarDocumento.fecFin1,
+                                    codAsesor: buscarDocumento.codAsesor
             };
             var resultado = utilService.exec(contexto);
             return resultado;
@@ -127,6 +127,22 @@ sap.ui.define([
             };
             var resultado = utilService.exec(contexto);
             return resultado;
-        }
+        },
+
+
+        ////Inicio Conversion a Pedido DocBuscar//////////////////
+        conversionPedido:function(convPedido){
+            var contexto = {};
+            contexto.servicio = "documentosServices.conversionPedido()";
+            contexto.url = "flujoDocumento.aspx";
+            contexto.parametros = {pNumPedido: convPedido.NumeroPedido ,
+                                    tipoDocumento: "Z001" 
+                                    };
+
+                                    
+            var resultado = utilService.exec(contexto);
+            return resultado;
+        },
+        ////End Conversion a Pedido DocBuscar/////////////////////
     };
 });

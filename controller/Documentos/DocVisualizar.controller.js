@@ -21,11 +21,6 @@ sap.ui.define([
                     "enabledBtnGuardar": true,
                     "enabledBtnCopiar": true,
                     "enabledBtnBuscar": true,
-                    "enabledIconoAdd": true,
-                    "enabledIconoBuscar": true,
-                    "enabledIconoBorrar": true,
-                    "enabledStockPorLlegar": true,
-                    "enabledStockPorPedir": true,
                     "OrgVentas": "",
                     "CanalDist": "",
                     "CodOficina": "",
@@ -397,8 +392,16 @@ sap.ui.define([
                 this.getView().byId("SplitAppId").setMode("HideMode");
                 this.getView().setModel(new JSONModel(oData));
                 this.getView().getModel().setProperty("/dataIni", window.dataIni);
+                
+
+                if(window.IsDocVisualizar==false){
+                    this.onContinuarDlg_DialogDocVisualizar();
+                    this.getView().byId("dlg_DialogDocVisualizar").close();
+                }else{
+                    this.getView().byId("dlg_DialogDocVisualizar").open();
+                }
                 this.getView().getModel().refresh(true);
-                this.getView().byId("dlg_DialogDocVisualizar").open();
+                
             }
             ;
             var tipoCabecera = [];
@@ -445,7 +448,12 @@ sap.ui.define([
         },
         //Continuar Dialog Visualizar
         onContinuarDlg_DialogDocVisualizar: function (oEvent) {
-            var numDocumento = this.getView().byId("txt_numero_documento").getValue();
+            if(window.IsDocVisualizar==false){
+                var numDocumento = window.numeroDocumento;
+            }else{
+                var numDocumento = this.getView().byId("txt_numero_documento").getValue();
+            }
+            
             var result = documentosServices.visualizarDocumento("ver", numDocumento);
             if (result.data.success) {
                 var data = result.data;
@@ -458,11 +466,6 @@ sap.ui.define([
                 this.getView().getModel().setProperty("/pedido/enabledBtnCopiar", false);
                 this.getView().getModel().setProperty("/pedido/enabledBtnBuscar", false);
                 this.getView().getModel().setProperty("/pedido/enabledBtnGuardar", false);
-                this.getView().getModel().setProperty("/pedido/enabledIconoAdd", false);
-                this.getView().getModel().setProperty("/pedido/enabledIconoBuscar", false);
-                this.getView().getModel().setProperty("/pedido/enabledIconoBorrar", false);
-                this.getView().getModel().setProperty("/pedido/enabledStockPorLlegar",false);
-                this.getView().getModel().setProperty("/pedido/enabledStockPorPedir",false);
             } else {
                 sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
             }
@@ -557,11 +560,15 @@ sap.ui.define([
         },
         //Boton Master Datos
         onDocNuevoMasterDatos: function (oEvent) {
+            this.getView().byId("buttonMasterDatos").setSelectedKey("datos");/////
+            this.getView().byId("buttonMasterProductos").setSelectedKey("productos");/////
             this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoDatos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"));
         },
         //Boton Master Producto
         onDocNuevoMasterProductos: function (oEvent) {
+            this.getView().byId("buttonMasterDatos").setSelectedKey("datos");/////
+            this.getView().byId("buttonMasterProductos").setSelectedKey("productos");/////
             this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoProductos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
         },

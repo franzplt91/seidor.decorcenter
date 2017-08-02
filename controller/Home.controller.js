@@ -62,9 +62,25 @@ sap.ui.define([
                     "accion": "verbusqueja"
                 }
             };
-            this.getView().setModel(new JSONModel(oData));
-            this.getView().getModel().setProperty("/dataIni", window.dataIni);
-            this.getView().getModel().refresh(true);
+            
+            if (oEvent.getParameter("name") === "appHome") {
+                this.getView().setModel(new JSONModel(oData));
+                this.getView().getModel().setProperty("/dataIni", window.dataIni);
+                this.getView().getModel().refresh(true);
+                if(window.imprimirDoc){
+                //////////////Número referencia (Doc Buscar) //////
+                this.getView().getModel().setProperty("/imprimirDoc/pNumPedido", window.numeroDocumento);
+                ///////////////////////////////////////////////////
+                this.goDocImprimir();
+                }else{
+                    this.onCloseDocImprimir();
+                    window.imprimirDoc=false;
+                }
+            }
+                
+                
+            
+            
         },
         //Documentos----------------------
         goDocNuevo: function (oEvent) {
@@ -90,6 +106,7 @@ sap.ui.define([
             }, 100);
         },
         goDocVisualizar: function (oEvent) {
+            window.IsDocVisualizar=true;
             var self = this;
             self.getView().byId("loadingControl").open();
             setTimeout(function () {
