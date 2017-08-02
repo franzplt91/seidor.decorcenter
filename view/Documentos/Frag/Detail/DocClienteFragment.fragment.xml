@@ -263,7 +263,7 @@
                                         <f:FormElement label="Fecha Pedido">
                                             <f:fields>
                                                  <DatePicker  valueFormat="dd/MM/YYYY" displayFormat="dd/MM/YYYY"
-                                    value="{/pedido/Fecha}" id="date_fechaPedido_datosDocumento" enabled="{/pedido/enabled}">
+                                    value="{/pedido/FechaPedido}" id="date_fechaPedido_datosDocumento" enabled="{/pedido/enabled}">
                                     <layoutData>
                                         <l:GridData span="L12 M12 S12"/>
                                     </layoutData>

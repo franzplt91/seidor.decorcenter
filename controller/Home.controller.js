@@ -13,6 +13,7 @@ sap.ui.define([
         onInit: function () {
             var oRouter = UIComponent.getRouterFor(this);
             oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
+            window.IsDocInstalacion ==true;
         },
         onRouteMatched: function (oEvent) {
             //////Inicio Fecha Actual/////////////////////////////////////////////////////////////////////////
@@ -66,6 +67,9 @@ sap.ui.define([
             if (oEvent.getParameter("name") === "appHome") {
                 this.getView().setModel(new JSONModel(oData));
                 this.getView().getModel().setProperty("/dataIni", window.dataIni);
+                if(window.IsDocInstalacion ==false){
+                    this.getView().byId("dlg_DialogDocInstalacion").open();
+                }
                 this.getView().getModel().refresh(true);
                 if(window.imprimirDoc){
                 //////////////Número referencia (Doc Buscar) //////

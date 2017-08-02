@@ -2,7 +2,6 @@ sap.ui.define([
 ], function() {
     "use strict";
     return {
-        // Listar surtidos
         replace2Point: function(cadena,cadReplace) {
             return cadena.replace("::", cadReplace).replace(/:/g, '');
         },
@@ -59,6 +58,14 @@ sap.ui.define([
             data.lstMotivosRechazo = this.listAddItemSelec(data.lstMotivosRechazo);
                        
             window.dataIni = data;            
-        }
+        },
+        isNumeric: function(inputValue) {
+            var format = /^[0-9]+$/;
+            var rpta = (inputValue.match(format)) ? true : false;
+            return rpta;
+        },
+        padLeft: function(nr, n, str) {
+            return Array(n - String(nr).length + 1).join(str || '0') + nr;
+        }        
     };
 });

@@ -1,15 +1,21 @@
 ﻿sap.ui.define([
     "sap/ui/core/mvc/Controller",
+    'sap/m/Button',
+    'sap/m/Dialog',    
+    'sap/m/Text',    
     "sap/m/MessageToast",
+    'sap/m/GroupHeaderListItem',         
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
+    'jquery.sap.global',  
+    "pe/com/seidor/sap/decor/ventas/util/utilString",   
+    "pe/com/seidor/sap/decor/ventas/util/utilFunction",   
+    "pe/com/seidor/sap/decor/ventas/util/utilDocumento",    
     "pe/com/seidor/sap/decor/ventas/services/clienteServices",
     "pe/com/seidor/sap/decor/ventas/services/materialServices",
     "pe/com/seidor/sap/decor/ventas/services/documentosServices",
-    'jquery.sap.global',
-    'sap/m/GroupHeaderListItem',
     "pe/com/seidor/sap/decor/ventas/services/stockServices"
-], function (Controller, MessageToast, UIComponent, JSONModel, clienteServices, materialServices, documentosServices, jQuery, GroupHeaderListItem, stockServices) {
+], function (Controller, Button, Dialog, Text, MessageToast, GroupHeaderListItem, UIComponent, JSONModel, jQuery, utilString, utilFunction, utilDocumento, clienteServices, materialServices, documentosServices, stockServices) {
     "use strict";
     return Controller.extend("pe.com.seidor.sap.decor.ventas.controller.Documentos.DocNuevo", {
         getGroupHeader: function (oGroup){
@@ -44,27 +50,28 @@
                     "enabledBtnGuardar": true,
                     "enabledBtnCopiar": true,
                     "enabledBtnBuscar": true,
-                    "id":"",
-                    "CodTipoDoc":"",
-                    "CodTipoDocAnt":"",                    
+                    "id": "",
+                    "CodTipoDoc": "",
+                    "CodTipoDocAnt": "",
+                    "DocOriginal": "",
+                    "Referencia": "",  
                     "OrgVentas": "",
                     "CanalDist": "",
                     "CodOficina": "",
-                    "CodGrupoVend" : "",
+                    "CodGrupoVend": "",
                     "CondPago": "",
-                    "Moneda": "",
-                    "TipoCambio": "",
-                    "PesoTotal": null,
-                    "FechaFacturacion": "",
-                    "NombreBanco": "",
+                    "CodigoBanco": "",
                     "BloqueoEntrega": "",
                     "BloqueoFactura": "",
-                    "Motivo": "",
                     "OrdenCompra": "",
                     "CondExp": "",
-                    "Fecha": "",
+                    "FechaPedido": "",
+                    "FechaPrecio": "",
                     "FechaValidez": "",
                     "FechaEntrega": "",
+                    "FechaResult": "",  
+                    "FechaVisita": "",
+                    "FechaFacturacion": "", 
                     "nomProyecto": "",
                     "codProyecto": "",
                     "codVersion": "",
@@ -72,18 +79,29 @@
                     "Reenbolsable": false,
                     "GrupoForecast": "",
                     "TipoForecast": "",
+                    "Motivo": "",   
                     "Certificado": "",
-                    "FechaVisita": "",
-                    "Igv":"",
-                    "Percepcion":"",
-                    "Sector":"",
-                    "Sociedad":"",
-                    "SubTotal":"",
-                    "SubtotalImp":"",
-                    "Total":"",
-                    "TotalConIgv":"",
-                    "TotalDcto":"",
-                    "TotalImp":""                    
+                    "Percepcion": "",
+                    "Sector": "",
+                    "Sociedad": "",
+                    "PesoTotal": "",  
+                    "Moneda": "",
+                    "TipoCambio": "",   
+                    "Igv": "",  
+                    "SubTotal": "",
+                    "SubtotalImp": "",
+                    "Total": "",
+                    "TotalConIgv": "",
+                    "TotalDcto": "",
+                    "TotalImp": "",
+                    "CodVendedorWeb": "",
+                    "NomVendedorWeb": "",
+                    "codigoCliente": "",
+                    "GrupoCond": "",
+                    "NoImpFac": "",
+                    "NumPedido": "",
+                    "dsctoAdicionalZD12": "",
+                    "dsctoAdicionalZD12tmp": ""                                
                 },
                 "observaciones": {
                     "ZP01": {
@@ -101,6 +119,30 @@
                     "ZP07": {
                         "CodTexto": "ZP07",
                         "Descripcion": ""
+                    },
+                    "ZP09": {
+                        "CodTexto": "ZP09",
+                        "Descripcion": ""
+                    },
+                    "ZP10": {
+                        "CodTexto": "ZP10",
+                        "Descripcion": ""
+                    },
+                    "ZP11": {
+                        "CodTexto": "ZP11",
+                        "Descripcion": ""
+                    },
+                    "ZP12": {
+                        "CodTexto": "ZP12",
+                        "Descripcion": ""
+                    },
+                    "ZP13": {
+                        "CodTexto": "ZP13",
+                        "Descripcion": ""
+                    },
+                    "ZP14": {
+                        "CodTexto": "ZP14",
+                        "Descripcion": ""
                     }
                 },
                 "interlocutores": {
@@ -109,6 +151,7 @@
                             "Ciudad": "",
                             "Codigo": "",
                             "CodigoPostal": "",
+                            "Distrito": "",                            
                             "Descripcion": "",
                             "Direccion": "",
                             "DireccionCompleta": "",
@@ -127,7 +170,8 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     },
                     "RE": {
@@ -135,6 +179,7 @@
                             "Ciudad": "",
                             "Codigo": "",
                             "CodigoPostal": "",
+                            "Distrito": "",                            
                             "Descripcion": "",
                             "Direccion": "",
                             "DireccionCompleta": "",
@@ -153,7 +198,8 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     },
                     "RG": {
@@ -161,6 +207,7 @@
                             "Ciudad": "",
                             "Codigo": "",
                             "CodigoPostal": "",
+                            "Distrito": "",                            
                             "Descripcion": "",
                             "Direccion": "",
                             "DireccionCompleta": "",
@@ -179,7 +226,8 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     },
                     "WE": {
@@ -187,6 +235,7 @@
                             "Ciudad": "",
                             "Codigo": "",
                             "CodigoPostal": "",
+                            "Distrito": "",                            
                             "Descripcion": "",
                             "Direccion": "",
                             "DireccionCompleta": "",
@@ -205,7 +254,8 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     },                    
                     "VE": {
@@ -213,6 +263,7 @@
                             "Ciudad": "",
                             "Codigo": "",
                             "CodigoPostal": "",
+                            "Distrito": "",                            
                             "Descripcion": "",
                             "Direccion": "",
                             "DireccionCompleta": "",
@@ -231,13 +282,15 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     },
                     "V2": {
                         "Cliente": {
                             "Ciudad": "",
                             "Codigo": "",
+                            "Distrito": "",                            
                             "CodigoPostal": "",
                             "Descripcion": "",
                             "Direccion": "",
@@ -257,13 +310,15 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     },
                     "V3": {
                         "Cliente": {
                             "Ciudad": "",
                             "Codigo": "",
+                            "Distrito": "",                            
                             "CodigoPostal": "",
                             "Descripcion": "",
                             "Direccion": "",
@@ -283,13 +338,15 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     },
                     "V4": {
                         "Cliente": {
                             "Ciudad": "",
                             "Codigo": "",
+                            "Distrito": "",                            
                             "CodigoPostal": "",
                             "Descripcion": "",
                             "Direccion": "",
@@ -309,13 +366,15 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     },                    
                     "Z2": {
                         "Cliente": {
                             "Ciudad": "",
                             "Codigo": "",
+                            "Distrito": "",                            
                             "CodigoPostal": "",
                             "Descripcion": "",
                             "Direccion": "",
@@ -336,13 +395,15 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     },
                     "Z3": {
                         "Cliente": {
                             "Ciudad": "",
                             "Codigo": "",
+                            "Distrito": "",                            
                             "CodigoPostal": "",
                             "Descripcion": "",
                             "Direccion": "",
@@ -363,13 +424,15 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     },  
                     "Z5": {
                         "Cliente": {
                             "Ciudad": "",
                             "Codigo": "",
+                            "Distrito": "",                            
                             "CodigoPostal": "",
                             "Descripcion": "",
                             "Direccion": "",
@@ -390,7 +453,8 @@
                             "CodPersona": "",
                             "Descripcion": "",
                             "Dni": "",
-                            "Nombre": ""
+                            "Nombre": "",
+                            "Telefono": ""
                         }
                     }                                      
                 },
@@ -422,6 +486,11 @@
                     "SEXO": "",
                     "Telefono": "",
                     "TelefonoMovil": null
+                },
+                "clienteEventual": {
+                    "codigoCliente": "", 
+                    "nombreCliente": "", 
+                    "esEventual": true, 
                 },
                 "preguntas": {
                     "1": {
@@ -567,20 +636,34 @@
                     "razonSocial": "",
                     "tipoInterlocutor": "",
                     "copiarDatos": false
-                }
+                },
+                "PlanFacturacion":[{
+                    "FPLTR": "pos",
+                    "FKDAT": "now",
+                    "AFDAT": "now",
+                    "FAKSP": "02",
+                    "WAERS": "PEN",
+                    "FAREG": "1",
+                    "FKSAF": "A",
+                    "TAXK1": "I",
+                    "FKARV": "ZFAC",
+                    "MLSTN": "000000000000"
+                }]
             };
             if (oEvent.getParameter("name") === "appDocNuevo") {
                 this.getView().byId("SplitAppId").setMode("HideMode");
                 this.getView().setModel(new JSONModel(oData));
                 this.getView().getModel().setProperty("/dataIni", window.dataIni);
-                //////////////Número referencia (Doc Buscar) //////
-                this.getView().getModel().setProperty("/NumeroDocumentoReferencia", window.numeroDocumento);
-                ///////////////////////////////////////////////////
                 this.getView().getModel().refresh(true);
-                    //////Redireccion Documento Nuevo - Stock Disponible////
+
+                //////Redireccion Documento Nuevo - Stock Disponible////
                     if(window.IsDocNuevo == true){
-                            if(window.converPedido == true){                                
-                            var firstItem = this.getView().byId("ListaDocNuevo").getItems()[1]; //ponerlo en la posicion Z001
+                        //////////////Número referencia (Doc Buscar) //////
+                    this.getView().getModel().setProperty("/NumeroDocumentoReferencia", window.numeroDocumento);
+                    ///////////////////////////////////////////////////
+                    
+                            if(window.crearPedido == true){
+                                var firstItem = this.getView().byId("ListaDocNuevo").getItems()[1]; //ponerlo en la posicion ZO01
                             this.getView().byId("ListaDocNuevo").setSelectedItem(firstItem,true);
                             }else{
                                 var firstItem = this.getView().byId("ListaDocNuevo").getItems()[19]; //ponerlo en la posicion ZO01
@@ -642,41 +725,318 @@
         },
         onOkDlg_DialogDocNuevo: function (oEvent) {
             var tipoDocumento = this.getView().byId("ListaDocNuevo").getSelectedItem().getBindingContext().getObject();
-            var numPedido = this.getView().byId("txt_refDocNuevo").getValue();
-            var result = documentosServices.crearDocumento(tipoDocumento.Codigo, numPedido);
+            var tipoDocCodigo = tipoDocumento.Codigo;
+            var referencia = this.getView().byId("txt_refDocNuevo").getValue();
+            var listaTipoDocumento = this.getView().getModel().getProperty("/dataIni/lstTipoDoc");
+            var flag2 = ""; 
+            for(var indice in listaTipoDocumento) {
+                 if (listaTipoDocumento[indice].Codigo == tipoDocCodigo) {flag2 = listaTipoDocumento[indice].Flag2; break;}
+            }
+
+            if (tipoDocCodigo == 'Z037') {
+                window.IsDocInstalacion = false;
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("appHome");    
+                return;                           
+            }
+            if(referencia != "") {
+                //INSERT BEGIN OF EDC 23.11.2015: validacion para pedido vta transit.
+                if ( tipoDocCodigo == "Z034") {
+                    sap.m.MessageToast.show('El Pedido Vta.Imp.Transit. se genera sin referencia', { duration: 3000 });
+                    return;                    
+                } 
+                //INSERT END OF EDC 23.11.2015            
+                //6000001895 INSERT EDC 30.12.2016
+                if ( tipoDocCodigo == "Z015") {
+                    sap.m.MessageToast.show('El Pedido seleccionado se genera sin referencia', { duration: 3000 });
+                    return; 
+                } 
+                //6000001895 INSERT EDC 30.12.2016  
+                //6000001092 INSERT BEGIN OF EDC 08.09.2016
+                if ( tipoDocCodigo == "Z009") {
+                    sap.m.MessageToast.show('El Pedido de Muestra Gratis se genera sin referencia', { duration: 3000 }); 
+                    return; 
+                }                 
+                if(utilString.isNumeric(referencia)) {
+                    this.copiarDocumento(referencia);
+                } else {
+                    sap.m.MessageToast.show('El campo Referencia acepta sólo datos numéricos', { duration: 3000 });  
+                    return;                   
+                }
+            } else {
+                if(flag2 != "") {
+                    sap.m.MessageToast.show('El Tipo de Documento necesita crearse con referencia', { duration: 3000 });  
+                    return;                      
+                } else {
+                    this.asignarDocumento(tipoDocCodigo, referencia);
+                }
+            }
+        },        
+        copiarDocumento: function(referencia) {
+            var result = documentosServices.visualizarDocumento("ver", referencia);
+            if (result.data.success) {
+                var data = result.data;                                                
+                if(data.objPedido.CodTipoDoc == 'ZO02' && data.PedidoVisita42 != '') {
+                    this.getView().byId("dlg_DialogDocNuevo").close();
+                    this.crearDialogAvisoTipoDocumento(data);
+                } else {
+                    this.initDataProyecto(data, data.lstGrupoFor, data.lstTipoFor); 
+                    this.getView().byId("dlg_DialogDocNuevo").close();                   
+                }                
+            } else {
+                sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
+            }            
+        },
+        initDataProyecto: function (data, lstGrupoFor, lstTipoFor) {
+            var pedidoSer = data.objPedido;
+            var fechaValidezString = moment(pedidoSer.FechaValidez).format('DD/MM/YYYY');
+            var fechaEntregaString = moment(pedidoSer.FechaEntrega).format('DD/MM/YYYY');
+            var fechaPedidoString = moment(pedidoSer.Fecha).format('DD/MM/YYYY');
+            var fechaPrecioString = moment(pedidoSer.FechaPrecio).format('DD/MM/YYYY');
+            var fechaFactString = moment(pedidoSer.FechaFacturacion).format('DD/MM/YYYY');
+            var fechaVisitString = moment(pedidoSer.FechaVisita).format('DD/MM/YYYY');
+            var fechaResultString = moment(pedidoSer.FechaVisita).format('DD/MM/YYYY');
+            var fechaVisit = "", fechaResul = "";
+
+            if(fechaVisitString == '01/01/0001' && fechaResultString == '01/01/0001') {
+            } else if(fechaVisitString != '01/01/0001' && fechaResultString != '01/01/0001') {
+                fechaVisit = fechaVisitString;
+                fechaResul = fechaResultString;
+            } else if(fechaVisitString != '01/01/0001' && fechaResultString == '01/01/0001') {
+                fechaVisit = fechaVisitString;
+            } else {
+                fechaResul = fechaResultString;
+            }
+
+            var pedido = this.getView().getModel().getProperty("/pedido");
+            pedido.id= 1;
+            pedido.CodTipoDoc= pedidoSer.CodTipoDoc;
+            pedido.CodTipoDocAnt= pedidoSer.CodTipoDocAnt;
+            pedido.DocOriginal= pedidoSer.DocOriginal;  
+            pedido.OrgVentas= pedidoSer.OrgVentas;
+            pedido.CanalDist= pedidoSer.CanalDist;
+            pedido.CodOficina= pedidoSer.CodOficina;
+            pedido.CodGrupoVend= pedidoSer.CodGrupoVend;
+            pedido.CondPago= pedidoSer.CondPago;
+            pedido.CodigoBanco= "";
+            pedido.BloqueoEntrega= data.BloqueoEntrega;
+            pedido.BloqueoFactura= data.BloqueoFactura;
+            pedido.OrdenCompra= pedidoSer.OrdenCompra;
+            pedido.CondExp= pedidoSer.CondExp;
+            pedido.FechaPedido= fechaPedidoString;
+            pedido.FechaPrecio= fechaPrecioString;
+            pedido.FechaValidez= fechaValidezString;
+            pedido.FechaEntrega= fechaEntregaString;
+            pedido.FechaResult= fechaResul;  
+            pedido.FechaVisita= fechaVisit;
+            pedido.FechaFacturacion= fechaFactString; 
+            pedido.nomProyecto= data.NomProyecto;
+            pedido.codProyecto= pedidoSer.codProyecto;
+            pedido.codVersion= pedidoSer.codVersion;
+            pedido.TipoVisita= pedidoSer.TipoVisita;
+            pedido.Reenbolsable= pedidoSer.Reenbolsable,
+            pedido.GrupoForecast=pedidoSer.GrupoForecast;
+            pedido.TipoForecast= pedidoSer.TipoForecast;
+            pedido.Motivo= data.Motivo;   
+            pedido.Certificado= pedidoSer.Certificado;
+            pedido.Percepcion= "";
+            pedido.Sector= pedidoSer.Sector;
+            pedido.Sociedad= "";
+            pedido.PesoTotal= data.PesoTotal;  
+            pedido.Moneda= data.Moneda;
+            pedido.TipoCambio= data.TipoCambio;   
+            pedido.Igv= data.Igv;  
+            pedido.SubTotal= data.SubTotal;
+            pedido.SubtotalImp= pedidoSer.SubtotalImp;
+            pedido.Total= data.Total;
+            pedido.TotalConIgv= data.TotalConIgv;
+            pedido.TotalDcto= data.TotalDcto;
+            pedido.TotalImp= data.TotalImp;    
+            pedido.codigoCliente= data.codigoCliente;
+            pedido.GrupoCond= data.GrupoCond;
+            pedido.NoImpFac= "";
+            pedido.NumPedido= pedidoSer.NumPedido;
+            pedido.dsctoAdicionalZD12= pedidoSer.dsctoAdicionalZD12;
+            pedido.dsctoAdicionalZD12tmp= pedidoSer.dsctoAdicionalZD12tmp; 
+            if(true) { pedido.DocOriginal = pedidoSer.NumPedido;} //referencia
+            this.getView().getModel().setProperty("/pedido", pedido);  
+
+            utilDocumento.obtenerObservaciones(this, pedidoSer.Textos);
+            utilDocumento.obtenerInterlocutores(this, data.objPedido.Interlocutores ,data);
+            utilDocumento.obtenerPreguntas(this, data.listCliPregResp);
+            utilDocumento.obtenerMateriales(this, pedido.CodTipoDoc, pedidoSer.Detalle);
+
+            //***********Fidelizacion Clientes*********
+            var clienteSer = data.datoReniec[0];
+            var fechNacimiento = moment(clienteSer.FECNAC).format('DD/MM/YYYY');
+            clienteSer.FECNAC = fechNacimiento;            
+            this.getView().getModel().setProperty("/cliente", clienteSer);
+            utilDocumento.obtenerClienteEventual(this, data.objCliente);
+
+            this.getView().getModel().setProperty("/lstGrupoFor", data.lstGrupoFor);
+            this.getView().getModel().setProperty("/lstGrupoForFiltrado", utilFunction.getListGrupoFor(pedidoSer.CanalDist, data.lstGrupoFor));
+            this.getView().getModel().setProperty("/lstTipoFor", data.lstTipoFor);
+
+            //para la jerarquia descuento ZD13 @rhuapaya 07092014
+            if (data.listJerarquia != null && data.listJerarquia.length > 0) {
+                this.getView().getModel().setProperty("/listJerarquia", data.listJerarquia);                                  
+            }
+            //descuento especial ZD13 @rhuapaya 22/09/2014
+            if (data.descespecial != null) {
+                this.getView().getModel().setProperty("/descespecial", data.descespecial);
+            }  
+            if (data.descEspecialPorPedido != null) {
+                this.getView().getModel().setProperty("/descEspecialPorPedido", data.descEspecialPorPedido);
+            }  
+            //condicion de facturacion
+            if(pedido.CodTipoDoc == 'Z004') {
+                if (data.planFacturacion == null || data.planFacturacion.length <= 0) {
+                    var planFacturacion = this.getView().getModel().getProperty("/PlanFacturacion");
+                    var now = new Date();
+                    var storeCount = planFacturacion.length;
+                    var pos = padLeft((storeCount + 1), 6);
+                    var facturacion = new Object();
+                    facturacion.FPLTR = pos;
+                    facturacion.FKDAT = now;
+                    facturacion.AFDAT = now;
+                    facturacion.FAKSP = '02';
+                    facturacion.WAERS = 'PEN';
+                    facturacion.FAREG = '1';
+                    facturacion.FKSAF = 'A';
+                    facturacion.TAXK1 = 'I';
+                    facturacion.FKARV = 'ZFAC';
+                    facturacion.MLSTN = '000000000000';
+                    planFacturacion.push(facturacion);
+                    this.getView().getModel().getProperty("/PlanFacturacion", planFacturacion);    
+                } else {
+                    this.getView().getModel().setProperty("/PlanFacturacion", data.planFacturacion);                    
+                } 
+            }           
+            /*
+            if(pedido.CodTipoDoc != 'Z004') {
+                if(pedido.CodTipoDoc == 'ZO02' && data.PedidoVisita42 != '') {
+
+                } 
+            } else {
+                if (data.planFacturacion == null || data.planFacturacion.length <= 0) {
+                    var planFacturacion = this.getView().getModel().getProperty("/PlanFacturacion");
+                    var now = new Date();
+                    var storeCount = planFacturacion.length;
+                    var pos = padLeft((storeCount + 1), 6);
+                    var facturacion = new Object();
+                    facturacion.FPLTR = pos;
+                    facturacion.FKDAT = now;
+                    facturacion.AFDAT = now;
+                    facturacion.FAKSP = '02';
+                    facturacion.WAERS = 'PEN';
+                    facturacion.FAREG = '1';
+                    facturacion.FKSAF = 'A';
+                    facturacion.TAXK1 = 'I';
+                    facturacion.FKARV = 'ZFAC';
+                    facturacion.MLSTN = '000000000000';
+                    planFacturacion.push(facturacion);
+                    this.getView().getModel().getProperty("/PlanFacturacion", planFacturacion);    
+                } else {
+                    this.getView().getModel().setProperty("/PlanFacturacion", data.planFacturacion);                    
+                }
+            }
+            */
+
+            this.getView().getModel().refresh();
+        },
+        crearDialogAvisoTipoDocumento: function(data) {  
+        var self = this;      
+            var dialog = new Dialog({
+                title: 'Aviso',
+                type: 'Message',
+                content: new Text({ text: data.PedidoVisita42 + ",desea continuar?" }),
+                beginButton: new Button({
+                    text: 'Aceptar',
+                    press: function () {
+                        self.initDataProyecto(data, data.lstGrupoFor, data.lstTipoFor);  
+                        dialog.close();
+                    }
+                }),
+                endButton: new Button({
+                    text: 'Cancel',
+                    press: function () {
+                        dialog.close();
+                        self.getView().byId("dlg_DialogDocNuevo").open();
+                    }
+                }),
+                afterClose: function() {
+                    dialog.destroy();
+                }
+            });
+
+            dialog.open();
+        },
+        asignarDocumento: function(codTipoDocuemnto, referencia) {
+            var result = documentosServices.crearDocumento(codTipoDocuemnto, referencia);
             if (result.c === "s") {
                 if (result.data.success) {
-                    this.initDataDefault(result.data, tipoDocumento.Codigo);
+                    this.initDataDefault(result.data, codTipoDocuemnto);
                     this.getView().byId("dlg_DialogDocNuevo").close();
-                    MessageToast.show(tipoDocumento.Descripcion);
+                    MessageToast.show(codTipoDocuemnto);
                 } else {
                     sap.m.MessageToast.show(result.data.errors.reason, {duration: 3000});
                 }
             } else {
                 sap.m.MessageToast.show(result.m, {duration: 3000});
             }
-        },
-        initDataDefault: function (data, codigo) {            
-            this.getView().getModel().setProperty("/pedido/CodTipoDoc", codigo);
-            this.getView().getModel().setProperty("/pedido/TipoCambio", data.tipoCambio);
-            this.getView().getModel().setProperty("/pedido/FechaFacturacion", data.FechaFact);
-            this.getView().getModel().setProperty("/pedido/FechaValidez", data.FechaValidez);
-            this.getView().getModel().setProperty("/pedido/Fecha", data.FechaFact);
-            this.getView().getModel().setProperty("/pedido/FechaEntrega", data.FechaFact);
-            this.getView().getModel().setProperty("/pedido/OrgVentas", dataIni.person.OrgVentas);
-            this.getView().getModel().setProperty("/pedido/CodOficina", dataIni.person.OfVentas);
-            this.getView().getModel().setProperty("/pedido/CanalDist", dataIni.person.CanalDist);
-            this.getView().getModel().setProperty("/pedido/CodGrupoVend", window.dataIni.person.GrpVend);
-            this.getView().getModel().setProperty("/pedido/CondPago", "E000");
-            this.getView().getModel().setProperty("/pedido/Moneda", "PEN");
-            this.getView().getModel().setProperty("/pedido/CondExp", "03");
-            this.getView().getModel().setProperty("/pedido/GrupoForecast", "01");
-            this.getView().getModel().setProperty("/interlocutores/AG/Cliente/Codigo", dataIni.person.ClienteEvent);
-            this.getView().getModel().setProperty("/interlocutores/RE/Cliente/Codigo", dataIni.person.ClienteEvent);
-            this.getView().getModel().setProperty("/interlocutores/RG/Cliente/Codigo", dataIni.person.ClienteEvent);
-            this.getView().getModel().setProperty("/interlocutores/WE/Cliente/Codigo", dataIni.person.ClienteEvent);
-            this.getView().getModel().setProperty("/interlocutores/VE/Persona/CodPersona", dataIni.person.PerNr);
+        },        
+        initDataDefault: function (data, codigo) {   
+            var fechaHoy = new Date();  
+            var datosTienda = dataIni.person;            
+            var id = fechaHoy.getTime();
+            var fechaHoyString = moment(fechaHoy).format('DD/MM/YYYY');
+            var fechaValidezString = (codigo == 'ZO01') ? moment(fechaHoy).add(7,'days').format('DD/MM/YYYY') : fechaHoyString;
+            var condPago = (utilFunction.containsCode(codigo)) ? "E001": "E000";
+            var strCondExp = '03';         
+            if (datosTienda.OfVentas == '1080') { strCondExp = '01';  }
+            if (datosTienda.CanalDist == "30") {  strCondExp = '01'; }
+
+            var pedido = this.getView().getModel().getProperty("/pedido");
+            pedido.id= id;
+            //CodVendedor1: codVen, 
+            //NomVendedor1: nomVen, 
+            pedido.CodTipoDoc = codigo;
+            //CodCliente: codCliEventual, 
+            pedido.codigoCliente = datosTienda.ClienteEvent;            
+            //nombreCliente: desEventual, 
+            pedido.CodOficina = datosTienda.OfVentas;
+            pedido.CondPago = condPago;
+            pedido.OrgVentas = datosTienda.OrgVentas;
+            pedido.CanalDist = datosTienda.CanalDist;
+            pedido.TipoCambio = data.tipoCambio;
+            pedido.CodVendedorWeb = data.CodVendedor1;
+            pedido.NomVendedorWeb = data.NomVendedor1;
+            pedido.FechaEntrega = fechaHoyString;                
+            pedido.FechaFacturacion = fechaHoyString;
+            pedido.CondExp = strCondExp;
+            pedido.Moneda = "PEN";
+            pedido.FechaPedido = fechaHoyString;
+            pedido.FechaValidez = fechaValidezString;                                                
+            pedido.CodGrupoVend = window.dataIni.person.GrpVend;
+            pedido.GrupoForecast = "01";
+            this.getView().getModel().setProperty("/pedido", pedido);
+
+            var clienteEventual = this.getView().getModel().getProperty("/clienteEventual");
+            clienteEventual.codigoCliente = datosTienda.ClienteEvent;
+            clienteEventual.nombreCliente = datosTienda.E_NAME1;  
+            this.getView().getModel().setProperty("/clienteEventual", clienteEventual);
+
+            var interlocutores = this.getView().getModel().getProperty("/interlocutores");
+            interlocutores.AG.Cliente.Codigo = datosTienda.ClienteEvent;
+            interlocutores.RE.Cliente.Codigo = datosTienda.ClienteEvent;
+            interlocutores.RG.Cliente.Codigo = datosTienda.ClienteEvent;
+            interlocutores.WE.Cliente.Codigo = datosTienda.ClienteEvent;
+            interlocutores.VE.Persona.CodPersona = datosTienda.PerNr;
+            interlocutores.VE.Persona.Descripcion = datosTienda.Descripcion;
+            this.getView().getModel().setProperty("/interlocutores", interlocutores);
+
             this.getView().getModel().setProperty("/lstGrupoFor", data.lstGrupoFor);
+            this.getView().getModel().setProperty("/lstGrupoForFiltrado", utilFunction.getListGrupoFor(datosTienda.CanalDist, data.lstGrupoFor));
             this.getView().getModel().setProperty("/lstTipoFor", data.lstTipoFor);
             //this.getView().getModel().refresh();
         },
@@ -1467,12 +1827,12 @@
             pedido.FechaReparto= null;
             pedido.TipoCambio= pedidoMod.TipoCambio;
             pedido.FechaFacturacion= this.convertirFechaSistema(pedidoMod.FechaFacturacion);
-            pedido.CodigoBanco= pedidoMod.NombreBanco; 
+            pedido.CodigoBanco= pedidoMod.CodigoBanco; 
             pedido.Motivo= pedidoMod.Motivo;
             pedido.BloqueoEntrega= pedidoMod.BloqueoEntrega;
             pedido.BloqueoFactura= pedidoMod.BloqueoFactura;
             pedido.OrdenCompra= pedidoMod.OrdenCompra; 
-            pedido.FechaPedido= this.convertirFechaSistema(pedidoMod.Fecha);
+            pedido.FechaPedido= this.convertirFechaSistema(pedidoMod.FechaPedido);
             pedido.FechaValidez= this.convertirFechaSistema(pedidoMod.FechaValidez);
             pedido.Estado= "";
             pedido.nomProyecto= pedidoMod.nomProyecto;
@@ -1503,7 +1863,7 @@
             pedido.TieneKitCombo= false;
             pedido.NumPedido= "";
             pedido.NumPedidoCorto= "";
-            pedido.FechaPedidoString= pedidoMod.Fecha;
+            pedido.FechaPedidoString= pedidoMod.FechaPedido;
             pedido.FechaValidezString=pedidoMod.FechaValidez;
             pedido.FechaEntregaString=pedidoMod.FechaEntrega;
             pedido.CodCliente= clienteMod.Codigo; 
@@ -1904,12 +2264,12 @@
             nuevoDocumento.dsctoAdicionalZD12= "" ;// "" ;
             nuevoDocumento.pesoTotal= pedido.PesoTotal ;// "0.300 KG" ;
             nuevoDocumento.FechaFacturacion= this.convertirFechaSistema(pedido.FechaFacturacion) ;// "2017-07-21T19:10:42.933Z" ;
-            nuevoDocumento.GrupoCond= pedido.NombreBanco ;// "02" ; // GrupoCond pertenece al codigo nombre banco
+            nuevoDocumento.GrupoCond= pedido.CodigoBanco ;// "02" ; // GrupoCond pertenece al codigo nombre banco
             nuevoDocumento.Motivo= pedido.Motivo ;// "003" ;
             nuevoDocumento.BloqueoFactura= pedido.BloqueoFactura ;// "04" ;
             nuevoDocumento.BloqueoEntrega= pedido.BloqueoEntrega ;// "05" ;
             nuevoDocumento.OrdenCompra= pedido.OrdenCompra ;// "nroOrden" ;
-            nuevoDocumento.FechaPedido= this.convertirFechaSistema(pedido.Fecha) ;// "2017-07-21T19:10:42.933Z" ;
+            nuevoDocumento.FechaPedido= this.convertirFechaSistema(pedido.FechaPedido) ;// "2017-07-21T19:10:42.933Z" ;
             nuevoDocumento.FechaValidez= this.convertirFechaSistema(pedido.FechaValidez) ;// "2017-07-28T19:10:42.958Z" ;
             nuevoDocumento.FechaEntrega= this.convertirFechaSistema(pedido.FechaEntrega) ;// "2017-07-21T19:10:42.933Z" ;
             nuevoDocumento.CondExp= pedido.CondExp ;// "03" ;
@@ -1970,10 +2330,6 @@
             var listaIntJson = JSON.stringify(this.crearInterlocutores()) ; //Sin Hard Code 
             var listaPedJson = JSON.stringify([this.crearPedido()]);  //Sin Hard Code 
             var listadatosCliente = JSON.stringify(this.crearCliente()); //Sin Hard Code 
-
-            //Inicio Validaciones Sencha/////////////////////////////////////////////////////////////////
-            
-            //Fin Validaciones Sencha/////////////////////////////////////////////////////////
 
 
             var result = documentosServices.guardarDocumento(nuevoDocumento,listaMatJson,listaDsctoJson,listaRepJson,listaIntJson,listaPedJson,listadatosCliente);
@@ -2413,15 +2769,11 @@ onDocNuevoClosedlg_addProductoonDialog: function () {
          */
         //Boton Master Datos
         onDocNuevoMasterDatos: function (oEvent) {
-            this.getView().byId("buttonMasterDatos").setSelectedKey("datos");/////
-            this.getView().byId("buttonMasterProductos").setSelectedKey("productos");/////
             this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoDatos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"));
         },
         //Boton Master Producto
         onDocNuevoMasterProductos: function (oEvent) {
-            this.getView().byId("buttonMasterDatos").setSelectedKey("datos");/////
-            this.getView().byId("buttonMasterProductos").setSelectedKey("productos");/////
             this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoProductos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
         },
