@@ -865,9 +865,9 @@
         
         <s:customFooterContent>
                     <!--Text class="txt_Total_Dscto" text="Tot.Doc.: S/. {} (c/IGV) | Tot.Dcto. : S/. {}" ></Text-->
-                    <Text class="txt_Total_Dscto" text="Total: S/. " ></Text>
+                    <Text class="txt_Total_Dscto" id="txt_Total" text="Total: S/. " ></Text>
                     <Text class="monto_Total_Dscto" text="{/pedido/Total}"></Text>
-                    <Text class="txt_Total_Dscto" text="Dscto.: S/. "></Text>
+                    <Text class="txt_Total_Dscto" id="txt_Dscto" text="Dscto.: S/. "></Text>
                     <Text class="monto_Total_Dscto" text="{/pedido/TotalDcto}"></Text>
                     <ToolbarSpacer />
                     <Button icon="sap-icon://refresh" tooltip="" text="" press="onBtnRecalcular" visible="{/pedido/enabledBtn}"></Button>
