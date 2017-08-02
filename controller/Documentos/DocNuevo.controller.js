@@ -1638,37 +1638,41 @@
         },
         onBtnRecalcular:function(){
             var materiales = this.getView().getModel().getProperty("/listaMaterial/");
-            if(materiales.length > 0) {
-                var dsctoLotes = 2;
-                var listaDscto = JSON.stringify(this.crearDescuentos());
-                var listaInter = JSON.stringify(this.crearInterlocutores());
-                var listaRepartos = JSON.stringify(this.crearRepartos());
-                var listaMateriales = JSON.stringify(this.crearMateriales());   //crearMateriales1          
-                var listaPedido = JSON.stringify([this.crearPedido()]);
+            if(materiales){
+                if(materiales.length > 0) {
+                    var dsctoLotes = 2;
+                    var listaDscto = JSON.stringify(this.crearDescuentos());
+                    var listaInter = JSON.stringify(this.crearInterlocutores());
+                    var listaRepartos = JSON.stringify(this.crearRepartos());
+                    var listaMateriales = JSON.stringify(this.crearMateriales());   //crearMateriales1          
+                    var listaPedido = JSON.stringify([this.crearPedido()]);
 
-                var self = this;
-                self.getView().byId("loadingControl").open();
-                setTimeout(function(){
-                    var result = materialServices.recalcular(dsctoLotes, listaInter, listaDscto, listaRepartos, 
-                                                                listaMateriales, listaPedido);
-                    if (result.c === "s") {
-                        if (result.data.success) {
-                            var pedidoSer = result.data.objPedido;
-                            var pedido = self.agregarDatosPedido(pedidoSer);                            
-                            var materiales = self.agregarDetalleMateriales(pedidoSer.Detalle);
-                            
-                            self.getView().getModel().setProperty("/pedido", pedido);
-                            self.getView().getModel().setProperty("/listaMaterial", materiales);
-                            self.getView().getModel().refresh(); 
-                       } else {
-                            sap.m.MessageToast.show(result.data.errors.reason, { duration: 3000 });
-                        }
-                    } else {
-                        sap.m.MessageToast.show(result.m, { duration: 3000 });
-                    } 
-                self.getView().byId("loadingControl").close();
-                },1000);
-            } else {
+                    var self = this;
+                    self.getView().byId("loadingControl").open();
+                    setTimeout(function(){
+                        var result = materialServices.recalcular(dsctoLotes, listaInter, listaDscto, listaRepartos, 
+                                                                    listaMateriales, listaPedido);
+                        if (result.c === "s") {
+                            if (result.data.success) {
+                                var pedidoSer = result.data.objPedido;
+                                var pedido = self.agregarDatosPedido(pedidoSer);                            
+                                var materiales = self.agregarDetalleMateriales(pedidoSer.Detalle);
+
+                                self.getView().getModel().setProperty("/pedido", pedido);
+                                self.getView().getModel().setProperty("/listaMaterial", materiales);
+                                self.cambiar_moneda();
+                                self.getView().getModel().refresh(); 
+                           } else {
+                                sap.m.MessageToast.show(result.data.errors.reason, { duration: 3000 });
+                            }
+                        } else {
+                            sap.m.MessageToast.show(result.m, { duration: 3000 });
+                        } 
+                    self.getView().byId("loadingControl").close();
+                    },1000);
+                }
+            } 
+            if(materiales== null) {
                 MessageToast.show("Debe añadir al menos un Material.");
             }
         },
