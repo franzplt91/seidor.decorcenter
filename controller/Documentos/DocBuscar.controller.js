@@ -42,17 +42,6 @@ sap.ui.define([
                     "flujo": [],
                     "numeroPedidos": {}
                 },
-                pedido: {
-                    "enabled": true,
-                    "enabledBtnGuardar": true,
-                    "enabledBtnCopiar": true,
-                    "enabledBtnBuscar": true,
-                    "enabledIconoAdd": true,
-                    "enabledIconoBuscar": true,
-                    "enabledIconoBorrar": true,
-                    "enabledStockPorLlegar": true,
-                    "enabledStockPorPedir": true
-                }
             };
             if (oEvent.getParameter("name") == "appDocBuscar") {
                 this.getView().setModel(new JSONModel(oData));
@@ -119,15 +108,6 @@ sap.ui.define([
                 if (result.c === "s") {
                     if (result.data.success) {
                         self.getView().getModel().setProperty("/retornoBuscarDoc", result.data);
-                        self.getView().getModel().setProperty("/pedido/enabled", false);
-                        self.getView().getModel().setProperty("/pedido/enabledBtnCopiar", false);
-                        self.getView().getModel().setProperty("/pedido/enabledBtnBuscar", false);
-                        self.getView().getModel().setProperty("/pedido/enabledBtnGuardar", false);
-                        self.getView().getModel().setProperty("/pedido/enabledIconoAdd", false);
-                        self.getView().getModel().setProperty("/pedido/enabledIconoBuscar", false);
-                        self.getView().getModel().setProperty("/pedido/enabledIconoBorrar", false);
-                        self.getView().getModel().setProperty("/pedido/enabledStockPorLlegar",false);
-                        self.getView().getModel().setProperty("/pedido/enabledStockPorPedir",false);
                         self.getView().getModel().refresh();
                         self.getView().byId("dlg_DialogDocBuscar").close();
                         self.getView().byId("dlg_DocBuscarLista").open();
@@ -151,11 +131,13 @@ sap.ui.define([
         },
         onListaBuscarDoc: function (evt) {
             var docSeleccionado = evt.getSource().getSelectedItem().getBindingContext().getObject();
+            window.numeroDocumento = docSeleccionado.NumeroPedido;
             console.log(docSeleccionado);
             this.getView().getModel().setProperty("/datosBuscarDoc/ClaseDocumento", docSeleccionado.ClaseDocumento);
             this.getView().getModel().setProperty("/datosBuscarDoc/knumv", docSeleccionado.knumv);
             this.getView().getModel().setProperty("/datosBuscarDoc/Detalle", docSeleccionado.Detalle);
             this.getView().getModel().setProperty("/datosBuscarDoc/NumeroPedido", docSeleccionado.NumeroPedido);
+            this.getView().getModel().refresh();
             this.getView().byId("dlg_DocBuscarLista").close();
         },
         onListaDetalleDoc: function (evt) {
@@ -177,7 +159,7 @@ sap.ui.define([
             }
         },
         onBtnImprimir: function () {
-            if (window.numeroDocumento) {
+            window.imprimirDoc= true;
                 var self = this;
                 self.getView().byId("loadingControl").open();
                 setTimeout(function () {
@@ -186,9 +168,6 @@ sap.ui.define([
                     self.getView().getModel().refresh();
                     self.getView().byId("loadingControl").close();
                 }, 100);
-            } else {
-                MessageToast.show("Seleccione un Documento");
-            }
         },
         onListaDocumento: function () {
             this.getView().byId("dlg_DocBuscarLista").open();
@@ -277,8 +256,7 @@ sap.ui.define([
         },
         onSidlg_MensajeAvisoConversionPedido: function () {
             window.IsDocNuevo = true;
-            window.crearPedido = true;
-            if (window.numeroDocumento) {
+            window.converPedido = true;
                 var self = this;
                 self.getView().byId("loadingControl").open();
                 setTimeout(function () {
@@ -286,9 +264,17 @@ sap.ui.define([
                     oRouter.navTo("appDocNuevo");
                     self.getView().byId("loadingControl").close();
                 }, 100);
-            } else {
-                MessageToast.show("Seleccione un Documento");
-            }
+        },
+
+        onBtnVisualizarDoc:function(){
+            window.IsDocVisualizar = false;
+                var self = this;
+                self.getView().byId("loadingControl").open();
+                setTimeout(function () {
+                    var oRouter = sap.ui.core.UIComponent.getRouterFor(self);
+                    oRouter.navTo("appDocVisualizar");
+                    self.getView().byId("loadingControl").close();
+                }, 100);
         },
     });
 });
