@@ -35,6 +35,7 @@ sap.ui.define([
             this.getView().getModel().setProperty("/tipoCabeceraModel", tipoCabecera);
             this.getView().getModel().refresh();
         },
+        
         //Continuar en Dialog Flujo
         onContinuarDlg_DialogDocFlujo: function (oEvent) {
             if (this.getView().byId("txt_numDoc_flujo").getValue() !== "") {
