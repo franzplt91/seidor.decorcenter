@@ -2770,11 +2770,15 @@ onDocNuevoClosedlg_addProductoonDialog: function () {
          */
         //Boton Master Datos
         onDocNuevoMasterDatos: function (oEvent) {
+            this.getView().byId("buttonMasterDatos").setSelectedKey("datos");/////
+            this.getView().byId("buttonMasterProductos").setSelectedKey("productos");/////
             this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoDatos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_datos_detail1"));
         },
         //Boton Master Producto
         onDocNuevoMasterProductos: function (oEvent) {
+            this.getView().byId("buttonMasterDatos").setSelectedKey("datos");/////
+            this.getView().byId("buttonMasterProductos").setSelectedKey("productos");/////
             this.byId("SplitAppId").toMaster(this.createId("MasterDocNuevoProductos"));
             this.byId("SplitAppId").to(this.createId("pagDocNuevo_productos_lista1"));
         },
