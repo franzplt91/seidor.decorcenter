@@ -489,7 +489,7 @@ sap.ui.define([
                                   (self.getView().getModel().getProperty("/clienteEventual/esEventual") == "true" ||
                                    self.getView().getModel().getProperty("/clienteEventual/esEventual") == "false")) //Roy: falta colocar valor verdadero
                          {
-                             var fechaZ_cod = 200; //ParametroStore.data.items[32].data.Model[0].Descripcion
+                             var fechaZ_cod = window.dataIni.lstUserCn[0].Descripcion; //Roy: Falta Comprobar Despues--------ParametroStore.data.items[32].data.Model[0].Descripcion
                              var fecha_doc = moment(self.getView().getModel().getProperty("/pedido/FechaPedido")).format('Y-m-d'); //Ext.util.Format.date(objPedidoStore.data.items[0].data.FechaPedido, 'Y-m-d'); 
                                 
                             if (fechaZ_cod <= fecha_doc)
@@ -523,7 +523,7 @@ sap.ui.define([
                 grupoFor = self.getView().getModel().getProperty("/pedido/GrupoForecast");
                 tipoFor = self.getView().getModel().getProperty("/pedido/TipoForecast");
                 canaldist = self.getView().getModel().getProperty("/pedido/CanalDist");
-                var fechaz = 200; //ParametroStore.data.items[30].data.Model[0].Descripcion;
+                var fechaz = window.dataIni.lstValfore[0].Descripcion; //ParametroStore.data.items[30].data.Model[0].Descripcion;
             //  var fechap = formDoc.getValues().FechaPedido
                 
                 var fechap = moment(self.getView().getModel().getProperty("/pedido/FechaPedido")).format('Y-m-d'); //Ext.util.Format.date(formDoc.getValues().FechaPedido, 'Y-m-d');
@@ -670,7 +670,7 @@ sap.ui.define([
                 var CodGrupoMat = "";
                 var Opcion = "";
                 var Pos = "";
-                fechazA = 200 ; //ParametroStore.data.items[31].data.Model[0].Descripcion;
+                fechazA = window.dataIni.lstValambi[0].Descripcion ; //ParametroStore.data.items[31].data.Model[0].Descripcion;
                 fechapA = moment(self.getView().getModel().getProperty("/pedido/FechaPedido")).format('Y-m-d'); //Ext.util.Format.date(objPedidoStore.data.items[0].data.FechaPedido, 'Y-m-d');
                  if (fechazA <= fechapA)
                  {
