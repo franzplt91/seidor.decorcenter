@@ -27,7 +27,6 @@ sap.ui.define([
         onInit: function () {
             var oRouter = UIComponent.getRouterFor(this);
             oRouter.attachRoutePatternMatched(this.onRouteMatched, this);
-            window.IsDocNuevo = true;
         },
         onRouteMatched: function (oEvent) {
                 //////Inicio Fecha Actual/////////////////////////////////////////////////////////////////////////
