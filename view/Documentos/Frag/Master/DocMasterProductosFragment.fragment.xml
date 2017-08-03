@@ -63,11 +63,7 @@
                               enableBusyIndicator="false" growingTriggerText="Previous Products" noDataText="No hay Productos" 
                               itemPress="onMasterProductoSeleccionarMaterial"  
                               items="{
-                        path : '/listaMaterial',
-                                sorter : {
-                                    path : 'DescMaterial',
-                                    group : false
-                                }
+                        path : '/listaMaterial'
                         }"
                 >
                     <items>

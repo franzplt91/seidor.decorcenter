@@ -68,7 +68,7 @@
                                         <f:FormElement label="Categoría">
                                             <f:fields>
                                                 <Select id="comboCategoria" items="{ path : '/dataIni/lstCategoria' }" change="onSeleccionarCategoria"  required="true">
-                                                    <core:Item key="{Codigo}" text="{Descripcion}" />
+                                                    <core:Item key="{Codigo}" text="{Codigo} {Descripcion}" />
                                                     <layoutData>
                                                         <l:GridData span="L8 M8 S8"/>
                                                     </layoutData>

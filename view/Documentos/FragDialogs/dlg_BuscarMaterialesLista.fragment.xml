@@ -28,7 +28,7 @@
 
 
                             <ObjectListItem
-                title="{DescMaterial}"
+                title="{CodMaterial} {CodUMedida}-- \n {DescMaterial}"
                 number="Peso: {Peso}"
                 numberUnit="Precio: {PrecioUnit} Stock: {Stock}{CodUMedida}"
                 numberState=""

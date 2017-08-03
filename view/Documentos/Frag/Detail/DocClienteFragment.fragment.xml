@@ -109,8 +109,8 @@
                                         </f:FormElement>
                                         <f:FormElement label="Moneda">
                                             <f:fields>
-                                                 <Select items="{ path : '/dataIni/lstMoneda' }" maxwidth="100%" required="true" selectedKey="{/pedido/Moneda}" id="com_moneda_pago" enabled="{/pedido/enabled}">
-                                    <core:Item key="{Codigo}" text="{Descripcion}"/>
+                                                 <Select items="{ path : '/dataIni/lstMoneda' }" maxwidth="100%" required="true" selectedKey="{/pedido/Moneda}" id="com_moneda_pago" enabled="{/pedido/enabled}" change="onCambioMoneda">
+                                    <core:Item key="{Codigo}" text="{Codigo} {Descripcion}"/>
                                 </Select>
                                             </f:fields>
                                         </f:FormElement>
