@@ -489,7 +489,7 @@ sap.ui.define([
                                   (self.getView().getModel().getProperty("/clienteEventual/esEventual") == "true" ||
                                    self.getView().getModel().getProperty("/clienteEventual/esEventual") == "false")) //Roy: falta colocar valor verdadero
                          {
-                             var fechaZ_cod = window.dataIni.lstUserCn[0].Descripcion; //Roy: Falta Comprobar Despues--------ParametroStore.data.items[32].data.Model[0].Descripcion
+                             var fechaZ_cod = window.dataIni.lstFeclicod[0].Descripcion; //Roy: Falta Comprobar Despues--------ParametroStore.data.items[32].data.Model[0].Descripcion
                              var fecha_doc = moment(self.getView().getModel().getProperty("/pedido/FechaPedido")).format('Y-m-d'); //Ext.util.Format.date(objPedidoStore.data.items[0].data.FechaPedido, 'Y-m-d'); 
                                 
                             if (fechaZ_cod <= fecha_doc)
