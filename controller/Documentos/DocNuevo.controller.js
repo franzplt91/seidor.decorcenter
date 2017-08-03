@@ -1,4 +1,4 @@
-﻿sap.ui.define([
+sap.ui.define([
     "sap/ui/core/mvc/Controller",
     'sap/m/Button',
     'sap/m/Dialog',    
@@ -46,6 +46,16 @@
                 this.getView().byId("date_fechaFin_stockPorPedir").setValue(fechaPosterior);
                 /////////Fin Stock Por Llegar y Por Pedir////////////////////////////////////////////////////////////////
             var oData = {
+                //////Inicio Roy Tipo Documento//////////////////////
+                "documentoNuevo":{
+                    "Codigo": "",
+                    "Descripcion": "",
+                    "Flag1": "",
+                    "Flag2": "",
+                    "Flag3": "",
+                    "Flag4": ""
+                },
+                //////End Roy Tipo Documento//////////////////////
                 "pedido": {
                     "enabled": true,
                     "enabledBtnGuardar": true,
@@ -656,7 +666,6 @@
                 this.getView().setModel(new JSONModel(oData));
                 this.getView().getModel().setProperty("/dataIni", window.dataIni);
                 this.getView().getModel().refresh(true);
-
                 //////Redireccion Documento Nuevo - Stock Disponible////
                     if(window.IsDocNuevo == true){
                         //////////////Número referencia (Doc Buscar) //////
@@ -726,10 +735,15 @@
         },
         onOkDlg_DialogDocNuevo: function (oEvent) {
             var tipoDocumento = this.getView().byId("ListaDocNuevo").getSelectedItem().getBindingContext().getObject();
+            ///////Inicio Roy Tipo Documento/////////////////////////////////////////////////
+            this.getView().getModel().setProperty("/documentoNuevo",tipoDocumento);
+            ///////End Roy Tipo Documento////////////////////////////////////////////////////
             var tipoDocCodigo = tipoDocumento.Codigo;
             var referencia = this.getView().byId("txt_refDocNuevo").getValue();
             var listaTipoDocumento = this.getView().getModel().getProperty("/dataIni/lstTipoDoc");
             var flag2 = ""; 
+            console.log("tipodoc//////////////////");
+            console.log(this.getView().getModel().getProperty("/documentoNuevo"));
             for(var indice in listaTipoDocumento) {
                  if (listaTipoDocumento[indice].Codigo == tipoDocCodigo) {flag2 = listaTipoDocumento[indice].Flag2; break;}
             }
@@ -1636,6 +1650,27 @@
         onNoMensajeAvisoAddCenAlmLot: function () {
             this.getView().byId("dlg_MensajeAvisoAddCenAlmLot").close();
         },
+        cambiar_moneda: function (){
+            //Validar combo
+            if (this.getView().getModel().getProperty("/pedido/Moneda") == 'PEN') 
+            {
+                if (dataIni.person.UsuarioServ == '')
+                {
+                    this.getView().byId("txt_Total").setText("Tot.Doc.: S/.");
+                    this.getView().byId("txt_Dscto").setText("Tot.Dcto. : S/. ");
+                    //tb.setTitle('Tot.Doc.: S/. ' + addCommas(roundNumber((objPedidoStore.last().data.Total), 2)) + ' (c/IGV)' + '  |  ' + 'Tot.Dcto. : S/. ' + addCommas(roundNumber(objPedidoStore.last().data.TotalDcto, 2)));
+                }
+            }
+            else 
+            {
+                if (dataIni.person.UsuarioServ == '')
+                {
+                    this.getView().byId("txt_Total").setText("Tot.Doc.: $/.");
+                    this.getView().byId("txt_Dscto").setText("Tot.Dcto. : $/.");
+                    //tb.setTitle('Tot.Doc.: $/. ' + addCommas(roundNumber((objPedidoStore.last().data.Total), 2)) + ' (c/IGV)' + '  |  ' + 'Tot.Dcto. : $/. ' + addCommas(roundNumber(objPedidoStore.last().data.TotalDcto, 2)));
+                }
+            }
+        },
         onBtnRecalcular:function(){
             var materiales = this.getView().getModel().getProperty("/listaMaterial/");
             if(materiales){
@@ -1676,8 +1711,6 @@
                 MessageToast.show("Debe añadir al menos un Material.");
             }
         },
-
-
         /** utilitarios **/
         crearNuevoMaterial: function (codigoMaterial, opcionMaterial, codigoAmbiente, cantidad,tamanoList) {
         var pedido = this.crearPedido();
@@ -2326,8 +2359,12 @@
             return cliente;
         },
         /////////////////////////////////////////////////////////////
-       
-        onBtnGuardarDocumento: function () {
+        
+           onBtnGuardarDocumento:function(){
+            utilDocumento.validarGuardarDocumento(this, this.onBtnGuardarDocumento1());
+           },
+                /////////////////////////////////////////////////////////////
+        onBtnGuardarDocumento1: function () {
             var nuevoDocumento = this.crearNuevoDocumento() ; //Sin Hard Code 
             var listaMatJson = JSON.stringify(this.crearMateriales()); //Sin Hard Code 
             var listaDsctoJson = JSON.stringify(this.crearDescuentos()); //Sin Hard Code 
@@ -2826,25 +2863,14 @@ onDocNuevoClosedlg_addProductoonDialog: function () {
          var categoria = this.getView().byId("comboCategoria").getSelectedKey();
          var linea[] = window.dataIni.lstLinea;
          var listaL[];
-         
          for (var i = 0; i < (linea[].lenght); i++) {
-         
-         
-         
          if(linea[]{Codigo} === categoria ){
          listaL[].push(linea[]{Descripcion});
-         
          }
-         
-         
          }
          this.getView().getModel().setProperty("/ListaLinea",listaL[]);
-         
          },*/
         //Stock Buscar
-        
-        
-        
         //Seleccionar Categoria
         onSeleccionarCategoria: function () {
             var categoria = this.getView().byId("comboCategoria").getSelectedKey();
@@ -2960,6 +2986,21 @@ onDocNuevoClosedlg_addProductoonDialog: function () {
         show4000_0: function () {
             this.showBusyIndicator(4000, 0);
         },
+
+
+        /*
+                onCambioMoneda:function(){
+                    var moneda = this.getView().byId("com_moneda_pago").getSelectedKey();
+                if(moneda=="PEN"){
+                    this.getView().byId("txt_Total").setText("soles");
+                    this.getView().byId("txt_Dscto").setText("soles");
+                }else{
+                    this.getView().byId("txt_Total").setText("dolares");
+                    this.getView().byId("txt_Dscto").setText("dolares");
+                }
+                },
+                
+                */
        
       
     });
